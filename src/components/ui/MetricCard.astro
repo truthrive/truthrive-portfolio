@@ -1,0 +1,57 @@
+---
+export interface Props {
+  value: string | number;
+  label: string;
+  subtext?: string;
+  badge?: string;
+  tone?: "neutral" | "success" | "accent";
+  format?: "integer" | "decimal" | "thousand-dot";
+  decimals?: number;
+  prefix?: string;
+  suffix?: string;
+  animated?: boolean;
+  ariaLabel?: string;
+}
+
+const { 
+  value, 
+  label, 
+  subtext, 
+  badge, 
+  tone = "accent", 
+  format = "integer",
+  decimals = 0,
+  prefix = "",
+  suffix = "",
+  animated = false,
+  ariaLabel 
+} = Astro.props;
+
+// Server-side formatting for fallback
+let displayValue = String(value);
+if (format === "thousand-dot") {
+  displayValue = Number(value).toLocaleString('de-DE'); // uses dot for thousands
+} else if (format === "decimal" && decimals > 0) {
+  displayValue = Number(value).toFixed(decimals);
+}
+
+const finalDisplay = `${prefix}${displayValue}${suffix}`;
+---
+<div class="card metric-card" aria-label={ariaLabel || `${label}: ${finalDisplay}`}>
+  <div 
+    class={`metric-number ${tone === 'success' ? 'tone-success' : ''}`}
+    data-counter={animated ? "true" : undefined}
+    data-counter-value={animated ? value : undefined}
+    data-counter-format={animated ? format : undefined}
+    data-counter-prefix={animated ? prefix : undefined}
+    data-counter-suffix={animated ? suffix : undefined}
+    data-counter-decimals={animated ? decimals : undefined}
+  >
+    {finalDisplay}
+    {subtext && <span class="metric-subtext">{subtext}</span>}
+  </div>
+  <div class="metric-label">
+    {label}
+  </div>
+  {badge && <div class="metric-badge">{badge}</div>}
+</div>

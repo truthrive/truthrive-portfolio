@@ -1,0 +1,50 @@
+---
+export interface Step {
+  number: string;
+  title: string;
+  description: string;
+}
+
+export interface Props {
+  steps: Step[];
+  title?: string;
+  kicker?: string;
+}
+
+const { steps, title, kicker } = Astro.props;
+---
+<!-- Section heading lives OUTSIDE the flex row — always full-width -->
+{title && (
+  <div class="workflow-section-heading section-heading text-center">
+    {kicker && <p class="section-kicker">{kicker}</p>}
+    <h2 class="section-title">{title}</h2>
+  </div>
+)}
+
+<!-- Flex row: nav column + detail column only (no heading inside) -->
+<div class="workflow-scrollytelling" data-workflow>
+  <!-- Sticky Sidebar Nav (Desktop) -->
+  <div class="workflow-sidebar">
+    <ul class="workflow-nav">
+      {steps.map((step, index) => (
+        <li class={`workflow-nav-item ${index === 0 ? 'active' : ''}`} data-target={`step-${index + 1}`}>
+          <span class="step-num">{step.number}</span>
+          <span class="step-label">{step.title}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- Scrolling Detail Cards -->
+  <div class="workflow-content">
+    {steps.map((step, index) => (
+      <div class={`workflow-detail card ${index === 0 ? 'active-card' : ''}`} id={`step-${index + 1}`} data-workflow-step={`step-${index + 1}`}>
+        <div class="step-header">
+          <span class="step-mobile-num">{step.number}</span>
+          <h3>{step.title}</h3>
+        </div>
+        <p>{step.description}</p>
+      </div>
+    ))}
+  </div>
+</div>

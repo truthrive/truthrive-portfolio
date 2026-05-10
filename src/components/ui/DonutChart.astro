@@ -1,0 +1,65 @@
+---
+export interface Segment {
+  colorVar: string; // e.g. "var(--color-accent)"
+  percentage: number;
+}
+
+export interface LegendItem {
+  colorVar: string;
+  label: string;
+  value: string;
+}
+
+export interface Props {
+  title: string;
+  centerValue: string;
+  centerLabel: string;
+  segments: Segment[];
+  legend: LegendItem[];
+  calloutText?: string;
+}
+
+const { title, centerValue, centerLabel, segments, legend, calloutText } = Astro.props;
+
+// Build conic gradient string based on segments
+let gradientParts = [];
+let currentPos = 0;
+segments.forEach((segment, index) => {
+  const nextPos = currentPos + segment.percentage;
+  if (index === segments.length - 1) {
+    // Last segment stretches to 100%
+    gradientParts.push(`${segment.colorVar} ${currentPos}% 100%`);
+  } else {
+    gradientParts.push(`${segment.colorVar} ${currentPos}% ${nextPos}%`);
+  }
+  currentPos = nextPos;
+});
+const conicGradient = `conic-gradient(${gradientParts.join(', ')})`;
+---
+<div class="card distribution-card text-center">
+  <h3 style="font-size: 1.25rem; margin-bottom: 24px;">{title}</h3>
+  <div class="donut-wrapper" style="margin-bottom: 32px;">
+    <div class="donut-multi" style={`background: ${conicGradient};`}>
+      <div class="donut-inner">
+        <div style="font-size: 2.5rem; font-weight: 800; color: var(--color-text); line-height: 1;">{centerValue}</div>
+        <div style="font-size: 0.9rem; color: var(--color-muted-text); margin-top: 4px;">{centerLabel}</div>
+      </div>
+    </div>
+  </div>
+  <div class="distribution-legend">
+    {legend.map(item => (
+      <div class="legend-row">
+        <div class="legend-dot-wrapper">
+          <span class="legend-dot" style={`background: ${item.colorVar};`}></span> 
+          <span class="legend-label">{item.label}</span>
+        </div>
+        <span class="legend-value">{item.value}</span>
+      </div>
+    ))}
+  </div>
+  {calloutText && (
+    <div style="margin-top: 24px; padding: 12px; background: var(--color-muted-section); border-radius: var(--radius-sm); font-size: 0.95rem; color: var(--color-text); font-weight: 500;">
+      {calloutText}
+    </div>
+  )}
+</div>

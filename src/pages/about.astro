@@ -1,0 +1,278 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// --- Page Configuration ---
+// Fill these with paths (e.g., "/img/mascot/pose-1.png") or URLs later.
+const pageConfig = {
+  heroMascotSrc: null, 
+  brandLogoSrc: null,  
+  ctaMascotSrc: null,  
+  
+  // Default Alt Texts
+  heroMascotAlt: "TruThrive mascot representing SEO growth and consulting",
+  brandLogoAlt: "TruThrive logo",
+  ctaMascotAlt: "TruThrive mascot encouraging SEO audit request"
+};
+
+const title = "Giới thiệu | TruThrive - True SEO. Sustainable Growth.";
+const description = "Tìm hiểu về TruThrive và hành trình xây dựng giải pháp SEO bền vững dựa trên dữ liệu, kỹ thuật và chiến lược nội dung.";
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- About Hero -->
+  <section class="section hero-section">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-left">
+          <p class="section-kicker">GIỚI THIỆU</p>
+          <h1 class="hero-title">
+            Xây dựng nền tảng SEO bền vững cho doanh nghiệp
+          </h1>
+          <p class="hero-description">
+            TruThrive không chỉ là dịch vụ SEO. Đó là cam kết về sự tăng trưởng thực chất, minh bạch và có hệ thống dựa trên nền tảng Technical SEO vững chắc và chiến lược Content dựa trên dữ liệu.
+          </p>
+          <div class="btn-group">
+            <a href="#brand-story" class="btn btn-secondary">Câu chuyện thương hiệu</a>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          {pageConfig.heroMascotSrc ? (
+            <div class="card hero-mascot-card">
+              <img 
+                src={pageConfig.heroMascotSrc} 
+                alt={pageConfig.heroMascotAlt} 
+                width="480" 
+                height="480"
+                class="mascot-img"
+              />
+            </div>
+          ) : (
+            <div class="card hero-placeholder-card">
+              <div class="monogram-placeholder">BT</div>
+              <p class="placeholder-note">Mascot sẽ sớm xuất hiện</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brand Story -->
+  <section id="brand-story" class="section section-muted">
+    <div class="container">
+      <div class="brand-story-wrapper text-center">
+        <div class="logo-slot">
+          {pageConfig.brandLogoSrc ? (
+            <img 
+              src={pageConfig.brandLogoSrc} 
+              alt={pageConfig.brandLogoAlt} 
+              class="brand-logo-img"
+              loading="lazy"
+            />
+          ) : (
+            <div class="text-logo">
+              <span class="logo-text">TruThrive</span>
+              <span class="logo-tagline">True SEO. Sustainable Growth.</span>
+            </div>
+          )}
+        </div>
+
+        <div class="brand-content-card card">
+          <p class="section-kicker">CÂU CHUYỆN THƯƠNG HIỆU</p>
+          <h2 class="section-title">Tại sao lại là TruThrive?</h2>
+          <div class="brand-text">
+            <p>
+              Cái tên **TruThrive** được kết hợp từ **"True"** (Thực chất) và **"Thrive"** (Tăng trưởng mạnh mẽ). Trong một thị trường SEO đầy rẫy những thủ thuật ngắn hạn, tôi tin rằng con đường duy nhất để doanh nghiệp tồn tại và phát triển là xây dựng một hệ thống SEO bền vững.
+            </p>
+            <p>
+              Triết lý của TruThrive là ưu tiên **Technical Foundation** (nền tảng kỹ thuật) và **Search Intent** (ý định tìm kiếm) lên hàng đầu. Khi kỹ thuật đúng và nội dung thực sự giải quyết được vấn đề của người dùng, traffic sẽ tăng trưởng như một kết quả tất yếu.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How I Work -->
+  <section class="section">
+    <div class="container">
+      <div class="section-heading text-center">
+        <p class="section-kicker">PHƯƠNG CHÂM LÀM VIỆC</p>
+        <h2 class="section-title">Cách tôi triển khai dự án</h2>
+        <p class="section-subtitle">
+          Mỗi dự án tại TruThrive đều được tiếp cận theo phương pháp chẩn đoán chuyên sâu trước khi bắt tay vào thực thi.
+        </p>
+      </div>
+
+      <div class="card-grid">
+        {[
+          { 
+            title: 'Dữ liệu là cốt lõi', 
+            desc: 'Mọi quyết định từ audit đến lên kế hoạch content đều phải dựa trên dữ liệu từ GSC, GA4 và các công cụ chuyên dụng.' 
+          },
+          { 
+            title: 'Kỹ thuật là nền tảng', 
+            desc: 'Một website không thể rank tốt nếu gặp lỗi crawl, index hoặc cấu trúc technical rời rạc. Tôi ưu tiên xử lý nền tảng đầu tiên.' 
+          },
+          { 
+            title: 'Nội dung thực chất', 
+            desc: 'Không sản xuất content rác để lấy volume. Content tại TruThrive tập trung vào topical authority và đáp ứng đúng hành trình khách hàng.' 
+          },
+          { 
+            title: 'Tự động hóa workflow', 
+            desc: 'Ứng dụng SEO Automation để tối ưu hóa thời gian thực thi, giúp tập trung nguồn lực vào những hạng mục tạo ra impact lớn nhất.' 
+          }
+        ].map(item => (
+          <article class="card feature-card">
+            <h3>{item.title}</h3>
+            <p>{item.desc}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="cta-content-wrapper">
+        <div class="section-heading text-center" style="margin-bottom: 0;">
+          <h2 class="section-title">Cần một lộ trình SEO bền vững?</h2>
+          <p class="section-subtitle">
+            Hãy bắt đầu bằng một buổi SEO Audit chuyên sâu để hiểu rõ thực trạng website của bạn.
+          </p>
+          <div class="btn-group center" style="margin-top: 32px;">
+            <a href="/request-seo-audit/" class="btn btn-primary">Yêu cầu SEO Audit</a>
+            <a href="/case-studies/suoi-tien-seo/" class="btn btn-light">Xem Case Study</a>
+          </div>
+        </div>
+
+        {pageConfig.ctaMascotSrc && (
+          <div class="cta-mascot-accent">
+            <img 
+              src={pageConfig.ctaMascotSrc} 
+              alt={pageConfig.ctaMascotAlt} 
+              class="mascot-accent-img"
+              loading="lazy"
+            />
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero Mascot Styles */
+  .hero-mascot-card {
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-card);
+  }
+  .mascot-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .hero-placeholder-card {
+    aspect-ratio: 1/1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border: 2px dashed var(--color-border);
+  }
+  .monogram-placeholder {
+    font-size: 4rem;
+    font-weight: 800;
+    color: var(--color-border);
+    margin-bottom: 12px;
+  }
+  .placeholder-note {
+    font-size: 0.9rem;
+    color: var(--color-muted-text);
+  }
+
+  /* Brand Story Styles */
+  .brand-story-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .logo-slot {
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .brand-logo-img {
+    max-height: 80px;
+    width: auto;
+  }
+  .text-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .logo-text {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .logo-tagline {
+    font-size: 1rem;
+    color: var(--color-accent);
+    font-weight: 600;
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .brand-content-card {
+    padding: 48px;
+    text-align: left;
+  }
+  .brand-text {
+    margin-top: 24px;
+    font-size: 1.125rem;
+    color: var(--color-muted-text);
+    line-height: 1.8;
+  }
+  .brand-text p + p {
+    margin-top: 20px;
+  }
+
+  /* CTA Accent Styles */
+  .cta-content-wrapper {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .cta-mascot-accent {
+    position: absolute;
+    bottom: -40px;
+    right: -100px;
+    width: 120px;
+    pointer-events: none;
+  }
+  @media (max-width: 1024px) {
+    .cta-mascot-accent {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .brand-content-card {
+      padding: 32px 24px;
+    }
+    .logo-text {
+      font-size: 2rem;
+    }
+  }
+</style>

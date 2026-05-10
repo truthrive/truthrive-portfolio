@@ -1,0 +1,46 @@
+---
+import SEOHead from '../components/SEOHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+import '../styles/components.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  schema?: object;
+  robots?: string;
+}
+
+const { title, description, canonical, image, type, schema, robots } = Astro.props;
+---
+
+<!DOCTYPE html>
+<!-- TODO: Add English version and hreflang when bilingual routing is implemented. -->
+<html lang="vi">
+  <head>
+    <SEOHead title={title} description={description} canonical={canonical} image={image} type={type} schema={schema} robots={robots} />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+    
+    <!-- Shared Image Lightbox -->
+    <dialog id="image-lightbox" class="image-lightbox" aria-modal="true">
+      <div class="image-lightbox-content">
+        <div class="image-lightbox-header">
+          <h4 id="lightbox-title" class="image-lightbox-title"></h4>
+          <button id="lightbox-close" class="image-lightbox-close" aria-label="Đóng">&times;</button>
+        </div>
+        <img id="lightbox-image" src="" alt="" class="image-lightbox-image" />
+      </div>
+    </dialog>
+  </body>
+</html>

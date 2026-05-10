@@ -1,0 +1,63 @@
+---
+export interface GrowthMetric {
+  title: string;
+  before: string | number;
+  after: string | number;
+  source: string;
+  description: string;
+  targetWidth?: string;
+  tone?: "accent" | "text" | "success" | "dark" | "default";
+  format?: "integer" | "decimal" | "thousand-dot";
+}
+
+export interface Props {
+  title: string;
+  description: string;
+  disclaimer?: string;
+  metrics: GrowthMetric[];
+}
+
+const { title, description, disclaimer, metrics } = Astro.props;
+
+const formatValue = (val: string | number, format?: string) => {
+  if (format === "thousand-dot") {
+    return Number(val).toLocaleString('de-DE');
+  }
+  return String(val);
+};
+---
+<div class="card signal-panel">
+  <!-- Panel Header -->
+  <div class="signal-panel-header">
+    <p class="dashboard-stat-group-label">AI Search Signals</p>
+    <h3 class="signal-panel-title">{title}</h3>
+    <p class="signal-panel-desc">{description}</p>
+  </div>
+
+  <!-- Signal Rows -->
+  <div class="signal-row-list">
+    {metrics.map((metric, index) => (
+      <div class={`signal-row ${index < metrics.length - 1 ? 'signal-row--divided' : ''}`}>
+        <!-- Left: name + source + description -->
+        <div class="signal-row-meta">
+          <div class="signal-row-identity">
+            <span class="signal-row-name">{metric.title}</span>
+            <span class="source-badge">{metric.source}</span>
+          </div>
+          <p class="signal-row-desc">{metric.description}</p>
+        </div>
+
+        <!-- Right: baseline → current -->
+        <div class="signal-row-values">
+          <span class="signal-row-before">{formatValue(metric.before, metric.format)}</span>
+          <span class="signal-row-arrow">→</span>
+          <span class="signal-row-after">{formatValue(metric.after, metric.format)}</span>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  {disclaimer && (
+    <p class="signal-disclaimer">{disclaimer}</p>
+  )}
+</div>

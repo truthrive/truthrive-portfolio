@@ -1,0 +1,63 @@
+---
+import { SITE_URL } from '../data/site';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  schema?: object;
+  robots?: string;
+}
+
+const {
+  title = "TruThrive | True SEO. Sustainable Growth.",
+  description = "Bùi Trường Thịnh - SEO Specialist & Automation Builder. Data-driven Technical SEO, Content Strategy, and SEO Automation for sustainable organic growth.",
+  canonical,
+  image,
+  type = "website",
+  schema,
+  robots = "index, follow"
+} = Astro.props;
+
+const canonicalURL = canonical || new URL(Astro.url.pathname, SITE_URL).href;
+// Only output og:image if explicitly provided via props.
+const resolvedImage = image || null;
+
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta name="generator" content={Astro.generator} />
+
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="robots" content={robots} />
+
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Open Graph -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:site_name" content="TruThrive" />
+{resolvedImage && <meta property="og:image" content={resolvedImage} />}
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalURL} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+{resolvedImage && <meta property="twitter:image" content={resolvedImage} />}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+{schema && (
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+)}

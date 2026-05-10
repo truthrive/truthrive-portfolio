@@ -1,0 +1,426 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import StatsStrip from "../../components/ui/StatsStrip.astro";
+import EvidenceCard from "../../components/ui/EvidenceCard.astro";
+import DonutChart from "../../components/ui/DonutChart.astro";
+import TimelineChart from "../../components/ui/TimelineChart.astro";
+import WorkflowScroller from "../../components/ui/WorkflowScroller.astro";
+import GrowthSignalPanel from "../../components/ui/GrowthSignalPanel.astro";
+import MetricCard from "../../components/ui/MetricCard.astro";
+
+const keyMetrics = [
+  {
+    value: 77,
+    label: "Keyword Top 3",
+    format: "integer",
+    animated: true
+  },
+  {
+    value: 94,
+    label: "Keyword Top 5",
+    format: "integer",
+    animated: true
+  },
+  {
+    value: 32198,
+    label: "Organic sessions nghiệm thu",
+    format: "thousand-dot",
+    animated: true
+  },
+  {
+    value: 100.8,
+    suffix: "%",
+    label: "KPI Traffic",
+    format: "decimal",
+    decimals: 1,
+    animated: true
+  }
+] as const;
+
+const trafficEvidence = [
+  {
+    title: "Organic traffic theo timeline triển khai",
+    sourceLabel: "GA4",
+    imageSrc: "/img/suoitien-traffic.jpg",
+    placeholder: "Thêm ảnh GA4 organic timeline",
+    alt: "Biểu đồ GA4 thể hiện organic traffic của Suối Tiên trong timeline triển khai SEO",
+    caption: "Organic sessions tháng nghiệm thu đạt 32.198, vượt KPI cam kết 31.957 sessions.",
+    insights: [
+      "Theo dõi xu hướng organic traffic trong suốt quá trình triển khai.",
+      "Đối chiếu tăng trưởng traffic với các giai đoạn technical, content và internal link.",
+      "Dữ liệu có thể được làm mờ một phần trước khi public."
+    ]
+  },
+  {
+    title: "Clicks & impressions từ Google Search Console",
+    sourceLabel: "GSC",
+    imageSrc: "/img/suoitien-click-impression.jpg",
+    placeholder: "Thêm ảnh GSC clicks & impressions",
+    alt: "Biểu đồ Google Search Console thể hiện clicks và impressions của Suối Tiên trong quá trình triển khai SEO",
+    caption: "Clicks và impressions giúp bổ sung góc nhìn về độ phủ tìm kiếm, không chỉ organic sessions từ GA4.",
+    insights: [
+      "Impressions phản ánh độ mở rộng hiện diện tìm kiếm.",
+      "Clicks cho thấy khả năng chuyển đổi visibility thành traffic.",
+      "Dữ liệu GSC sẽ được dùng như bằng chứng hỗ trợ cho kết quả ranking và organic traffic."
+    ]
+  }
+];
+
+const aioGeoMetrics = [
+  {
+    title: "AIO Traffic",
+    before: 0,
+    after: 500,
+    source: "GA4",
+    description: "Traffic ghi nhận từ nhóm truy vấn / bề mặt liên quan đến AIO.",
+    targetWidth: "50%",
+    tone: "accent"
+  },
+  {
+    title: "AIO Keywords",
+    before: 0,
+    after: 1000,
+    source: "Semrush",
+    description: "Số lượng keyword ghi nhận tín hiệu AIO theo tracking từ Semrush.",
+    targetWidth: "100%",
+    tone: "dark",
+    format: "thousand-dot"
+  },
+  {
+    title: "GEO",
+    before: 0,
+    after: 200,
+    source: "GA4",
+    description: "Nhóm tín hiệu GEO được tracking bổ sung từ GA4.",
+    targetWidth: "20%",
+    tone: "accent"
+  }
+] as const;
+---
+<BaseLayout 
+  title="Case Study SEO Suối Tiên | TruThrive" 
+  description="Case study SEO Suối Tiên: kiểm soát rủi ro sau chuyển đổi domain, tối ưu technical/content và đạt 100.8% KPI Top 3 cùng 32.198 organic sessions tháng nghiệm thu."
+>
+  <!-- Hero Section -->
+  <section class="section hero-section">
+    <div class="container">
+      <div class="section-heading text-center" style="max-width: 800px; margin-left: auto; margin-right: auto;">
+        <p class="section-kicker">CASE STUDY SEO</p>
+        <h1 class="hero-title" style="margin-bottom: 24px;">Case Study SEO Suối Tiên</h1>
+        <p class="hero-description" style="margin-left: auto; margin-right: auto; max-width: 700px;">
+          Hỗ trợ Suối Tiên kiểm soát rủi ro SEO sau giai đoạn chuyển đổi domain, xây dựng lại nền tảng technical/content và thúc đẩy tăng trưởng ranking, organic traffic cho các nhóm keyword trọng tâm.
+        </p>
+        <div class="chip-group" style="justify-content: center; margin-bottom: 40px; margin-top: 16px;">
+          <span class="chip">Technical SEO</span>
+          <span class="chip">Content Strategy</span>
+          <span class="chip">Domain Migration</span>
+          <span class="chip">Tourism SEO</span>
+          <span class="chip">Content Audit</span>
+          <span class="chip">Internal Link</span>
+        </div>
+        <div class="btn-group center">
+          <a href="#results" class="btn btn-primary">Xem kết quả</a>
+          <a href="/request-seo-audit/" class="btn btn-secondary">Liên hệ SEO Audit</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Project Context -->
+  <section class="section section-muted">
+    <div class="container">
+      <div class="card" style="max-width: 800px; margin: 0 auto;">
+        <h2 class="section-title" style="font-size: 2rem;">Bối cảnh dự án</h2>
+        <div style="font-size: 1.05rem; color: var(--color-muted-text); line-height: 1.7;">
+          <p style="margin-bottom: 16px;">Suối Tiên là thương hiệu lớn trong lĩnh vực du lịch, vui chơi giải trí tại TP.HCM. Trước khi triển khai, website đã có lượng truy cập tự nhiên ổn định, nhưng phần lớn organic traffic vẫn đến từ nhóm từ khóa thương hiệu.</p>
+          <p>Mục tiêu của dự án không chỉ là duy trì hiện diện thương hiệu trên Google, mà còn mở rộng khả năng tiếp cận người dùng qua các nhóm non-brand keyword như địa điểm vui chơi, khu vui chơi, team building, tổ chức sự kiện, hội nghị và tiệc cưới.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO Problems -->
+  <section class="section">
+    <div class="container">
+      <div class="section-heading text-center">
+        <h2 class="section-title">Vấn đề SEO chính</h2>
+      </div>
+      <div class="card-grid">
+        <article class="card feature-card">
+          <span class="pill">01</span>
+          <h3>Rủi ro sau chuyển đổi domain</h3>
+          <p>Dự án phát sinh bối cảnh chuyển đổi từ suoitien.com sang suoitien.vn, yêu cầu kiểm soát redirect, internal link, de-indexing và tín hiệu technical để hạn chế rủi ro mất ranking.</p>
+        </article>
+        <article class="card feature-card">
+          <span class="pill">02</span>
+          <h3>Technical foundation chưa ổn định</h3>
+          <p>Website còn các vấn đề liên quan đến URL spam, sitemap, robots.txt, schema, mobile UX, Core Web Vitals và dữ liệu cấu trúc chưa đồng bộ với domain mới.</p>
+        </article>
+        <article class="card feature-card">
+          <span class="pill">03</span>
+          <h3>Non-brand keyword chưa được khai thác đủ</h3>
+          <p>Các nhóm keyword có giá trị như team building, tổ chức sự kiện, hội nghị và tiệc cưới chưa có độ phủ SEO tương xứng với tiềm năng thương hiệu.</p>
+        </article>
+        <article class="card feature-card">
+          <span class="pill">04</span>
+          <h3>Content chưa đủ sâu theo intent</h3>
+          <p>Một số topic dịch vụ còn thiếu nội dung chuyên biệt, chưa thể hiện rõ năng lực cung cấp dịch vụ và chưa đủ tín hiệu để cạnh tranh với các đối thủ chuyên ngành.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Strategy -->
+  <section class="section section-muted">
+    <div class="container">
+      <div class="card two-col-card">
+        <div>
+          <h2 class="section-title">Chiến lược triển khai</h2>
+          <p style="font-size: 1.05rem; color: var(--color-muted-text); line-height: 1.7; margin-bottom: 24px;">
+            Thay vì chỉ tối ưu từng bài viết riêng lẻ, dự án được triển khai theo hướng kết hợp technical foundation, content architecture và performance tracking.
+          </p>
+        </div>
+        <div>
+          <ul class="case-summary-list" style="margin-bottom: 0;">
+            <li style="flex-direction: row; align-items: flex-start; gap: 12px;">
+              <span style="color: var(--color-accent); font-weight: bold;">✓</span>
+              <span>Kiểm soát rủi ro technical sau chuyển đổi domain.</span>
+            </li>
+            <li style="flex-direction: row; align-items: flex-start; gap: 12px;">
+              <span style="color: var(--color-accent); font-weight: bold;">✓</span>
+              <span>Audit và tối ưu lại hệ thống content hiện có.</span>
+            </li>
+            <li style="flex-direction: row; align-items: flex-start; gap: 12px;">
+              <span style="color: var(--color-accent); font-weight: bold;">✓</span>
+              <span>Xây dựng thêm nội dung SEO theo nhóm intent có khả năng kéo traffic.</span>
+            </li>
+            <li style="flex-direction: row; align-items: flex-start; gap: 12px;">
+              <span style="color: var(--color-accent); font-weight: bold;">✓</span>
+              <span>Tăng cường internal link để hỗ trợ URL trọng tâm.</span>
+            </li>
+            <li style="flex-direction: row; align-items: flex-start; gap: 12px;">
+              <span style="color: var(--color-accent); font-weight: bold;">✓</span>
+              <span>Theo dõi ranking và traffic theo từng giai đoạn để điều chỉnh ưu tiên triển khai.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Workflow Section (Scrollytelling) -->
+  <section class="section">
+    <div class="container">
+      <WorkflowScroller 
+        title="Workflow triển khai dự án"
+        steps={[
+          { number: '01', title: 'Technical Discovery', description: 'Audit technical, redirect, schema, sitemap, robots.txt, mobile UX, URL spam và các lỗi ảnh hưởng đến crawl/index.' },
+          { number: '02', title: 'Content & Market Mapping', description: 'Phân tích keyword gap, topic opportunity, search intent và các nhóm dịch vụ trọng tâm.' },
+          { number: '03', title: 'Content Production & Onpage', description: 'Triển khai content SEO, content bổ trợ, tối ưu title, heading, meta, readability và semantic keyword.' },
+          { number: '04', title: 'Internal Link & Topical Authority', description: 'Thiết kế internal link hỗ trợ URL trọng tâm và củng cố topical authority.' },
+          { number: '05', title: 'Offpage & Entity Support', description: 'Triển khai backlink, social signal và tín hiệu ngoài site để hỗ trợ nhận diện.' },
+          { number: '06', title: 'Tracking, Reporting & Optimization', description: 'Theo dõi ranking, organic traffic và KPI theo từng tháng để điều chỉnh ưu tiên triển khai.' }
+        ]} 
+      />
+    </div> 
+  </section>
+
+  <!-- Results Section -->
+  <section id="results" class="section section-muted">
+    <div class="container">
+      <div class="section-heading text-center">
+        <h2 class="section-title">Kết quả đạt được</h2>
+        <p class="section-subtitle">Hiệu quả triển khai được minh chứng qua cả chỉ số ranking và dữ liệu traffic thực tế.</p>
+      </div>
+      
+      <!-- KPI Metric Strip -->
+      <div class="kpi-strip-centered">
+        <div class="stats-grid">
+          {keyMetrics.map(metric => (
+            <MetricCard 
+              value={metric.value}
+              label={metric.label}
+              suffix={metric.suffix}
+              prefix={metric.prefix}
+              format={metric.format}
+              decimals={metric.decimals}
+              animated={true}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div class="results-proof-grid">
+        <!-- Left Column: Ranking Outcome -->
+        <div class="results-column results-sticky-column">
+          <p class="dashboard-col-label">Ranking Outcome</p>
+
+          <DonutChart 
+            title="Phân bổ ranking trong 219 keyword"
+            centerValue="43%"
+            centerLabel="Top 5 coverage"
+            segments={[
+              { colorVar: 'var(--color-accent)', percentage: 43 },
+              { colorVar: 'var(--color-border)', percentage: 57 }
+            ]}
+            legend={[
+              { colorVar: 'var(--color-accent)', label: 'Top 5', value: '94 / 219 keyword' },
+              { colorVar: 'var(--color-border)', label: 'Ngoài Top 5', value: '125 / 219 keyword' }
+            ]}
+            calloutText="Trong đó 77 keyword đạt Top 3, tương đương 35% tổng bộ keyword."
+          />
+
+          <!-- Top 3 / Top 5 number cards -->
+          <div class="kpi-stats-grid">
+            <MetricCard 
+              value={77} subtext="/ 219"
+              label="Keyword đạt Top 3"
+              badge="KPI cam kết: 12%"
+              animated={true}
+            />
+            <MetricCard 
+              value={94} subtext="/ 219"
+              label="Keyword đạt Top 5"
+              badge="KPI cam kết: 37%"
+              animated={true}
+            />
+          </div>
+
+          <!-- Ranking Growth Timeline Chart -->
+          <TimelineChart 
+            title="Tăng trưởng ranking theo giai đoạn"
+            legend={[
+              { colorVar: 'var(--color-text)', label: 'Top 5' },
+              { colorVar: 'var(--color-accent)', label: 'Top 3' }
+            ]}
+            xAxisLabels={[
+              { x: 100, label: 'Tháng 3' },
+              { x: 250, label: 'Tháng 4' },
+              { x: 400, label: 'Tháng 5' },
+              { x: 550, label: 'Tháng 6' },
+              { x: 700, label: 'Tháng 7' }
+            ]}
+            yAxisLabels={[
+              { y: 50, label: '100' },
+              { y: 150, label: '50' },
+              { y: 250, label: '0' }
+            ]}
+            lines={[
+              { 
+                colorVar: 'var(--color-text)', 
+                points: '100,208 250,162 400,82 550,78 700,64',
+                dataPoints: [
+                  { x: 100, y: 208, labelX: 0, labelY: 0, value: '' },
+                  { x: 250, y: 162, labelX: 0, labelY: 0, value: '' },
+                  { x: 400, y: 82, labelX: 0, labelY: 0, value: '' },
+                  { x: 550, y: 78, labelX: 0, labelY: 0, value: '' },
+                  { x: 700, y: 64, labelX: 700, labelY: 50, value: '94', isFinal: true }
+                ]
+              },
+              { 
+                colorVar: 'var(--color-accent)', 
+                points: '100,230 250,214 400,144 550,118 700,110',
+                dataPoints: [
+                  { x: 100, y: 230, labelX: 0, labelY: 0, value: '' },
+                  { x: 250, y: 214, labelX: 0, labelY: 0, value: '' },
+                  { x: 400, y: 144, labelX: 0, labelY: 0, value: '' },
+                  { x: 550, y: 118, labelX: 0, labelY: 0, value: '' },
+                  { x: 700, y: 110, labelX: 700, labelY: 130, value: '77', isFinal: true }
+                ]
+              }
+            ]}
+          />
+        </div>
+
+        <!-- Right Column: Traffic & Visibility Proof -->
+        <div class="proof-column">
+          <p class="dashboard-col-label">Traffic & Visibility Proof</p>
+
+          <!-- Traffic Summary Card -->
+          <div class="evidence-summary card">
+            <p class="dashboard-stat-group-label">Traffic nghiệm thu</p>
+            <div class="summary-stat-list" style="margin-bottom: 0;">
+              <div class="summary-stat-row">
+                <span class="summary-stat-label">Organic sessions</span>
+                <span class="summary-stat-value">32.198</span>
+              </div>
+              <div class="summary-stat-row">
+                <span class="summary-stat-label">KPI traffic</span>
+                <span class="summary-stat-value">31.957</span>
+              </div>
+              <div class="summary-stat-row">
+                <span class="summary-stat-label">Mức đạt KPI</span>
+                <span class="summary-stat-value">100.8%</span>
+              </div>
+              <div class="summary-stat-row summary-stat-highlight">
+                <span class="summary-stat-label">Surplus</span>
+                <span class="summary-stat-value">+241 sessions</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- GA4 + GSC Evidence Cards -->
+          <div class="evidence-stack">
+            {trafficEvidence.map((evidence) => (
+              <EvidenceCard 
+                title={evidence.title}
+                caption={evidence.caption}
+                imageSrc={evidence.imageSrc}
+                placeholder={evidence.placeholder}
+                sourceLabel={evidence.sourceLabel}
+                alt={evidence.alt}
+                insights={evidence.insights}
+                isFeatured={false}
+              />
+            ))}
+
+            <!-- AI Search Signals Panel -->
+            <GrowthSignalPanel 
+              title="AI Search Signals"
+              description="Dự án bắt đầu ghi nhận tín hiệu từ các bề mặt tìm kiếm AI mới bên cạnh organic traffic truyền thống."
+              disclaimer="Nhóm chỉ số AIO/GEO được tracking bổ sung để đánh giá tín hiệu tăng trưởng từ các bề mặt tìm kiếm mới. Cách định nghĩa và nguồn tracking cần được giữ nhất quán khi public."
+              metrics={aioGeoMetrics as any}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What this case proves -->
+  <section class="section section-muted">
+    <div class="container text-center" style="max-width: 800px;">
+      <h2 class="section-title">Case này cho thấy điều gì?</h2>
+      <div style="font-size: 1.1rem; color: var(--color-muted-text); line-height: 1.8;">
+        <p style="margin-bottom: 16px;">
+          SEO growth không chỉ đến từ việc viết thêm content. Với một website đang chuyển đổi domain và mở rộng nhóm dịch vụ SEO, nền tảng technical, cấu trúc content, internal link và tracking KPI cần được triển khai đồng bộ.
+        </p>
+        <p>
+          Khi technical foundation ổn định và content được tổ chức theo đúng intent, website có thể vừa bảo toàn tín hiệu thương hiệu, vừa mở rộng traffic từ các nhóm non-brand keyword có giá trị.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-heading text-center">
+        <h2 class="section-title">Bạn đang cần audit SEO trước khi scale organic traffic?</h2>
+        <p class="section-subtitle">
+          Tôi có thể giúp bạn chẩn đoán technical foundation, content system và lộ trình tăng trưởng SEO bền vững.
+        </p>
+        <div class="btn-group center" style="margin-top: 32px;">
+          <a class="btn btn-primary" href="/request-seo-audit/">Yêu cầu SEO Audit</a>
+          <a class="btn btn-light" href="/">Về trang chủ</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<script>
+  import "../../scripts/interactions.js";
+</script>
+</BaseLayout>

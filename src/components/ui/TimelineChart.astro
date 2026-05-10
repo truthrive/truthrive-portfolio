@@ -1,0 +1,77 @@
+---
+export interface DataPoint {
+  x: number;
+  y: number;
+  labelX: number;
+  labelY: number;
+  value: string;
+  isFinal?: boolean;
+}
+
+export interface LineData {
+  colorVar: string;
+  points: string; // e.g. "100,208 250,162 ..."
+  dataPoints: DataPoint[];
+}
+
+export interface LegendItem {
+  colorVar: string;
+  label: string;
+}
+
+export interface Props {
+  title: string;
+  xAxisLabels: { x: number; label: string }[];
+  yAxisLabels: { y: number; label: string }[];
+  lines: LineData[];
+  legend: LegendItem[];
+}
+
+const { title, xAxisLabels, yAxisLabels, lines, legend } = Astro.props;
+---
+<div class="card chart-card">
+  <div class="chart-legend">
+    {legend.map(item => (
+      <div class="legend-item">
+        <span class="legend-color" style={`background: ${item.colorVar};`}></span> {item.label}
+      </div>
+    ))}
+  </div>
+  <div class="svg-chart-container">
+    <svg viewBox="0 0 800 300" class="growth-chart" preserveAspectRatio="xMidYMid meet" data-animate="chart">
+      <!-- Grid lines -->
+      <line x1="50" y1="250" x2="750" y2="250" class="grid-line x-axis" />
+      <line x1="50" y1="200" x2="750" y2="200" class="grid-line" />
+      <line x1="50" y1="150" x2="750" y2="150" class="grid-line" />
+      <line x1="50" y1="100" x2="750" y2="100" class="grid-line" />
+      <line x1="50" y1="50" x2="750" y2="50" class="grid-line" />
+      
+      <!-- X-axis Labels -->
+      {xAxisLabels.map(xl => (
+        <text x={xl.x} y="275" class="axis-label">{xl.label}</text>
+      ))}
+      
+      <!-- Y-axis Labels -->
+      {yAxisLabels.map(yl => (
+        <text x="40" y={yl.y + 5} class="axis-label y-label">{yl.label}</text>
+      ))}
+      
+      <!-- Data lines -->
+      {lines.map(line => (
+        <polyline points={line.points} class="chart-line" style={`stroke: ${line.colorVar};`} />
+      ))}
+      
+      <!-- Data Points & Labels -->
+      {lines.map(line => (
+        <g class="chart-points">
+          {line.dataPoints.map(dp => (
+            <circle cx={dp.x} cy={dp.y} r={dp.isFinal ? 5 : 4} style={`stroke: ${line.colorVar}; ${dp.isFinal ? `fill: ${line.colorVar};` : ''}`} />
+          ))}
+          {line.dataPoints.filter(dp => dp.isFinal).map(dp => (
+            <text x={dp.labelX} y={dp.labelY} class="point-label" style={`fill: ${line.colorVar};`}>{dp.value}</text>
+          ))}
+        </g>
+      ))}
+    </svg>
+  </div>
+</div>

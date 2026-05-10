@@ -1,0 +1,63 @@
+---
+export interface Props {
+  title: string;
+  caption?: string;
+  description?: string;
+  imageSrc?: string;
+  fullImageSrc?: string;
+  placeholder: string;
+  alt: string;
+  sourceLabel?: string;
+  isFeatured?: boolean;
+  insights?: string[];
+  note?: string;
+  showPlaceholder?: boolean;
+  enableLightbox?: boolean;
+}
+
+const { title, caption, description, imageSrc = "#", fullImageSrc, placeholder, alt, sourceLabel, isFeatured = false, insights, note, showPlaceholder = false, enableLightbox = false } = Astro.props;
+---
+<article class={`card evidence-card ${isFeatured ? 'evidence-card-featured' : ''}`}>
+  <div class="evidence-header">
+    <h3 class="evidence-title">{title}</h3>
+    {sourceLabel && <span class="source-badge">{sourceLabel}</span>}
+  </div>
+  {description && <p class="evidence-description">{description}</p>}
+  
+  {showPlaceholder || imageSrc === "#" ? (
+    <div class="image-frame image-placeholder">
+      <span class="placeholder-text">{placeholder}</span>
+    </div>
+  ) : enableLightbox ? (
+    <button class="image-wrapper evidence-image-trigger" data-lightbox-trigger data-lightbox-src={fullImageSrc || imageSrc} data-lightbox-alt={alt} data-lightbox-title={title} aria-label="Click để xem ảnh đầy đủ">
+      <img src={imageSrc} alt={alt} class="image-frame evidence-img" loading="lazy" />
+      <span class="image-expand-hint">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <polyline points="9 21 3 21 3 15"></polyline>
+          <line x1="21" y1="3" x2="14" y2="10"></line>
+          <line x1="3" y1="21" x2="10" y2="14"></line>
+        </svg>
+        Click để xem ảnh
+      </span>
+    </button>
+  ) : (
+    <a href={imageSrc} target="_blank" class="image-wrapper" title="Mở ảnh kích thước đầy đủ">
+      <img src={imageSrc} alt={alt} class="image-frame evidence-img" loading="lazy" />
+    </a>
+  )}
+  
+  {caption && <div class="evidence-caption">{caption}</div>}
+  
+  {insights && insights.length > 0 && (
+    <ul class="evidence-insights">
+      {insights.map(insight => (
+        <li>
+          <span class="insight-bullet"></span>
+          <span class="insight-text">{insight}</span>
+        </li>
+      ))}
+    </ul>
+  )}
+  {note && <p class="evidence-note">{note}</p>}
+</article>

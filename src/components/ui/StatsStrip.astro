@@ -1,0 +1,42 @@
+---
+import MetricCard from './MetricCard.astro';
+
+export interface MetricData {
+  value: string | number;
+  label: string;
+  suffix?: string;
+  prefix?: string;
+  format?: "integer" | "decimal" | "thousand-dot";
+  decimals?: number;
+  tone?: "neutral" | "success" | "accent";
+  subtext?: string;
+  ariaLabel?: string;
+}
+
+export interface Props {
+  metrics: MetricData[];
+  animated?: boolean;
+}
+
+const { metrics, animated = true } = Astro.props;
+---
+<section class="section section-muted stats-strip">
+  <div class="container">
+    <div class="stats-grid">
+      {metrics.map(metric => (
+        <MetricCard 
+          value={metric.value}
+          label={metric.label}
+          suffix={metric.suffix}
+          prefix={metric.prefix}
+          format={metric.format}
+          decimals={metric.decimals}
+          tone={metric.tone}
+          subtext={metric.subtext}
+          ariaLabel={metric.ariaLabel}
+          animated={animated}
+        />
+      ))}
+    </div>
+  </div>
+</section>
