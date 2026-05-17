@@ -147,6 +147,9 @@ p { margin: 0; }
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--spacing-grid-gap);
 }
+.card-grid.audience-fit-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
 
 /* Metric Card */
 .metric-card {
@@ -465,7 +468,6 @@ p { margin: 0; }
 @media (max-width: 640px) {
   .container { width: min(100% - 32px, 1120px); }
   .card-grid { grid-template-columns: 1fr; }
-  .case-metrics { grid-template-columns: 1fr; }
   .hero-stats { grid-template-columns: 1fr; gap: 20px; }
   .btn-group { flex-direction: column; align-items: stretch; }
   .btn { width: 100%; }
