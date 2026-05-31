@@ -16,7 +16,8 @@
   --color-success: #059669;
 
   /* Typography */
-  --font-base: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-primary: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-base: var(--font-primary);
   
   /* Spacing */
   --spacing-section-y: 88px;
@@ -37,9 +38,26 @@
 }
 
 * { box-sizing: border-box; }
+
+html,
+body,
+button,
+input,
+textarea,
+select,
+table,
+svg text {
+  font-family: var(--font-primary);
+}
+
+*,
+*::before,
+*::after {
+  font-family: inherit;
+}
+
 body { 
   margin: 0; 
-  font-family: var(--font-base); 
   background-color: var(--color-bg); 
   color: var(--color-text); 
   line-height: 1.6; 

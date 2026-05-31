@@ -10,15 +10,26 @@ const caseStudies = [
     logoAlt: 'Suối Tiên logo',
     status: 'available',
     href: '/case-studies/suoi-tien-seo/',
-    summary: 'Case domain migration từ suoitien.com sang suoitien.vn, kết hợp technical SEO, content direction và tracking để bảo vệ/tăng trưởng organic performance.',
-    problem: 'Kiểm soát rủi ro migration và mở rộng non-brand traffic cho nhóm dịch vụ trọng tâm.',
-    role: 'Technical audit, migration control, content direction, tracking setup và tối ưu liên tục dựa trên dữ liệu.',
-    result: '77 keyword Top 3, 94 keyword Top 5, 32.198 organic sessions tháng nghiệm thu và đạt 100,8% KPI Traffic.',
+    summary: 'Dự án di chuyển tên miền (migration) quy mô lớn từ suoitiien.com sang suoitiien.vn, bảo vệ hiệu suất kỹ thuật toàn diện và mở rộng tối đa tệp từ khóa phi thương hiệu.',
+    challenge: [
+      'Bảo toàn hiệu suất khi di chuyển từ suoitiien.com sang suoitiien.vn',
+      'Duy trì sức khỏe kỹ thuật và mở rộng tệp từ khóa phi thương hiệu'
+    ],
+    role: [
+      'Technical Audit',
+      'Migration Roadmap',
+      'On-page Structure',
+      'Measurement Setup'
+    ],
+    actions: [
+      'Xây dựng bản đồ redirect 1:1 chi tiết',
+      'Cấu hình tín hiệu thực thể và kỹ thuật di chuyển',
+      'Tối ưu Topical Map và hệ thống GSC/GA4'
+    ],
     metrics: [
-      { value: '77', label: 'keyword Top 3', countTo: '77' },
-      { value: '94', label: 'keyword Top 5', countTo: '94' },
-      { value: '32.198', label: 'organic sessions', countTo: '32198', format: 'vi-dot' },
-      { value: '100,8%', label: 'KPI Traffic', countTo: '100.8', suffix: '%', format: 'decimal', decimals: '1' }
+      { value: '32.198', label: 'Sessions (100,8% KPI)', countTo: '32198', format: 'vi-dot' },
+      { value: '77', label: 'Keywords Top 3 (35%)', countTo: '77' },
+      { value: '500', label: 'AIO Traffic (GA4)', countTo: '500' }
     ]
   },
   {
@@ -27,7 +38,7 @@ const caseStudies = [
     logoSrc: null,
     logoAlt: '',
     status: 'coming-soon',
-    summary: 'Case đang được cập nhật khi có đủ dữ liệu và bằng chứng đo lường.',
+    summary: 'Xây dựng hệ thống nội dung chuyên sâu phục vụ chuyển đổi và xác lập Topical Authority ngành.',
     chips: ['Content System', 'Topical Authority', 'Measurement']
   },
   {
@@ -36,8 +47,67 @@ const caseStudies = [
     logoSrc: null,
     logoAlt: '',
     status: 'coming-soon',
-    summary: 'Case đang được cập nhật khi có đủ dữ liệu và bằng chứng đo lường.',
+    summary: 'Chẩn đoán và xử lý lỗi crawlability, indexing quy mô lớn cho website thương mại điện tử.',
     chips: ['Technical SEO', 'Crawl', 'Indexing']
+  }
+];
+
+const capabilities = [
+  {
+    num: '01',
+    title: 'Technical SEO Foundation',
+    shortLabel: 'Nền tảng kỹ thuật tối ưu',
+    outcome: 'Đảm bảo website có nền tảng crawl, index và cấu trúc kỹ thuật đủ tốt để tăng trưởng.',
+    explanation: 'Tôi chẩn đoán và xử lý chuyên sâu các rào cản kỹ thuật, giúp công cụ tìm kiếm thu thập thông tin dễ dàng và lập chỉ mục tối đa các trang mang lại giá trị kinh doanh.',
+    whatItSolves: [
+      'Ngăn chặn lãng phí ngân sách cào dữ liệu (Crawl Budget) trên hệ thống lớn',
+      'Xử lý triệt để lỗi lập chỉ mục chậm, lỗi trùng lặp nội dung hoặc canonical',
+      'Cải thiện trải nghiệm người dùng thực tế thông qua tối ưu Core Web Vitals',
+      'Cấu trúc Schema nâng cao giúp tối ưu hóa khả năng hiển thị trên SERP'
+    ],
+    chips: ['Crawlability', 'Indexation', 'Schema', 'Core Web Vitals']
+  },
+  {
+    num: '02',
+    title: 'Content & Topical Authority',
+    shortLabel: 'Chiến lược bao phủ chủ đề',
+    outcome: 'Xây dựng hệ thống nội dung theo intent, topical map và authority để mở rộng ranking bền vững.',
+    explanation: 'Tôi thiết lập cấu trúc nội dung có hệ thống (Topical Map), giúp thương hiệu xác lập vị trí chuyên gia trong ngành và phủ toàn bộ phễu nhu cầu của khách hàng.',
+    whatItSolves: [
+      'Khắc phục tình trạng nội dung mỏng, thiếu chuyên sâu hoặc trùng lặp intent',
+      'Xác định và khai thác khoảng trống từ khóa (Keyword Gap) so với đối thủ',
+      'Đồng bộ hóa nội dung chính xác theo Search Intent để tối ưu chuyển đổi',
+      'Audit hệ thống URL hiện tại để gộp/xóa các trang kém hiệu suất'
+    ],
+    chips: ['Topical Map', 'Content Audit', 'Search Intent', 'Silo Structure']
+  },
+  {
+    num: '03',
+    title: 'Organic Growth & SEO Project Leadership',
+    shortLabel: 'Lộ trình thực thi chiến lược',
+    outcome: 'Chuyển mục tiêu kinh doanh thành KPI, roadmap, workflow và kế hoạch triển khai thực tế.',
+    explanation: 'Tôi chuyển dịch mục tiêu kinh doanh thành các kế hoạch hành động cụ thể, làm cầu nối tối ưu hiệu quả làm việc giữa đội ngũ lập trình (Dev) và nội dung (Content).',
+    whatItSolves: [
+      'Định hình lộ trình SEO ưu tiên theo ma trận Impact vs. Effort thực tế',
+      'Xây dựng các bộ checklist, workflow bàn giao rõ ràng cho Dev và Content',
+      'Bảo toàn sức khỏe SEO và thứ hạng khi di chuyển tên miền (Migration)',
+      'Giám sát sức khỏe dự án qua GA4, GSC và dashboard báo cáo trực quan'
+    ],
+    chips: ['SEO Roadmap', 'KPI Tracking', 'Dev Alignment', 'Domain Migration']
+  },
+  {
+    num: '04',
+    title: 'AI-assisted SEO Automation & GEO/AIO',
+    shortLabel: 'Tự động hóa & Sẵn sàng cho AI',
+    outcome: 'Tự động hóa các tác vụ lặp lại và chuẩn bị hệ thống SEO cho AI Search.',
+    explanation: 'Tôi viết các script tự động hóa để cắt giảm thời gian xử lý thủ công các tác vụ lặp lại, đồng thời tối ưu cấu trúc thực thể chuẩn bị cho kỷ nguyên tìm kiếm AI (GEO/AIO).',
+    whatItSolves: [
+      'Tự động hóa việc theo dõi lỗi kỹ thuật và gửi thông báo cảnh báo sớm',
+      'Xây dựng các script tùy biến kết xuất dữ liệu qua API GSC, Semrush',
+      'Tối ưu hóa Entity và Schema cấu trúc nhằm tương thích với AI Search',
+      'Thiết kế dashboard báo cáo động giúp biến dữ liệu thành quyết định'
+    ],
+    chips: ['SEO Tooling', 'GEO/AIO', 'Apps Script', 'Entity SEO']
   }
 ];
 ---
@@ -48,78 +118,61 @@ const caseStudies = [
     <div class="container">
       <div class="hero-grid">
         <div class="hero-left">
-          <span class="pill">TruThrive — True SEO. Sustainable Growth.</span>
-          <h1 class="hero-title">
-            Bùi Trường Thịnh — SEO Specialist về Technical SEO, Content Strategy & Automation
+          <span class="pill">TruThrive — Personal Portfolio</span>
+          <h1 class="hero-title" style="font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 16px;">
+            Bùi Trường Thịnh
+            <span style="display: block; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: var(--color-accent); margin-top: 8px;">
+              Senior SEO Specialist / SEO Project Leader
+            </span>
           </h1>
-          <p class="hero-description">
-            Tôi xây dựng nền tảng tăng trưởng organic bền vững bằng technical SEO, chiến lược nội dung dựa trên dữ liệu và hệ thống automation giúp SEO vận hành rõ ràng hơn.
+          <p class="hero-description" style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 32px; color: var(--color-muted-text);">
+            Tôi đồng hành cùng doanh nghiệp xây dựng nền tảng tăng trưởng organic bền vững. Bằng sự kết hợp giữa Technical SEO chuyên sâu, chiến lược Content & Topical Authority tối ưu và các giải pháp SEO Automation hiện đại, tôi giúp tối ưu hóa hiệu suất và chuẩn bị sẵn sàng cho kỷ nguyên tìm kiếm AI (GEO/AIO).
           </p>
           <div class="btn-group">
-            <a href="/contact/" class="btn btn-primary">Kết nối với tôi</a>
-            <a href="#expertise" class="btn btn-secondary">Xem năng lực SEO</a>
+            <a href="#case-showcase-wrapper" class="btn btn-primary">Xem Case Studies</a>
+            <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Kết nối LinkedIn</a>
           </div>
         </div>
         
         <div class="hero-right">
-          <div class="card hero-profile-card">
+          <div class="card hero-profile-card" style="border: 1px solid var(--color-border); box-shadow: var(--shadow-card);">
             <div class="headshot-placeholder-container">
-              <div class="headshot-placeholder monogram">BT</div>
-              <span class="headshot-helper">Ảnh chân dung sẽ cập nhật sau</span>
+              <div class="headshot-placeholder monogram" style="background-color: rgba(193, 18, 31, 0.05); color: var(--color-accent); border: 1px solid rgba(193, 18, 31, 0.15);">BT</div>
+              <span class="headshot-helper">Bùi Trường Thịnh</span>
             </div>
-            <h3>Bùi Trường Thịnh</h3>
-            <p class="title">SEO Specialist / SEO Lead</p>
-            <ul class="hero-focus-list">
-              <li><span class="focus-icon">✓</span> Technical SEO Audit</li>
-              <li><span class="focus-icon">✓</span> Content Strategy dựa trên dữ liệu</li>
-              <li><span class="focus-icon">✓</span> SEO Workflow & Automation</li>
+            <h3 style="text-align: center; margin-bottom: 4px;">Profile Overview</h3>
+            <p class="title" style="text-align: center; font-size: 0.95rem; color: var(--color-muted-text); margin-bottom: 20px;">SEO Project Leader</p>
+            <ul class="hero-focus-list" style="margin-bottom: 0; padding-top: 16px; border-top: 1px solid var(--color-border);">
+              <li style="font-size: 0.95rem; margin-bottom: 10px; color: var(--color-text); font-weight: 500;"><span class="focus-icon" style="color: var(--color-accent); margin-right: 8px;">✓</span> Technical SEO & Site Architecture</li>
+              <li style="font-size: 0.95rem; margin-bottom: 10px; color: var(--color-text); font-weight: 500;"><span class="focus-icon" style="color: var(--color-accent); margin-right: 8px;">✓</span> Content Strategy & Topical Authority</li>
+              <li style="font-size: 0.95rem; margin-bottom: 10px; color: var(--color-text); font-weight: 500;"><span class="focus-icon" style="color: var(--color-accent); margin-right: 8px;">✓</span> SEO Automation & Workflow Solutions</li>
+              <li style="font-size: 0.95rem; color: var(--color-text); font-weight: 500;"><span class="focus-icon" style="color: var(--color-accent); margin-right: 8px;">✓</span> Generative Search (GEO/AIO) Readiness</li>
             </ul>
-            <div class="hero-stats">
-              <div>
-                <strong>4+</strong>
-                <span>Năm kinh nghiệm SEO</span>
-              </div>
-              <div>
-                <strong>10+</strong>
-                <span>Dự án SEO</span>
-              </div>
-              <div>
-                <strong>5+</strong>
-                <span>Ngành đã triển khai</span>  
-              </div>
-            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Selected Proof -->
-  <section class="section section-muted">
+  <!-- Selected Proof (Executive Dashboard) -->
+  <section class="section section-muted" style="border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding: 48px 0;">
     <div class="container">
-      <div class="section-heading text-center">
-        <p class="section-kicker">SELECTED PROOF</p>
-        <h2 class="section-title">Một vài tín hiệu năng lực</h2>
-        <p class="section-subtitle">
-          Những con số đại diện cho kinh nghiệm triển khai, tăng trưởng organic và kết quả SEO đã được đo lường.
-        </p>
-      </div>
-      <div class="card-grid">
-        <div class="card metric-card">
-          <div class="metric-number"><strong class="animated-number" data-count-to="4" data-count-suffix="+">4+</strong></div>
-          <div class="metric-label">Năm kinh nghiệm SEO</div>
+      <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px;">
+        <div class="card metric-card" style="padding: 24px; display: flex; flex-direction: column; justify-content: center; min-height: 120px;">
+          <div class="metric-number" style="font-size: 2.25rem; font-weight: 800; color: var(--color-accent); margin-bottom: 4px;"><strong class="animated-number" data-count-to="4" data-count-suffix="+">4+</strong></div>
+          <div class="metric-label" style="font-size: 0.9rem; font-weight: 700; color: var(--color-muted-text); text-transform: uppercase; letter-spacing: 0.05em;">Năm Kinh Nghiệm SEO</div>
         </div>
-        <div class="card metric-card">
-          <div class="metric-number"><strong class="animated-number" data-count-to="66000" data-count-format="vi-dot">66.000</strong></div>
-          <div class="metric-label">Organic traffic cho DOL Grammar</div>
+        <div class="card metric-card" style="padding: 24px; display: flex; flex-direction: column; justify-content: center; min-height: 120px;">
+          <div class="metric-number" style="font-size: 2.25rem; font-weight: 800; color: var(--color-accent); margin-bottom: 4px;"><strong class="animated-number" data-count-to="8" data-count-suffix="+">8+</strong></div>
+          <div class="metric-label" style="font-size: 0.9rem; font-weight: 700; color: var(--color-muted-text); text-transform: uppercase; letter-spacing: 0.05em;">Dự Án SEO Dẫn Dắt</div>
         </div>
-        <div class="card metric-card">
-          <div class="metric-number"><strong class="animated-number" data-count-to="125000" data-count-format="vi-dot">125.000</strong></div>
-          <div class="metric-label">Organic traffic cho GTVSEO</div>
+        <div class="card metric-card" style="padding: 24px; display: flex; flex-direction: column; justify-content: center; min-height: 120px;">
+          <div class="metric-number" style="font-size: 1.5rem; font-weight: 800; color: var(--color-accent); margin-bottom: 4px; line-height: 1.2;">Agency & In-house</div>
+          <div class="metric-label" style="font-size: 0.9rem; font-weight: 700; color: var(--color-muted-text); text-transform: uppercase; letter-spacing: 0.05em;">Kinh Nghiệm Đa Dạng</div>
         </div>
-        <div class="card metric-card">
-          <div class="metric-number"><strong class="animated-number" data-count-to="77">77</strong></div>
-          <div class="metric-label">Keyword Top 3 cho case Suối Tiên</div>
+        <div class="card metric-card" style="padding: 24px; display: flex; flex-direction: column; justify-content: center; min-height: 120px;">
+          <div class="metric-number" style="font-size: 2.25rem; font-weight: 800; color: var(--color-accent); margin-bottom: 4px;"><strong class="animated-number" data-count-to="32198" data-count-format="vi-dot">32.198</strong></div>
+          <div class="metric-label" style="font-size: 0.9rem; font-weight: 700; color: var(--color-muted-text); text-transform: uppercase; letter-spacing: 0.05em;">Sessions (Case Tiêu Biểu)</div>
         </div>
       </div>
     </div>
@@ -133,77 +186,89 @@ const caseStudies = [
       <div class="section case-showcase-inner">
         <div class="container">
           <div class="section-heading case-showcase-heading">
-            <p class="section-kicker">DỰ ÁN TIÊU BIỂU</p>
+            <p class="section-kicker">SELECTED SEO CASE STUDIES</p>
             <h2 class="section-title">Case Study nổi bật</h2>
             <p class="section-subtitle">
-              Một số dự án thể hiện cách tôi xử lý technical SEO, content strategy, migration, measurement và tăng trưởng organic trong thực tế.
+              Mỗi case tóm tắt bối cảnh dự án, vai trò của tôi, hành động cốt lõi và kết quả SEO đo lường được.
             </p>
           </div>
-
           <div class="case-showcase-viewport">
             <div class="case-showcase__track" id="case-showcase-track">
               {caseStudies.map((cs) => (
                 <article class={`card case-card case-card--${cs.status}`}>
-                  {/* Logo + Badge */}
+                  {/* Logo + Badge row */}
                   <div class="case-card__top">
-                    <div class="case-card__logo">
-                      {cs.logoSrc ? (
-                        <img src={cs.logoSrc} alt={cs.logoAlt} loading="lazy" width="64" height="64" />
-                      ) : (
-                        <span>Logo</span>
-                      )}
+                    <div class="case-card__top-info">
+                      <div class="case-card__logo">
+                        {cs.logoSrc ? (
+                          <img src={cs.logoSrc} alt={cs.logoAlt} loading="lazy" width="64" height="64" />
+                        ) : (
+                          <span>📁</span>
+                        )}
+                      </div>
+                      <span class="pill" style="margin-bottom: 0;">{cs.badge}</span>
                     </div>
-                    <span class="pill" style="margin-bottom: 0;">{cs.badge}</span>
+                    {cs.status === 'available' && cs.href && (
+                      <a class="btn case-card__cta" href={cs.href}>Xem Case Study</a>
+                    )}
                   </div>
 
                   {/* Body */}
                   <div class="case-card__body">
                     <h3>{cs.title}</h3>
-                    <p>{cs.summary}</p>
+                    <p style="font-size: 1rem; color: var(--color-muted-text); margin-bottom: 24px;">{cs.summary}</p>
 
                     {cs.status === 'available' ? (
                       <>
-                        <div class="case-card__details">
-                          <div>
-                            <strong>Bài toán</strong>
-                            <p>{cs.problem}</p>
+                        <div class="case-detail-grid">
+                          <div class="case-detail-group">
+                            <strong class="case-detail-label">Thách thức (Challenge)</strong>
+                            <ul class="case-detail-list">
+                              {cs.challenge.map(item => <li>{item}</li>)}
+                            </ul>
                           </div>
-                          <div>
-                            <strong>Vai trò của tôi</strong>
-                            <p>{cs.role}</p>
+                          <div class="case-detail-group">
+                            <strong class="case-detail-label">Vai trò của tôi (My Role)</strong>
+                            <ul class="case-detail-list">
+                              {cs.role.map(item => <li>{item}</li>)}
+                            </ul>
                           </div>
-                          <div>
-                            <strong>Kết quả</strong>
-                            <p>{cs.result}</p>
+                          <div class="case-detail-group">
+                            <strong class="case-detail-label">Hành động cốt lõi (Key Actions)</strong>
+                            <ul class="case-detail-list">
+                              {cs.actions.map(item => <li>{item}</li>)}
+                            </ul>
                           </div>
                         </div>
 
                         <div class="case-card__footer">
                           {cs.metrics && cs.metrics.length > 0 && (
-                            <div class="case-metrics">
-                              {cs.metrics.map((m) => (
-                                <div class="case-metric">
-                                  <strong
-                                    class="animated-number"
-                                    data-count-to={m.countTo}
-                                    {...(m.format ? { 'data-count-format': m.format } : {})}
-                                    {...(m.suffix ? { 'data-count-suffix': m.suffix } : {})}
-                                    {...(m.decimals ? { 'data-count-decimals': m.decimals } : {})}
-                                  >{m.value}</strong>
-                                  <span>{m.label}</span>
-                                </div>
-                              ))}
-                            </div>
-                          )}
-
-                          {cs.href && (
-                            <a class="btn btn-primary case-card__cta" href={cs.href}>Xem Case Study</a>
+                            <>
+                              <div class="case-results-header">
+                                <div class="case-results-divider"></div>
+                                <strong class="case-results-label">KẾT QUẢ ĐO LƯỜNG</strong>
+                              </div>
+                              <div class="case-metrics">
+                                {cs.metrics.map((m) => (
+                                  <div class="case-metric">
+                                    <strong
+                                      class="animated-number"
+                                      data-count-to={m.countTo}
+                                      {...(m.format ? { 'data-count-format': m.format } : {})}
+                                      {...(m.suffix ? { 'data-count-suffix': m.suffix } : {})}
+                                      {...(m.decimals ? { 'data-count-decimals': m.decimals } : {})}
+                                    >{m.value}</strong>
+                                    <span>{m.label}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </>
                           )}
                         </div>
                       </>
                     ) : (
                       <div class="case-card-soon-footer">
-                        <span class="case-status">Case đang được cập nhật</span>
+                        <span class="case-status">Đang hoàn thiện case</span>
                         {cs.chips && cs.chips.length > 0 && (
                           <div class="case-chips">
                             {cs.chips.map((chip) => (
@@ -236,7 +301,7 @@ const caseStudies = [
       let maxTranslate = 0;
       
       const calculateDimensions = () => {
-        isDesktop = window.innerWidth >= 1360;
+        isDesktop = window.matchMedia('(min-width: 1680px) and (min-height: 900px)').matches;
         
         if (isDesktop && !prefersReducedMotion) {
           // Reset transform to calculate real width
@@ -306,119 +371,506 @@ const caseStudies = [
   <section id="expertise" class="section section-muted">
     <div class="container">
       <div class="section-heading text-center">
-        <p class="section-kicker">NĂNG LỰC SEO</p>
-        <h2 class="section-title">Năng lực chuyên môn</h2>
+        <p class="section-kicker">NĂNG LỰC CỐT LÕI</p>
+        <h2 class="section-title">Khả năng giải quyết bài toán SEO</h2>
         <p class="section-subtitle">
-          Những năng lực SEO cốt lõi tôi sử dụng để chẩn đoán vấn đề, xây dựng technical foundation, tổ chức content và đo lường tăng trưởng.
+          Tôi tập trung vào 4 nhóm năng lực cốt lõi để xây dựng hệ thống tăng trưởng organic toàn diện và bền vững.
         </p>
       </div>
 
-      <div class="card-grid">
-        {[
-          { num: '01', title: 'Technical SEO Audit', desc: 'Phân tích crawlability, indexability, sitemap, robots.txt, canonical, structured data và hiệu suất kỹ thuật.' },
-          { num: '02', title: 'Content Strategy', desc: 'Xây dựng topical map, content architecture và chiến lược nội dung theo search intent và business impact.' },
-          { num: '03', title: 'Content Audit', desc: 'Phân loại URL cần giữ, update, gộp, xóa hoặc noindex dựa trên dữ liệu GSC, GA4 và crawl data.' },
-          { num: '04', title: 'Entity SEO', desc: 'Củng cố tín hiệu thực thể, schema, brand trust và độ nhất quán thông tin trên hệ sinh thái tìm kiếm.' },
-          { num: '05', title: 'Offpage SEO', desc: 'Lập kế hoạch backlink, textlink, syndication và kiểm soát rủi ro footprint trong chiến dịch off-page.' },
-          { num: '06', title: 'SEO Automation', desc: 'Tự động hóa audit, reporting và workflow SEO bằng Google Sheets, Apps Script, AI và vibe coding.' },
-          { num: '07', title: 'Reporting/Data', desc: 'Thiết kế báo cáo KPI, dashboard và action-oriented reporting để biến dữ liệu thành quyết định triển khai.' },
-          { num: '08', title: 'GEO & AIO', desc: 'Tối ưu nội dung và entity để thích nghi với AI Overview, generative search và thay đổi hành vi tìm kiếm.' }
-        ].map(skill => (
-          <article class="card feature-card">
-            <span class="pill">{skill.num}</span>
-            <h3>{skill.title}</h3>
-            <p>{skill.desc}</p>
-          </article>
-        ))}
+      <div class="expertise-layout expertise-interactive">
+        <!-- Left Column: System Panel containing stacked panels -->
+        <div class="card expertise-system-panel desktop-panel-only">
+          <span class="pill" style="width: fit-content; margin-bottom: 16px;">System Model</span>
+          
+          <div class="expertise-panels-stack">
+            {capabilities.map((cap, index) => {
+              const isActive = index === 0;
+              return (
+                <div 
+                  id={`panel-${cap.num}`}
+                  class={`expertise-panel-content ${isActive ? 'is-active' : ''}`}
+                  role="tabpanel"
+                  aria-labelledby={`tab-${cap.num}`}
+                  aria-hidden={isActive ? "false" : "true"}
+                >
+                  <div class="expertise-panel-header" style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                    <span class="expertise-panel-num" style="font-size: 0.95rem; font-weight: 800; color: var(--color-accent); background: rgba(193, 18, 31, 0.06); padding: 2px 8px; border-radius: var(--radius-sm); letter-spacing: 0.02em;">{cap.num}</span>
+                    <h3 class="expertise-panel-title" style="font-size: 1.5rem; font-weight: 800; color: var(--color-text); margin: 0; line-height: 1.2;">{cap.title}</h3>
+                  </div>
+                  <p class="expertise-panel-explanation" style="font-size: 1.02rem; line-height: 1.6; color: var(--color-muted-text); margin: 0 0 24px 0;">{cap.explanation}</p>
+                  
+                  <div class="expertise-panel-solves-section" style="margin-bottom: 24px;">
+                    <h4 class="expertise-panel-solves-title" style="font-size: 0.85rem; font-weight: 800; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 12px 0;">Vấn đề giải quyết (What this solves):</h4>
+                    <ul class="expertise-panel-solves-list" style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                      {cap.whatItSolves.map(bullet => (
+                        <li style="display: flex; align-items: flex-start; gap: 8px; font-size: 0.92rem; color: var(--color-text); line-height: 1.45; font-weight: 500;">
+                          <span class="bullet-icon" style="color: var(--color-accent); font-weight: bold; flex-shrink: 0;">✓</span>
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <div class="expertise-panel-footer" style="margin-top: auto; padding-top: 16px; border-top: 1px solid rgba(216, 207, 196, 0.4);">
+                    <div class="expertise-panel-chips-title" style="font-size: 0.78rem; font-weight: 800; color: var(--color-muted-text); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Đầu ra kỹ thuật (Output chips):</div>
+                    <div class="expertise-chips">
+                      {cap.chips.map(chip => (
+                        <span class="expertise-chip">{chip}</span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <!-- Lightweight Dynamic Flow Indicator -->
+                  <div class="expertise-flow" style="margin-top: 24px; padding-top: 16px; border-top: 1px dashed rgba(216, 207, 196, 0.4);">
+                    {[
+                      { num: '01', name: 'Foundation' },
+                      { num: '02', name: 'Authority' },
+                      { num: '03', name: 'Growth' },
+                      { num: '04', name: 'Automation' }
+                    ].map((step, sIdx) => (
+                      <>
+                        <div class={`flow-step ${step.num === cap.num ? 'is-highlighted' : ''}`}>
+                          <span class="flow-num">{step.num}</span>
+                          <span class="flow-name">{step.name}</span>
+                        </div>
+                        {sIdx < 3 && (
+                          <div class="flow-arrow">
+                            <span class="arrow-desktop">→</span>
+                            <span class="arrow-mobile">↓</span>
+                          </div>
+                        )}
+                      </>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <!-- Right Column (Desktop) / Full List (Mobile): Interactive Modules -->
+        <div class="expertise-modules" role="tablist" aria-label="SEO growth capability options">
+          {capabilities.map((cap, index) => {
+            const isActive = index === 0;
+            return (
+              <div class="expertise-accordion-item" role="presentation">
+                <button 
+                  id={`tab-${cap.num}`}
+                  class={`expertise-module ${isActive ? 'is-active' : ''}`}
+                  role="tab"
+                  aria-controls={`panel-${cap.num}`}
+                  aria-selected={isActive ? "true" : "false"}
+                  aria-expanded={isActive ? "true" : "false"}
+                  tabindex={isActive ? 0 : -1}
+                >
+                  <div class="expertise-module__header">
+                    <span class="expertise-num">{cap.num}</span>
+                    <h4 class="expertise-module__title">{cap.title}</h4>
+                  </div>
+                  <p class="expertise-module__outcome">{cap.outcome}</p>
+                  <span class="expertise-module__label">{cap.shortLabel}</span>
+                </button>
+                
+                <div 
+                  class={`expertise-mobile-panel ${isActive ? 'is-active' : ''}`}
+                  id={`mobile-panel-${cap.num}`}
+                >
+                  <p class="expertise-panel-explanation" style="font-size: 0.95rem; line-height: 1.6; color: var(--color-muted-text); margin: 0 0 16px 0;">{cap.explanation}</p>
+                  
+                  <div class="expertise-panel-solves-section" style="margin-bottom: 16px;">
+                    <h4 class="expertise-panel-solves-title" style="font-size: 0.8rem; font-weight: 800; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 10px 0;">Vấn đề giải quyết:</h4>
+                    <ul class="expertise-panel-solves-list" style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px;">
+                      {cap.whatItSolves.map(bullet => (
+                        <li style="display: flex; align-items: flex-start; gap: 8px; font-size: 0.9rem; color: var(--color-text); line-height: 1.45; font-weight: 500;">
+                          <span class="bullet-icon" style="color: var(--color-accent); font-weight: bold; flex-shrink: 0;">✓</span>
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <div class="expertise-panel-footer" style="margin-top: auto; padding-top: 12px; border-top: 1px solid rgba(216, 207, 196, 0.4);">
+                    <div class="expertise-panel-chips-title" style="font-size: 0.75rem; font-weight: 800; color: var(--color-muted-text); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Đầu ra kỹ thuật:</div>
+                    <div class="expertise-chips">
+                      {cap.chips.map(chip => (
+                        <span class="expertise-chip">{chip}</span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div class="expertise-flow" style="margin-top: 20px; padding-top: 12px; border-top: 1px dashed rgba(216, 207, 196, 0.4);">
+                    {[
+                      { num: '01', name: 'Foundation' },
+                      { num: '02', name: 'Authority' },
+                      { num: '03', name: 'Growth' },
+                      { num: '04', name: 'Automation' }
+                    ].map((step, sIdx) => (
+                      <>
+                        <div class={`flow-step ${step.num === cap.num ? 'is-highlighted' : ''}`}>
+                          <span class="flow-num">{step.num}</span>
+                          <span class="flow-name">{step.name}</span>
+                        </div>
+                        {sIdx < 3 && (
+                          <div class="flow-arrow">
+                            <span class="arrow-mobile">↓</span>
+                          </div>
+                        )}
+                      </>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const expertiseSection = document.querySelector('#expertise');
+          if (!expertiseSection) return;
+
+          const tabButtons = expertiseSection.querySelectorAll('[role="tab"]');
+          const tabPanels = expertiseSection.querySelectorAll('[role="tabpanel"]');
+          const mobilePanels = expertiseSection.querySelectorAll('.expertise-mobile-panel');
+          const modulesContainer = expertiseSection.querySelector('.expertise-modules');
+
+          // Media query for mobile detection matching the CSS breakpoint
+          const isMobileQuery = window.matchMedia('(max-width: 1023.98px)');
+          const isMobile = () => isMobileQuery.matches;
+
+          let currentActiveId = 'panel-01'; // Default active panel ID
+
+          const updateActiveState = (activePanelId) => {
+            // Safely extract the capability numeric part (e.g. "01", "02") to bypass fragile string replacements
+            const activeNum = activePanelId ? activePanelId.replace('mobile-panel-', '').replace('panel-', '') : null;
+
+            tabButtons.forEach(btn => {
+              const num = btn.id.replace('tab-', '');
+              const isActive = activeNum === num;
+
+              btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+              btn.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+
+              let isFocusable = isActive;
+              if (!activePanelId) {
+                const buttonsArray = Array.from(tabButtons);
+                isFocusable = btn === buttonsArray[0];
+              }
+              btn.setAttribute('tabindex', isFocusable ? '0' : '-1');
+
+              if (isActive) {
+                btn.classList.add('is-active');
+              } else {
+                btn.classList.remove('is-active');
+              }
+            });
+
+            tabPanels.forEach(panel => {
+              const num = panel.id.replace('panel-', '');
+              const isActive = activeNum === num;
+              panel.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+              if (isActive) {
+                panel.classList.add('is-active');
+              } else {
+                panel.classList.remove('is-active');
+              }
+            });
+
+            mobilePanels.forEach(panel => {
+              const num = panel.id.replace('mobile-panel-', '');
+              const isActive = activeNum === num;
+              panel.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+              if (isActive) {
+                panel.classList.add('is-active');
+              } else {
+                panel.classList.remove('is-active');
+              }
+            });
+          };
+
+          // Dynamically update aria-controls to reflect current responsive structure
+          const updateAriaControls = () => {
+            const isMobileView = isMobile();
+            tabButtons.forEach(btn => {
+              const num = btn.id.replace('tab-', '');
+              if (isMobileView) {
+                btn.setAttribute('aria-controls', `mobile-panel-${num}`);
+              } else {
+                btn.setAttribute('aria-controls', `panel-${num}`);
+              }
+            });
+          };
+
+          // Run initial ARIA controls setup
+          updateAriaControls();
+          // Synchronize active states properly
+          updateActiveState(currentActiveId);
+
+          // Update controls on media query change
+          isMobileQuery.addEventListener('change', () => {
+            updateAriaControls();
+            // Ensure a valid state is selected when returning to desktop from a collapsed mobile state
+            if (!isMobile() && !currentActiveId) {
+              currentActiveId = 'panel-01';
+            }
+            updateActiveState(currentActiveId);
+          });
+
+          tabButtons.forEach(btn => {
+            // Click listener
+            btn.addEventListener('click', (e) => {
+              e.preventDefault();
+              const targetPanelId = btn.getAttribute('aria-controls');
+
+              if (isMobile() && btn.classList.contains('is-active')) {
+                // Tap active mobile accordion to collapse it
+                currentActiveId = null;
+                updateActiveState(null);
+              } else {
+                // Otherwise open it
+                currentActiveId = targetPanelId;
+                updateActiveState(currentActiveId);
+              }
+            });
+
+            // Focus listener (only on desktop for keyboard users; mobile uses deliberate click/tap only)
+            btn.addEventListener('focus', () => {
+              if (!isMobile()) {
+                const targetPanelId = btn.getAttribute('aria-controls');
+                currentActiveId = targetPanelId;
+                updateActiveState(currentActiveId);
+              }
+            });
+
+            // Hover preview listener (only on desktop)
+            btn.addEventListener('mouseenter', () => {
+              if (!isMobile()) {
+                const targetPanelId = btn.getAttribute('aria-controls');
+                updateActiveState(targetPanelId);
+              }
+            });
+          });
+
+          // Revert preview on mouse leave (only on desktop)
+          if (modulesContainer) {
+            modulesContainer.addEventListener('mouseleave', () => {
+              if (!isMobile()) {
+                updateActiveState(currentActiveId);
+              }
+            });
+          }
+
+          // Keyboard arrow key navigation inside the tablist
+          const tablist = expertiseSection.querySelector('[role="tablist"]');
+          if (tablist) {
+            tablist.addEventListener('keydown', (e) => {
+              const target = e.target;
+              if (target.getAttribute('role') !== 'tab') return;
+
+              let targetIndex = -1;
+              const buttonsArray = Array.from(tabButtons);
+              const currentIndex = buttonsArray.indexOf(target);
+
+              if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+                e.preventDefault();
+                targetIndex = (currentIndex + 1) % buttonsArray.length;
+              } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+                e.preventDefault();
+                targetIndex = (currentIndex - 1 + buttonsArray.length) % buttonsArray.length;
+              } else if (e.key === 'Home') {
+                e.preventDefault();
+                targetIndex = 0;
+              } else if (e.key === 'End') {
+                e.preventDefault();
+                targetIndex = buttonsArray.length - 1;
+              }
+
+              if (targetIndex !== -1) {
+                const targetBtn = buttonsArray[targetIndex];
+                targetBtn.focus();
+              }
+            });
+          }
+        });
+      </script>
     </div>
   </section>
 
-  <!-- Working Approach -->
-  <section class="section">
+  <!-- How I Work (Consultant Process) -->
+  <section class="section" id="how-i-work" style="border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
     <div class="container">
       <div class="section-heading text-center">
-        <h2 class="section-title">Cách tôi tiếp cận một bài toán SEO</h2>
+        <p class="section-kicker">QUY TRÌNH TRIỂN KHAI</p>
+        <h2 class="section-title">Cách tôi tư duy & tiếp cận bài toán SEO</h2>
         <p class="section-subtitle">
-          Tôi ưu tiên chẩn đoán trước khi thực thi, xác định ưu tiên theo impact, phối hợp triển khai cùng stakeholder và đo lường liên tục để tối ưu lặp lại.
+          Quy trình làm việc chuẩn mực, tập trung vào chiến lược chẩn đoán sớm và tối ưu lặp lại có hệ thống thay vì các đầu việc checklist rời rạc.
         </p>
       </div>
 
-      <div class="card-grid">
-        {[
-          { num: '01', title: 'Audit & Chẩn đoán', desc: 'Đánh giá toàn diện hiện trạng website, dữ liệu GSC/GA4, crawl, content và technical foundation trước khi đề xuất bất kỳ hành động nào.' },
-          { num: '02', title: 'Chiến lược & Ưu tiên', desc: 'Xác định root cause, ưu tiên hạng mục theo impact, effort và khả năng tạo tăng trưởng thực tế.' },
-          { num: '03', title: 'Triển khai cùng Content/Dev', desc: 'Chuyển insight thành task rõ ràng, phối hợp cùng content, dev và stakeholder để triển khai đồng bộ.' },
-          { num: '04', title: 'Đo lường & Tối ưu lặp lại', desc: 'Theo dõi ranking, traffic, indexation và liên tục điều chỉnh dựa trên dữ liệu thực tế, không dựa trên giả định.' }
-        ].map(step => (
-          <article class="card feature-card">
-            <span class="pill">{step.num}</span>
-            <h3>{step.title}</h3>
-            <p>{step.desc}</p>
-          </article>
-        ))}
+      <div class="workflow-system">
+        <!-- Shared Dotted Rail Line for Large Desktop -->
+        <div class="workflow-track"></div>
+        
+        <div class="workflow-rail">
+          {[
+            {
+              step: '01',
+              title: 'Diagnose',
+              subtitle: 'CHẨN ĐOÁN & AUDIT',
+              desc: 'Phân tích dữ liệu, technical health, content gap và search intent để xác định đúng vấn đề cần xử lý.',
+              output: 'Audit Findings'
+            },
+            {
+              step: '02',
+              title: 'Prioritize',
+              subtitle: 'ĐỊNH HÌNH ƯU TIÊN',
+              desc: 'Sắp xếp đầu việc theo Impact vs. Effort để tập trung nguồn lực vào điểm có khả năng tạo tăng trưởng.',
+              output: 'Impact Matrix'
+            },
+            {
+              step: '03',
+              title: 'Roadmap',
+              subtitle: 'THIẾT LẬP LỘ TRÌNH',
+              desc: 'Chuyển insight thành KPI, timeline, task và roadmap SEO có thể triển khai thực tế.',
+              output: 'SEO Roadmap'
+            },
+            {
+              step: '04',
+              title: 'Execute',
+              subtitle: 'PHỐI HỢP TRIỂN KHAI',
+              desc: 'Biến chiến lược thành đầu việc rõ ràng cho Content, Dev và các bên liên quan.',
+              output: 'Action Delivery'
+            },
+            {
+              step: '05',
+              title: 'Measure & Improve',
+              subtitle: 'ĐO LƯỜNG & TỐI ƯU',
+              desc: 'Theo dõi index, traffic, ranking và hiệu suất triển khai để cải tiến liên tục.',
+              output: 'Performance Loop'
+            }
+          ].map(item => (
+            <div class="workflow-step">
+              <div class="workflow-step-number">
+                {item.step}
+              </div>
+              <div class="workflow-step-content">
+                <h3 class="workflow-step-title">{item.title}</h3>
+                <p class="workflow-step-label">{item.subtitle}</p>
+                <p class="workflow-step-desc">{item.desc}</p>
+                <div class="workflow-step-output">
+                  <span class="workflow-output-chip">{item.output}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Audience Fit -->
-  <section class="section section-muted">
+  <section class="section section-muted" id="audience">
     <div class="container">
       <div class="section-heading text-center">
         <h2 class="section-title">Trang này phù hợp với ai?</h2>
       </div>
-      <div class="card-grid audience-fit-grid">
-        <article class="card feature-card">
-          <span class="pill">🏢</span>
-          <h3>Recruiters / Hiring teams</h3>
-          <p>Muốn hiểu nhanh năng lực SEO, tư duy triển khai và kinh nghiệm thực chiến của tôi.</p>
-        </article>
-        <article class="card feature-card">
-          <span class="pill">💼</span>
-          <h3>Freelance clients</h3>
-          <p>Cần một người có thể audit, định hướng technical/content và xây hệ thống SEO rõ ràng cho dự án.</p>
-        </article>
-        <article class="card feature-card">
-          <span class="pill">🤝</span>
-          <h3>SEO peers / Network</h3>
-          <p>Muốn kết nối, trao đổi framework, automation, technical SEO hoặc case study thực tế.</p>
-        </article>
+      <div class="audience-grid">
+        {[
+          {
+            badge: 'Hiring',
+            title: 'Recruiters / Hiring teams',
+            desc: 'Đánh giá nhanh năng lực SEO Lead/Senior SEO qua kinh nghiệm, case study và cách tôi vận hành dự án.',
+            chips: ['CV', 'Case Studies', 'Project Leadership']
+          },
+          {
+            badge: 'Service',
+            title: 'Freelance clients',
+            desc: 'Xem cách tôi tiếp cận audit, technical/content strategy và growth roadmap cho dự án SEO.',
+            chips: ['SEO Audit', 'Roadmap', 'Growth System']
+          },
+          {
+            badge: 'Connect',
+            title: 'SEO peers / Network',
+            desc: 'Kết nối để trao đổi framework, automation, GEO/AIO và các case SEO thực tế.',
+            chips: ['Framework', 'Automation', 'GEO/AIO']
+          }
+        ].map(item => (
+          <article class="audience-card">
+            <span class="audience-badge">{item.badge}</span>
+            <h3 class="audience-title">{item.title}</h3>
+            <p class="audience-desc">{item.desc}</p>
+            <div class="audience-chips-label">Nội dung liên quan:</div>
+            <div class="audience-chips">
+              {item.chips.map(chip => (
+                <span class="audience-chip">{chip}</span>
+              ))}
+            </div>
+          </article>
+        ))}
       </div>
     </div>
   </section>
 
   <!-- About Preview -->
-  <section class="section">
+  <section class="section" id="about-preview">
     <div class="container">
-      <div class="card two-col-card">
+      <div class="about-preview-grid">
         <div class="about-preview-content">
           <p class="section-kicker">GIỚI THIỆU</p>
           <h2 class="section-title">Bùi Trường Thịnh</h2>
           <p class="desc">
-            Tôi không xem SEO là checklist rời rạc. Với tôi, SEO là hệ thống gồm nền tảng kỹ thuật, nội dung đúng intent, dữ liệu đo lường và khả năng vận hành lặp lại.
+            Tôi là SEO Specialist / Project Leader tập trung vào technical foundation, content strategy, measurement và automation. Tôi ưu tiên xây hệ thống SEO có thể triển khai, đo lường và lặp lại — thay vì chỉ xử lý checklist rời rạc.
           </p>
           <div class="btn-group">
             <a class="btn btn-secondary" href="/about/">Tìm hiểu thêm về tôi</a>
           </div>
         </div>
 
-        <div class="card about-snapshot">
-          <span class="pill">Profile Snapshot</span>
+        <div class="about-snapshot-card">
+          <span class="snapshot-badge">Profile Snapshot</span>
           
-          <div class="metric-number"><strong class="animated-number" data-count-to="4" data-count-suffix="+">4+</strong></div>
-          <div class="metric-label" style="margin-bottom: 24px;">Năm kinh nghiệm SEO</div>
-
-          <div class="chip-group">
-            <span class="chip">Technical SEO</span>
-            <span class="chip">Content Audit</span>
-            <span class="chip">SEO Automation</span>
-            <span class="chip">Domain Migration</span>
-            <span class="chip">GSC/GA4 Reporting</span>
-            <span class="chip">Screaming Frog</span>
+          <div class="snapshot-metrics-list">
+            <div class="snapshot-metric-item">
+              <div class="snapshot-metric-badge">4+</div>
+              <div class="snapshot-metric-content">
+                <span class="snapshot-metric-value">Năm kinh nghiệm SEO</span>
+                <span class="snapshot-metric-label">SEO Experience</span>
+              </div>
+            </div>
+            <div class="snapshot-metric-item">
+              <div class="snapshot-metric-badge">8+</div>
+              <div class="snapshot-metric-content">
+                <span class="snapshot-metric-value">Dự án SEO dẫn dắt</span>
+                <span class="snapshot-metric-label">SEO Projects Led</span>
+              </div>
+            </div>
+            <div class="snapshot-metric-item">
+              <div class="snapshot-metric-badge context">Context</div>
+              <div class="snapshot-metric-content">
+                <span class="snapshot-metric-value">Agency + In-house</span>
+                <span class="snapshot-metric-label">Working Context</span>
+              </div>
+            </div>
+            <div class="snapshot-metric-item">
+              <div class="snapshot-metric-badge context">Location</div>
+              <div class="snapshot-metric-content">
+                <span class="snapshot-metric-value">TP.HCM / Remote</span>
+                <span class="snapshot-metric-label">Work Mode / Location</span>
+              </div>
+            </div>
           </div>
 
-          <div class="profile-meta">
-            TP.HCM / Remote
+          <div class="snapshot-skills">
+            <div class="snapshot-skills-title">Kỹ năng cốt lõi:</div>
+            <div class="snapshot-skills-group">
+              <span class="snapshot-skill-chip">Technical SEO</span>
+              <span class="snapshot-skill-chip">Content Strategy</span>
+              <span class="snapshot-skill-chip">SEO Automation</span>
+              <span class="snapshot-skill-chip">Domain Migration</span>
+              <span class="snapshot-skill-chip">GSC/GA4 Reporting</span>
+            </div>
           </div>
         </div>
       </div>
@@ -428,14 +880,17 @@ const caseStudies = [
   <!-- Final CTA -->
   <section class="section section-dark">
     <div class="container">
-      <div class="section-heading text-center">
-        <h2 class="section-title">Muốn xem thêm cách tôi tư duy và triển khai SEO?</h2>
-        <p class="section-subtitle">
-          Bạn có thể bắt đầu từ case study Suối Tiên hoặc kết nối trực tiếp để trao đổi về SEO, cơ hội hợp tác hoặc công việc phù hợp.
+      <div class="section-heading text-center" style="max-width: 800px; margin-left: auto; margin-right: auto; margin-bottom: 0;">
+        <h2 class="section-title" style="font-size: clamp(2rem, 3.5vw, 2.5rem); margin-bottom: 16px;">
+          Hãy cùng thảo luận về mục tiêu SEO tiếp theo của bạn
+        </h2>
+        <p class="section-subtitle" style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 32px; color: rgba(255, 248, 240, 0.8);">
+          Let’s discuss SEO growth, collaboration, or a suitable SEO Lead opportunity. Cho dù bạn là nhà tuyển dụng, khách hàng tiềm năng hay đồng nghiệp trong ngành, tôi luôn sẵn sàng kết nối.
         </p>
-        <div class="btn-group center" style="margin-top: 32px;">
-          <a class="btn btn-primary" href="/contact/">Kết nối với tôi</a>
-          <a class="btn btn-light" href="/case-studies/suoi-tien-seo/">Xem Case Study</a>
+        <div class="btn-group center" style="margin-top: 32px; gap: 16px;">
+          <a class="btn btn-primary" href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer">Kết nối trên LinkedIn</a>
+          <a class="btn btn-light" href="/contact/">Liên hệ trực tiếp</a>
+          <a class="btn btn-light" href="/case-studies/suoi-tien-seo/" style="border: 1px solid rgba(255,255,255,0.2);">Xem Case Study Suối Tiên</a>
         </div>
       </div>
     </div>

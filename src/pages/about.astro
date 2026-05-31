@@ -1,92 +1,129 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-// --- Page Configuration ---
-// Fill these with paths (e.g., "/img/mascot/pose-1.png") or URLs later.
-const pageConfig = {
-  heroMascotSrc: null, 
-  brandLogoSrc: null,  
-  ctaMascotSrc: null,  
-  
-  // Default Alt Texts
-  heroMascotAlt: "TruThrive mascot representing SEO growth and consulting",
-  brandLogoAlt: "TruThrive logo",
-  ctaMascotAlt: "TruThrive mascot encouraging SEO audit request"
-};
+const title = "Giới thiệu | Bùi Trường Thịnh - TruThrive SEO Specialist";
+const description = "Tìm hiểu về Bùi Trường Thịnh và hành trình xây dựng giải pháp SEO bền vững dựa trên dữ liệu, kỹ thuật và chiến lược nội dung.";
 
-const title = "Giới thiệu | TruThrive - True SEO. Sustainable Growth.";
-const description = "Tìm hiểu về TruThrive và hành trình xây dựng giải pháp SEO bền vững dựa trên dữ liệu, kỹ thuật và chiến lược nội dung.";
+const linkedinUrl = "https://www.linkedin.com/in/truongthinhseo";
+const cvUrl = "/files/Bui_Truong_Thinh_CV_Revised.pdf";
+
+const careerJourney = [
+  {
+    year: "2021–2022",
+    company: "SALA",
+    role: "Content SEO Specialist",
+    time: "03/2021 – 10/2022",
+    description: "Bắt đầu từ keyword research, content planning, review output và quản lý tiến độ nội dung cho nhiều dự án.",
+    capability: "Hiểu search intent, content quality và quy trình sản xuất nội dung.",
+    logoText: "SALA"
+  },
+  {
+    year: "2023",
+    company: "GTV SEO",
+    role: "SEO Executive",
+    time: "03/2023 – 10/2023",
+    description: "Mở rộng sang topical map, content audit, on-page, off-page, entity/brand mention và quản lý outsource.",
+    capability: "Xử lý nhiều ngành, nhiều mô hình website và tốc độ triển khai agency.",
+    logoText: "GTV"
+  },
+  {
+    year: "2023–2024",
+    company: "DOL English",
+    role: "Middle SEO / SEO Project Leader",
+    time: "10/2023 – 07/2024",
+    description: "Lead dự án từ giai đoạn launch, xây topical map, site structure, internal link, schema và quy trình content.",
+    capability: "Kết nối strategy, execution, technical requirement và content operation.",
+    logoText: "DOL"
+  },
+  {
+    year: "2024–2025",
+    company: "Bao Bì Nhựa Việt Hoa",
+    role: "SEO Freelancer",
+    time: "09/2024 – 01/2025",
+    description: "Định hướng migration Custom CMS sang WordPress, xây website structure, on-page, entity/link building và post-launch technical monitoring.",
+    capability: "Kết hợp SEO strategy, website migration, UX/UI direction và technical monitoring.",
+    logoText: "VH"
+  },
+  {
+    year: "2025–nay",
+    company: "GYB Asia",
+    role: "Senior SEO Project Leader",
+    time: "03/2025 – Present",
+    description: "Lead nhiều dự án SEO, xây KPI/roadmap/reporting và phối hợp Content, Dev, Account, Client và Outsource team.",
+    capability: "Quản lý nhiều dự án, phối hợp cross-functional và scale SEO bằng process/tooling.",
+    logoText: "GYB"
+  }
+];
 ---
 
 <BaseLayout title={title} description={description}>
   <!-- About Hero -->
   <section class="section hero-section">
     <div class="container">
-      <div class="hero-grid">
-        <div class="hero-left">
+      <div class="about-hero-grid">
+        <div class="about-hero-left">
           <p class="section-kicker">GIỚI THIỆU</p>
-          <h1 class="hero-title">
-            Xây dựng nền tảng SEO bền vững cho doanh nghiệp
-          </h1>
+          <h1 class="hero-title">Bùi Trường Thịnh</h1>
+          <p class="hero-subheadline">
+            SEO Specialist / SEO Project Leader xây nền tảng tăng trưởng từ dữ liệu, nội dung và automation.
+          </p>
           <p class="hero-description">
-            TruThrive không chỉ là dịch vụ SEO. Đó là cam kết về sự tăng trưởng thực chất, minh bạch và có hệ thống dựa trên nền tảng Technical SEO vững chắc và chiến lược Content dựa trên dữ liệu.
+            Tôi xây dựng TruThrive như một portfolio để ghi lại cách tôi tiếp cận SEO: bắt đầu từ dữ liệu, chẩn đoán đúng vấn đề, phát triển nội dung theo search intent và chuẩn hóa quy trình bằng automation.
           </p>
           <div class="btn-group">
-            <a href="#brand-story" class="btn btn-secondary">Câu chuyện thương hiệu</a>
+            <a href="#about-philosophy" class="btn btn-primary">Xem năng lực SEO</a>
+            <a href="/case-studies/suoi-tien-seo/" class="btn btn-secondary">Xem Case Study</a>
           </div>
         </div>
 
-        <div class="hero-right">
-          {pageConfig.heroMascotSrc ? (
-            <div class="card hero-mascot-card">
-              <img 
-                src={pageConfig.heroMascotSrc} 
-                alt={pageConfig.heroMascotAlt} 
-                width="480" 
-                height="480"
-                class="mascot-img"
-              />
+        <div class="about-hero-right">
+          <div class="profile-credential-card">
+            <div class="profile-avatar-wrapper">BT</div>
+            <h2 class="profile-name">Bùi Trường Thịnh</h2>
+            <span class="profile-title">Senior SEO Specialist / SEO Project Leader</span>
+            <span class="profile-exp">4+ năm kinh nghiệm</span>
+            <span class="profile-location">TP. Hồ Chí Minh, Việt Nam</span>
+            
+            <div class="profile-chips">
+              <span class="profile-chip">Technical SEO</span>
+              <span class="profile-chip">Content Strategy</span>
+              <span class="profile-chip">Automation</span>
             </div>
-          ) : (
-            <div class="card hero-placeholder-card">
-              <div class="monogram-placeholder">BT</div>
-              <p class="placeholder-note">Mascot sẽ sớm xuất hiện</p>
+            
+            <div class="profile-action-row">
+              <a 
+                href={cvUrl} 
+                download 
+                class="btn btn-primary btn-sm profile-cv-btn"
+                aria-label="Tải xuống CV của Bùi Trường Thịnh"
+              >
+                Tải xuống CV
+              </a>
+              <a 
+                href={linkedinUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="profile-linkedin-link"
+              >
+                LinkedIn
+              </a>
             </div>
-          )}
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Brand Story -->
+  <!-- Vì sao tôi xây dựng TruThrive? -->
   <section id="brand-story" class="section section-muted">
     <div class="container">
       <div class="brand-story-wrapper text-center">
-        <div class="logo-slot">
-          {pageConfig.brandLogoSrc ? (
-            <img 
-              src={pageConfig.brandLogoSrc} 
-              alt={pageConfig.brandLogoAlt} 
-              class="brand-logo-img"
-              loading="lazy"
-            />
-          ) : (
-            <div class="text-logo">
-              <span class="logo-text">TruThrive</span>
-              <span class="logo-tagline">True SEO. Sustainable Growth.</span>
-            </div>
-          )}
-        </div>
-
-        <div class="brand-content-card card">
-          <p class="section-kicker">CÂU CHUYỆN THƯƠNG HIỆU</p>
-          <h2 class="section-title">Tại sao lại là TruThrive?</h2>
-          <div class="brand-text">
+        <div class="brand-meaning-card card">
+          <p class="section-kicker">TÔN CHỈ HOẠT ĐỘNG</p>
+          <h2 class="section-title">Vì sao tôi xây dựng TruThrive?</h2>
+          <div class="brand-meaning-text">
             <p>
-              Cái tên **TruThrive** được kết hợp từ **"True"** (Thực chất) và **"Thrive"** (Tăng trưởng mạnh mẽ). Trong một thị trường SEO đầy rẫy những thủ thuật ngắn hạn, tôi tin rằng con đường duy nhất để doanh nghiệp tồn tại và phát triển là xây dựng một hệ thống SEO bền vững.
-            </p>
-            <p>
-              Triết lý của TruThrive là ưu tiên **Technical Foundation** (nền tảng kỹ thuật) và **Search Intent** (ý định tìm kiếm) lên hàng đầu. Khi kỹ thuật đúng và nội dung thực sự giải quyết được vấn đề của người dùng, traffic sẽ tăng trưởng như một kết quả tất yếu.
+              TruThrive là nơi tôi hệ thống hóa cách mình làm SEO: thật với dữ liệu, rõ với vấn đề, thực tế trong triển khai và hướng đến tăng trưởng dài hạn. Với tôi, SEO không chỉ là checklist kỹ thuật hay sản xuất thêm nội dung, mà là quá trình kết nối nền tảng website, search intent, dữ liệu và workflow vận hành.
             </p>
           </div>
         </div>
@@ -94,185 +131,1372 @@ const description = "Tìm hiểu về TruThrive và hành trình xây dựng gi�
     </div>
   </section>
 
-  <!-- How I Work -->
-  <section class="section">
+  <!-- Tư duy làm SEO của tôi -->
+  <section id="about-philosophy" class="section">
     <div class="container">
       <div class="section-heading text-center">
-        <p class="section-kicker">PHƯƠNG CHÂM LÀM VIỆC</p>
-        <h2 class="section-title">Cách tôi triển khai dự án</h2>
+        <p class="section-kicker">TRIẾT LÝ LÀM VIỆC</p>
+        <h2 class="section-title">Tư duy làm SEO của tôi</h2>
         <p class="section-subtitle">
-          Mỗi dự án tại TruThrive đều được tiếp cận theo phương pháp chẩn đoán chuyên sâu trước khi bắt tay vào thực thi.
+          Tôi không tiếp cận SEO theo check-list rời rạc. Tôi xây dựng giải pháp đồng bộ kết nối giữa kỹ thuật, nội dung và tự động hóa.
         </p>
       </div>
 
-      <div class="card-grid">
-        {[
-          { 
-            title: 'Dữ liệu là cốt lõi', 
-            desc: 'Mọi quyết định từ audit đến lên kế hoạch content đều phải dựa trên dữ liệu từ GSC, GA4 và các công cụ chuyên dụng.' 
-          },
-          { 
-            title: 'Kỹ thuật là nền tảng', 
-            desc: 'Một website không thể rank tốt nếu gặp lỗi crawl, index hoặc cấu trúc technical rời rạc. Tôi ưu tiên xử lý nền tảng đầu tiên.' 
-          },
-          { 
-            title: 'Nội dung thực chất', 
-            desc: 'Không sản xuất content rác để lấy volume. Content tại TruThrive tập trung vào topical authority và đáp ứng đúng hành trình khách hàng.' 
-          },
-          { 
-            title: 'Tự động hóa workflow', 
-            desc: 'Ứng dụng SEO Automation để tối ưu hóa thời gian thực thi, giúp tập trung nguồn lực vào những hạng mục tạo ra impact lớn nhất.' 
-          }
-        ].map(item => (
-          <article class="card feature-card">
-            <h3>{item.title}</h3>
-            <p>{item.desc}</p>
-          </article>
-        ))}
+      <div class="beliefs-grid">
+        <div class="belief-card">
+          <div class="belief-icon-wrapper">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <h3 class="belief-title">Đúng vấn đề trước khi đúng checklist</h3>
+          <p class="belief-desc">
+            Tôi không audit để liệt kê lỗi, mà để xác định điểm nghẽn thật sự của tăng trưởng.
+          </p>
+          <p class="belief-practical">
+            <strong>Trong thực tế:</strong> phân tách lỗi technical, content gap, intent mismatch, cannibalization và authority issue trước khi đề xuất roadmap.
+          </p>
+        </div>
+        
+        <div class="belief-card">
+          <div class="belief-icon-wrapper">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <h3 class="belief-title">Nội dung phải có vai trò trong hệ thống</h3>
+          <p class="belief-desc">
+            Một bài viết không nên tồn tại riêng lẻ, mà cần đóng góp vào topical authority, intent coverage và internal link.
+          </p>
+          <p class="belief-practical">
+            <strong>Trong thực tế:</strong> xây topical map, audit content, xác định bài cần refresh, merge, expand hoặc liên kết lại.
+          </p>
+        </div>
+        
+        <div class="belief-card">
+          <div class="belief-icon-wrapper">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <h3 class="belief-title">Quy trình tốt giúp SEO scale được</h3>
+          <p class="belief-desc">
+            Automation không thay thế tư duy SEO, nhưng giúp giảm việc lặp lại và tăng chất lượng triển khai.
+          </p>
+          <p class="belief-practical">
+            <strong>Trong thực tế:</strong> chuẩn hóa audit, content review, logfile analysis và textlink filtering bằng workflow/tool phù hợp.
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Final CTA -->
-  <section class="section section-dark">
+  <!-- Hành trình tạo nên cách tôi làm SEO (Timeline) -->
+  <section class="section section-muted career-journey-section" id="career-journey">
     <div class="container">
-      <div class="cta-content-wrapper">
-        <div class="section-heading text-center" style="margin-bottom: 0;">
-          <h2 class="section-title">Cần một lộ trình SEO bền vững?</h2>
-          <p class="section-subtitle">
-            Hãy bắt đầu bằng một buổi SEO Audit chuyên sâu để hiểu rõ thực trạng website của bạn.
-          </p>
-          <div class="btn-group center" style="margin-top: 32px;">
-            <a href="/request-seo-audit/" class="btn btn-primary">Yêu cầu SEO Audit</a>
-            <a href="/case-studies/suoi-tien-seo/" class="btn btn-light">Xem Case Study</a>
+      <div class="career-journey-container">
+        
+        <div class="career-sticky-shell">
+          <div class="career-sticky-inner">
+            
+            <!-- Sticky Header inside the shell so it stays visible while scrolling -->
+            <div class="career-sticky-header">
+              <p class="section-kicker">KINH NGHIỆM TÍCH LŨY</p>
+              <h2 class="section-title">Hành trình tạo nên cách tôi làm SEO</h2>
+              <p class="section-subtitle">
+                Quá trình phát triển tư duy từ thực thi chi tiết đến quản lý hệ thống dự án toàn diện.
+              </p>
+            </div>
+
+            <!-- Career Interactive Body -->
+            <div class="career-sticky-body">
+              
+              <!-- Left column: year/milestone navigation -->
+              <nav class="career-years" aria-label="Mốc thời gian sự nghiệp">
+                {careerJourney.map((item, index) => (
+                  <button 
+                    type="button"
+                    class={`career-year-item ${index === 0 ? 'active' : ''}`} 
+                    data-index={index}
+                    aria-label={`Xem chi tiết kinh nghiệm năm ${item.year} tại ${item.company}`}
+                    aria-current={index === 0 ? 'step' : undefined}
+                  >
+                    <span class="year-text">{item.year}</span>
+                    <span class="company-sub">{item.company}</span>
+                  </button>
+                ))}
+              </nav>
+
+              <!-- Right column: company detail panels -->
+              <div class="career-detail-panels">
+                {careerJourney.map((item, index) => (
+                  <div 
+                    class={`career-detail-card card ${index === 0 ? 'active' : ''}`} 
+                    data-index={index}
+                    role="tabpanel"
+                    aria-label={`Kinh nghiệm tại ${item.company}`}
+                  >
+                    <div class="career-card-header">
+                      <div class="career-company-meta">
+                        <div class="career-logo-placeholder" aria-hidden="true">
+                          {item.logoText}
+                        </div>
+                        <div class="career-title-group">
+                          <span class="career-card-mobile-year">{item.year}</span>
+                          <h3 class="career-company-name">{item.company}</h3>
+                          <span class="career-role">{item.role}</span>
+                        </div>
+                      </div>
+                      <span class="career-time">
+                        <svg class="calendar-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                          <line x1="16" y1="2" x2="16" y2="6"></line>
+                          <line x1="8" y1="2" x2="8" y2="6"></line>
+                          <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        {item.time}
+                      </span>
+                    </div>
+                    
+                    <p class="career-desc">“{item.description}”</p>
+                    
+                    <div class="career-capability-box">
+                      <span class="capability-title">Năng lực tích lũy:</span>
+                      <p class="capability-desc">“{item.capability}”</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+            </div>
+            
           </div>
         </div>
 
-        {pageConfig.ctaMascotSrc && (
-          <div class="cta-mascot-accent">
-            <img 
-              src={pageConfig.ctaMascotSrc} 
-              alt={pageConfig.ctaMascotAlt} 
-              class="mascot-accent-img"
-              loading="lazy"
-            />
-          </div>
-        )}
+        <!-- Scroll trigger steps (Desktop only, absolute triggers stacked in parallel) -->
+        <div class="career-scroll-steps">
+          {careerJourney.map((_, index) => (
+            <div class="career-scroll-step" data-index={index}></div>
+          ))}
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- Một vài dấu mốc kết quả (Proof Metrics) -->
+  <section class="section">
+    <div class="container">
+      <div class="section-heading text-center">
+        <p class="section-kicker">MINH CHỨNG NĂNG LỰC</p>
+        <h2 class="section-title">Một vài dấu mốc kết quả</h2>
+        <p class="section-subtitle">
+          Những con số thực tế được ghi nhận thông qua phương pháp tối ưu có hệ thống trên nhiều loại hình dự án.
+        </p>
+      </div>
+
+      <div class="proof-cards-grid">
+        <!-- Card A: Suối Tiên -->
+        <div class="proof-card">
+          <div class="proof-card-header">
+            <span class="proof-card-tag">TOURISM SEO GROWTH</span>
+            <h3 class="proof-card-title">Suối Tiên</h3>
+          </div>
+          <div class="proof-card-body">
+            <div class="proof-main-metric">
+              <span class="proof-metric-value">32.198</span>
+              <span class="proof-metric-desc">Organic Sessions (Đạt 100.8% KPI)</span>
+            </div>
+            <ul class="proof-sub-metrics">
+              <li>KPI hoàn thành: <strong>100.8%</strong> (Mục tiêu 31.957)</li>
+              <li>Thặng dư: <strong>+241 organic sessions</strong></li>
+              <li>Từ khóa thứ hạng: <strong>77 Top 3</strong> · <strong>94 Top 5</strong></li>
+              <li>Quy mô chiến dịch: <strong>219 tổng từ khóa</strong></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card B: B2B Packaging -->
+        <div class="proof-card">
+          <div class="proof-card-header">
+            <span class="proof-card-tag">MIGRATION & SEO GROWTH</span>
+            <h3 class="proof-card-title">B2B Packaging</h3>
+          </div>
+          <div class="proof-card-body">
+            <div class="proof-main-metric">
+              <span class="proof-metric-value">+22%</span>
+              <span class="proof-metric-desc">Tăng trưởng Clicks (CTR +52%)</span>
+            </div>
+            <ul class="proof-sub-metrics">
+              <li>Cam kết tăng trưởng: <strong>334 từ khóa</strong></li>
+              <li>Tỷ lệ từ khóa Top 1–5: <strong>Đạt 22%</strong></li>
+              <li>Tỷ lệ từ khóa Top 5–10: <strong>Đạt 42%</strong></li>
+              <li>Hiệu suất chung: <strong>Tăng 22% clicks toàn website</strong></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card C: SEO Automation -->
+        <div class="proof-card">
+          <div class="proof-card-header">
+            <span class="proof-card-tag">INTERNAL TOOLING</span>
+            <h3 class="proof-card-title">SEO Automation & Internal Tooling</h3>
+          </div>
+          <div class="proof-card-body">
+            <div class="proof-main-metric">
+              <span class="proof-metric-value">Workflow</span>
+              <span class="proof-metric-desc">Tối ưu hiệu suất & Chuẩn hóa</span>
+            </div>
+            <ul class="proof-sub-metrics">
+              <li><strong>Logfile audit</strong> · Crawl & indexing checking</li>
+              <li><strong>Content audit</strong> · Intent gap & cannibalization</li>
+              <li><strong>Textlink filtering</strong> · Kiểm soát chất lượng link</li>
+              <li><strong>Google Sheets & Apps Script</strong> · Auto-reporting</li>
+              <li><strong>AI-assisted coding</strong> · Tăng tốc triển khai script</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="proof-cta-row text-center">
+        <a href="/case-studies/suoi-tien-seo/" class="proof-details-link">
+          Xem chi tiết Case Study →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trang này phù hợp với ai? -->
+  <section class="section section-muted" id="audience">
+    <div class="container">
+      <div class="section-heading text-center">
+        <h2 class="section-title">Trang này phù hợp với ai?</h2>
+      </div>
+      <div class="audience-grid">
+        <article class="audience-card">
+          <span class="audience-badge">Hiring</span>
+          <h3 class="audience-title">Recruiters / Hiring teams</h3>
+          <p class="audience-desc">
+            Dành cho nhà tuyển dụng muốn hiểu năng lực SEO, khả năng lead project và cách tôi phối hợp với Content, Dev, Account và Client.
+          </p>
+          <div class="audience-action-wrapper">
+            <a href={cvUrl} download class="audience-action-link" aria-label="Tải xuống CV của Bùi Trường Thịnh">
+              Tải xuống CV →
+            </a>
+          </div>
+        </article>
+
+        <article class="audience-card">
+          <span class="audience-badge">Service</span>
+          <h3 class="audience-title">Freelance clients</h3>
+          <p class="audience-desc">
+            Dành cho doanh nghiệp cần một người có thể chẩn đoán vấn đề tăng trưởng, xây roadmap SEO và triển khai có kiểm soát.
+          </p>
+          <div class="audience-action-wrapper">
+            <a href="/case-studies/suoi-tien-seo/" class="audience-action-link">
+              Xem Case Study →
+            </a>
+          </div>
+        </article>
+
+        <article class="audience-card">
+          <span class="audience-badge">Connect</span>
+          <h3 class="audience-title">SEO peers / Network</h3>
+          <p class="audience-desc">
+            Dành cho SEO peers muốn trao đổi về Technical SEO, Content Strategy, GEO/AIO, automation hoặc workflow SEO.
+          </p>
+          <div class="audience-action-wrapper">
+            <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" class="audience-action-link">
+              Kết nối LinkedIn →
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final Soft CTA -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="about-footer-cta text-center">
+        <h2 class="section-title about-footer-title">
+          Muốn hiểu rõ hơn cách tôi tiếp cận SEO?
+        </h2>
+        <p class="section-subtitle about-footer-subtitle">
+          Bạn có thể xem case study, tải CV hoặc kết nối với tôi để trao đổi thêm về SEO strategy, content system và automation workflow.
+        </p>
+        <div class="btn-group center about-footer-btn-group">
+          <a class="btn btn-primary" href="/case-studies/suoi-tien-seo/">Xem Case Study</a>
+          <a class="btn btn-light" href={linkedinUrl} target="_blank" rel="noopener noreferrer">Kết nối LinkedIn</a>
+          <a 
+            class="btn-tertiary about-footer-cv-btn" 
+            href={cvUrl} 
+            download
+            aria-label="Tải xuống CV của Bùi Trường Thịnh"
+          >
+            Tải xuống CV
+          </a>
+        </div>
+      </div>
+    </div>
 </BaseLayout>
 
-<style>
-  /* Hero Mascot Styles */
-  .hero-mascot-card {
-    padding: 0;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--color-card);
+<script>
+  function initCareerJourney() {
+    const section = document.querySelector('.career-journey-section');
+    const container = document.querySelector('.career-journey-container');
+    const steps = document.querySelectorAll('.career-scroll-step');
+    const years = document.querySelectorAll('.career-year-item');
+    const cards = document.querySelectorAll('.career-detail-card');
+
+    if (!section || !container || steps.length === 0) return;
+
+    // Enable JS-driven interactive behavior
+    section.classList.add('js-enabled');
+
+    let observer;
+
+    function setupObserver() {
+      if (observer) {
+        observer.disconnect();
+      }
+
+      if (window.innerWidth >= 1024) {
+        const observerOptions = {
+          root: null,
+          rootMargin: '-35% 0px -45% 0px',
+          threshold: 0
+        };
+
+        observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const index = parseInt(entry.target.getAttribute('data-index') || '0', 10);
+              activateStep(index);
+            }
+          });
+        }, observerOptions);
+
+        steps.forEach(step => observer.observe(step));
+      } else {
+        // Reset dynamic classes on mobile to prevent any stray states
+        years.forEach(year => {
+          year.classList.remove('active');
+          year.removeAttribute('aria-current');
+        });
+        cards.forEach(card => card.classList.remove('active'));
+      }
+    }
+
+    function activateStep(index) {
+      years.forEach((year, i) => {
+        if (i === index) {
+          year.classList.add('active');
+          year.setAttribute('aria-current', 'step');
+        } else {
+          year.classList.remove('active');
+          year.removeAttribute('aria-current');
+        }
+      });
+
+      cards.forEach((card, i) => {
+        if (i === index) {
+          card.classList.add('active');
+        } else {
+          card.classList.remove('active');
+        }
+      });
+    }
+
+    // Set up scroll click navigation for years
+    years.forEach((year) => {
+      year.addEventListener('click', () => {
+        const index = parseInt(year.getAttribute('data-index') || '0', 10);
+        const targetStep = steps[index];
+        if (targetStep) {
+          targetStep.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+          });
+        }
+      });
+    });
+
+    setupObserver();
+
+    // Re-initialize or adjust observer on window resize
+    window.addEventListener('resize', setupObserver);
   }
-  .mascot-img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
+
+  // Run on page load
+  window.addEventListener('DOMContentLoaded', initCareerJourney);
+  
+  // Astro page transition support
+  document.addEventListener('astro:page-load', initCareerJourney);
+</script>
+
+
+<style>
+  /* Hero section and Grid */
+  .about-hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 48px;
+    align-items: center;
   }
   
-  .hero-placeholder-card {
-    aspect-ratio: 1/1;
+  .about-hero-left {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .about-hero-left .hero-title {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: var(--color-text);
+    line-height: 1.15;
+    margin: 12px 0 16px 0;
+    letter-spacing: -1px;
+  }
+
+  .hero-subheadline {
+    font-size: clamp(1.15rem, 2vw, 1.35rem);
+    font-weight: 600;
+    color: var(--color-accent);
+    line-height: 1.4;
+    margin-bottom: 20px;
+  }
+  
+  .about-hero-left .hero-description {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--color-muted-text);
+    margin-bottom: 32px;
+  }
+  
+  /* Profile Credential Card */
+  .profile-credential-card {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 36px 32px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.015), 0 2px 8px rgba(0, 0, 0, 0.005);
+  }
+  
+  .profile-avatar-wrapper {
+    display: flex;
+    align-items: center;
     justify-content: center;
-    background-color: white;
-    border: 2px dashed var(--color-border);
-  }
-  .monogram-placeholder {
-    font-size: 4rem;
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    background-color: var(--color-accent);
+    color: white;
     font-weight: 800;
-    color: var(--color-border);
-    margin-bottom: 12px;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    box-shadow: 0 6px 16px rgba(193, 18, 31, 0.15);
   }
-  .placeholder-note {
+  
+  .profile-name {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--color-text);
+    margin: 0 0 6px 0;
+    letter-spacing: -0.5px;
+  }
+  
+  .profile-title {
     font-size: 0.9rem;
-    color: var(--color-muted-text);
+    font-weight: 700;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+  
+  .profile-exp {
+    font-size: 0.82rem;
+    color: var(--color-text);
+    font-weight: 700;
+    margin-bottom: 8px;
+    padding: 4px 12px;
+    background: rgba(216, 207, 196, 0.35);
+    border-radius: var(--radius-sm);
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
   }
 
+  .profile-location {
+    font-size: 0.88rem;
+    color: var(--color-muted-text);
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .profile-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 24px;
+    border-top: 1px solid rgba(216, 207, 196, 0.4);
+    padding-top: 20px;
+    width: 100%;
+  }
+
+  .profile-chip {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-text);
+    background: rgba(216, 207, 196, 0.2);
+    border: 1px solid var(--color-border);
+    padding: 4px 12px;
+    border-radius: var(--radius-sm);
+  }
+  
+  .profile-action-row {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid rgba(216, 207, 196, 0.4);
+    padding-top: 20px;
+  }
+
+  .profile-cv-btn {
+    font-size: 0.88rem;
+    padding: 10px 20px;
+  }
+
+  .profile-linkedin-link {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 0.2s ease;
+  }
+
+  .profile-linkedin-link:hover {
+    color: var(--color-text);
+  }
+  
   /* Brand Story Styles */
   .brand-story-wrapper {
     max-width: 800px;
     margin: 0 auto;
   }
-  .logo-slot {
-    margin-bottom: 40px;
+
+  .brand-meaning-card {
+    padding: 48px;
+    text-align: left;
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
+  }
+
+  .brand-meaning-text {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    color: var(--color-muted-text);
+    line-height: 1.75;
+  }
+  
+  /* Belief Cards */
+  .beliefs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+  }
+  
+  .belief-card {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 32px 28px;
+    height: 100%;
+    transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    box-shadow: var(--shadow-card);
   }
-  .brand-logo-img {
-    max-height: 80px;
-    width: auto;
+  
+  .belief-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(193, 18, 31, 0.25);
+    box-shadow: var(--shadow-card-hover);
   }
-  .text-logo {
+  
+  .belief-icon-wrapper {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    border-radius: 999px;
+    background: rgba(193, 18, 31, 0.06);
+    color: var(--color-accent);
+    margin-bottom: 20px;
+    flex-shrink: 0;
   }
-  .logo-text {
-    font-size: 2.5rem;
+
+  .belief-icon-wrapper svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    display: block;
+  }
+  
+  .belief-title {
+    font-size: 1.25rem;
     font-weight: 800;
     color: var(--color-text);
-    letter-spacing: -0.02em;
-    line-height: 1;
+    margin: 0 0 12px 0;
+    line-height: 1.3;
+    letter-spacing: -0.2px;
   }
-  .logo-tagline {
-    font-size: 1rem;
+  
+  .belief-desc {
+    font-size: 0.98rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    margin: 0 0 16px 0;
+    font-weight: 500;
+  }
+
+  .belief-practical {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--color-muted-text);
+    margin: auto 0 0 0;
+    padding-top: 16px;
+    border-top: 1px solid rgba(216, 207, 196, 0.4);
+  }
+
+  .belief-practical strong {
     color: var(--color-accent);
-    font-weight: 600;
-    margin-top: 8px;
+  }
+  
+  /* Career Journey Styles */
+  .career-journey-container {
+    position: relative;
+    margin-top: 40px;
+  }
+  
+  /* Fallback & Mobile baseline: all cards are standard stacked blocks, fully readable */
+  .career-sticky-shell {
+    position: static;
+    height: auto;
+  }
+  
+  .career-sticky-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+  }
+  
+  .career-years {
+    display: none; /* Hidden by default or on mobile */
+  }
+  
+  .career-detail-panels {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  .career-detail-card {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 36px;
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    position: relative;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  
+  .career-detail-card:hover {
+    border-color: rgba(193, 18, 31, 0.2);
+    box-shadow: var(--shadow-card-hover);
+  }
+  
+  .career-scroll-steps {
+    display: none; /* Hidden by default or on mobile */
+  }
+
+  /* Card Inner Elements Layout */
+  .career-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    border-bottom: 1px solid rgba(216, 207, 196, 0.4);
+    padding-bottom: 16px;
+  }
+  
+  .career-company-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .career-logo-placeholder {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background: rgba(193, 18, 31, 0.06);
+    color: var(--color-accent);
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(193, 18, 31, 0.12);
+    flex-shrink: 0;
+    letter-spacing: 0.05em;
+  }
+  
+  .career-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  
+  .career-company-name {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+  }
+  
+  .career-role {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-accent);
+  }
+  
+  .career-card-mobile-year {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    background: rgba(193, 18, 31, 0.05);
+    border: 1px solid rgba(193, 18, 31, 0.1);
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    align-self: flex-start;
+    margin-bottom: 4px;
+    width: fit-content;
+  }
+  
+  .career-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--color-muted-text);
+    background: rgba(216, 207, 196, 0.25);
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+  }
+  
+  .calendar-icon {
+    color: var(--color-accent);
+    opacity: 0.85;
+    flex-shrink: 0;
+  }
+  
+  .career-desc {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    font-style: italic;
+  }
+  
+  .career-capability-box {
+    padding: 20px;
+    background: rgba(216, 207, 196, 0.15);
+    border-left: 4px solid var(--color-accent);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .capability-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-text);
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
-  .brand-content-card {
-    padding: 48px;
-    text-align: left;
-  }
-  .brand-text {
-    margin-top: 24px;
-    font-size: 1.125rem;
+  
+  .capability-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
     color: var(--color-muted-text);
-    line-height: 1.8;
-  }
-  .brand-text p + p {
-    margin-top: 20px;
+    margin: 0;
   }
 
-  /* CTA Accent Styles */
-  .cta-content-wrapper {
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
+  /* Responsive styling for layout details inside cards */
+  @media (max-width: 767.98px) {
+    .career-card-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .career-time {
+      align-self: flex-start;
+    }
   }
-  .cta-mascot-accent {
-    position: absolute;
-    bottom: -40px;
-    right: -100px;
-    width: 120px;
-    pointer-events: none;
-  }
-  @media (max-width: 1024px) {
-    .cta-mascot-accent {
+
+  /* Progressive Enhancement for Desktop sticky/interactive experience (min-width: 1024px) */
+  @media (min-width: 1024px) {
+    /* Only apply when JS adds the class and we have a wide screen */
+    .career-journey-section.js-enabled .career-journey-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+      position: relative;
+    }
+    
+    .career-journey-section.js-enabled .career-sticky-shell {
+      grid-area: 1 / 1 / 2 / 2;
+      position: sticky;
+      top: calc(var(--header-height, 80px) + 24px);
+      height: calc(100vh - var(--header-height, 80px) - 48px);
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      align-self: start;
+      z-index: 2;
+      pointer-events: none;
+    }
+    
+    .career-journey-section.js-enabled .career-sticky-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+      width: 100%;
+      pointer-events: auto;
+    }
+
+    .career-journey-section.js-enabled .career-sticky-header {
+      text-align: left;
+    }
+
+    .career-journey-section.js-enabled .career-sticky-header .section-subtitle {
+      max-width: 860px;
+    }
+
+    .career-journey-section.js-enabled .career-sticky-body {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 64px;
+      width: 100%;
+      align-items: start;
+    }
+    
+    .career-journey-section.js-enabled .career-years {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+      padding-left: 24px;
+    }
+    
+    .career-journey-section.js-enabled .career-years::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background-color: var(--color-border);
+      opacity: 0.5;
+    }
+    
+    .career-journey-section.js-enabled .career-year-item {
+      background: none;
+      border: none;
+      padding: 8px 0 8px 24px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      transition: opacity 0.3s ease;
+      position: relative;
+      opacity: 0.5;
+      width: 100%;
+    }
+    
+    .career-journey-section.js-enabled .career-year-item:hover {
+      opacity: 0.85;
+    }
+    
+    .career-journey-section.js-enabled .career-year-item.active {
+      opacity: 1;
+    }
+    
+    .career-journey-section.js-enabled .career-year-item .year-text {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--color-text);
+      transition: color 0.25s ease;
+      line-height: 1.2;
+    }
+    
+    .career-journey-section.js-enabled .career-year-item.active .year-text {
+      color: var(--color-accent);
+      font-weight: 700;
+    }
+    
+    .career-journey-section.js-enabled .career-year-item .company-sub {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--color-muted-text);
+      margin-top: 4px;
+      transition: color 0.25s ease;
+    }
+    
+    .career-journey-section.js-enabled .career-year-item.active .company-sub {
+      color: var(--color-text);
+      font-weight: 700;
+    }
+    
+    /* Mathematical bullet alignment on the vertical line */
+    .career-journey-section.js-enabled .career-year-item::before {
+      content: "";
+      position: absolute;
+      left: -4px; /* centers perfectly on a 2px vertical line at parent's padding start */
+      top: 15px; /* aligns vertically with the first line of text */
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: var(--color-border);
+      opacity: 0.8;
+      transform: scale(0.6);
+      transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+      z-index: 2;
+    }
+    
+    .career-journey-section.js-enabled .career-year-item:hover::before {
+      background-color: var(--color-accent);
+      opacity: 1;
+      transform: scale(0.8);
+    }
+    
+    .career-journey-section.js-enabled .career-year-item.active::before {
+      background-color: var(--color-accent);
+      opacity: 1;
+      transform: scale(1.3);
+      box-shadow: 0 0 0 5px rgba(193, 18, 31, 0.18);
+    }
+    
+    .career-journey-section.js-enabled .career-detail-panels {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+      position: relative;
+      width: 100%;
+    }
+    
+    .career-journey-section.js-enabled .career-detail-card {
+      grid-area: 1 / 1 / 2 / 2;
+      opacity: 0;
+      transform: translateY(16px);
+      pointer-events: none;
+      transition: opacity 0.35s cubic-bezier(0.25, 1, 0.5, 1), transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    
+    .career-journey-section.js-enabled .career-detail-card.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    
+    /* Hide the self-contained year badge on desktop because left navigation displays it prominently */
+    .career-journey-section.js-enabled .career-card-mobile-year {
       display: none;
     }
+    
+    .career-journey-section.js-enabled .career-scroll-steps {
+      grid-area: 1 / 1 / 2 / 2;
+      display: flex;
+      flex-direction: column;
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    .career-journey-section.js-enabled .career-scroll-step {
+      display: block;
+      min-height: clamp(360px, 48vh, 560px); /* Tighter, more responsive scroll height */
+    }
+    
+    .career-journey-section.js-enabled .career-scroll-step:last-child {
+      min-height: 60vh;
+    }
   }
 
-  @media (max-width: 768px) {
-    .brand-content-card {
+  /* Full Mobile View Reset */
+  @media (max-width: 1023.98px) {
+    .career-journey-section.js-enabled .career-journey-container {
+      display: block;
+    }
+    
+    .career-journey-section.js-enabled .career-sticky-shell {
+      position: static;
+      height: auto;
+      min-height: initial;
+      pointer-events: auto;
+    }
+    
+    .career-journey-section.js-enabled .career-sticky-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .career-journey-section.js-enabled .career-sticky-header {
+      display: block;
+    }
+    
+    .career-journey-section.js-enabled .career-sticky-body {
+      display: block;
+    }
+    
+    .career-journey-section.js-enabled .career-years {
+      display: none !important;
+    }
+    
+    .career-journey-section.js-enabled .career-detail-panels {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 16px;
+    }
+    
+    .career-journey-section.js-enabled .career-detail-card {
+      grid-area: auto;
+      opacity: 1 !important;
+      transform: none !important;
+      pointer-events: auto !important;
+      position: relative;
+      padding: 28px;
+    }
+    
+    .career-journey-section.js-enabled .career-scroll-steps {
+      display: none !important;
+    }
+  }
+  
+  /* Proof Section Styles */
+  .proof-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+  }
+  
+  .proof-card {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-card);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  .proof-card:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+  }
+
+  .proof-card-header {
+    border-bottom: 1px solid rgba(216, 207, 196, 0.4);
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+  }
+
+  .proof-card-tag {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .proof-card-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--color-text);
+    margin: 0;
+    letter-spacing: -0.5px;
+    line-height: 1.25;
+  }
+  
+  .proof-main-metric {
+    margin-bottom: 20px;
+    background: rgba(193, 18, 31, 0.02);
+    border: 1px solid rgba(193, 18, 31, 0.05);
+    padding: 14px 18px;
+    border-radius: var(--radius-md);
+  }
+
+  .proof-metric-value {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    line-height: 1;
+    display: block;
+    margin-bottom: 4px;
+    letter-spacing: -0.5px;
+  }
+
+  .proof-metric-desc {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+  
+  .proof-sub-metrics {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .proof-sub-metrics li {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--color-muted-text);
+    position: relative;
+    padding-left: 16px;
+  }
+
+  .proof-sub-metrics li::before {
+    content: "•";
+    color: var(--color-accent);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+  }
+
+  .proof-sub-metrics.flex-column li {
+    padding-left: 12px;
+  }
+
+  .proof-sub-metrics.flex-column li strong {
+    color: var(--color-text);
+  }
+
+  .proof-cta-row {
+    margin-top: 32px;
+  }
+
+  .proof-details-link {
+    display: inline-flex;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 0.2s ease;
+  }
+
+  .proof-details-link:hover {
+    color: var(--color-text);
+  }
+
+  /* Audience CTA action wrapper */
+  .audience-action-wrapper {
+    margin-top: auto;
+    padding-top: 16px;
+  }
+
+  .audience-action-link {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 0.25s ease;
+    display: inline-block;
+  }
+
+  .audience-action-link:hover {
+    color: var(--color-text);
+  }
+  
+  /* Final Soft CTA Styles */
+  .about-footer-cta {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+  }
+  
+  .about-footer-title {
+    font-size: clamp(2rem, 3.5vw, 2.6rem);
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+  }
+  
+  .about-footer-subtitle {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 32px;
+    color: rgba(255, 248, 240, 0.8);
+  }
+  
+  .about-footer-btn-group {
+    margin-top: 32px;
+    gap: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .about-footer-cv-btn {
+    color: var(--color-bg);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 0.2s ease;
+  }
+  
+  .about-footer-cv-btn:hover {
+    color: #FFFFFF;
+  }
+
+  /* Responsive Styles */
+  @media (max-width: 1199.98px) {
+    .proof-cards-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+  }
+  
+  @media (max-width: 1023.98px) {
+    .about-hero-grid {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+    .beliefs-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .proof-cards-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+  
+  @media (max-width: 639.98px) {
+    .brand-meaning-card {
       padding: 32px 24px;
     }
-    .logo-text {
-      font-size: 2rem;
+    .profile-credential-card {
+      padding: 32px 24px;
+    }
+    .btn-group {
+      flex-direction: column;
+      width: 100%;
+      gap: 12px;
+    }
+    .btn-group .btn {
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+    }
+  }
+
+  /* Large / Wide Desktop Screens (min-width: 1440px) */
+  @media (min-width: 1440px) {
+    /* Increase global container width specifically for this section */
+    .career-journey-section :global(.container) {
+      width: min(100% - 64px, 1320px);
+    }
+
+    .career-journey-section.js-enabled .career-sticky-shell {
+      height: calc(100vh - var(--header-height, 80px) - 64px);
+      min-height: 640px;
+    }
+
+    .career-journey-section.js-enabled .career-sticky-inner {
+      max-width: 1320px;
+      gap: 48px;
+    }
+
+    .career-journey-section.js-enabled .career-sticky-body {
+      grid-template-columns: 320px minmax(760px, 1fr);
+      gap: 76px;
+    }
+
+    .career-journey-section.js-enabled .career-year-item {
+      padding: 10px 0 10px 28px;
+    }
+
+    .career-journey-section.js-enabled .career-year-item::before {
+      left: -4px;
+      top: 17px;
+    }
+
+    .career-journey-section.js-enabled .career-year-item .year-text {
+      font-size: 1.45rem;
+    }
+
+    .career-journey-section.js-enabled .career-year-item .company-sub {
+      font-size: 1rem;
+    }
+
+    .career-journey-section.js-enabled .career-detail-card {
+      padding: 44px;
+      gap: 28px;
+    }
+
+    .career-desc {
+      font-size: 1.1rem;
+      line-height: 1.75;
+    }
+
+    .career-journey-section.js-enabled .career-scroll-step {
+      min-height: clamp(340px, 44vh, 520px); /* Tighter scroll milestones for wide viewports */
+    }
+
+    .career-journey-section.js-enabled .career-scroll-step:last-child {
+      min-height: 55vh;
     }
   }
 </style>
