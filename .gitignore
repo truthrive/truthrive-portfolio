@@ -22,3 +22,16 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# AI agent workspace configuration
+.agent/
+
+# Local screenshot images
+public/img/localhost_*.png
+
+# Duplicate reference/beacons images
+public/img/beacons.ai_* (*).png
+
+# Sample excel files
+public/img/social_accounts_sample.xlsx
+

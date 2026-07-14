@@ -1,0 +1,432 @@
+---
+// src/components/CaseStudiesFeaturedEditorial.astro
+---
+
+<section id="featured-case-studies" class="case-index" data-case-index>
+  <div class="case-index__container">
+    <div class="section-heading case-index__header">
+      <p class="section-kicker">SELECTED SEO CASE STUDIES</p>
+      <h2 class="section-title">Case Study nổi bật</h2>
+      <p class="section-subtitle">
+        Ba case tiêu biểu được chọn để thể hiện năng lực SEO từ migration, topical authority đến recovery & scaling.
+      </p>
+    </div>
+
+    <div class="case-index__list-card">
+      <!-- Case Row 01: Suối Tiên -->
+      <article class="case-index__row">
+        <div class="case-index__number">01</div>
+        
+        <div class="case-index__details">
+          <h3 class="case-index__title">Suối Tiên — Tourism SEO Growth</h3>
+          <p class="case-index__context">
+            Migration SEO quy mô lớn, bảo toàn hiệu suất kỹ thuật và mở rộng traffic phi thương hiệu.
+          </p>
+          <div class="case-index__tags">
+            <span class="case-index__tag">Migration SEO</span>
+            <span class="case-index__tag">Technical SEO</span>
+          </div>
+        </div>
+
+        <div class="case-index__metrics">
+          <div class="case-index__metric">
+            <strong class="case-index__metric-value animated-number" data-count-to="32198" data-count-format="vi-dot">32.198</strong>
+            <span class="case-index__metric-label">Sessions</span>
+          </div>
+          <div class="case-index__metric">
+            <strong class="case-index__metric-value animated-number" data-count-to="77">77</strong>
+            <span class="case-index__metric-label">Top 3</span>
+          </div>
+          <div class="case-index__metric">
+            <strong class="case-index__metric-value animated-number" data-count-to="500">500</strong>
+            <span class="case-index__metric-label">AIO Traffic</span>
+          </div>
+        </div>
+
+        <div class="case-index__cta-wrapper">
+          <a class="case-index__cta" href="/case-studies/suoi-tien-seo/">Xem Case Study</a>
+        </div>
+      </article>
+
+      <!-- Case Row 02: DOL Grammar -->
+      <article class="case-index__row">
+        <div class="case-index__number">02</div>
+        
+        <div class="case-index__details">
+          <h3 class="case-index__title">DOL Grammar — Topical Authority Launch</h3>
+          <p class="case-index__context">
+            Launch website mới, xây topical authority và quy trình content scale từ giai đoạn đầu.
+          </p>
+          <div class="case-index__tags">
+            <span class="case-index__tag">Topical Authority</span>
+            <span class="case-index__tag">Content Strategy</span>
+          </div>
+        </div>
+
+        <div class="case-index__metrics">
+          <div class="case-index__metric">
+            <strong class="case-index__metric-value animated-number" data-count-to="66000" data-count-format="vi-dot">66.000</strong>
+            <span class="case-index__metric-label">Traffic</span>
+          </div>
+          <div class="case-index__metric">
+            <strong class="case-index__metric-value animated-number" data-count-to="252">252</strong>
+            <span class="case-index__metric-label">Keywords</span>
+          </div>
+          <div class="case-index__metric">
+            <strong class="case-index__metric-value animated-number" data-count-to="16" data-count-suffix="%">16%</strong>
+            <span class="case-index__metric-label">Top 1–3</span>
+          </div>
+        </div>
+
+        <div class="case-index__cta-wrapper">
+          <a class="case-index__cta" href="/case-studies/dol-grammar-seo/">Xem Case Study</a>
+        </div>
+      </article>
+
+      <!-- Case Row 03: Hoàng Long Computer -->
+      <article class="case-index__row">
+        <div class="case-index__number">03</div>
+        
+        <div class="case-index__details">
+          <h3 class="case-index__title">Hoàng Long Computer — SEO Recovery & Scaling</h3>
+          <p class="case-index__context">
+            Phục hồi SEO e-commerce, xác thực KPI và mở rộng tăng trưởng sau nghiệm thu.
+          </p>
+          <div class="case-index__tags">
+            <span class="case-index__tag">E-commerce SEO</span>
+            <span class="case-index__tag">Technical Recovery</span>
+          </div>
+        </div>
+
+        <div class="case-index__metrics">
+          <div class="case-index__metric">
+            <strong class="case-index__metric-value animated-number" data-count-to="356547" data-count-format="vi-dot">356.547</strong>
+            <span class="case-index__metric-label">Traffic</span>
+          </div>
+          <div class="case-index__metric">
+            <strong class="case-index__metric-value animated-number" data-count-to="7406" data-count-format="vi-dot">7.406</strong>
+            <span class="case-index__metric-label">AI/GEO</span>
+          </div>
+          <div class="case-index__metric">
+            <strong class="case-index__metric-value animated-number" data-count-to="58902" data-count-format="vi-dot">58.902</strong>
+            <span class="case-index__metric-label">Events</span>
+          </div>
+        </div>
+
+        <div class="case-index__cta-wrapper">
+          <a class="case-index__cta" href="/case-studies/hoang-long-computer-seo/">Xem Case Study</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* --- Section Container --- */
+  .case-index {
+    padding: var(--spacing-section-y) 0;
+    background-color: var(--color-bg);
+    width: 100%;
+    border-top: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 768px) {
+    .case-index {
+      padding: var(--spacing-section-y-mobile) 0;
+    }
+  }
+
+  .case-index__container {
+    width: min(100% - 48px, 1160px); /* Curated max-width */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .case-index__header {
+    margin-bottom: 48px;
+    text-align: center;
+  }
+
+  /* --- List Container Card --- */
+  .case-index__list-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+
+  /* --- Row Layout --- */
+  .case-index__row {
+    padding: 32px;
+    transition: background-color 0.25s ease;
+  }
+
+  .case-index__row:not(:last-child) {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .case-index__row:hover {
+    background-color: rgba(243, 234, 222, 0.2);
+  }
+
+  /* Desktop Grid (>= 1200px) */
+  @media (min-width: 1200px) {
+    .case-index__row {
+      display: grid;
+      grid-template-columns: 64px minmax(0, 1.4fr) minmax(320px, 0.9fr) auto;
+      gap: 28px;
+      align-items: center;
+    }
+  }
+
+  /* --- Row Sub-components --- */
+  .case-index__number {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    opacity: 0.85;
+  }
+
+  .case-index__title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    line-height: 1.3;
+    color: var(--color-text);
+    margin: 0 0 6px 0;
+  }
+
+  .case-index__context {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--color-muted-text);
+    margin-bottom: 12px;
+  }
+
+  .case-index__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .case-index__tag {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--color-muted-text);
+    background-color: var(--color-bg);
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+  }
+
+  /* Metrics Stack */
+  .case-index__metrics {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .case-index__metric {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .case-index__metric-value {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    line-height: 1.1;
+    white-space: nowrap !important;
+    font-variant-numeric: tabular-nums !important;
+  }
+
+  .case-index__metric-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--color-muted-text);
+    white-space: nowrap;
+  }
+
+  /* CTA Wrapper & Button */
+  .case-index__cta-wrapper {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .case-index__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(193, 18, 31, 0.3);
+    background: transparent;
+    color: var(--color-accent);
+    transition: all 0.2s ease;
+    text-align: center;
+  }
+
+  .case-index__cta:hover {
+    background-color: rgba(193, 18, 31, 0.05);
+    border-color: var(--color-accent);
+  }
+
+  /* --- Tablet responsive (768px to 1199px) --- */
+  @media (min-width: 768px) and (max-width: 1199.98px) {
+    .case-index__row {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      row-gap: 20px;
+      column-gap: 12px;
+      padding: 28px;
+    }
+
+    .case-index__number {
+      grid-column: 1;
+      grid-row: 1 / span 3;
+      align-self: start;
+      font-size: 1.35rem;
+      padding-top: 2px;
+    }
+
+    .case-index__details {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .case-index__metrics {
+      grid-column: 2;
+      grid-row: 2;
+      gap: 32px;
+      padding: 4px 0;
+    }
+
+    .case-index__cta-wrapper {
+      grid-column: 2;
+      grid-row: 3;
+      justify-content: flex-start;
+      margin-top: 4px;
+    }
+  }
+
+  /* --- Mobile responsive (< 768px) --- */
+  @media (max-width: 767.98px) {
+    .case-index__row {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      row-gap: 16px;
+      column-gap: 8px;
+      padding: 24px 20px;
+    }
+
+    .case-index__number {
+      grid-column: 1;
+      grid-row: 1;
+      font-size: 1.2rem;
+      align-self: start;
+      padding-top: 1px;
+    }
+
+    .case-index__details {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .case-index__title {
+      font-size: 1.15rem;
+      margin-bottom: 6px;
+    }
+
+    .case-index__context {
+      font-size: 0.88rem;
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .case-index__metrics {
+      grid-column: 1 / span 2;
+      gap: 16px 24px;
+      padding: 16px 0;
+      border-top: 1px dashed rgba(216, 207, 196, 0.4);
+      border-bottom: 1px dashed rgba(216, 207, 196, 0.4);
+    }
+
+    .case-index__metric {
+      flex: 1 1 calc(33.333% - 16px);
+      min-width: 80px;
+    }
+
+    .case-index__cta-wrapper {
+      grid-column: 1 / span 2;
+      width: 100%;
+    }
+
+    .case-index__cta {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const wrapper = document.querySelector('[data-case-index]');
+    if (!(wrapper instanceof HTMLElement)) return;
+    
+    // Initialize counter animations
+    const counters = wrapper.querySelectorAll('.animated-number');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    const formatNumber = (value: number, format: string, decimals: number) => {
+      if (format === 'vi-dot') return Math.round(value).toLocaleString('vi-VN');
+      if (format === 'decimal') return value.toFixed(decimals || 1);
+      return Math.round(value).toString();
+    };
+
+    const animateCounter = (el: HTMLElement) => {
+      if (el.dataset.animated) return;
+      el.dataset.animated = "true";
+      
+      const target = Number(el.dataset.countTo || 0);
+      const suffix = el.dataset.countSuffix || '';
+      const format = el.dataset.countFormat || '';
+      const decimals = Number(el.dataset.countDecimals || 0);
+      const duration = 1200;
+      
+      if (prefersReducedMotion) {
+        return;
+      }
+      
+      el.textContent = formatNumber(0, format, decimals) + suffix;
+      const startTime = performance.now();
+
+      const tick = (now: number) => {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = target * eased;
+        
+        el.textContent = formatNumber(current, format, decimals) + suffix;
+
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          el.textContent = formatNumber(target, format, decimals) + suffix;
+        }
+      };
+
+      requestAnimationFrame(tick);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        animateCounter(entry.target as HTMLElement);
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.15 });
+
+    counters.forEach((counter) => observer.observe(counter));
+  });
+</script>

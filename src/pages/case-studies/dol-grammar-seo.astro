@@ -1,207 +1,206 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import StatsStrip from "../../components/ui/StatsStrip.astro";
-import EvidenceCard from "../../components/ui/EvidenceCard.astro";
-import DonutChart from "../../components/ui/DonutChart.astro";
-import TimelineChart from "../../components/ui/TimelineChart.astro";
-import WorkflowScroller from "../../components/ui/WorkflowScroller.astro";
-import GrowthSignalPanel from "../../components/ui/GrowthSignalPanel.astro";
 import MetricCard from "../../components/ui/MetricCard.astro";
+import DonutChart from "../../components/ui/DonutChart.astro";
+import EvidenceCard from "../../components/ui/EvidenceCard.astro";
 
 const keyMetrics = [
   {
-    value: 77,
-    label: "Keyword Top 3",
-    format: "integer",
-    animated: true
-  },
-  {
-    value: 94,
-    label: "Keyword Top 5",
-    format: "integer",
-    animated: true
-  },
-  {
-    value: 32198,
-    label: "Organic sessions nghiệm thu",
+    value: 66800,
+    label: "Estimated Traffic (Semrush)",
     format: "thousand-dot",
     animated: true
   },
   {
-    value: 100.8,
+    value: 252,
+    label: "Từ khóa xếp hạng",
+    format: "integer",
+    animated: true
+  },
+  {
+    value: 16,
     suffix: "%",
-    label: "KPI Traffic",
-    format: "decimal",
-    decimals: 1,
+    label: "Top 1–3",
+    format: "integer",
+    animated: true
+  },
+  {
+    value: 21,
+    suffix: "%",
+    label: "Top 6–10",
+    format: "integer",
     animated: true
   }
 ] as const;
 
-const trafficEvidence = [
+const resultsEvidence = [
   {
-    title: "Organic traffic theo timeline triển khai",
-    sourceLabel: "GA4",
-    imageSrc: "/img/suoitien-traffic.jpg",
-    placeholder: "Thêm ảnh GA4 organic timeline",
-    alt: "Biểu đồ GA4 thể hiện organic traffic của Suối Tiên trong timeline triển khai SEO",
-    caption: "Organic sessions tháng nghiệm thu đạt 32.198, vượt KPI cam kết 31.957 sessions.",
+    title: "Phân bổ xếp hạng & chuyển dịch từ khóa",
+    sourceLabel: "SpySerp / Rank Tracker",
+    imageSrc: "#",
+    placeholder: "Thêm ảnh chụp bảng phân bổ xếp hạng từ SpySerp",
+    alt: "Bảng phân bổ xếp hạng và chuyển dịch từ khóa của dự án DOL Grammar trong Phase 1",
+    caption: "Minh chứng phân bổ xếp hạng: 16% Top 1–3, 8% Top 4–5, 21% Top 6–10 trên tổng số 252 từ khóa xếp hạng.",
     insights: [
-      "Theo dõi xu hướng organic traffic trong suốt quá trình triển khai.",
-      "Đối chiếu tăng trưởng traffic với các giai đoạn technical, content và internal link.",
-      "Dữ liệu có thể được làm mờ một phần trước khi public."
+      "Theo dõi sát sao chuyển dịch vị trí của 252 từ khóa mục tiêu.",
+      "Ghi nhận đà bứt phá vị trí ở cả 3 nhóm Top 1–3, Top 4–5 và Top 6–10.",
+      "Làm cơ sở đánh giá mức độ bao phủ và tính hiệu quả của Topical Map."
     ]
   },
   {
-    title: "Clicks & impressions từ Google Search Console",
-    sourceLabel: "GSC",
-    imageSrc: "/img/suoitien-click-impression.jpg",
-    placeholder: "Thêm ảnh GSC clicks & impressions",
-    alt: "Biểu đồ Google Search Console thể hiện clicks và impressions của Suối Tiên trong quá trình triển khai SEO",
-    caption: "Clicks và impressions giúp bổ sung góc nhìn về độ phủ tìm kiếm, không chỉ organic sessions từ GA4.",
+    title: "Xu hướng visibility & sự hiện diện tự nhiên",
+    sourceLabel: "Semrush Organic Research",
+    imageSrc: "#",
+    placeholder: "Thêm ảnh chụp xu hướng tăng trưởng Organic Visibility từ Semrush",
+    alt: "Biểu đồ xu hướng tăng trưởng visibility và hiện diện tự nhiên từ Semrush Organic Research",
+    caption: "Semrush Organic Research đóng vai trò là bằng chứng hỗ trợ cho sự hiện diện tự nhiên và đà tăng trưởng visibility.",
     insights: [
-      "Impressions phản ánh độ mở rộng hiện diện tìm kiếm.",
-      "Clicks cho thấy khả năng chuyển đổi visibility thành traffic.",
-      "Dữ liệu GSC sẽ được dùng như bằng chứng hỗ trợ cho kết quả ranking và organic traffic."
+      "Đánh giá xu hướng tăng trưởng visibility tự nhiên từ góc nhìn độc lập của bên thứ ba.",
+      "Theo dõi số lượng từ khóa và độ phủ tổng thể trên công cụ tìm kiếm.",
+      "Lưu ý: Số liệu Semrush đóng vai trò là estimated traffic và visibility để đánh giá hiệu suất tăng trưởng của dự án."
     ]
   }
 ];
 
-const aioGeoMetrics = [
-  {
-    title: "AIO Traffic",
-    before: 0,
-    after: 500,
-    source: "GA4",
-    description: "Traffic ghi nhận từ nhóm truy vấn / bề mặt liên quan đến AIO.",
-    targetWidth: "50%",
-    tone: "accent"
-  },
-  {
-    title: "AIO Keywords",
-    before: 0,
-    after: 1000,
-    source: "Semrush",
-    description: "Số lượng keyword ghi nhận tín hiệu AIO theo tracking từ Semrush.",
-    targetWidth: "100%",
-    tone: "dark",
-    format: "thousand-dot"
-  },
-  {
-    title: "GEO",
-    before: 0,
-    after: 200,
-    source: "GA4",
-    description: "Nhóm tín hiệu GEO được tracking bổ sung từ GA4.",
-    targetWidth: "20%",
-    tone: "accent"
-  }
-] as const;
-
 const seoProblems = [
   {
     num: '01',
-    title: 'Rủi ro sau chuyển đổi domain',
-    shortLabel: 'Migration & Domain Risk',
+    title: 'Rủi ro Sandbox của sub-domain mới',
+    shortLabel: 'Sandbox & Indexing Risk',
     severity: 'Critical',
-    shortDesc: 'Chuyển từ .com sang .vn có thể làm đứt tín hiệu SEO nếu redirect, schema và URL cũ không được kiểm soát.',
-    impact: 'Nguy cơ mất tín hiệu ranking và sụt traffic organic nếu migration handling không chính xác.',
-    response: 'Xây dựng bản đồ redirect 1:1, kiểm soát URL cũ/mới, rà soát schema và theo dõi tín hiệu index sau migration.',
-    tags: ['Migration risk', 'Redirect', 'Domain signals']
+    shortDesc: 'Một sub-domain mới có thể bị index và ranking chậm trong giai đoạn đầu, đặc biệt khi mục tiêu organic growth trong 12 tháng tương đối cao.',
+    impact: 'Làm chậm tốc độ đạt ranking, kéo dài thời gian chứng minh tín hiệu trust và ảnh hưởng tiến độ KPI.',
+    response: 'Chuẩn bị pre-launch SEO, PR/entity, author/schema, kế hoạch đăng tải và monitoring sau live-site.'
   },
   {
     num: '02',
-    title: 'Technical foundation chưa ổn định',
-    shortLabel: 'Technical Foundation',
+    title: 'Chất lượng nội dung học thuật',
+    shortLabel: 'Academic Content Quality',
     severity: 'High priority',
-    shortDesc: 'URL spam, sitemap thiếu, robots.txt sai cấu hình và schema chưa đồng bộ với domain mới làm nền tảng kỹ thuật thiếu ổn định.',
-    impact: 'Crawl/index bị ảnh hưởng, khiến tốc độ phục hồi ranking chậm và làm giảm hiệu quả SEO tổng thể.',
-    response: 'Audit technical foundation, xử lý sitemap/robots.txt, kiểm soát URL spam, chuẩn hóa schema và theo dõi crawl/index sau triển khai.',
-    tags: ['Crawl/index', 'URL spam', 'Schema']
+    shortDesc: 'Nội dung ngữ pháp tiếng Anh yêu cầu độ chính xác cao, không thể chỉ tối ưu theo keyword mà bỏ qua tính đúng đắn về học thuật.',
+    impact: 'Content sai hoặc thiếu chuẩn có thể làm giảm trust, ảnh hưởng trải nghiệm học tập và chất lượng topical authority.',
+    response: 'Xây dựng content standards và phối hợp với Academy team để kiểm soát độ chính xác ngữ pháp.'
   },
   {
     num: '03',
-    title: 'Non-brand keyword chưa được khai thác',
-    shortLabel: 'Non-brand Growth Gap',
+    title: 'Cannibalization giữa lý thuyết và bài tập',
+    shortLabel: 'Search Intent Overlap',
     severity: 'Growth blocker',
-    shortDesc: 'Các nhóm keyword giá trị như team building, sự kiện, tiệc cưới chưa có cụm content SEO tương xứng.',
-    impact: 'Bỏ lỡ demand ngoài brand và mất cơ hội mở rộng traffic từ nhóm người dùng mới.',
-    response: 'Mở rộng topical map ngoài brand, xây cụm nội dung theo nhóm dịch vụ trọng tâm và tối ưu internal link để tăng độ phủ non-brand.',
-    tags: ['Non-brand demand', 'Content gap', 'Growth']
+    shortDesc: 'Các keyword bài tập có nguy cơ trùng intent hoặc cạnh tranh với bài lý thuyết nếu cấu trúc URL, heading và internal link không rõ.',
+    impact: 'Google khó xác định URL phù hợp nhất cho từng intent, dẫn tới phân tán ranking signal.',
+    response: 'Phân tách intent lý thuyết, bài tập và ứng dụng; tối ưu cấu trúc nội dung và internal linking theo từng nhóm truy vấn.'
   },
   {
     num: '04',
-    title: 'Content chưa đủ sâu theo intent',
-    shortLabel: 'Intent Depth',
+    title: 'Topical Map ngữ pháp phức tạp',
+    shortLabel: 'Complex Structure Map',
     severity: 'High priority',
-    shortDesc: 'Một số topic dịch vụ còn thiếu nội dung chuyên biệt, chưa đủ depth và trust để cạnh tranh.',
-    impact: 'Khó cạnh tranh ở nhóm từ khóa thương mại và hạn chế khả năng vào Top 5 bền vững.',
-    response: 'Tối ưu nội dung theo search intent, bổ sung depth cho topic dịch vụ, tăng tín hiệu trust và liên kết nội bộ đến các trang trọng tâm.',
-    tags: ['Search intent', 'Content depth', 'Trust']
+    shortDesc: 'Ngữ pháp tiếng Anh có nhiều nhóm chủ đề liên kết chặt chẽ như thì, mệnh đề, từ loại, cấu trúc câu, bài tập và cách dùng.',
+    impact: 'Nếu topical map yếu, website khó xây dựng authority theo cụm chủ đề và dễ bị rời rạc giữa các bài viết.',
+    response: 'Thiết kế cấu trúc website theo nhóm intent, category ngữ pháp và mối liên kết giữa lý thuyết – bài tập – ứng dụng.'
+  },
+  {
+    num: '05',
+    title: 'Hạn chế SEO từ Custom CMS',
+    shortLabel: 'CMS Technical Limits',
+    severity: 'Technical constraint',
+    shortDesc: 'Website sử dụng Custom CMS với khả năng hỗ trợ SEO hạn chế, gây khó khăn cho on-page, schema, internal link và technical QA.',
+    impact: 'Làm tăng chi phí kiểm tra kỹ thuật, giảm tốc độ triển khai và tạo rủi ro khi cần scale nội dung lớn.',
+    response: 'Thiết lập checklist technical/on-page, phối hợp dev để xử lý issue ưu tiên và kiểm soát QA sau live-site.'
+  },
+  {
+    num: '06',
+    title: 'Đối thủ mạnh ở nhóm big keywords',
+    shortLabel: 'Competitive Pressure',
+    severity: 'Competitive pressure',
+    shortDesc: 'Nhiều big keywords trong lĩnh vực ngữ pháp đã có đối thủ mạnh chiếm vị trí tốt trước khi DOL Grammar live-site.',
+    impact: 'Khó tăng trưởng nhanh nếu chỉ triển khai content đơn lẻ mà không có topical authority, entity và internal link system.',
+    response: 'Ưu tiên big keywords theo cụm, xây content architecture, entity signals và internal linking để tăng sức mạnh chủ đề.'
   }
 ] as const;
 ---
+
 <BaseLayout 
-  title="Case Study SEO Suối Tiên | TruThrive" 
-  description="Case study SEO Suối Tiên: kiểm soát rủi ro sau chuyển đổi domain, tối ưu technical/content và đạt 100.8% KPI với 32.198 organic sessions tháng nghiệm thu."
+  title="Case Study SEO DOL Grammar | TruThrive" 
+  description="Case study SEO DOL Grammar: xây dựng Topical Authority vượt trội cho sub-domain mới từ launch, đạt mốc 66.000 traffic chỉ sau 4 tháng vận hành."
 >
   <!-- 1. Hero Section -->
   <section class="section hero-section">
     <div class="container">
       <div class="section-heading text-center" style="max-width: 800px; margin-left: auto; margin-right: auto; margin-bottom: 32px;">
       <span class="pill" style="margin-bottom: 16px;">SEO Case Studies</span>
-        <h1 class="hero-title" style="margin-bottom: 24px;">Case Study SEO Suối Tiên</h1>
+        <h1 class="hero-title" style="margin-bottom: 24px;">Case Study SEO DOL Grammar</h1>
         <p class="hero-description" style="margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;">
-          Hỗ trợ Suối Tiên kiểm soát rủi ro SEO sau giai đoạn chuyển đổi domain, xây dựng lại nền tảng technical/content và thúc đẩy tăng trưởng ranking, organic traffic cho các nhóm keyword trọng tâm.
+          Xây dựng nền tảng SEO cho một sub-domain ngữ pháp tiếng Anh mới, tập trung vào Topical Authority, giảm rủi ro Sandbox và kiểm soát chất lượng nội dung học thuật.
         </p>
         <div class="chip-group" style="justify-content: center; margin-bottom: 24px; margin-top: 16px;">
-          <span class="chip">Technical SEO</span>
+          <span class="chip">New Site SEO</span>
+          <span class="chip">Topical Authority</span>
           <span class="chip">Content Strategy</span>
-          <span class="chip">Domain Migration</span>
-          <span class="chip">Tourism SEO</span>
-          <span class="chip">Internal Link</span>
+          <span class="chip">Custom CMS SEO</span>
+          <span class="chip">Education SEO</span>
         </div>
         
         <!-- Premium inline result hook pill -->
         <div class="hero-result-hook" style="display: flex; justify-content: center; margin-top: 16px;">
-          <span class="hook-pill">32.198 organic sessions · 77 Top 3 keywords · 94 Top 5 keywords · 100.8% KPI completion</span>
+          <span class="hook-pill">0 → 66.800 Estimated Traffic (Semrush) · 252 ranking keywords · 16% Top 1–3 · 8% Top 4–5 · 21% Top 6–10</span>
         </div>
       </div>
 
-      <!-- Project Snapshot Row -->
-      <div class="cs-snapshot-row">
-        <!-- Column 1: Client -->
-        <div class="cs-snapshot-item client-item">
-          <span class="cs-snapshot-label">Client</span>
-          <div class="client-info">
-            <div class="client-logo-frame">
-              <img src="/images/case-studies/suoi-tien-logo.png" alt="Suối Tiên Logo" class="client-logo" />
+      <!-- Project Snapshot Card -->
+      <div class="case-snapshot">
+        <!-- Top Info Grid -->
+        <div class="case-snapshot-top">
+          <!-- Column 1: Client -->
+          <div class="snapshot-col col-client">
+            <span class="snapshot-label">Client</span>
+            <div class="client-info">
+              <div class="client-logo-frame">
+                <span class="client-logo-text">DOL</span>
+              </div>
+              <span class="snapshot-value">grammar.dolenglish.vn</span>
             </div>
-            <span class="cs-snapshot-value client-name">Suối Tiên Theme Park</span>
+          </div>
+          
+          <!-- Column 2: Timeline -->
+          <div class="snapshot-col col-timeline">
+            <span class="snapshot-label">Timeline</span>
+            <div class="snapshot-value-group">
+              <span class="snapshot-value">10 tháng</span>
+              <span class="snapshot-subvalue">10/2023 – 07/2024</span>
+            </div>
+          </div>
+          
+          <!-- Column 3: Ngành -->
+          <div class="snapshot-col col-industry">
+            <span class="snapshot-label">Ngành</span>
+            <div class="snapshot-value-group">
+              <span class="snapshot-value">EdTech / E-Learning</span>
+              <span class="snapshot-subvalue">Ngữ pháp tiếng Anh</span>
+            </div>
+          </div>
+          
+          <!-- Column 4: Vai trò -->
+          <div class="snapshot-col col-role">
+            <span class="snapshot-label">Vai trò</span>
+            <div class="snapshot-value-group">
+              <span class="snapshot-value">SEO Project Leader</span>
+              <span class="snapshot-subvalue">Strategy · Content System · Technical Coordination</span>
+            </div>
           </div>
         </div>
-        
-        <!-- Column 2: Timeline -->
-        <div class="cs-snapshot-item">
-          <span class="cs-snapshot-label">Timeline</span>
-          <span class="cs-snapshot-value">07/2025 – 01/2026</span>
-        </div>
-        
-        <!-- Column 3: Ngành -->
-        <div class="cs-snapshot-item">
-          <span class="cs-snapshot-label">Ngành</span>
-          <span class="cs-snapshot-value">Du lịch & Giải trí</span>
-        </div>
-        
-        <!-- Column 4: Phạm vi -->
-        <div class="cs-snapshot-item">
-          <span class="cs-snapshot-label">Phạm vi</span>
-          <span class="cs-snapshot-value">Technical SEO, Content Strategy, On-page, Internal Link, Tracking & Reporting</span>
-        </div>
-        
-        <!-- Column 5: Vai trò -->
-        <div class="cs-snapshot-item">
-          <span class="cs-snapshot-label">Vai trò</span>
-          <span class="cs-snapshot-value">SEO Project Lead & Hands-on Executive</span>
+
+        <!-- Scope Row -->
+        <div class="case-snapshot-bottom">
+          <span class="snapshot-label">Phạm vi triển khai</span>
+          <div class="snapshot-chips">
+            <span class="snapshot-chip">Topical Authority</span>
+            <span class="snapshot-chip">New Website SEO</span>
+            <span class="snapshot-chip">Content Strategy</span>
+            <span class="snapshot-chip">Internal Linking</span>
+            <span class="snapshot-chip">Entity / Schema</span>
+            <span class="snapshot-chip">Custom CMS SEO</span>
+          </div>
         </div>
       </div>
 
@@ -225,27 +224,27 @@ const seoProblems = [
           <div class="cs-context-icon" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
           </div>
-          <h3 class="cs-context-title">Phụ thuộc traffic thương hiệu</h3>
+          <h3 class="cs-context-title">Sub-domain hoàn toàn mới</h3>
           <p class="cs-context-desc">
-            Khoảng 80% organic traffic đến từ các truy vấn thương hiệu Suối Tiên. Đây là cơ hội lớn để mở rộng non-brand SEO.
+            grammar.dolenglish.vn bắt đầu từ con số 0, đòi hỏi lộ trình tăng trưởng khẩn trương để đạt được cam kết traffic lớn trong năm đầu.
           </p>
         </article>
         <article class="card cs-context-card">
           <div class="cs-context-icon" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg>
           </div>
-          <h3 class="cs-context-title">Tiềm năng non-brand keyword</h3>
+          <h3 class="cs-context-title">Độ chính xác học thuật cao</h3>
           <p class="cs-context-desc">
-            Các nhóm keyword du lịch, vui chơi, team building, tổ chức sự kiện, hội nghị và tiệc cưới chưa được khai thác đúng mức.
+            Nội dung ngữ pháp bắt buộc chuẩn xác tuyệt đối 100%, đòi hỏi quy trình phối hợp kiểm duyệt (QA) chặt chẽ với ban học thuật Academy.
           </p>
         </article>
         <article class="card cs-context-card">
           <div class="cs-context-icon" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
           </div>
-          <h3 class="cs-context-title">Rủi ro chuyển đổi domain</h3>
+          <h3 class="cs-context-title">Hệ thống Custom CMS sơ khai</h3>
           <p class="cs-context-desc">
-            Migration từ suoitien.com sang suoitien.vn đặt ra yêu cầu kiểm soát redirect, de-indexing và technical signals để bảo toàn ranking.
+            Hệ thống CMS tự phát triển còn thiếu nhiều tính năng SEO kỹ thuật và phát sinh các rào cản về crawl, indexation hàng loạt.
           </p>
         </article>
       </div>
@@ -258,31 +257,33 @@ const seoProblems = [
       <div class="cs-role-card card" style="max-width: 900px; margin: 0 auto;">
         <div class="cs-role-header">
           <p class="section-kicker">VAI TRÒ CỦA TÔI</p>
-          <h2 class="section-title" style="font-size: 1.8rem;">SEO Project Lead & Hands-on SEO Executive</h2>
-          <p class="cs-role-subtitle" style="font-weight: 700; color: var(--color-accent); margin-top: -8px; margin-bottom: 16px; font-size: 1.05rem;">Lead triển khai SEO & trực tiếp phụ trách execution</p>
+          <h2 class="section-title" style="font-size: 1.8rem;">SEO Project Leader</h2>
+          <p class="cs-role-subtitle" style="font-weight: 700; color: var(--color-accent); margin-top: -8px; margin-bottom: 16px; font-size: 1.05rem;">Chịu trách nhiệm thiết lập chiến lược SEO & trực tiếp quản lý triển khai</p>
         </div>
         <p class="cs-role-desc">
-          Tôi lead quá trình triển khai SEO cho dự án Suối Tiên, đồng thời trực tiếp tham gia các hạng mục execution trọng tâm: technical audit, content & on-page optimization, internal link planning, tracking ranking/traffic và phối hợp cùng Content, Dev, Account để đảm bảo tiến độ KPI.
+          Tôi đảm nhiệm vai trò lập chiến lược SEO tổng thể, lên kế hoạch OKR/KPI theo quý, quy hoạch Topical Map & cấu trúc website, xây dựng tiêu chuẩn nội dung và phối hợp cùng Academy team để kiểm duyệt chất lượng. Đồng thời, tôi trực tiếp điều phối các hoạt động technical on-page, internal link, schema thực thể/tác giả, lập kế hoạch PR/entity và làm việc sát sao với đội Dev để tối ưu Custom CMS.
         </p>
         <div class="cs-role-tags">
-          <span class="cs-role-tag">SEO Leadership</span>
-          <span class="cs-role-tag">Technical Audit</span>
-          <span class="cs-role-tag">Content & On-page</span>
-          <span class="cs-role-tag">Internal Link Planning</span>
-          <span class="cs-role-tag">Tracking & Reporting</span>
-          <span class="cs-role-tag">Team Coordination</span>
+          <span class="cs-role-tag">SEO Strategy</span>
+          <span class="cs-role-tag">Topical Mapping</span>
+          <span class="cs-role-tag">Content Standards</span>
+          <span class="cs-role-tag">Technical & Schema</span>
+          <span class="cs-role-tag">PR/Entity Planning</span>
+          <span class="cs-role-tag">Cross-Team Coordination</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 4. SEO Problems — Interactive Section -->
-  <section id="suoi-problems-section" class="section section-muted">
+  <!-- 4. SEO Problems / Challenges Section -->
+  <section id="problems-section" class="section section-muted">
     <div class="container">
       <div class="section-heading text-center">
         <p class="section-kicker">VẤN ĐỀ CẦN GIẢI QUYẾT</p>
-        <h2 class="section-title">4 vấn đề SEO cốt lõi</h2>
-        <p class="section-subtitle">Những rủi ro có thể làm chậm tăng trưởng organic nếu không được xử lý đúng ưu tiên.</p>
+        <h2 class="section-title">Các vấn đề SEO cốt lõi cần xử lý</h2>
+        <p class="section-subtitle" style="max-width: 800px; margin-left: auto; margin-right: auto;">
+          Dự án không chỉ cần sản xuất nội dung ngữ pháp, mà còn phải xử lý rủi ro index/ranking của website mới, chất lượng học thuật, cannibalization và hạn chế kỹ thuật từ Custom CMS.
+        </p>
       </div>
 
       <div class="problems-layout">
@@ -293,10 +294,10 @@ const seoProblems = [
             return (
               <div class="problems-accordion-item">
                 <button 
-                  id={`suoi-problem-btn-${prob.num}`}
+                  id={`problem-btn-${prob.num}`}
                   class={`problems-module ${isActive ? 'is-active' : ''}`}
                   aria-expanded={isActive ? "true" : "false"}
-                  aria-controls={`suoi-problems-mobile-panel-${prob.num}`}
+                  aria-controls={`problems-mobile-panel-${prob.num}`}
                   data-problem-id={prob.num}
                 >
                   <div class="problems-module__header">
@@ -309,11 +310,11 @@ const seoProblems = [
                 
                 <!-- Mobile accordion inline detail panel -->
                 <div 
-                  id={`suoi-problems-mobile-panel-${prob.num}`}
+                  id={`problems-mobile-panel-${prob.num}`}
                   class={`problems-mobile-panel ${isActive ? 'is-active' : ''}`}
                   aria-hidden={isActive ? "false" : "true"}
                   role="region"
-                  aria-labelledby={`suoi-problem-btn-${prob.num}`}
+                  aria-labelledby={`problem-btn-${prob.num}`}
                 >
                   <div class="problems-mobile-panel-header">
                     <span class="severity-badge">
@@ -338,14 +339,6 @@ const seoProblems = [
                       <p>{prob.response}</p>
                     </div>
                   </div>
-
-                  {prob.tags && prob.tags.length > 0 && (
-                    <div class="case-problem-card__tags" style="margin-top: 16px;">
-                      {prob.tags.map(tag => (
-                        <span class="case-problem-card__tag">{tag}</span>
-                      ))}
-                    </div>
-                  )}
                 </div>
               </div>
             );
@@ -361,10 +354,10 @@ const seoProblems = [
               const isActive = index === 0;
               return (
                 <div 
-                  id={`suoi-problem-panel-${prob.num}`}
+                  id={`problem-panel-${prob.num}`}
                   class={`problems-panel-content ${isActive ? 'is-active' : ''}`}
                   role="region"
-                  aria-labelledby={`suoi-problem-btn-${prob.num}`}
+                  aria-labelledby={`problem-btn-${prob.num}`}
                   aria-hidden={isActive ? "false" : "true"}
                 >
                   <div class="problems-panel-header">
@@ -394,14 +387,6 @@ const seoProblems = [
                       <p>{prob.response}</p>
                     </div>
                   </div>
-
-                  {prob.tags && prob.tags.length > 0 && (
-                    <div class="case-problem-card__tags" style="margin-top: 20px;">
-                      {prob.tags.map(tag => (
-                        <span class="case-problem-card__tag">{tag}</span>
-                      ))}
-                    </div>
-                  )}
                 </div>
               );
             })}
@@ -417,57 +402,57 @@ const seoProblems = [
       <div class="section-heading text-center">
         <p class="section-kicker">USER INTENT & TOPICS</p>
         <h2 class="section-title">Search Demand Map</h2>
-        <p class="section-subtitle">Nhóm nhu cầu tìm kiếm được phân tách theo intent để xác định cụm nội dung và URL ưu tiên.</p>
+        <p class="section-subtitle">Phân tách nhu cầu tìm kiếm theo intent để quy hoạch các cụm nội dung và cấu trúc URL tương ứng.</p>
       </div>
 
       <div class="cs-demand-map-grid">
-        <!-- Card A: Visitor / Family Intent -->
+        <!-- Card A: Theory / Knowledge Intent -->
         <article class="card cs-demand-card">
           <div class="demand-header">
-            <span class="demand-intent-badge">Visitor / Family Intent</span>
-            <h3>Tham quan & Vui chơi</h3>
+            <span class="demand-intent-badge">Theory / Knowledge Intent</span>
+            <h3>Lý thuyết ngữ pháp</h3>
           </div>
-          <p class="demand-desc">Người dùng tìm thông tin tham quan, giá vé, địa điểm vui chơi và trải nghiệm tại TP.HCM.</p>
+          <p class="demand-desc">Người dùng tìm kiếm định nghĩa, công thức, cách dùng và ví dụ thực tế cho các cấu trúc ngữ pháp từ cơ bản đến nâng cao.</p>
           <div class="demand-topics">
             <span class="demand-topic-title">Cụm chủ đề ưu tiên</span>
             <div class="demand-topic-chips">
-              <span class="chip chip-outline">Giá vé / trải nghiệm</span>
-              <span class="chip chip-outline">Khu vui chơi</span>
-              <span class="chip chip-outline">Địa điểm đi chơi gần Sài Sòn</span>
+              <span class="chip chip-outline">Các thì tiếng Anh</span>
+              <span class="chip chip-outline">Từ loại (Danh, Động, Tính, Trạng)</span>
+              <span class="chip chip-outline">Cấu trúc câu nâng cao</span>
             </div>
           </div>
         </article>
 
-        <!-- Card B: Event / HR Intent -->
+        <!-- Card B: Practice / Exercise Intent -->
         <article class="card cs-demand-card">
           <div class="demand-header">
-            <span class="demand-intent-badge">Event / HR Intent</span>
-            <h3>Doanh nghiệp & Sự kiện</h3>
+            <span class="demand-intent-badge">Practice / Exercise Intent</span>
+            <h3>Bài tập vận dụng</h3>
           </div>
-          <p class="demand-desc">Nhóm doanh nghiệp tìm địa điểm tổ chức team building, hội nghị, hội thảo và sự kiện.</p>
+          <p class="demand-desc">Học sinh, sinh viên và người tự học tìm kiếm bài tập rèn luyện, câu hỏi trắc nghiệm kèm giải thích chi tiết để củng cố kiến thức.</p>
           <div class="demand-topics">
             <span class="demand-topic-title">Cụm chủ đề ưu tiên</span>
             <div class="demand-topic-chips">
-              <span class="chip chip-outline">Địa điểm tổ chức team building</span>
-              <span class="chip chip-outline">Tổ chức sự kiện</span>
-              <span class="chip chip-outline">Hội nghị / hội thảo</span>
+              <span class="chip chip-outline">Bài tập các thì có đáp án</span>
+              <span class="chip chip-outline">Trắc nghiệm ngữ pháp</span>
+              <span class="chip chip-outline">Đề kiểm tra & lời giải chi tiết</span>
             </div>
           </div>
         </article>
 
-        <!-- Card C: Wedding / Service Intent -->
+        <!-- Card C: Mixed / Comparison Intent -->
         <article class="card cs-demand-card">
           <div class="demand-header">
-            <span class="demand-intent-badge">Wedding / Service Intent</span>
-            <h3>Tiệc cưới & Dịch vụ cá nhân</h3>
+            <span class="demand-intent-badge">Mixed / Comparison Intent</span>
+            <h3>Phân biệt & Ứng dụng</h3>
           </div>
-          <p class="demand-desc">Nhóm người dùng tìm dịch vụ tiệc cưới, báo giá và không gian tổ chức sự kiện cá nhân.</p>
+          <p class="demand-desc">Người dùng so sánh sự khác nhau giữa các cấu trúc dễ nhầm lẫn hoặc cách áp dụng ngữ pháp vào kỹ năng viết/nói và bài thi IELTS.</p>
           <div class="demand-topics">
             <span class="demand-topic-title">Cụm chủ đề ưu tiên</span>
             <div class="demand-topic-chips">
-              <span class="chip chip-outline">Nhà hàng tiệc cưới</span>
-              <span class="chip chip-outline">Báo giá tiệc cưới</span>
-              <span class="chip chip-outline">Địa điểm tổ chức tiệc cưới</span>
+              <span class="chip chip-outline">Phân biệt ngữ pháp dễ nhầm</span>
+              <span class="chip chip-outline">Lỗi ngữ pháp thường gặp</span>
+              <span class="chip chip-outline">Ứng dụng ngữ pháp vào IELTS</span>
             </div>
           </div>
         </article>
@@ -481,13 +466,13 @@ const seoProblems = [
       <div class="section-heading text-center">
         <p class="section-kicker">CHIẾN LƯỢC TĂNG TRƯỞNG SEO</p>
         <h2 class="section-title">SEO Growth System</h2>
-        <p class="section-subtitle">Từ rủi ro kỹ thuật đến tăng trưởng non-brand, mỗi quyết định được thiết kế như một lớp trong hệ thống SEO.</p>
+        <p class="section-subtitle">Quy trình hệ thống hóa các hành động từ giải quyết rào cản kỹ thuật cho đến phân phối topical authority.</p>
       </div>
 
       <!-- Strategic Thesis Card -->
       <div class="card cs-strategy-thesis-card" style="max-width: 800px; margin: 0 auto 48px;">
         <span class="thesis-kicker">Strategic Thesis</span>
-        <p class="thesis-text">Ưu tiên ổn định nền tảng kỹ thuật trước, sau đó mở rộng non-brand demand bằng content cluster, on-page optimization và internal link. Tracking được dùng như vòng phản hồi để điều chỉnh ưu tiên triển khai.</p>
+        <p class="thesis-text">Quy hoạch lộ trình triển khai 3 giai đoạn để vượt qua Sandbox, thiết lập cấu trúc Topical Map đóng vai trò Topical Authority và phân tách intent lý thuyết/bài tập, kết hợp on-page/internal link để tạo đà tăng trưởng.</p>
       </div>
 
       <!-- Strategy Ladder -->
@@ -498,23 +483,23 @@ const seoProblems = [
             <div class="block-header">
               <span class="block-num">01</span>
               <div class="block-meta">
-                <span class="block-phase">Foundation layer</span>
-                <h3>Ổn định nền tảng kỹ thuật</h3>
+                <span class="block-phase">Timeline layer</span>
+                <h3>Lộ trình triển khai 3 giai đoạn</h3>
               </div>
             </div>
             <div class="block-body">
               <div class="block-field">
                 <span class="field-label">Tín hiệu vấn đề</span>
-                <p class="field-text">Rủi ro migration, redirect, schema và URL cũ có thể ảnh hưởng crawl/index.</p>
+                <p class="field-text">Rủi ro Google Sandbox đối với sub-domain mới và tiến độ index chậm.</p>
               </div>
               <div class="block-field">
                 <span class="field-label">Quyết định chiến lược</span>
-                <p class="field-text highlighted">Kiểm soát migration, redirect, sitemap, robots.txt, schema và các lỗi URL ưu tiên.</p>
+                <p class="field-text highlighted">Phân chia kế hoạch cụ thể cho pre-launch, launch, post-launch. Chuẩn bị tín hiệu thực thể sớm.</p>
               </div>
             </div>
             <div class="outcome-badge">
-              <span class="badge-label">Tác động kỳ vọng</span>
-              <span class="badge-value">Giữ index ổn định để các cụm content mới có nền tảng phát huy hiệu quả.</span>
+               <span class="badge-label">Tác động kỳ vọng</span>
+               <span class="badge-value">Giảm thiểu tối đa thời gian sandbox, kích hoạt index nhanh ngay khi live-site.</span>
             </div>
           </div>
         </div>
@@ -523,25 +508,25 @@ const seoProblems = [
         <div class="cs-strategy-block-wrapper">
           <div class="cs-strategy-block card">
             <div class="block-header">
-              <span class="block-num">02</span>
-              <div class="block-meta">
-                <span class="block-phase">Demand layer</span>
-                <h3>Mở rộng non-brand demand</h3>
-              </div>
+               <span class="block-num">02</span>
+               <div class="block-meta">
+                 <span class="block-phase">Authority layer</span>
+                 <h3>Thiết lập Topical Authority</h3>
+               </div>
             </div>
             <div class="block-body">
               <div class="block-field">
                 <span class="field-label">Tín hiệu vấn đề</span>
-                <p class="field-text">Organic traffic phụ thuộc nhiều vào brand queries, trong khi nhu cầu tìm kiếm non-brand còn rộng.</p>
+                <p class="field-text">Chủ đề ngữ pháp rộng lớn cần chứng minh tính chuyên môn toàn diện với Google.</p>
               </div>
               <div class="block-field">
                 <span class="field-label">Quyết định chiến lược</span>
-                <p class="field-text highlighted">Xây content cluster theo tourism, event, teambuilding và service intent.</p>
+                <p class="field-text highlighted">Quy hoạch bản đồ Topical Map bao phủ toàn bộ lý thuyết và bài tập ngữ pháp.</p>
               </div>
             </div>
             <div class="outcome-badge">
-              <span class="badge-label">Tác động kỳ vọng</span>
-              <span class="badge-value">Mở rộng khả năng xuất hiện ở nhóm truy vấn có volume và nhu cầu rõ ràng.</span>
+               <span class="badge-label">Tác động kỳ vọng</span>
+               <span class="badge-value">Định vị website như nguồn thông tin tin cậy về ngữ pháp tiếng Anh.</span>
             </div>
           </div>
         </div>
@@ -550,25 +535,25 @@ const seoProblems = [
         <div class="cs-strategy-block-wrapper">
           <div class="cs-strategy-block card">
             <div class="block-header">
-              <span class="block-num">03</span>
-              <div class="block-meta">
-                <span class="block-phase">Relevance layer</span>
-                <h3>Làm rõ tín hiệu on-page</h3>
-              </div>
+               <span class="block-num">03</span>
+               <div class="block-meta">
+                 <span class="block-phase">Relevance layer</span>
+                 <h3>Tách biệt Search Intent</h3>
+               </div>
             </div>
             <div class="block-body">
               <div class="block-field">
                 <span class="field-label">Tín hiệu vấn đề</span>
-                <p class="field-text">Một số URL có nội dung mỏng, tín hiệu intent và entity chưa đủ rõ.</p>
+                <p class="field-text">Nguy cơ cannibalization giữa trang lý thuyết ngữ pháp và bài tập thực hành.</p>
               </div>
               <div class="block-field">
                 <span class="field-label">Quyết định chiến lược</span>
-                <p class="field-text highlighted">Tối ưu title, heading, meta, semantic keyword, readability, schema và content depth.</p>
+                <p class="field-text highlighted">Tổ chức site structure và internal link riêng biệt cho lý thuyết và bài tập.</p>
               </div>
             </div>
             <div class="outcome-badge">
-              <span class="badge-label">Tác động kỳ vọng</span>
-              <span class="badge-value">Tăng độ phù hợp giữa URL, intent, entity và keyword cluster.</span>
+               <span class="badge-label">Tác động kỳ vọng</span>
+               <span class="badge-value">Google nhận diện đúng URL đích xếp hạng của từng từ khóa, tránh xung đột.</span>
             </div>
           </div>
         </div>
@@ -577,25 +562,25 @@ const seoProblems = [
         <div class="cs-strategy-block-wrapper">
           <div class="cs-strategy-block card">
             <div class="block-header">
-              <span class="block-num">04</span>
-              <div class="block-meta">
-                <span class="block-phase">Authority layer</span>
-                <h3>Phân phối topical authority</h3>
-              </div>
+               <span class="block-num">04</span>
+               <div class="block-meta">
+                 <span class="block-phase">Quality layer</span>
+                 <h3>Học thuật & Tín hiệu E-E-A-T</h3>
+               </div>
             </div>
             <div class="block-body">
               <div class="block-field">
                 <span class="field-label">Tín hiệu vấn đề</span>
-                <p class="field-text">Authority chưa được phân phối tốt giữa các URL trọng tâm.</p>
+                <p class="field-text">Nội dung ngữ pháp yêu cầu tính chính xác cao và thông tin tác giả chuyên môn.</p>
               </div>
               <div class="block-field">
                 <span class="field-label">Quyết định chiến lược</span>
-                <p class="field-text highlighted">Thiết kế internal link map, contextual link insertion và phân phối link equity theo cụm chủ đề.</p>
+                <p class="field-text highlighted">Phối hợp QA với Academy team, tối ưu tác giả có trình độ và cấu hình Schema tác giả/thực thể.</p>
               </div>
             </div>
             <div class="outcome-badge">
-              <span class="badge-label">Tác động kỳ vọng</span>
-              <span class="badge-value">Hỗ trợ URL mục tiêu cải thiện ranking và tăng đóng góp traffic.</span>
+               <span class="badge-label">Tác động kỳ vọng</span>
+               <span class="badge-value">Đảm bảo độ chính xác học thuật của nội dung và đáp ứng tiêu chuẩn E-E-A-T.</span>
             </div>
           </div>
         </div>
@@ -604,25 +589,25 @@ const seoProblems = [
         <div class="cs-strategy-block-wrapper">
           <div class="cs-strategy-block card">
             <div class="block-header">
-              <span class="block-num">05</span>
-              <div class="block-meta">
-                <span class="block-phase">Feedback loop</span>
-                <h3>Đo lường và điều chỉnh liên tục</h3>
-              </div>
+               <span class="block-num">05</span>
+               <div class="block-meta">
+                 <span class="block-phase">Technical layer</span>
+                 <h3>Tối ưu hóa Custom CMS</h3>
+               </div>
             </div>
             <div class="block-body">
               <div class="block-field">
                 <span class="field-label">Tín hiệu vấn đề</span>
-                <p class="field-text">Cần biết nhóm URL nào đang kéo ranking, traffic và AI Search visibility.</p>
+                <p class="field-text">Hệ thống CMS tự phát triển giới hạn các cấu hình kỹ thuật SEO và phát sinh lỗi.</p>
               </div>
               <div class="block-field">
                 <span class="field-label">Quyết định chiến lược</span>
-                <p class="field-text highlighted">Theo dõi ranking, traffic, URL contribution, KPI và AI Search signal theo từng giai đoạn.</p>
+                <p class="field-text highlighted">Phối hợp sát sao với Dev để fix lỗi kỹ thuật, cấu hình robots.txt, sitemap và meta tags tự động.</p>
               </div>
             </div>
             <div class="outcome-badge">
-              <span class="badge-label">Tác động kỳ vọng</span>
-              <span class="badge-value">Điều chỉnh ưu tiên triển khai theo dữ liệu thực tế thay vì checklist cố định.</span>
+               <span class="badge-label">Tác động kỳ vọng</span>
+               <span class="badge-value">Khai thông rào cản kỹ thuật để tăng tốc độ crawl và lập chỉ mục nội dung.</span>
             </div>
           </div>
         </div>
@@ -630,7 +615,7 @@ const seoProblems = [
     </div>
   </section>
 
-  <!-- 6. Workflow — Stepper Layout -->
+  <!-- 7. Workflow — Stepper Layout -->
   <section class="section section-muted">
     <div class="container" style="max-width: 1000px;">
       <div class="section-heading text-center">
@@ -644,27 +629,23 @@ const seoProblems = [
           <ul class="workflow-nav">
             <li class="workflow-nav-item active" data-target="step-1">
               <span class="step-num">01</span>
-              <span class="step-label">Technical Discovery</span>
+              <span class="step-label">Pre-launch Planning</span>
             </li>
             <li class="workflow-nav-item" data-target="step-2">
               <span class="step-num">02</span>
-              <span class="step-label">Content & Market Mapping</span>
+              <span class="step-label">Topical Map & Structure</span>
             </li>
             <li class="workflow-nav-item" data-target="step-3">
               <span class="step-num">03</span>
-              <span class="step-label">Content Production & Onpage</span>
+              <span class="step-label">Content QA & EEAT</span>
             </li>
             <li class="workflow-nav-item" data-target="step-4">
               <span class="step-num">04</span>
-              <span class="step-label">Internal Link & Authority</span>
+              <span class="step-label">Internal Link & Cannibalization</span>
             </li>
             <li class="workflow-nav-item" data-target="step-5">
               <span class="step-num">05</span>
-              <span class="step-label">Offpage & Entity Support</span>
-            </li>
-            <li class="workflow-nav-item" data-target="step-6">
-              <span class="step-num">06</span>
-              <span class="step-label">Tracking & Optimization</span>
+              <span class="step-label">Monitoring & Tuning</span>
             </li>
           </ul>
         </div>
@@ -675,21 +656,21 @@ const seoProblems = [
           <div class="workflow-detail card active-card" id="step-1" data-workflow-step="step-1">
             <div class="step-header">
               <span class="step-mobile-num">01</span>
-              <h3>Technical Discovery</h3>
+              <h3>Pre-launch SEO Planning</h3>
             </div>
             <div class="workflow-rows">
               <div class="workflow-row">
                 <span class="row-label">Mục tiêu</span>
-                <span class="row-value">Xác định các lỗi technical ảnh hưởng đến crawl, index và hiệu suất organic.</span>
-              </div>
+                <span class="row-value">Lập kế hoạch giảm thiểu rủi ro Google Sandbox đối với sub-domain mới.</span>
+               </div>
               <div class="workflow-row">
                 <span class="row-label">Hành động</span>
-                <span class="row-value">Audit redirect, schema, sitemap, robots.txt, mobile UX, URL spam và rủi ro migration.</span>
-              </div>
+                <span class="row-value">Xây dựng lộ trình SEO, kế hoạch xuất bản, PR/entity và các checklist kỹ thuật chuẩn bị cho ngày ra mắt.</span>
+               </div>
               <div class="workflow-row">
                 <span class="row-label">Output</span>
-                <span class="row-value highlighted">Technical audit report với danh sách lỗi ưu tiên theo impact.</span>
-              </div>
+                <span class="row-value highlighted">Lộ trình triển khai chi tiết cho giai đoạn Pre-launch.</span>
+               </div>
             </div>
           </div>
 
@@ -697,21 +678,21 @@ const seoProblems = [
           <div class="workflow-detail card" id="step-2" data-workflow-step="step-2">
             <div class="step-header">
               <span class="step-mobile-num">02</span>
-              <h3>Content & Market Mapping</h3>
+              <h3>Topical Map & Structure</h3>
             </div>
             <div class="workflow-rows">
               <div class="workflow-row">
                 <span class="row-label">Mục tiêu</span>
-                <span class="row-value">Tìm khoảng trống non-brand và các topic có khả năng mở rộng traffic.</span>
-              </div>
+                <span class="row-value">Quy hoạch cấu trúc website và hệ thống từ khóa khoa học để bao phủ Topical Authority.</span>
+               </div>
               <div class="workflow-row">
                 <span class="row-label">Hành động</span>
-                <span class="row-value">Phân tích search intent, topical map, competitor content gap và nhóm URL mục tiêu.</span>
-              </div>
+                <span class="row-value">Xây dựng sơ đồ Topical Map ngữ pháp chi tiết, phân nhóm cấu trúc thư mục lý thuyết và bài tập để tránh chồng chéo.</span>
+               </div>
               <div class="workflow-row">
                 <span class="row-label">Output</span>
-                <span class="row-value highlighted">Content plan theo cluster, intent và mức độ ưu tiên triển khai.</span>
-              </div>
+                <span class="row-value highlighted">Topical Map ngữ pháp và sơ đồ cấu trúc URL.</span>
+               </div>
             </div>
           </div>
 
@@ -719,21 +700,21 @@ const seoProblems = [
           <div class="workflow-detail card" id="step-3" data-workflow-step="step-3">
             <div class="step-header">
               <span class="step-mobile-num">03</span>
-              <h3>Content Production & Onpage</h3>
+              <h3>Content QA & EEAT</h3>
             </div>
             <div class="workflow-rows">
               <div class="workflow-row">
                 <span class="row-label">Mục tiêu</span>
-                <span class="row-value">Tạo và tối ưu nội dung theo intent đã mapping.</span>
-              </div>
+                <span class="row-value">Đảm bảo độ chính xác học thuật 100% và xây dựng các tín hiệu tin cậy.</span>
+               </div>
               <div class="workflow-row">
                 <span class="row-label">Hành động</span>
-                <span class="row-value">Triển khai content SEO, tối ưu title, heading, meta, semantic keyword và schema phù hợp.</span>
-              </div>
+                <span class="row-value">Xây dựng quy trình phối hợp kiểm duyệt bài viết chặt chẽ với ban học thuật Academy, chuẩn hóa tối ưu on-page và thiết lập schema thực thể tác giả.</span>
+               </div>
               <div class="workflow-row">
                 <span class="row-label">Output</span>
-                <span class="row-value highlighted">Bộ content SEO và content bổ trợ cho từng cluster.</span>
-              </div>
+                <span class="row-value highlighted">Quy chuẩn chất lượng nội dung học thuật và entity tác giả đồng bộ.</span>
+               </div>
             </div>
           </div>
 
@@ -741,21 +722,21 @@ const seoProblems = [
           <div class="workflow-detail card" id="step-4" data-workflow-step="step-4">
             <div class="step-header">
               <span class="step-mobile-num">04</span>
-              <h3>Internal Link & Authority</h3>
+              <h3>Internal Link & Cannibalization</h3>
             </div>
             <div class="workflow-rows">
               <div class="workflow-row">
                 <span class="row-label">Mục tiêu</span>
-                <span class="row-value">Tăng cường topical authority và hỗ trợ URL trọng tâm.</span>
-              </div>
+                <span class="row-value">Khắc phục rủi ro cannibalization (ăn thịt từ khóa) và tối ưu dòng chảy equity.</span>
+               </div>
               <div class="workflow-row">
                 <span class="row-label">Hành động</span>
-                <span class="row-value">Thiết kế internal link plan, contextual link insertion và phân phối authority theo cụm chủ đề.</span>
-              </div>
+                <span class="row-value">Thiết kế bản đồ internal link chi tiết giữa lý thuyết và bài tập bổ trợ, tối ưu anchor text để phân rõ intent.</span>
+               </div>
               <div class="workflow-row">
                 <span class="row-label">Output</span>
-                <span class="row-value highlighted">Internal link map cho các URL cần thúc đẩy ranking.</span>
-              </div>
+                <span class="row-value highlighted">Internal link anchor map cho các URL mục tiêu.</span>
+               </div>
             </div>
           </div>
 
@@ -763,43 +744,21 @@ const seoProblems = [
           <div class="workflow-detail card" id="step-5" data-workflow-step="step-5">
             <div class="step-header">
               <span class="step-mobile-num">05</span>
-              <h3>Offpage & Entity Support</h3>
+              <h3>Monitoring & Tuning</h3>
             </div>
             <div class="workflow-rows">
               <div class="workflow-row">
                 <span class="row-label">Mục tiêu</span>
-                <span class="row-value">Hỗ trợ nhận diện thương hiệu và authority ngoài site.</span>
-              </div>
+                <span class="row-value">Theo dõi đà indexation, rankings và traffic sau ngày live-site.</span>
+               </div>
               <div class="workflow-row">
                 <span class="row-label">Hành động</span>
-                <span class="row-value">Backlink outreach, social signal, entity/brand mention và hỗ trợ index tín hiệu ngoài site.</span>
-              </div>
+                <span class="row-value">Thúc đẩy index nhanh qua sitemap và API, liên tục chẩn đoán và khắc phục các lỗi kỹ thuật phát sinh trên hệ thống Custom CMS tự phát triển.</span>
+               </div>
               <div class="workflow-row">
                 <span class="row-label">Output</span>
-                <span class="row-value highlighted">Backlink profile và brand mention tracking.</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 6 -->
-          <div class="workflow-detail card" id="step-6" data-workflow-step="step-6">
-            <div class="step-header">
-              <span class="step-mobile-num">06</span>
-              <h3>Tracking & Optimization</h3>
-            </div>
-            <div class="workflow-rows">
-              <div class="workflow-row">
-                <span class="row-label">Mục tiêu</span>
-                <span class="row-value">Theo dõi hiệu quả và điều chỉnh ưu tiên triển khai.</span>
-              </div>
-              <div class="workflow-row">
-                <span class="row-label">Hành động</span>
-                <span class="row-value">Tracking ranking, organic traffic, URL contribution và KPI theo từng giai đoạn.</span>
-              </div>
-              <div class="workflow-row">
-                <span class="row-label">Output</span>
-                <span class="row-value highlighted">Monthly report với insight và đề xuất tối ưu tiếp theo.</span>
-              </div>
+                <span class="row-value highlighted">Báo cáo hiệu suất định kỳ và danh sách tối ưu hóa kỹ thuật liên tục.</span>
+               </div>
             </div>
           </div>
         </div>
@@ -807,19 +766,18 @@ const seoProblems = [
     </div>
   </section>
 
-
-  <!-- 7. Results Section — Split Dashboard -->
-  <section id="results" class="section">
+  <!-- 8. Results Section — Richer Dashboard -->
+  <section id="results" class="section results-section">
     <div class="container">
       <div class="section-heading text-center">
         <p class="section-kicker">KẾT QUẢ ĐẠT ĐƯỢC</p>
-        <h2 class="section-title">Kết quả đạt được</h2>
-        <p class="section-subtitle">Hiệu quả triển khai được minh chứng qua cả chỉ số ranking và dữ liệu traffic thực tế.</p>
+        <h2 class="section-title">Kết quả đạt được (Phase 1)</h2>
+        <p class="section-subtitle">Kết quả dưới đây phản ánh tín hiệu tăng trưởng visibility và ranking của dự án trong Phase 1, kết hợp dữ liệu tracking keyword và estimated traffic từ Semrush.</p>
       </div>
       
-      <!-- 7a. KPI Headline Cards -->
+      <!-- 8a. KPI Headline Cards (Responsive auto-fit layout) -->
       <div class="kpi-strip-centered">
-        <div class="stats-grid">
+        <div class="results-summary-grid">
           {keyMetrics.map(metric => (
             <MetricCard 
               value={metric.value}
@@ -827,169 +785,134 @@ const seoProblems = [
               suffix={metric.suffix}
               prefix={metric.prefix}
               format={metric.format}
-              decimals={metric.decimals}
               animated={true}
             />
           ))}
         </div>
       </div>
 
+      <!-- 8b. Split Results Dashboard Grid -->
       <div class="results-proof-grid">
-        <!-- Left Column: Ranking Outcome -->
+        <!-- Left Column: Donut Chart -->
         <div class="results-column results-sticky-column">
           <p class="dashboard-col-label">Ranking Outcome</p>
-
-          <!-- 7b. Ranking Distribution -->
           <DonutChart 
-            title="Phân bổ ranking trong 219 keyword"
-            centerValue="43%"
-            centerLabel="Top 5 coverage"
+            title="Phân bổ xếp hạng Phase 1"
+            centerValue="45%"
+            centerLabel="Top 10"
             segments={[
-              { colorVar: 'var(--color-accent)', percentage: 43 },
-              { colorVar: 'var(--color-border)', percentage: 57 }
+              { colorVar: 'var(--color-accent)', percentage: 16 },
+              { colorVar: 'var(--color-text)', percentage: 8 },
+              { colorVar: 'var(--color-muted-text)', percentage: 21 },
+              { colorVar: 'var(--color-border)', percentage: 55 }
             ]}
             legend={[
-              { colorVar: 'var(--color-accent)', label: 'Top 5', value: '94 / 219 keyword' },
-              { colorVar: 'var(--color-border)', label: 'Ngoài Top 5', value: '125 / 219 keyword' }
+              { colorVar: 'var(--color-accent)', label: 'Top 1–3', value: '16% (~40 keywords)' },
+              { colorVar: 'var(--color-text)', label: 'Top 4–5', value: '8% (~20 keywords)' },
+              { colorVar: 'var(--color-muted-text)', label: 'Top 6–10', value: '21% (~53 keywords)' },
+              { colorVar: 'var(--color-border)', label: 'Ngoài Top 10 / Other tracked keywords', value: '55% (~139 keywords)' }
             ]}
-            calloutText="Trong đó 77 keyword đạt Top 3, tương đương 35% tổng bộ keyword."
-          />
-
-          <!-- Top 3 / Top 5 number cards -->
-          <div class="kpi-stats-grid">
-            <MetricCard 
-              value={77} subtext="/ 219"
-              label="Keyword đạt Top 3"
-              badge="KPI cam kết: 12%"
-              animated={true}
-            />
-            <MetricCard 
-              value={94} subtext="/ 219"
-              label="Keyword đạt Top 5"
-              badge="KPI cam kết: 37%"
-              animated={true}
-            />
-          </div>
-
-          <!-- Ranking Growth Timeline Chart -->
-          <TimelineChart 
-            title="Tăng trưởng ranking theo giai đoạn"
-            legend={[
-              { colorVar: 'var(--color-text)', label: 'Top 5' },
-              { colorVar: 'var(--color-accent)', label: 'Top 3' }
-            ]}
-            xAxisLabels={[
-              { x: 100, label: 'Tháng 3' },
-              { x: 250, label: 'Tháng 4' },
-              { x: 400, label: 'Tháng 5' },
-              { x: 550, label: 'Tháng 6' },
-              { x: 700, label: 'Tháng 7' }
-            ]}
-            yAxisLabels={[
-              { y: 50, label: '100' },
-              { y: 150, label: '50' },
-              { y: 250, label: '0' }
-            ]}
-            lines={[
-              { 
-                colorVar: 'var(--color-text)', 
-                points: '100,208 250,162 400,82 550,78 700,64',
-                dataPoints: [
-                  { x: 100, y: 208, labelX: 0, labelY: 0, value: '' },
-                  { x: 250, y: 162, labelX: 0, labelY: 0, value: '' },
-                  { x: 400, y: 82, labelX: 0, labelY: 0, value: '' },
-                  { x: 550, y: 78, labelX: 0, labelY: 0, value: '' },
-                  { x: 700, y: 64, labelX: 700, labelY: 50, value: '94', isFinal: true }
-                ]
-              },
-              { 
-                colorVar: 'var(--color-accent)', 
-                points: '100,230 250,214 400,144 550,118 700,110',
-                dataPoints: [
-                  { x: 100, y: 230, labelX: 0, labelY: 0, value: '' },
-                  { x: 250, y: 214, labelX: 0, labelY: 0, value: '' },
-                  { x: 400, y: 144, labelX: 0, labelY: 0, value: '' },
-                  { x: 550, y: 118, labelX: 0, labelY: 0, value: '' },
-                  { x: 700, y: 110, labelX: 700, labelY: 130, value: '77', isFinal: true }
-                ]
-              }
-            ]}
+            calloutText="Phân bổ nhóm từ khóa có thứ hạng trong Phase 1 cho thấy dự án bắt đầu tạo được độ phủ ranking ở nhiều tầng, từ nhóm Top 1–3 đến nhóm Top 6–10."
           />
         </div>
 
-        <!-- Right Column: Traffic & Visibility Proof -->
+        <!-- Right Column: Traffic Summary & Scale Card -->
         <div class="proof-column">
           <p class="dashboard-col-label">Traffic & Visibility Proof</p>
-
-          <!-- Traffic Summary Card -->
+          
           <div class="evidence-summary card">
-            <p class="dashboard-stat-group-label">Traffic nghiệm thu</p>
+            <p class="dashboard-stat-group-label">Traffic nghiệm thu Phase 1</p>
             <div class="summary-stat-list" style="margin-bottom: 0;">
               <div class="summary-stat-row">
-                <span class="summary-stat-label">Organic sessions</span>
-                <span class="summary-stat-value">32.198</span>
+                <span class="summary-stat-label">Estimated Traffic (Semrush)</span>
+                <span class="summary-stat-value">66.800</span>
               </div>
               <div class="summary-stat-row">
-                <span class="summary-stat-label">KPI traffic</span>
-                <span class="summary-stat-value">31.957</span>
+                <span class="summary-stat-label">Xuất phát điểm (13/03)</span>
+                <span class="summary-stat-value">0</span>
               </div>
               <div class="summary-stat-row">
-                <span class="summary-stat-label">Mức đạt KPI</span>
-                <span class="summary-stat-value">100.8%</span>
+                <span class="summary-stat-label">Thời gian tăng trưởng</span>
+                <span class="summary-stat-value">4 tháng</span>
               </div>
               <div class="summary-stat-row summary-stat-highlight">
-                <span class="summary-stat-label">Surplus</span>
-                <span class="summary-stat-value">+241 sessions</span>
+                <span class="summary-stat-label">Nguồn dữ liệu</span>
+                <span class="summary-stat-value">Semrush Organic Research</span>
               </div>
             </div>
           </div>
 
-          <!-- 7c. Traffic Contribution Card -->
-          <div class="card cs-contribution-card">
-            <p class="dashboard-stat-group-label">Đóng góp traffic từ SEO URLs</p>
-            <div class="cs-contribution-value">13.094</div>
-            <div class="cs-contribution-desc">sessions từ SEO URLs + supporting content</div>
-            <div class="cs-contribution-bar-wrap">
-              <div class="cs-contribution-bar" style="width: 40%;"></div>
+          <!-- Content Execution Scale Summary Card -->
+          <div class="card content-scale-card">
+            <p class="dashboard-stat-group-label">QUY MÔ TRIỂN KHAI HỆ THỐNG CONTENT</p>
+            <p class="content-scale-desc">
+              Dự án không chỉ tối ưu từng bài riêng lẻ, mà được triển khai như một hệ thống content SEO có quy mô — từ keyword universe, outline, sản xuất nội dung đến nhập liệu và kiểm soát chất lượng.
+            </p>
+            <div class="content-scale-stats">
+              <div class="content-scale-item">
+                <span class="scale-label">Keyword Universe</span>
+                <strong class="scale-value">263 mapped</strong>
+              </div>
+              <div class="content-scale-item">
+                <span class="scale-label">Từ khóa triển khai</span>
+                <strong class="scale-value">252 keywords</strong>
+              </div>
+              <div class="content-scale-item">
+                <span class="scale-label">Content Finalized</span>
+                <strong class="scale-value">248 bài</strong>
+              </div>
+              <div class="content-scale-item">
+                <span class="scale-label">Content Uploaded</span>
+                <strong class="scale-value">251 bài</strong>
+              </div>
             </div>
-            <div class="cs-contribution-note">Khoảng 40% tổng organic traffic tháng nghiệm thu</div>
           </div>
 
-          <!-- 7d. GA4 + GSC Evidence Cards -->
-          <div class="evidence-stack">
-            {trafficEvidence.map((evidence) => (
-              <EvidenceCard 
-                title={evidence.title}
-                caption={evidence.caption}
-                imageSrc={evidence.imageSrc}
-                placeholder={evidence.placeholder}
-                sourceLabel={evidence.sourceLabel}
-                alt={evidence.alt}
-                insights={evidence.insights}
-                isFeatured={false}
-              />
-            ))}
+          {/*
+            TODO: Khi có ảnh chụp minh chứng chính thức, import EvidenceCard và kết xuất tại đây.
+            - GSC Clicks evidence screenshot
+            - GSC / GA4 traffic growth timeline screenshot
+            - Ranking distribution diagram screenshot
+          */}
 
-            <!-- 7e. AI Search Signals Panel -->
-            <GrowthSignalPanel 
-              title="AI Search Signals"
-              description="Dự án bắt đầu ghi nhận tín hiệu từ các bề mặt tìm kiếm AI mới bên cạnh organic traffic truyền thống."
-              disclaimer="Nhóm chỉ số AIO/GEO được tracking bổ sung để đánh giá tín hiệu tăng trưởng từ các bề mặt tìm kiếm mới. Cách định nghĩa và nguồn tracking cần được giữ nhất quán khi public."
-              metrics={aioGeoMetrics as any}
-            />
-          </div>
+          {/*
+            TODO: Khi có số liệu AIO/GEO chính thức, import GrowthSignalPanel và kết xuất tại đây.
+            - AIO Traffic: 0 -> TBD
+            - AIO Keywords: 0 -> TBD
+            - GEO: 0 -> TBD
+          */}
+
+          {/*
+            TODO: Cung cấp số liệu chính xác về lượng traffic đóng góp từ SEO URLs và bổ sung card đóng góp traffic tại đây.
+          */}
         </div>
+      </div>
+
+      <!-- 8c. Visual Evidence Cards -->
+      <div class="results-evidence-grid">
+        {resultsEvidence.map((evidence) => (
+          <EvidenceCard 
+            title={evidence.title}
+            caption={evidence.caption}
+            imageSrc={evidence.imageSrc}
+            placeholder={evidence.placeholder}
+            sourceLabel={evidence.sourceLabel}
+            alt={evidence.alt}
+            insights={evidence.insights}
+            showPlaceholder={true}
+          />
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- 9. Ranking Wins Board -->
+  <!-- 9. Ranking Wins Board Section -->
   <section class="section">
     <div class="container" style="max-width: 1240px;">
       <div class="section-heading text-center">
-        <p class="section-kicker">KEYWORD WINNINGS</p>
-        <h2 class="section-title">Ranking Wins Board</h2>
-        <p class="section-subtitle">Đo phủ từ khóa tăng trưởng đồng đều trên cả 3 cụm intent trọng tâm của dự án.</p>
+        <p class="section-kicker">RANKING WINS</p>
+        <h2 class="section-title">Nhóm từ khóa tạo tín hiệu tăng trưởng tốt</h2>
+        <p class="section-subtitle">Một số truy vấn tiêu biểu phản ánh khả năng xây dựng topical authority, mở rộng độ phủ ngữ pháp và phân tách intent giữa lý thuyết, cách dùng và phân biệt.</p>
       </div>
 
       <div class="ranking-proof-layout">
@@ -1001,127 +924,112 @@ const seoProblems = [
               <line x1="12" y1="16" x2="12" y2="12"/>
               <line x1="12" y1="8" x2="12.01" y2="8"/>
             </svg>
-            <span>Click từng keyword để xem ảnh chụp SERP tương ứng.</span>
+            <span>Click từng keyword để xem bằng chứng SERP tương ứng.</span>
           </div>
-          <!-- Group 1: Brand & Attraction Intent -->
+
+          <!-- Group 1: Lý thuyết ngữ pháp -->
           <div class="ranking-keyword-group">
-            <span class="win-intent">Brand & Attraction Intent</span>
+            <span class="win-intent">Lý thuyết ngữ pháp</span>
             <ul class="ranking-keyword-list">
               <li class="ranking-keyword-item is-active" 
-                  data-keyword="Khu du lịch Suối Tiên" 
-                  data-rank="Top 1" 
-                  data-image="/images/case-studies/suoi-tien/serp-khu-du-lich-suoi-tien.jpg"
-                  data-caption="Suối Tiên bảo toàn vững chắc vị thế thương hiệu Top 1 từ khóa tìm kiếm trực tiếp.">
-                <span class="keyword-name">Khu du lịch Suối Tiên</span>
-                <span class="keyword-rank-badge rank-top1">Top 1</span>
+                  data-keyword="trật tự tính từ" 
+                  data-rank="Phase 1 Win" 
+                  data-image="#"
+                  data-caption="Từ khóa lý thuyết cốt lõi đạt tín hiệu tăng trưởng thứ hạng tốt trong Phase 1.">
+                <span class="keyword-name">trật tự tính từ</span>
+                <span class="keyword-rank-badge rank-win">Phase 1 Win</span>
               </li>
               <li class="ranking-keyword-item" 
-                  data-keyword="Giá vé Suối Tiên" 
-                  data-rank="Top 1" 
-                  data-image="/images/case-studies/suoi-tien/serp-gia-ve-suoi-tien.jpg"
-                  data-caption="Chiếm lĩnh vị trí Top 1 tìm kiếm cho cụm từ khóa có volume search và nhu cầu chuyển đổi trực tiếp cao nhất.">
-                <span class="keyword-name">Giá vé Suối Tiên</span>
-                <span class="keyword-rank-badge rank-top1">Top 1</span>
+                  data-keyword="mệnh đề quan hệ" 
+                  data-rank="Phase 1 Win" 
+                  data-image="#"
+                  data-caption="Một trong những chủ đề ngữ pháp lớn của chương trình, tạo độ phủ thứ hạng tốt.">
+                <span class="keyword-name">mệnh đề quan hệ</span>
+                <span class="keyword-rank-badge rank-win">Phase 1 Win</span>
               </li>
               <li class="ranking-keyword-item" 
-                  data-keyword="Suối Tiên có gì chơi" 
-                  data-rank="Top 1" 
-                  data-image="/images/case-studies/suoi-tien/serp-suoi-tien-co-gi-choi.jpg"
-                  data-caption="Từ khóa ý định trải nghiệm cao đạt Top 1 nhờ cấu trúc On-page chi tiết.">
-                <span class="keyword-name">Suối Tiên có gì chơi</span>
-                <span class="keyword-rank-badge rank-top1">Top 1</span>
+                  data-keyword="v inf là gì" 
+                  data-rank="Phase 1 Win" 
+                  data-image="#"
+                  data-caption="Keyword định nghĩa cấu trúc động từ nguyên mẫu có to, đáp ứng đúng search intent.">
+                <span class="keyword-name">v inf là gì</span>
+                <span class="keyword-rank-badge rank-win">Phase 1 Win</span>
               </li>
               <li class="ranking-keyword-item" 
-                  data-keyword="Đường đi Suối Tiên" 
-                  data-rank="Top 1" 
-                  data-image="/images/case-studies/suoi-tien/serp-duong-di-suoi-tien.jpg"
-                  data-caption="Giúp người dùng dễ dàng định vị bản đồ và đường đi trực tiếp đến khu du lịch.">
-                <span class="keyword-name">Đường đi Suối Tiên</span>
-                <span class="keyword-rank-badge rank-top1">Top 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Group 2: Tourism Discovery Intent -->
-          <div class="ranking-keyword-group">
-            <span class="win-intent">Tourism Discovery Intent</span>
-            <ul class="ranking-keyword-list">
-              <li class="ranking-keyword-item" 
-                  data-keyword="Địa điểm du lịch Sài Gòn" 
-                  data-rank="Top 3" 
-                  data-image="/images/case-studies/suoi-tien/serp-dia-diem-du-lich-sai-gon.jpg"
-                  data-caption="Chinh phục thành công keyword ngành khám phá quan trọng nhất tại TP.HCM, xếp thứ 3 toàn ngành.">
-                <span class="keyword-name">Địa điểm du lịch Sài Gòn</span>
-                <span class="keyword-rank-badge rank-top3">Top 3</span>
+                  data-keyword="12 thì trong tiếng anh" 
+                  data-rank="Phase 1 Win" 
+                  data-image="#"
+                  data-caption="Chủ điểm ngữ pháp căn bản với lượng tìm kiếm lớn, ghi nhận tăng độ phủ ranking tốt.">
+                <span class="keyword-name">12 thì trong tiếng anh</span>
+                <span class="keyword-rank-badge rank-win">Phase 1 Win</span>
               </li>
               <li class="ranking-keyword-item" 
-                  data-keyword="Khu vui chơi trẻ em TPHCM" 
-                  data-rank="Top 3" 
-                  data-image="/images/case-studies/suoi-tien/serp-khu-vui-choi-tre-em-tphcm.jpg"
-                  data-caption="Đóng vai trò quan trọng trong việc thu hút các gia đình nội thành và lân cận tìm kiếm khu vui chơi.">
-                <span class="keyword-name">Khu vui chơi trẻ em TPHCM</span>
-                <span class="keyword-rank-badge rank-top3">Top 3</span>
+                  data-keyword="thì hiện tại đơn" 
+                  data-rank="Phase 1 Win" 
+                  data-image="#"
+                  data-caption="Từ khóa lý thuyết cốt lõi về thì hiện tại đơn đạt thứ hạng vững chắc trong Phase 1.">
+                <span class="keyword-name">thì hiện tại đơn</span>
+                <span class="keyword-rank-badge rank-win">Phase 1 Win</span>
               </li>
               <li class="ranking-keyword-item" 
-                  data-keyword="Địa điểm vui chơi cuối tuần" 
-                  data-rank="Top 3" 
-                  data-image="/images/case-studies/suoi-tien/serp-dia-diem-vui-choi-cuoi-tuan.jpg"
-                  data-caption="Xếp hạng Top 3 keyword xu hướng, khai thác lưu lượng truy cập lớn trong tuần của khách hàng tiềm năng.">
-                <span class="keyword-name">Địa điểm vui chơi cuối tuần</span>
-                <span class="keyword-rank-badge rank-top3">Top 3</span>
-              </li>
-              <li class="ranking-keyword-item" 
-                  data-keyword="Địa điểm đi chơi gần Sài Gòn" 
-                  data-rank="Top 3" 
-                  data-image="/images/case-studies/suoi-tien/serp-dia-diem-di-choi-gan-sai-gon.jpg"
-                  data-caption="Đáp ứng nhu cầu đi chơi trong ngày hoặc cuối tuần của giới trẻ TPHCM.">
-                <span class="keyword-name">Địa điểm đi chơi gần Sài Gòn</span>
-                <span class="keyword-rank-badge rank-top3">Top 3</span>
+                  data-keyword="phrasal verbs" 
+                  data-rank="Phase 1 Win" 
+                  data-image="#"
+                  data-caption="Cụm động từ tiếng Anh, từ khóa có độ cạnh tranh cao trên các công cụ tìm kiếm.">
+                <span class="keyword-name">phrasal verbs</span>
+                <span class="keyword-rank-badge rank-win">Phase 1 Win</span>
               </li>
             </ul>
           </div>
 
-          <!-- Group 3: Event / Team Building Intent -->
+          <!-- Group 2: Cách dùng & ý nghĩa -->
           <div class="ranking-keyword-group">
-            <span class="win-intent">Event / Team Building Intent</span>
+            <span class="win-intent">Cách dùng & ý nghĩa</span>
             <ul class="ranking-keyword-list">
               <li class="ranking-keyword-item" 
-                  data-keyword="Địa điểm tổ chức team building" 
-                  data-rank="Top 5" 
-                  data-image="/images/case-studies/suoi-tien/serp-dia-diem-to-chuc-team-building.jpg"
-                  data-caption="Top 5 từ khóa ý định dịch vụ cao dành cho HR, trường học và doanh nghiệp lớn tổ chức hoạt động đoàn.">
-                <span class="keyword-name">Địa điểm tổ chức team building</span>
-                <span class="keyword-rank-badge rank-top5">Top 5</span>
+                  data-keyword="be into" 
+                  data-rank="Tracked Keyword" 
+                  data-image="#"
+                  data-caption="Cụm từ chỉ sở thích/quan tâm, đạt lượng visibility cao trong danh sách từ khóa cách dùng.">
+                <span class="keyword-name">be into</span>
+                <span class="keyword-rank-badge rank-tracked">Tracked</span>
               </li>
               <li class="ranking-keyword-item" 
-                  data-keyword="Nơi tổ chức sự kiện Sài Gòn" 
-                  data-rank="Top 5" 
-                  data-image="/images/case-studies/suoi-tien/serp-noi-to-chuc-su-kien-sai-gon.jpg"
-                  data-caption="Xếp thứ 5 cho các nhu cầu thuê mặt bằng rộng và quy mô phục vụ đại nhạc hội, triển lãm.">
-                <span class="keyword-name">Nơi tổ chức sự kiện Sài Gòn</span>
-                <span class="keyword-rank-badge rank-top5">Top 5</span>
+                  data-keyword="break down là gì" 
+                  data-rank="Tracked Keyword" 
+                  data-image="#"
+                  data-caption="Định nghĩa cụm động từ break down trong các ngữ cảnh học thuật và giao tiếp.">
+                <span class="keyword-name">break down là gì</span>
+                <span class="keyword-rank-badge rank-tracked">Tracked</span>
               </li>
               <li class="ranking-keyword-item" 
-                  data-keyword="Dịch vụ tiệc cưới ngoài trời" 
-                  data-rank="Top 5" 
-                  data-image="/images/case-studies/suoi-tien/serp-dich-vu-tiec-cuoi-ngoai-troi.jpg"
-                  data-caption="Xếp hạng Top 5 hỗ trợ thu thập lead cho dịch vụ cưới hỏi phân khúc tiệc ngoài trời, tiệc sân vườn.">
-                <span class="keyword-name">Dịch vụ tiệc cưới ngoài trời</span>
-                <span class="keyword-rank-badge rank-top5">Top 5</span>
+                  data-keyword="support là gì" 
+                  data-rank="Tracked Keyword" 
+                  data-image="#"
+                  data-caption="Giải nghĩa từ loại, cách dùng và các cấu trúc đi kèm với động từ support.">
+                <span class="keyword-name">support là gì</span>
+                <span class="keyword-rank-badge rank-tracked">Tracked</span>
               </li>
+            </ul>
+          </div>
+
+          <!-- Group 3: Phân biệt & ứng dụng -->
+          <div class="ranking-keyword-group">
+            <span class="win-intent">Phân biệt & ứng dụng</span>
+            <ul class="ranking-keyword-list">
               <li class="ranking-keyword-item" 
-                  data-keyword="Nhà hàng tiệc cưới TPHCM" 
-                  data-rank="Top 5" 
-                  data-image="/images/case-studies/suoi-tien/serp-nha-hang-tiec-cuoi-tphcm.jpg"
-                  data-caption="Top 5 từ khóa cạnh tranh cao mở ra cơ hội khai thác tiệc cho nhà hàng Suối Tiên.">
-                <span class="keyword-name">Nhà hàng tiệc cưới TPHCM</span>
-                <span class="keyword-rank-badge rank-top5">Top 5</span>
+                  data-keyword="so sánh kép" 
+                  data-rank="Ranking Signal" 
+                  data-image="#"
+                  data-caption="Cấu trúc ngữ pháp so sánh kép nâng cao, đòi hỏi nội dung phân tích chuyên sâu.">
+                <span class="keyword-name">so sánh kép</span>
+                <span class="keyword-rank-badge rank-signal">Ranking Signal</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <!-- Right Column: Interactive SERP Proof Preview Panel -->
+        <!-- Right Column: Interactive Preview Panel -->
         <div class="serp-preview-column">
           <div class="serp-proof-card card">
             <div class="serp-proof-header">
@@ -1130,14 +1038,14 @@ const seoProblems = [
             </div>
             
             <div class="serp-proof-meta">
-              <span id="active-kw-name" class="serp-kw-title">Khu du lịch Suối Tiên</span>
-              <span id="active-kw-badge" class="keyword-rank-badge rank-top1">Top 1</span>
+              <span id="active-kw-name" class="serp-kw-title">trật tự tính từ</span>
+              <span id="active-kw-badge" class="keyword-rank-badge rank-win">Phase 1 Win</span>
             </div>
             
             <div class="serp-proof-frame">
-              <img id="serp-proof-image" src="/images/case-studies/suoi-tien/serp-khu-du-lich-suoi-tien.jpg" alt="SERP Proof: Khu du lịch Suối Tiên" class="serp-proof-image" />
+              <img id="serp-proof-image" src="#" alt="SERP Proof: trật tự tính từ" class="serp-proof-image" />
               
-              <!-- Custom Placeholder State -->
+              <!-- Premium Custom Placeholder State -->
               <div id="serp-proof-placeholder" class="serp-proof-placeholder">
                 <div class="placeholder-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="placeholder-svg">
@@ -1146,25 +1054,23 @@ const seoProblems = [
                     <polyline points="21 15 16 10 5 21"/>
                   </svg>
                 </div>
-                <p class="placeholder-title">SERP screenshot placeholder</p>
-                <p class="placeholder-desc">Replace this with the real Google ranking screenshot.</p>
+                <p class="placeholder-title">SERP Screenshot Pending</p>
+                <p class="placeholder-desc">TODO: Add ranking proof screenshot for this keyword.</p>
               </div>
             </div>
             
-            <p id="serp-proof-caption" class="serp-proof-caption">Suối Tiên bảo toàn vững chắc vị thế thương hiệu Top 1 từ khóa tìm kiếm trực tiếp.</p>
+            <p id="serp-proof-caption" class="serp-proof-caption">Từ khóa lý thuyết cốt lõi đạt tín hiệu tăng trưởng thứ hạng tốt trong Phase 1.</p>
           </div>
         </div>
       </div>
 
-      <p class="cs-wins-board-note" style="text-align: center; font-size: 0.82rem; color: var(--color-muted-text); margin-top: 32px; font-style: italic;">
-        * Thứ hạng từ khóa và hình ảnh kết quả tìm kiếm được ghi nhận theo báo cáo nghiệm thu dự án.
+      <p style="text-align: center; font-size: 0.82rem; color: var(--color-muted-text); margin-top: 32px; font-style: italic;">
+        * Thứ hạng từ khóa được theo dõi từ hệ thống tracking của Phase 1 dự án.
       </p>
     </div>
   </section>
 
-
-
-  <!-- 8. Insights — Retrospective -->
+  <!-- 10. Insights — Retrospective -->
   <section id="insights" class="section section-muted">
     <div class="container">
       <div class="section-heading text-center">
@@ -1175,29 +1081,29 @@ const seoProblems = [
         <article class="card cs-insight-card">
           <div class="cs-insight-icon cs-insight-worked" aria-hidden="true">✓</div>
           <h3>Hiệu quả thực tế</h3>
-          <p>Khi technical foundation ổn định và content được tổ chức theo đúng intent, website có thể vừa bảo toàn tín hiệu thương hiệu, vừa mở rộng traffic từ các nhóm non-brand keyword có giá trị.</p>
+          <p>Chứng minh rằng việc thiết lập Topical Authority và quy hoạch site structure khoa học có thể giúp website mới vượt qua rào cản Sandbox nhanh chóng và thu hút lượng lớn organic traffic chỉ sau vài tháng vận hành.</p>
         </article>
         <article class="card cs-insight-card">
           <div class="cs-insight-icon cs-insight-difficult" aria-hidden="true">!</div>
           <h3>Thử thách thực chiến</h3>
-          <p>Kiểm soát rủi ro khi chuyển đổi domain trong khi vẫn phải đẩy nhanh tốc độ triển khai content và internal link. Cân bằng giữa bảo toàn ranking hiện có và mở rộng keyword mới.</p>
+          <p>Đòi hỏi sự cân bằng khắt khe giữa tốc độ sản xuất nội dung với quy trình QA học thuật chặt chẽ cùng ban học thuật. Đồng thời phải xử lý liên tục các lỗi kỹ thuật phát sinh trên hệ thống Custom CMS tự phát triển.</p>
         </article>
         <article class="card cs-insight-card">
           <div class="cs-insight-icon cs-insight-next" aria-hidden="true">→</div>
           <h3>Tối ưu tương lai</h3>
-          <p>Tăng cường content depth cho các nhóm topic high-intent. Xây dựng entity strategy rõ ràng hơn. Tận dụng AIO/GEO signals sớm hơn trong quy trình triển khai.</p>
+          <p>Tăng cường mở rộng Topical Map để phủ các chủ đề ngách sâu hơn. Thiết lập các liên kết thực thể (entity links) bên ngoài site và tối ưu hóa hệ thống CMS Custom để hỗ trợ tốt hơn các thẻ on-page tự động.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- 9. CTA — Personal Portfolio -->
+  <!-- 11. CTA — Personal Portfolio -->
   <section class="section section-dark">
     <div class="container">
       <div class="section-heading text-center">
-        <h2 class="section-title">Muốn xem cách tôi audit và scale một dự án SEO tương tự?</h2>
+        <h2 class="section-title">Muốn xem cách tôi thiết lập Topical Authority và scale hệ thống SEO từ số 0?</h2>
         <p class="section-subtitle">
-          Tôi có thể chia sẻ thêm về quy trình chẩn đoán technical foundation, content system và lộ trình tăng trưởng SEO bền vững.
+          Tôi có thể chia sẻ thêm về quy trình quy hoạch Topical Map, quy trình phối hợp QA nội dung và cách tối ưu hóa on-page để bứt phá rankings.
         </p>
         <div class="btn-group center" style="margin-top: 32px;">
           <a class="btn btn-primary" href="/contact/">Trao đổi về SEO project</a>
@@ -1210,7 +1116,7 @@ const seoProblems = [
 <script>
   import "../../scripts/interactions.js";
 
-  // Interactive SERP Proof Panel logic
+  // Interactive Wins Board Panel logic
   document.addEventListener('DOMContentLoaded', () => {
     const keywordItems = document.querySelectorAll('.ranking-keyword-item');
     const activeKwName = document.getElementById('active-kw-name');
@@ -1227,15 +1133,21 @@ const seoProblems = [
       serpPlaceholder.style.display = 'flex';
     });
 
-    // Handle successful load just in case it succeeds
+    // Handle successful load
     serpImage.addEventListener('load', () => {
-      serpImage.style.display = 'block';
-      serpPlaceholder.style.display = 'none';
+      // If src is "#" or empty, force placeholder instead of showing broken icon
+      if (serpImage.getAttribute('src') === '#' || !serpImage.getAttribute('src')) {
+        serpImage.style.display = 'none';
+        serpPlaceholder.style.display = 'flex';
+      } else {
+        serpImage.style.display = 'block';
+        serpPlaceholder.style.display = 'none';
+      }
     });
 
-    // Initial check (trigger load error manually if image fails to load or has naturalWidth 0)
+    // Trigger error check initially
     if (serpImage.complete) {
-      if (serpImage.naturalWidth === 0) {
+      if (serpImage.naturalWidth === 0 || serpImage.getAttribute('src') === '#') {
         serpImage.style.display = 'none';
         serpPlaceholder.style.display = 'flex';
       }
@@ -1252,7 +1164,7 @@ const seoProblems = [
         // Retrieve data attributes
         const name = item.getAttribute('data-keyword') || '';
         const rank = item.getAttribute('data-rank') || '';
-        const imgUrl = item.getAttribute('data-image') || '';
+        const imgUrl = item.getAttribute('data-image') || '#';
         const caption = item.getAttribute('data-caption') || '';
 
         // Reset visibility to show image while loading, error event will toggle placeholder if needed
@@ -1269,12 +1181,12 @@ const seoProblems = [
             
             // Update rank badge colors
             activeKwBadge.className = 'keyword-rank-badge';
-            if (rank === 'Top 1') {
-              activeKwBadge.classList.add('rank-top1');
-            } else if (rank === 'Top 3') {
-              activeKwBadge.classList.add('rank-top3');
-            } else if (rank === 'Top 5') {
-              activeKwBadge.classList.add('rank-top5');
+            if (rank === 'Phase 1 Win') {
+              activeKwBadge.classList.add('rank-win');
+            } else if (rank === 'Tracked Keyword') {
+              activeKwBadge.classList.add('rank-tracked');
+            } else {
+              activeKwBadge.classList.add('rank-signal');
             }
           }
 
@@ -1287,20 +1199,20 @@ const seoProblems = [
       });
     });
 
-    // Interactive SEO Problems Section logic for Suối Tiên (scoped)
-    const suoiProblemsSection = document.querySelector('#suoi-problems-section');
-    if (suoiProblemsSection) {
-      const tabButtons = suoiProblemsSection.querySelectorAll('.problems-module');
-      const tabPanels = suoiProblemsSection.querySelectorAll('.problems-panel-content');
-      const mobilePanels = suoiProblemsSection.querySelectorAll('.problems-mobile-panel');
+    // Interactive SEO Problems Section logic
+    const problemsSection = document.querySelector('#problems-section');
+    if (problemsSection) {
+      const tabButtons = problemsSection.querySelectorAll('.problems-module');
+      const tabPanels = problemsSection.querySelectorAll('.problems-panel-content');
+      const mobilePanels = problemsSection.querySelectorAll('.problems-mobile-panel');
 
       const isMobileQuery = window.matchMedia('(max-width: 1023.98px)');
       const isMobile = () => isMobileQuery.matches;
 
-      let currentActiveId = 'suoi-problem-panel-01'; // Default active panel ID on desktop
+      let currentActiveId = 'problem-panel-01'; // Default active panel ID on desktop
 
       const updateActiveState = (activePanelId) => {
-        const activeNum = activePanelId ? activePanelId.replace('suoi-problems-mobile-panel-', '').replace('suoi-problem-panel-', '') : null;
+        const activeNum = activePanelId ? activePanelId.replace('problems-mobile-panel-', '').replace('problem-panel-', '') : null;
 
         tabButtons.forEach(btn => {
           const num = btn.getAttribute('data-problem-id');
@@ -1315,7 +1227,7 @@ const seoProblems = [
         });
 
         tabPanels.forEach(panel => {
-          const num = panel.id.replace('suoi-problem-panel-', '');
+          const num = panel.id.replace('problem-panel-', '');
           const isActive = activeNum === num;
           panel.setAttribute('aria-hidden', isActive ? 'false' : 'true');
           if (isActive) {
@@ -1326,7 +1238,7 @@ const seoProblems = [
         });
 
         mobilePanels.forEach(panel => {
-          const num = panel.id.replace('suoi-problems-mobile-panel-', '');
+          const num = panel.id.replace('problems-mobile-panel-', '');
           const isActive = activeNum === num;
           panel.setAttribute('aria-hidden', isActive ? 'false' : 'true');
           if (isActive) {
@@ -1343,7 +1255,7 @@ const seoProblems = [
       // Listen for window resize/media changes
       isMobileQuery.addEventListener('change', () => {
         if (!isMobile() && !currentActiveId) {
-          currentActiveId = 'suoi-problem-panel-01';
+          currentActiveId = 'problem-panel-01';
         }
         updateActiveState(currentActiveId);
       });
@@ -1363,12 +1275,12 @@ const seoProblems = [
               updateActiveState(null);
             } else {
               // Expand it
-              currentActiveId = `suoi-problems-mobile-panel-${num}`;
+              currentActiveId = `problems-mobile-panel-${num}`;
               updateActiveState(currentActiveId);
             }
           } else {
             // Desktop: click activates
-            currentActiveId = `suoi-problem-panel-${num}`;
+            currentActiveId = `problem-panel-${num}`;
             updateActiveState(currentActiveId);
           }
         });
@@ -1381,65 +1293,139 @@ const seoProblems = [
 <style>
   /* ---- Case Study Scoped Styles ---- */
 
-  /* Project Snapshot Row & Client Logo Frame */
-  .cs-snapshot-row {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 24px;
+  /* Project Snapshot Card */
+  .case-snapshot {
     max-width: 1120px;
     margin: 40px auto 0;
-    padding: 28px 32px;
-    background: var(--color-card);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-card);
-    align-items: center;
+    background: #FFFFFF;
+    border: 1px solid rgba(216, 207, 196, 0.4);
+    border-radius: 24px;
+    box-shadow: 0 4px 24px rgba(17, 24, 39, 0.02);
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    display: flex;
+    flex-direction: column;
   }
 
-  .cs-snapshot-item {
+  .case-snapshot-top {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    background: transparent;
+    padding: 0;
+  }
+
+  .snapshot-col {
+    padding-inline: clamp(1rem, 2vw, 1.75rem);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    min-width: 0;
+  }
+
+  /* Desktop-only vertical dividers between columns */
+  .snapshot-col + .snapshot-col {
+    border-left: 1px solid rgba(216, 207, 196, 0.4);
+  }
+
+  /* Remove first column left padding on desktop to keep it aligned with outer card edge */
+  .snapshot-col:first-child {
+    padding-left: 0;
+  }
+
+  /* Remove last column right padding on desktop */
+  .snapshot-col:last-child {
+    padding-right: 0;
+  }
+
+  .snapshot-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #C1121F; /* deep red */
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 2px;
+  }
+
+  .snapshot-value-group {
     display: flex;
     flex-direction: column;
     gap: 4px;
   }
 
-  .cs-snapshot-label {
-    font-size: 0.72rem;
+  .snapshot-value {
+    font-size: 0.95rem;
     font-weight: 700;
-    color: var(--color-accent);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+    color: #1A2530; /* charcoal/navy */
+    line-height: 1.35;
   }
 
-  .cs-snapshot-value {
-    font-size: 0.92rem;
-    font-weight: 600;
-    color: var(--color-text);
-    line-height: 1.4;
+  .snapshot-subvalue {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-muted-text);
+    line-height: 1.3;
   }
 
   .client-info {
     display: flex;
     align-items: center;
-    gap: 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 2px;
   }
 
   .client-logo-frame {
-    width: 44px;
-    height: 44px;
-    background: var(--color-bg);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 4px;
+    padding: 3px 8px;
+    background: #FCFAF7;
+    border: 1px solid rgba(216, 207, 196, 0.6);
+    border-radius: 6px;
     flex-shrink: 0;
   }
 
-  .client-logo {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
+  .client-logo-text {
+    font-weight: 800;
+    color: #C1121F;
+    font-size: 0.75rem;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+
+  .case-snapshot-bottom {
+    margin-top: 1.75rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(216, 207, 196, 0.4);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .case-snapshot-bottom .snapshot-label {
+    flex-shrink: 0;
+    color: #C1121F;
+  }
+
+  .snapshot-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .snapshot-chip {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #334155; /* charcoal */
+    background: #FFFFFF;
+    border: 1px solid rgba(216, 207, 196, 0.6);
+    padding: 6px 14px;
+    border-radius: 99px;
+    line-height: 1;
+    box-shadow: 0 1px 2px rgba(17, 24, 39, 0.01);
   }
 
   .hero-result-hook {
@@ -1461,33 +1447,33 @@ const seoProblems = [
     gap: 8px;
   }
 
-  @media (max-width: 1024px) {
-    .cs-snapshot-row {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+  @media (max-width: 1023px) {
+    .case-snapshot-top {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .snapshot-col {
+      padding-inline: 0;
+    }
+
+    .snapshot-col + .snapshot-col {
+      border-left: none;
+    }
+
+    .case-snapshot-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
     }
   }
 
-  @media (max-width: 767.98px) {
-    .cs-snapshot-row {
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      padding: 24px;
-    }
-    
-    .client-info {
-      gap: 8px;
-    }
-    
-    .client-logo-frame {
-      width: 38px;
-      height: 38px;
-    }
-  }
-
-  @media (max-width: 479.98px) {
-    .cs-snapshot-row {
+  @media (max-width: 640px) {
+    .case-snapshot-top {
       grid-template-columns: 1fr;
+      gap: 1.25rem;
     }
   }
 
@@ -1903,6 +1889,7 @@ const seoProblems = [
     opacity: 1;
   }
 
+
   /* Arrow indicator (points right on desktop, down on mobile when active) */
   .problems-module::after {
     content: "→";
@@ -2037,7 +2024,6 @@ const seoProblems = [
       display: none !important;
     }
   }
-
 
   /* SEO Growth System & Strategy Ladder Styling */
   .cs-strategy-thesis-card {
@@ -2291,7 +2277,6 @@ const seoProblems = [
     }
   }
 
-  /* Sticky Stepper Layout adjustments to look extra premium */
   @media (min-width: 900px) {
     .workflow-sidebar {
       flex: 0 0 280px;
@@ -2300,50 +2285,6 @@ const seoProblems = [
     .workflow-nav-item {
       cursor: pointer;
     }
-  }
-
-  /* Traffic Contribution Card */
-  .cs-contribution-card {
-    padding: 28px 32px;
-    text-align: center;
-  }
-
-  .cs-contribution-value {
-    font-size: clamp(2rem, 4vw, 2.8rem);
-    font-weight: 700;
-    color: var(--color-accent);
-    line-height: 1;
-    margin-bottom: 4px;
-    letter-spacing: -0.03em;
-  }
-
-  .cs-contribution-desc {
-    font-size: 0.9rem;
-    color: var(--color-muted-text);
-    font-weight: 600;
-    margin-bottom: 16px;
-  }
-
-  .cs-contribution-bar-wrap {
-    width: 100%;
-    height: 8px;
-    background: var(--color-muted-section);
-    border-radius: 4px;
-    overflow: hidden;
-    margin-bottom: 10px;
-  }
-
-  .cs-contribution-bar {
-    height: 100%;
-    background: var(--color-accent);
-    border-radius: 4px;
-    transition: width 1.5s ease;
-  }
-
-  .cs-contribution-note {
-    font-size: 0.85rem;
-    color: var(--color-muted-text);
-    font-weight: 600;
   }
 
   /* Search Demand Map Styles */
@@ -2422,7 +2363,216 @@ const seoProblems = [
     border-radius: var(--radius-sm);
   }
 
-  /* Interactive SERP Wins Showcase Styles */
+  @media (max-width: 1023.98px) {
+    .cs-demand-map-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+
+  /* Insights Grid */
+  .cs-insights-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cs-insight-card {
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .cs-insight-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .cs-insight-worked {
+    background: rgba(5, 150, 105, 0.08);
+    color: var(--color-success);
+    border: 1px solid rgba(5, 150, 105, 0.15);
+  }
+
+  .cs-insight-difficult {
+    background: rgba(193, 18, 31, 0.06);
+    color: var(--color-accent);
+    border: 1px solid rgba(193, 18, 31, 0.12);
+  }
+
+  .cs-insight-next {
+    background: rgba(17, 24, 39, 0.06);
+    color: var(--color-text);
+    border: 1px solid rgba(17, 24, 39, 0.12);
+  }
+
+  .cs-insight-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 10px;
+    line-height: 1.3;
+  }
+
+  .cs-insight-card p {
+    font-size: 0.95rem;
+    color: var(--color-muted-text);
+    line-height: 1.65;
+  }
+
+  @media (max-width: 1023.98px) {
+    .cs-insights-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+
+  /* ---- Rich Results Dashboard scoped layouts ---- */
+  .results-section .results-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(1rem, 1.5vw, 1.25rem);
+    align-items: stretch;
+  }
+
+  @media (max-width: 1023px) {
+    .results-section .results-summary-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .results-section .results-summary-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .results-section .metric-card {
+    min-width: 0;
+    min-height: clamp(150px, 15vw, 190px);
+    padding: clamp(1.25rem, 2vw, 1.75rem);
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+  }
+
+  .results-section .metric-number {
+    max-width: 100%;
+    white-space: nowrap;
+    font-size: clamp(2.3rem, 3.5vw, 3.6rem);
+    font-weight: 800;
+    color: var(--color-accent);
+    margin-bottom: 8px;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    overflow-wrap: normal;
+    word-break: keep-all;
+  }
+
+  .results-section .metric-label {
+    max-width: 12rem;
+    margin-inline: auto;
+    font-size: clamp(0.9rem, 1vw, 1.05rem);
+    font-weight: 600;
+    color: var(--color-muted-text);
+    line-height: 1.35;
+    text-wrap: balance;
+  }
+
+  .results-proof-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    align-items: start;
+    margin-top: 40px;
+  }
+
+  @media (min-width: 900px) {
+    .results-proof-grid {
+      grid-template-columns: minmax(320px, 0.9fr) minmax(400px, 1.1fr);
+      gap: 36px;
+    }
+    .results-sticky-column {
+      position: sticky;
+      top: 96px;
+      align-self: start;
+    }
+  }
+
+  /* Content scale card styling */
+  .content-scale-card {
+    margin-top: 24px;
+  }
+  .content-scale-desc {
+    font-size: 0.92rem;
+    color: var(--color-muted-text);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .content-scale-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .content-scale-item {
+    background: var(--color-bg);
+    padding: 14px 16px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .scale-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+  }
+  .scale-value {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--color-text);
+  }
+
+  /* Visual Evidence Cards Grid */
+  .results-evidence-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 32px;
+  }
+
+  @media (min-width: 1024px) {
+    .results-evidence-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      margin-top: 40px;
+    }
+  }
+
+  /* ---- Interactive Wins Board layout scoped styling ---- */
   .ranking-proof-layout {
     display: grid;
     grid-template-columns: 1fr;
@@ -2534,26 +2684,25 @@ const seoProblems = [
     white-space: nowrap;
     transition: all 0.2s ease;
     background: rgba(216, 207, 196, 0.2);
-    color: var(--color-text-muted, #666);
+    color: var(--color-muted-text);
     border: 1px solid rgba(216, 207, 196, 0.35);
   }
 
-  .rank-top1 {
+  /* Custom rank colors to align with Suối Tiên */
+  .rank-win {
     background: rgba(193, 18, 31, 0.05);
     color: var(--color-accent);
     border: 1px solid rgba(193, 18, 31, 0.15);
   }
-
-  .rank-top3 {
-    background: rgba(230, 95, 0, 0.05);
-    color: #c25c00;
-    border: 1px solid rgba(230, 95, 0, 0.15);
-  }
-
-  .rank-top5 {
+  .rank-tracked {
     background: rgba(30, 41, 59, 0.05);
     color: #1e293b;
     border: 1px solid rgba(30, 41, 59, 0.15);
+  }
+  .rank-signal {
+    background: rgba(5, 150, 105, 0.05);
+    color: #059669;
+    border: 1px solid rgba(5, 150, 105, 0.15);
   }
 
   .ranking-keyword-item.is-active .keyword-rank-badge {
@@ -2686,7 +2835,7 @@ const seoProblems = [
 
   @media (min-width: 900px) {
     .ranking-proof-layout {
-      grid-template-columns: minmax(360px, 0.85fr) minmax(600px, 1.3fr);
+      grid-template-columns: minmax(360px, 0.85fr) minmax(500px, 1.15fr);
       gap: 36px;
     }
 
@@ -2697,14 +2846,14 @@ const seoProblems = [
     }
 
     .serp-proof-frame {
-      min-height: 420px; /* laptop default */
+      min-height: 380px; /* laptop default */
       aspect-ratio: 16 / 10;
     }
   }
 
   @media (min-width: 1200px) {
     .serp-proof-frame {
-      min-height: 480px; /* desktop default */
+      min-height: 420px; /* desktop default */
     }
   }
 
@@ -2725,75 +2874,6 @@ const seoProblems = [
     .ranking-keyword-item {
       padding: 10px 14px;
       gap: 12px;
-    }
-  }
-
-  /* Insights Grid */
-  .cs-insights-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-top: 40px;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .cs-insight-card {
-    padding: 32px 28px;
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-  }
-
-  .cs-insight-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 16px;
-  }
-
-  .cs-insight-worked {
-    background: rgba(5, 150, 105, 0.08);
-    color: var(--color-success);
-    border: 1px solid rgba(5, 150, 105, 0.15);
-  }
-
-  .cs-insight-difficult {
-    background: rgba(193, 18, 31, 0.06);
-    color: var(--color-accent);
-    border: 1px solid rgba(193, 18, 31, 0.12);
-  }
-
-  .cs-insight-next {
-    background: rgba(17, 24, 39, 0.06);
-    color: var(--color-text);
-    border: 1px solid rgba(17, 24, 39, 0.12);
-  }
-
-  .cs-insight-card h3 {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--color-text);
-    margin: 0 0 10px;
-    line-height: 1.3;
-  }
-
-  .cs-insight-card p {
-    font-size: 0.95rem;
-    color: var(--color-muted-text);
-    line-height: 1.65;
-  }
-
-  @media (max-width: 1023.98px) {
-    .cs-insights-grid {
-      grid-template-columns: 1fr;
-      gap: 20px;
     }
   }
 </style>

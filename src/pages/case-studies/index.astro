@@ -1,0 +1,54 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BrandMarquee from "../../components/BrandMarquee.astro";
+import CaseStudiesFeaturedEditorial from "../../components/CaseStudiesFeaturedEditorial.astro";
+import ProjectHighlightsTabs from "../../components/ProjectHighlightsTabs.astro";
+
+const cvUrl = "/files/Bui_Truong_Thinh_CV_Revised.pdf";
+---
+
+
+<BaseLayout 
+  title="Case Studies & Dự án SEO | TruThrive" 
+  description="Xem qua các dự án SEO tiêu biểu tôi đã trực tiếp dẫn dắt hoặc tham gia thực thi trên các mô hình website B2B, B2C, giáo dục, giải trí."
+>
+  <!-- Section 1: Hero Section -->
+  <section class="section hero-section" style="padding-top: 80px; padding-bottom: 48px;">
+    <div class="container text-center" style="max-width: 800px; text-align: center; margin-inline: auto;">
+      <span class="pill" style="margin-bottom: 16px;">SEO Case Studies</span>
+      <h1 class="hero-title" style="font-size: clamp(2.3rem, 5vw, 3.5rem); line-height: 1.15; margin-bottom: 20px; font-weight: 800; letter-spacing: -0.02em; color: var(--color-text);">
+        Selected SEO Work, Built from Strategy to Execution
+      </h1>
+      <p class="hero-description" style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 40px; color: var(--color-muted-text); max-width: 680px; margin-inline: auto;">
+        Một số dự án SEO tiêu biểu tôi đã tham gia — tập trung vào vai trò, bài toán, hướng triển khai và kết quả đạt được.
+      </p>
+      <div class="btn-group center">
+        <a href="#featured-case-studies" class="btn btn-primary">Xem dự án nổi bật</a>
+        <a href="/seo-systems/" class="btn btn-secondary">Explore SEO Systems</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Featured Case Studies (Main Section) -->
+  <CaseStudiesFeaturedEditorial />
+
+  <BrandMarquee />
+
+  <!-- Section 3: Project Highlights (Secondary Section) -->
+  <ProjectHighlightsTabs />
+
+  <!-- Section 4: CTA Bridge (Short strategic banner) -->
+  <section class="section section-dark" style="padding: 80px 0; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+    <div class="container text-center" style="max-width: 800px; text-align: center; margin-inline: auto;">
+      <p class="section-kicker" style="color: rgba(255, 248, 240, 0.65);">See the systems behind the work</p>
+      <h2 class="section-title" style="color: var(--color-footer-text); margin-bottom: 20px;">Tìm hiểu cấu trúc hệ thống đằng sau các dự án này?</h2>
+      <p class="section-subtitle" style="color: rgba(255, 248, 240, 0.75); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">
+        Ngoài các dự án SEO thực tế, tôi cũng xây dựng workflow, checklist và internal tools để chuẩn hóa cách audit, content review và SEO execution.
+      </p>
+      <div class="btn-group center">
+        <a href="/seo-systems/" class="btn btn-primary">Explore SEO Systems →</a>
+        <a href={cvUrl} download class="btn btn-light" aria-label="Tải xuống CV của Bùi Trường Thịnh">Tải xuống CV</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

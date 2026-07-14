@@ -1,0 +1,872 @@
+---
+// src/components/ProjectHighlightsTabs.astro
+
+interface ImageItem {
+  src: string;
+  alt: string;
+  caption: string;
+}
+
+interface ProjectData {
+  id: string;
+  tabText: string;
+  tabMonogram: string;
+  title: string;
+  category: string;
+  role: string;
+  resultSummary: string;
+  keywords?: string[];
+  tags: string[];
+  images: ImageItem[];
+}
+
+const projects: ProjectData[] = [
+  {
+    id: "vh",
+    tabText: "Việt Hoa",
+    tabMonogram: "VH",
+    title: "Việt Hoa Packaging",
+    category: "B2B / Manufacturing / Plastic Packaging",
+    role: "SEO Freelancer",
+    resultSummary: "<strong>334</strong> keyword cam kết ghi nhận tăng trưởng; <strong>22%</strong> Top 5; <strong>42%</strong> Top 10; clicks <strong>+22%</strong>; CTR <strong>+52%</strong>.",
+    tags: ["Migration SEO", "Technical SEO"],
+    images: [] // Omitted: hides slider entirely
+  },
+  {
+    id: "gtv",
+    tabText: "GTVSEO",
+    tabMonogram: "GTV",
+    title: "GTVSEO",
+    category: "SEO / Agency Website",
+    role: "SEO Executive",
+    resultSummary: "<strong>125.000</strong> organic traffic; <strong>183</strong> ranking keywords; <strong>70%</strong> keyword trong nhóm Top 3.",
+    tags: ["Content Audit", "Agency SEO"],
+    images: [] // Omitted: hides slider entirely
+  },
+  {
+    id: "ahc",
+    tabText: "AHC Vietnam",
+    tabMonogram: "AHC",
+    title: "AHC Vietnam",
+    category: "Beauty / Cosmetics / YMYL",
+    role: "SEO Executive",
+    resultSummary: "<strong>3.800</strong> organic traffic ghi nhận đến tháng 09/2023.",
+    tags: ["YMYL SEO", "Topical Map"],
+    images: [] // Omitted: hides slider entirely
+  },
+  {
+    id: "vp",
+    tabText: "Vinpest",
+    tabMonogram: "VP",
+    title: "Vinpest",
+    category: "Pest Control / Local Service SEO",
+    role: "SEO Project Leader",
+    resultSummary: "Duy trì KPI từ khóa cam kết ở nhóm <strong>Top 3</strong> và <strong>Top 5</strong>.",
+    keywords: ["dịch vụ diệt côn trùng", "diệt mối tại Hà Nội", "dịch vụ diệt mối TPHCM", "công ty kiểm soát côn trùng"],
+    tags: ["Local SEO", "KPI Maintenance"],
+    images: [
+      {
+        src: "/img/beacons.ai_truongthinhseo_dolgrammar.png",
+        alt: "GSC performance snapshot - Vinpest Demo",
+        caption: "Minh chứng: Biểu đồ tăng trưởng clicks & impressions trên Search Console (Ảnh kiểm thử)"
+      }
+    ]
+  },
+  {
+    id: "vtb",
+    tabText: "VietinBank",
+    tabMonogram: "VTB",
+    title: "VietinBank",
+    category: "Banking / Finance / YMYL SEO",
+    role: "SEO Project Leader",
+    resultSummary: "Thúc đẩy 2 bộ từ khóa vào <strong>Top 3</strong>.",
+    keywords: ["thẻ visa signature là gì", "phí chuyển đổi ngoại tệ", "priority pass", "thẻ tín dụng cashback", "thẻ thanh toán quốc tế", "tài khoản số đẹp", "vay giấy phép kinh doanh", "vay hộ kinh doanh", "vay khởi nghiệp"],
+    tags: ["Banking SEO", "YMYL SEO"],
+    images: [
+      {
+        src: "/img/suoitien-traffic.jpg",
+        alt: "GSC Traffic growth - VietinBank Demo 1",
+        caption: "Minh chứng 1: Tăng trưởng Organic Traffic tổng thể từ hệ thống đo lường (Ảnh kiểm thử)"
+      },
+      {
+        src: "/img/suoitien-click-impression.jpg",
+        alt: "Keyword rankings - VietinBank Demo 2",
+        caption: "Minh chứng 2: Thứ hạng từ khóa cốt lõi đạt cam kết Top 3 (Ảnh kiểm thử)"
+      },
+      {
+        src: "/img/beacons.ai_truongthinhseo_aboutme.png",
+        alt: "Semrush organic visibility - VietinBank Demo 3",
+        caption: "Minh chứng 3: Báo cáo Organic Visibility & Keyword Distribution (Ảnh kiểm thử)"
+      }
+    ]
+  }
+];
+---
+
+<section id="explore-highlights" class="highlights-section section-muted" data-explore-highlights>
+  <div class="highlights-container">
+    <div class="section-heading highlights-header">
+      <p class="section-kicker">KHO DỰ ÁN BỔ TRỢ</p>
+      <h2 class="section-title">Dự án bổ trợ</h2>
+      <p class="section-subtitle">
+        Một số dự án bổ trợ thể hiện kinh nghiệm SEO đa lĩnh vực, từ B2B, dịch vụ local, agency website đến Finance/YMYL.
+      </p>
+    </div>
+
+    <!-- Tab list row -->
+    <div class="highlights-tabs__list-wrapper">
+      <div class="highlights-tabs__list" role="tablist" aria-label="Danh sách dự án bổ trợ">
+        {projects.map((project, idx) => (
+          <button 
+            role="tab" 
+            aria-selected={idx === 0 ? "true" : "false"} 
+            aria-controls={`panel-${project.id}`} 
+            id={`tab-${project.id}`} 
+            tabindex={idx === 0 ? "0" : "-1"}
+            class={`highlights-tabs__tab ${idx === 0 ? "is-active" : ""}`}
+          >
+            <span class="highlights-tabs__tab-monogram">{project.tabMonogram}</span>
+            <span class="highlights-tabs__tab-text">{project.tabText}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Content Panel Card -->
+    <div class="highlights-tabs__panel-card">
+      {projects.map((project, idx) => (
+        <div 
+          role="tabpanel" 
+          id={`panel-${project.id}`} 
+          aria-labelledby={`tab-${project.id}`} 
+          class={`highlights-tabs__panel ${idx === 0 ? "is-active" : ""}`}
+          aria-hidden={idx === 0 ? "false" : "true"}
+        >
+          <div class="highlights-tabs__panel-content">
+            <!-- Top Row Header -->
+            <div class="highlights-tabs__panel-header">
+              <div>
+                <span class="highlights-tabs__panel-category">{project.category}</span>
+                <h3 class="highlights-tabs__panel-title">{project.title}</h3>
+              </div>
+              <div class="highlights-tabs__panel-role">
+                <span class="highlights-tabs__panel-role-label">Role:</span>
+                <strong class="highlights-tabs__panel-role-val">{project.role}</strong>
+              </div>
+            </div>
+
+            <!-- Middle Result Section -->
+            <div class="highlights-tabs__panel-result">
+              <span class="highlights-tabs__panel-section-label">Kết quả nổi bật</span>
+              <p class="highlights-tabs__panel-result-text" set:html={project.resultSummary} />
+            </div>
+
+            <!-- Keywords Section (Conditional) -->
+            {project.keywords && project.keywords.length > 0 && (
+              <div class="highlights-tabs__panel-keywords">
+                <span class="highlights-tabs__panel-section-label">Từ khóa tiêu biểu</span>
+                <p class="highlights-tabs__panel-keywords-text">
+                  {project.keywords.map((kw, kwIdx) => (
+                    <span>“{kw}”{kwIdx < project.keywords!.length - 1 ? ", " : ""}</span>
+                  ))}
+                </p>
+              </div>
+            )}
+
+            <!-- Tags Footer -->
+            <div class="highlights-tabs__panel-tags">
+              {project.tags.map((tag) => (
+                <span class="highlights-tabs__tag">{tag}</span>
+              ))}
+            </div>
+
+            <!-- New Image Slider Block (Conditional) -->
+            {project.images && project.images.length > 0 && (
+              <div class="highlights-tabs__slider-block">
+                <span class="highlights-tabs__panel-section-label">Minh chứng kết quả</span>
+                
+                <div class="highlights-tabs__slider" data-slider data-current-slide="0">
+                  <!-- Main Image Viewer -->
+                  <div class="highlights-tabs__slider-viewer">
+                    {project.images.map((img, imgIdx) => (
+                      <div 
+                        class={`highlights-tabs__slide ${imgIdx === 0 ? "is-active" : ""}`}
+                        data-slide-index={imgIdx}
+                        aria-hidden={imgIdx === 0 ? "false" : "true"}
+                      >
+                        <img src={img.src} alt={img.alt} loading="lazy" class="highlights-tabs__slide-img" />
+                      </div>
+                    ))}
+                  </div>
+
+                  <!-- Slider Metadata (Caption & Controls) Row -->
+                  {project.images.length > 1 ? (
+                    <div class="highlights-tabs__slider-meta-row">
+                      <!-- Active Caption Container -->
+                      <div class="highlights-tabs__slider-caption-container">
+                        {project.images.map((img, imgIdx) => (
+                          <p 
+                            class={`highlights-tabs__slider-caption-text ${imgIdx === 0 ? "is-active" : ""}`}
+                            data-slide-caption-index={imgIdx}
+                          >
+                            {img.caption}
+                          </p>
+                        ))}
+                      </div>
+
+                      <!-- Control Buttons & Counter Pill -->
+                      <div class="highlights-tabs__slider-controls">
+                        <button 
+                          type="button" 
+                          class="highlights-tabs__slider-btn btn-prev" 
+                          aria-label="Ảnh trước"
+                          data-slider-prev
+                        >
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="arrow-icon">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                          </svg>
+                        </button>
+                        
+                        <span class="highlights-tabs__slider-counter" data-slider-counter>
+                          1 / {project.images.length}
+                        </span>
+                        
+                        <button 
+                          type="button" 
+                          class="highlights-tabs__slider-btn btn-next" 
+                          aria-label="Ảnh tiếp theo"
+                          data-slider-next
+                        >
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="arrow-icon">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    // Single Image Caption Row
+                    project.images[0] && (
+                      <div class="highlights-tabs__slider-meta-row justify-center">
+                        <p class="highlights-tabs__slider-caption-text is-active text-center">
+                          {project.images[0].caption}
+                        </p>
+                      </div>
+                    )
+                  )}
+
+                  <!-- Optional Thumbnail Strip (only for 2+ images) -->
+                  {project.images.length > 1 && (
+                    <div class="highlights-tabs__slider-thumbnails">
+                      {project.images.map((img, imgIdx) => (
+                        <button
+                          type="button"
+                          aria-label={`Xem ảnh ${imgIdx + 1}`}
+                          class={`highlights-tabs__thumbnail-btn ${imgIdx === 0 ? "is-active" : ""}`}
+                          data-thumbnail-index={imgIdx}
+                        >
+                          <img src={img.src} alt={`Thumbnail ${imgIdx + 1}`} class="highlights-tabs__thumbnail-img" />
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* --- Section Container --- */
+  .highlights-section {
+    padding: var(--spacing-section-y) 0;
+    width: 100%;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 768px) {
+    .highlights-section {
+      padding: var(--spacing-section-y-mobile) 0;
+    }
+  }
+
+  .highlights-container {
+    width: min(100% - 48px, 1160px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .highlights-header {
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  /* --- Tab Bar Wrapper --- */
+  .highlights-tabs__list-wrapper {
+    width: 100%;
+    max-width: 840px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 12px;
+    position: relative;
+  }
+
+  /* Horizontal list */
+  .highlights-tabs__list {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .highlights-tabs__list::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* --- Tab Button --- */
+  .highlights-tabs__tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    height: 44px;
+    padding: 0 20px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--color-border);
+    background-color: #FFFFFF;
+    color: var(--color-muted-text);
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+    flex-shrink: 0;
+  }
+
+  .highlights-tabs__tab:hover {
+    background-color: rgba(193, 18, 31, 0.03);
+    border-color: rgba(193, 18, 31, 0.3);
+  }
+
+  .highlights-tabs__tab:focus-visible {
+    box-shadow: 0 0 0 3px rgba(193, 18, 31, 0.25);
+    border-color: var(--color-accent);
+  }
+
+  /* Tab Active State */
+  .highlights-tabs__tab.is-active {
+    background-color: rgba(193, 18, 31, 0.08) !important;
+    border: 2px solid var(--color-accent) !important;
+    color: var(--color-accent) !important;
+    font-weight: 700;
+  }
+
+  .highlights-tabs__tab-monogram {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    background: rgba(193, 18, 31, 0.08);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid rgba(193, 18, 31, 0.12);
+  }
+
+  .highlights-tabs__tab.is-active .highlights-tabs__tab-monogram {
+    background: var(--color-accent);
+    color: #FFFFFF;
+    border-color: var(--color-accent);
+  }
+
+  /* --- Panel Container Card --- */
+  .highlights-tabs__panel-card {
+    background-color: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    padding: 32px;
+    max-width: 840px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 768px) {
+    .highlights-tabs__panel-card {
+      padding: 24px;
+    }
+  }
+
+  /* --- Panel --- */
+  .highlights-tabs__panel {
+    display: none;
+    opacity: 0;
+  }
+
+  .highlights-tabs__panel.is-active {
+    display: block;
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .highlights-tabs__panel {
+      transition: opacity 0.25s ease;
+    }
+  }
+
+  .highlights-tabs__panel-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Header structure */
+  .highlights-tabs__panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .highlights-tabs__panel-category {
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: block;
+  }
+
+  .highlights-tabs__panel-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--color-text);
+    margin: 4px 0 0 0;
+    line-height: 1.25;
+  }
+
+  /* Role Badge */
+  .highlights-tabs__panel-role {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 0.82rem;
+  }
+
+  .highlights-tabs__panel-role-label {
+    color: var(--color-muted-text);
+  }
+
+  .highlights-tabs__panel-role-val {
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+
+  /* Sections */
+  .highlights-tabs__panel-section-label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--color-text);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+
+  .highlights-tabs__panel-result {
+    margin-bottom: 18px;
+  }
+
+  .highlights-tabs__panel-result-text {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  /* Keywords */
+  .highlights-tabs__panel-keywords {
+    margin-bottom: 18px;
+  }
+
+  .highlights-tabs__panel-keywords-text {
+    font-size: 0.94rem;
+    line-height: 1.55;
+    color: var(--color-muted-text);
+    font-style: italic;
+    margin: 0;
+  }
+
+  /* Tags */
+  .highlights-tabs__panel-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 18px;
+    border-top: 1px dashed var(--color-border);
+    padding-top: 16px;
+  }
+
+  .highlights-tabs__tag {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--color-muted-text);
+    background-color: var(--color-bg);
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+  }
+
+  /* --- Image Slider Block --- */
+  .highlights-tabs__slider-block {
+    margin-top: 24px;
+    border-top: 1px dashed var(--color-border);
+    padding-top: 20px;
+  }
+
+  .highlights-tabs__slider {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .highlights-tabs__slider-viewer {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-bg);
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.02);
+  }
+
+  .highlights-tabs__slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  .highlights-tabs__slide.is-active {
+    display: block;
+  }
+
+  .highlights-tabs__slide-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: #FDFBF7;
+    display: block;
+  }
+
+  /* Meta & Controls Row */
+  .highlights-tabs__slider-meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+
+  .highlights-tabs__slider-meta-row.justify-center {
+    justify-content: center;
+  }
+
+  .highlights-tabs__slider-caption-container {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .highlights-tabs__slider-caption-text {
+    display: none;
+    font-size: 0.82rem;
+    color: var(--color-muted-text);
+    font-style: italic;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .highlights-tabs__slider-caption-text.is-active {
+    display: block;
+  }
+
+  .highlights-tabs__slider-caption-text.text-center {
+    text-align: center;
+  }
+
+  /* Controls Pill */
+  .highlights-tabs__slider-controls {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    padding: 4px 8px;
+    border-radius: var(--radius-pill);
+    flex-shrink: 0;
+  }
+
+  .highlights-tabs__slider-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    background-color: #FFFFFF;
+    color: var(--color-text);
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    outline: none;
+  }
+
+  .highlights-tabs__slider-btn:hover {
+    background-color: rgba(193, 18, 31, 0.05);
+    border-color: rgba(193, 18, 31, 0.3);
+    color: var(--color-accent);
+  }
+
+  .highlights-tabs__slider-btn:focus-visible {
+    box-shadow: 0 0 0 2px rgba(193, 18, 31, 0.25);
+    border-color: var(--color-accent);
+  }
+
+  .highlights-tabs__slider-counter {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--color-text);
+    font-variant-numeric: tabular-nums;
+    min-width: 38px;
+    text-align: center;
+    user-select: none;
+  }
+
+  .arrow-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* Thumbnail Row */
+  .highlights-tabs__slider-thumbnails {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: thin;
+  }
+
+  .highlights-tabs__thumbnail-btn {
+    width: 60px;
+    height: 42px;
+    padding: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: none;
+    cursor: pointer;
+    transition: border-color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+    opacity: 0.5;
+    flex-shrink: 0;
+    outline: none;
+  }
+
+  .highlights-tabs__thumbnail-btn:hover {
+    opacity: 0.8;
+    border-color: var(--color-accent);
+  }
+
+  .highlights-tabs__thumbnail-btn:focus-visible {
+    box-shadow: 0 0 0 2px rgba(193, 18, 31, 0.25);
+    border-color: var(--color-accent);
+    opacity: 1;
+  }
+
+  .highlights-tabs__thumbnail-btn.is-active {
+    opacity: 1;
+    border: 2px solid var(--color-accent);
+    transform: scale(1.05);
+  }
+
+  .highlights-tabs__thumbnail-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const wrapper = document.querySelector('[data-explore-highlights]');
+    if (!(wrapper instanceof HTMLElement)) return;
+
+    const list = wrapper.querySelector('[role="tablist"]');
+    if (!list) return;
+
+    const tabs = Array.from(list.querySelectorAll('[role="tab"]')) as HTMLButtonElement[];
+    const panels = Array.from(wrapper.querySelectorAll('[role="tabpanel"]')) as HTMLDivElement[];
+
+    let currentIdx = 0;
+
+    // --- Tab Switch Logic ---
+    const selectTab = (idx: number) => {
+      tabs.forEach((tab, i) => {
+        const isSelected = i === idx;
+        tab.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+        tab.setAttribute('tabindex', isSelected ? '0' : '-1');
+        if (isSelected) {
+          tab.classList.add('is-active');
+        } else {
+          tab.classList.remove('is-active');
+        }
+      });
+
+      panels.forEach((panel, i) => {
+        const isSelected = i === idx;
+        panel.setAttribute('aria-hidden', isSelected ? 'false' : 'true');
+        
+        if (isSelected) {
+          panel.classList.add('is-active');
+          // Reset slider inside this panel when switching tabs
+          resetSlider(panel);
+        } else {
+          panel.classList.remove('is-active');
+        }
+      });
+
+      currentIdx = idx;
+    };
+
+    tabs.forEach((tab, idx) => {
+      tab.addEventListener('click', (e) => {
+        e.preventDefault();
+        selectTab(idx);
+      });
+
+      tab.addEventListener('keydown', (e: KeyboardEvent) => {
+        let nextIdx = currentIdx;
+        
+        if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          nextIdx = (currentIdx + 1) % tabs.length;
+          tabs[nextIdx].focus();
+          selectTab(nextIdx);
+        } else if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          nextIdx = (currentIdx - 1 + tabs.length) % tabs.length;
+          tabs[nextIdx].focus();
+          selectTab(nextIdx);
+        } else if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          selectTab(idx);
+        }
+      });
+    });
+
+    // --- Slider Logic ---
+    const getActiveSlideIndex = (slider: HTMLElement): number => {
+      return parseInt(slider.getAttribute('data-current-slide') || '0', 10);
+    };
+
+    const resetSlider = (panel: HTMLElement) => {
+      const slider = panel.querySelector('[data-slider]');
+      if (slider instanceof HTMLElement) {
+        showSlide(slider, 0);
+      }
+    };
+
+    const showSlide = (slider: HTMLElement, slideIdx: number) => {
+      const slides = Array.from(slider.querySelectorAll('.highlights-tabs__slide')) as HTMLElement[];
+      const totalSlides = slides.length;
+      if (totalSlides === 0) return;
+
+      // Wrap around bounds
+      let targetIdx = slideIdx;
+      if (targetIdx < 0) targetIdx = totalSlides - 1;
+      if (targetIdx >= totalSlides) targetIdx = 0;
+
+      // Save index state on container
+      slider.setAttribute('data-current-slide', targetIdx.toString());
+
+      // Update slide display
+      slides.forEach((slide, idx) => {
+        const isActive = idx === targetIdx;
+        slide.classList.toggle('is-active', isActive);
+        slide.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+      });
+
+      // Update caption display
+      const captions = Array.from(slider.querySelectorAll('[data-slide-caption-index]')) as HTMLElement[];
+      captions.forEach((caption, idx) => {
+        caption.classList.toggle('is-active', idx === targetIdx);
+      });
+
+      // Update counter
+      const counter = slider.querySelector('[data-slider-counter]');
+      if (counter) {
+        counter.textContent = `${targetIdx + 1} / ${totalSlides}`;
+      }
+
+      // Update thumbnail active states
+      const thumbnails = Array.from(slider.querySelectorAll('[data-thumbnail-index]')) as HTMLElement[];
+      thumbnails.forEach((thumb, idx) => {
+        const isActive = idx === targetIdx;
+        thumb.classList.toggle('is-active', isActive);
+      });
+    };
+
+    // Initialize all sliders inside panels
+    panels.forEach((panel) => {
+      const slider = panel.querySelector('[data-slider]');
+      if (!(slider instanceof HTMLElement)) return;
+
+      const prevBtn = slider.querySelector('[data-slider-prev]');
+      const nextBtn = slider.querySelector('[data-slider-next]');
+      const thumbnails = Array.from(slider.querySelectorAll('[data-thumbnail-index]')) as HTMLElement[];
+
+      const getSlideCount = () => {
+        return slider.querySelectorAll('.highlights-tabs__slide').length;
+      };
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const total = getSlideCount();
+          const current = getActiveSlideIndex(slider);
+          showSlide(slider, (current - 1 + total) % total);
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const total = getSlideCount();
+          const current = getActiveSlideIndex(slider);
+          showSlide(slider, (current + 1) % total);
+        });
+      }
+
+      thumbnails.forEach((thumb, idx) => {
+        thumb.addEventListener('click', (e) => {
+          e.preventDefault();
+          showSlide(slider, idx);
+        });
+      });
+    });
+  });
+</script>

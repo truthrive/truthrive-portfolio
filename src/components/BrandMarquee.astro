@@ -1,0 +1,52 @@
+---
+import { brandLogos } from '../data/brandLogos';
+---
+
+<section class="brand-marquee" aria-label="Các dự án tôi đã tham gia">
+  <div class="container">
+    <div class="brand-marquee__header">
+      <h2>Các dự án tôi đã tham gia</h2>
+      <p>Một số thương hiệu, website và hệ sinh thái nội dung tôi từng tham gia triển khai SEO, content, technical audit, project coordination hoặc workflow tối ưu.</p>
+    </div>
+  </div>
+  
+  <div class="brand-marquee__viewport">
+    <div class="brand-marquee__track">
+      {/* Original set of logos */}
+      {brandLogos.map((logo) => (
+        <div class="brand-marquee__item" title={logo.name}>
+          {logo.logoSrc ? (
+            <img 
+              src={logo.logoSrc} 
+              alt={logo.alt} 
+              class="brand-marquee__logo" 
+              loading="lazy" 
+            />
+          ) : (
+            <div class="brand-marquee__placeholder">
+              <span class="brand-marquee__placeholder-text">{logo.name}</span>
+            </div>
+          )}
+        </div>
+      ))}
+      
+      {/* Duplicated set for seamless infinite loop (hidden from assistive technologies) */}
+      {brandLogos.map((logo) => (
+        <div class="brand-marquee__item" aria-hidden="true" title={logo.name}>
+          {logo.logoSrc ? (
+            <img 
+              src={logo.logoSrc} 
+              alt={logo.alt} 
+              class="brand-marquee__logo" 
+              loading="lazy" 
+            />
+          ) : (
+            <div class="brand-marquee__placeholder">
+              <span class="brand-marquee__placeholder-text">{logo.name}</span>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

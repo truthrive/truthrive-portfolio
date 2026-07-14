@@ -1,0 +1,1960 @@
+---
+// src/pages/seo-systems/index.astro
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const cvUrl = "/files/Bui_Truong_Thinh_CV_Revised.pdf";
+
+interface ToolItem {
+  id: string;
+  name: string;
+  status: "Built" | "In Development";
+  positioning: string;
+  icon: string;
+  for: string;
+  solves: string;
+  input: string;
+  logic: string;
+  review: string;
+  outputStep: string;
+  outputDesc: string;
+  ctaText: string;
+  ctaLink: string;
+  ctaDisabled?: boolean;
+}
+
+const builtTools: ToolItem[] = [
+  {
+    id: "content-audit",
+    name: "Content Audit Tool",
+    status: "Built",
+    positioning: "Chuẩn hóa kiểm duyệt chất lượng nội dung & Search Intent hàng loạt.",
+    icon: "📋",
+    for: "SEO Specialist, Content Lead, Project Leader",
+    solves: "Content audit thủ công dễ thiếu tiêu chí, khó định lượng và khó đồng bộ chất lượng giữa các thành viên.",
+    input: "URL + Keyword",
+    logic: "Audit Checklist",
+    review: "Search Intent Match",
+    outputStep: "Refresh Priority",
+    outputDesc: "Danh sách khoảng trống nội dung (content gap), lỗi on-page và thứ tự ưu tiên tối ưu lại.",
+    ctaText: "View workflow",
+    ctaLink: "#philosophy"
+  },
+  {
+    id: "logfile-audit",
+    name: "Logfile Audit Tool",
+    status: "Built",
+    positioning: "Phân tích hành vi cào dữ liệu thực tế của Googlebot để tối ưu crawl budget.",
+    icon: "⚙️",
+    for: "Technical SEO, SEO Project Leader",
+    solves: "Khó nhận diện crawl waste, bot behavior và lỗi phản hồi thực tế từ Googlebot nếu chỉ giả lập cào.",
+    input: "Raw Logfile",
+    logic: "User-Agent Filter",
+    review: "URL Grouping",
+    outputStep: "Crawl Optimization",
+    outputDesc: "Báo cáo phân bổ lượt crawl, danh sách mẫu URL lãng phí và đề xuất cải thiện cấu trúc.",
+    ctaText: "View logic",
+    ctaLink: "#philosophy"
+  },
+  {
+    id: "textlink-filter",
+    name: "Textlink Filtering Tool",
+    status: "Built",
+    positioning: "Tự động hóa lọc & đánh giá chất lượng URL đặt textlink theo bộ tiêu chuẩn.",
+    icon: "🔗",
+    for: "SEO Specialist, Off-page SEO, Project Leader",
+    solves: "Lọc danh sách URL đặt textlink thủ công mất thời gian và dễ chọn nhầm URL kém chất lượng.",
+    input: "Raw URLs + Keyword",
+    logic: "Rule Filtering",
+    review: "Quality Check",
+    outputStep: "Link Shortlist",
+    outputDesc: "Danh sách URL sạch đạt chuẩn chất lượng và file order textlink tự động cho dự án.",
+    ctaText: "View demo snapshot",
+    ctaLink: "#philosophy"
+  },
+  {
+    id: "portfolio-system",
+    name: "Personal SEO Portfolio System",
+    status: "Built",
+    positioning: "Hệ thống quản lý thông tin năng lực, dự án và case study chuẩn SEO.",
+    icon: "💼",
+    for: "SEO Specialist, freelancer, personal brand",
+    solves: "Thiếu cấu trúc chuyên nghiệp để trình bày các case study sâu sắc và chứng minh tư duy hệ thống.",
+    input: "Case Study Data",
+    logic: "Design Rules",
+    review: "Layout Check",
+    outputStep: "SEO Portfolio Site",
+    outputDesc: "Trang web portfolio chuẩn SEO, Case Study hub trực quan và project highlight tabs.",
+    ctaText: "View live page",
+    ctaLink: "/case-studies/"
+  }
+];
+
+const devTools: ToolItem[] = [
+  {
+    id: "technical-audit",
+    name: "Technical Audit Tool",
+    status: "In Development",
+    positioning: "Quản lý và gom nhóm lỗi technical tự động theo mức độ nghiêm trọng.",
+    icon: "🛠️",
+    for: "Technical SEO, SEO Project Leader",
+    solves: "Lỗi technical bị phân tán ở nhiều checklist, crawl exports và notes thủ công.",
+    input: "Crawl Data",
+    logic: "Rule Engine",
+    review: "Issue Classify",
+    outputStep: "Action Plan",
+    outputDesc: "Danh sách lỗi kỹ thuật phân nhóm, độ ưu tiên xử lý và chỉ định template.",
+    ctaText: "Coming soon",
+    ctaLink: "#dev-tools",
+    ctaDisabled: true
+  },
+  {
+    id: "reporting-system",
+    name: "SEO Reporting System",
+    status: "In Development",
+    positioning: "Tự động tổng hợp và ánh xạ KPI từ GSC, rankings và traffic định kỳ.",
+    icon: "📊",
+    for: "Project Leader, SEO team, Client Reporting",
+    solves: "Mất nhiều thời gian gom số liệu từ nhiều nguồn, tính lũy kế và viết báo cáo thủ công.",
+    input: "GSC + Rankings",
+    logic: "KPI Mapping",
+    review: "Period Compare",
+    outputStep: "Dashboard Reports",
+    outputDesc: "Báo cáo tiến độ KPI tự động, biểu đồ tăng trưởng và ghi chú đề xuất chiến dịch.",
+    ctaText: "Coming soon",
+    ctaLink: "#dev-tools",
+    ctaDisabled: true
+  }
+];
+
+const allTools = [...builtTools, ...devTools];
+---
+
+<BaseLayout 
+  title="SEO Tools & Internal Systems | TruThrive" 
+  description="Khám phá các công cụ và hệ thống tối ưu nội bộ được thiết kế và xây dựng để quy chuẩn hóa audit, lọc dữ liệu và tăng hiệu suất vận hành SEO thực tế."
+>
+  <!-- Section 1: Hero Section -->
+  <section class="section systems-hero" id="top">
+    <div class="container systems-hero__inner">
+      <span class="pill">SEO Tools & Systems</span>
+      <h1 class="systems-hero__title">
+        SEO Tools & Internal Systems
+      </h1>
+      <p class="systems-hero__desc">
+        Các công cụ tôi tự xây từ nhu cầu thực tế khi triển khai nhiều dự án SEO: giảm thao tác thủ công, chuẩn hóa audit và giúp SEO team ra quyết định nhanh hơn.
+      </p>
+      <div class="systems-hero__chips">
+        <span class="hero-chip">Built from real SEO operations</span>
+        <span class="hero-chip">Audit, logfile, textlink & reporting workflows</span>
+        <span class="hero-chip">Designed for SEO Specialist / Project Leader</span>
+      </div>
+      <div class="btn-group center" style="margin-top: 28px;">
+        <a href="#tool-explorer" class="btn btn-primary">Khám phá tools</a>
+        <a href="#dev-tools" class="btn btn-outline">Tools đang phát triển</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Why I Build These Tools -->
+  <section class="section systems-why">
+    <div class="container">
+      <div class="systems-why__heading">
+        <p class="section-kicker">Bối cảnh</p>
+        <h2 class="section-title">Vì sao tôi xây các công cụ này?</h2>
+        <p class="section-subtitle">
+          Mỗi tool được tạo ra từ một vấn đề vận hành SEO thực tế: thao tác lặp lại, dữ liệu phân tán và chất lượng audit khó đồng bộ.
+        </p>
+      </div>
+      <div class="systems-why__grid">
+        <div class="why-block">
+          <span class="why-block__icon">⚡</span>
+          <h3 class="why-block__title">Reduce Manual Work</h3>
+          <p class="why-block__desc">Giảm các thao tác lọc, kiểm tra, copy/paste và tổng hợp dữ liệu thủ công.</p>
+        </div>
+        <div class="why-block">
+          <span class="why-block__icon">✅</span>
+          <h3 class="why-block__title">Standardize Audit Quality</h3>
+          <p class="why-block__desc">Chuẩn hóa input, rule, review layer và output để kết quả audit nhất quán hơn.</p>
+        </div>
+        <div class="why-block">
+          <span class="why-block__icon">🎯</span>
+          <h3 class="why-block__title">Support Better SEO Decisions</h3>
+          <p class="why-block__desc">Tool không thay thế tư duy SEO, mà giúp SEOer nhìn vấn đề nhanh và có cơ sở dữ liệu hơn.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Tool Explorer Workspace -->
+  <section class="section" id="tool-explorer" style="padding-top: 24px; padding-bottom: 80px; scroll-margin-top: 80px;">
+    <div class="container">
+      
+      <div class="workspace-heading">
+        <h2 class="workspace-heading__title">Tool Explorer</h2>
+        <p class="workspace-heading__subtitle">
+          Các công cụ tôi xây để chuẩn hóa audit, lọc dữ liệu, phân tích kỹ thuật và tăng tốc vận hành SEO.
+        </p>
+      </div>
+
+      <!-- ================== DESKTOP: Vertical Tab Workspace ================== -->
+      <div class="workspace-desktop" aria-label="SEO Tools Workspace">
+        <!-- LEFT: Tool Index Panel -->
+        <div class="tool-index-panel" role="tablist" aria-orientation="vertical">
+          <div class="tool-group-label">Built & Available</div>
+          {builtTools.map((tool, idx) => (
+            <button 
+              class={`tool-tab ${idx === 0 ? "is-active" : ""}`}
+              role="tab"
+              aria-selected={idx === 0 ? "true" : "false"}
+              aria-controls={`desktop-panel-${tool.id}`}
+              id={`desktop-tab-${tool.id}`}
+              tabindex={idx === 0 ? "0" : "-1"}
+              data-tool-id={tool.id}
+            >
+              <span class="tool-tab__icon">{tool.icon}</span>
+              <div class="tool-tab__text">
+                <span class="tool-tab__name">{tool.name}</span>
+                <span class="tool-tab__summary">{tool.positioning}</span>
+              </div>
+              <span class={`tool-badge tool-badge--${tool.status === "Built" ? "built" : "dev"}`}>{tool.status}</span>
+            </button>
+          ))}
+
+          <div class="tool-group-label" id="dev-tools">Under Development</div>
+          {devTools.map((tool) => (
+            <button 
+              class="tool-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls={`desktop-panel-${tool.id}`}
+              id={`desktop-tab-${tool.id}`}
+              tabindex="-1"
+              data-tool-id={tool.id}
+            >
+              <span class="tool-tab__icon">{tool.icon}</span>
+              <div class="tool-tab__text">
+                <span class="tool-tab__name">{tool.name}</span>
+                <span class="tool-tab__summary">{tool.positioning}</span>
+              </div>
+              <span class="tool-badge tool-badge--dev">{tool.status}</span>
+            </button>
+          ))}
+        </div>
+
+        <!-- RIGHT: Tool Detail Panel -->
+        <div class="tool-detail-panel">
+          {allTools.map((tool, idx) => (
+            <div 
+              class={`tool-detail ${idx === 0 ? "is-active" : ""}`}
+              role="tabpanel"
+              id={`desktop-panel-${tool.id}`}
+              aria-labelledby={`desktop-tab-${tool.id}`}
+              aria-hidden={idx === 0 ? "false" : "true"}
+            >
+              <div class="tool-detail__header">
+                <h3 class="tool-detail__title">{tool.name}</h3>
+                <span class={`tool-badge tool-badge--${tool.status === "Built" ? "built" : "dev"}`}>{tool.status}</span>
+              </div>
+              <p class="tool-detail__positioning">{tool.positioning}</p>
+
+              <!-- Visual Preview Area -->
+              <div class="tool-detail__preview">
+                {tool.id === "content-audit" && (
+                  <div class="preview-mock preview-mock--content-audit">
+                    <div class="mock-header">
+                      <span class="mock-tag">URL Audit: /seo-strategy-v2</span>
+                      <span class="mock-badge">Intent: Information</span>
+                    </div>
+                    <div class="mock-score-row">
+                      <span class="mock-score-label">Priority SEO Score</span>
+                      <div class="mock-score-bar-wrapper">
+                        <div class="mock-score-bar" style="width: 85%;"></div>
+                      </div>
+                      <span class="mock-score-val">85/100</span>
+                    </div>
+                    <div class="mock-rows">
+                      <div class="mock-row">
+                        <span class="mock-row-title">Search Intent Coverage</span>
+                        <span class="mock-row-badge badge-warning">Needs Optimization</span>
+                      </div>
+                      <div class="mock-row">
+                        <span class="mock-row-title">Content Gap Analysis</span>
+                        <span class="mock-row-badge badge-error">Missing 3 LSI keywords</span>
+                      </div>
+                      <div class="mock-row">
+                        <span class="mock-row-title">Headings Structure (H2/H3)</span>
+                        <span class="mock-row-badge badge-success">Passed</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {tool.id === "logfile-audit" && (
+                  <div class="preview-mock preview-mock--logfile-audit">
+                    <div class="mock-header">
+                      <span class="mock-tag">Googlebot Activity Log</span>
+                      <span class="mock-badge">24h Crawl Stats</span>
+                    </div>
+                    <div class="mock-chart-row">
+                      <div class="mock-chart-bar" style="height: 30%;"></div>
+                      <div class="mock-chart-bar" style="height: 55%;"></div>
+                      <div class="mock-chart-bar" style="height: 40%;"></div>
+                      <div class="mock-chart-bar" style="height: 75%;"></div>
+                      <div class="mock-chart-bar" style="height: 25%;"></div>
+                      <div class="mock-chart-bar" style="height: 60%;"></div>
+                      <div class="mock-chart-bar" style="height: 45%;"></div>
+                      <div class="mock-chart-bar" style="height: 80%;"></div>
+                    </div>
+                    <div class="mock-chips">
+                      <span class="mock-chip active">Googlebot (Mobile)</span>
+                      <span class="mock-chip active">Googlebot (Desktop)</span>
+                      <span class="mock-chip muted">AhrefsBot (Blocked)</span>
+                    </div>
+                    <div class="mock-rows">
+                      <div class="mock-row">
+                        <span class="mock-row-title">/tag/* crawl waste detected</span>
+                        <span class="mock-row-badge badge-error">42% waste</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {tool.id === "textlink-filter" && (
+                  <div class="preview-mock preview-mock--textlink-filter">
+                    <div class="mock-header">
+                      <span class="mock-tag">Textlink URL Screener</span>
+                      <span class="mock-badge">Filter Active</span>
+                    </div>
+                    <div class="mock-table">
+                      <div class="table-header">
+                        <span>Domain URL</span>
+                        <span>Score</span>
+                        <span>Duplicate</span>
+                        <span>Select</span>
+                      </div>
+                      <div class="table-row">
+                        <span>agency-review.vn/seo</span>
+                        <span class="text-success">9.2</span>
+                        <span>No</span>
+                        <span class="text-accent">✓ Selected</span>
+                      </div>
+                      <div class="table-row">
+                        <span>forum-tech.net/post-1</span>
+                        <span class="text-error">4.1</span>
+                        <span class="text-error">Yes</span>
+                        <span class="text-muted">Filtered</span>
+                      </div>
+                      <div class="table-row">
+                        <span>tintuc-news.com/marketing</span>
+                        <span class="text-success">8.0</span>
+                        <span>No</span>
+                        <span class="text-accent">✓ Selected</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {tool.id === "portfolio-system" && (
+                  <div class="preview-mock preview-mock--portfolio">
+                    <div class="mock-header">
+                      <span class="mock-tag">SEO Portfolio Viewport</span>
+                      <span class="mock-badge">Static Mode</span>
+                    </div>
+                    <div class="mock-layout">
+                      <div class="mock-profile">
+                        <div class="mock-avatar"></div>
+                        <div class="mock-lines">
+                          <div class="mock-line short"></div>
+                          <div class="mock-line long"></div>
+                        </div>
+                      </div>
+                      <div class="mock-cards">
+                        <div class="mock-card">
+                          <div class="mock-card-title">Suối Tiên Case Study</div>
+                          <div class="mock-card-metric">+100% KPI</div>
+                        </div>
+                        <div class="mock-card">
+                          <div class="mock-card-title">DOL Grammar Case Study</div>
+                          <div class="mock-card-metric">66.8k traffic</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {tool.id === "technical-audit" && (
+                  <div class="preview-mock preview-mock--tech-audit">
+                    <div class="mock-header">
+                      <span class="mock-tag">Tech Crawl Diagnostics</span>
+                      <span class="mock-badge">Mock Mode</span>
+                    </div>
+                    <div class="mock-rows">
+                      <div class="mock-row">
+                        <span class="mock-row-title">404 Redirect Loops</span>
+                        <span class="mock-row-badge badge-error">Critical</span>
+                      </div>
+                      <div class="mock-row">
+                        <span class="mock-row-title">Missing Canonical URLs</span>
+                        <span class="mock-row-badge badge-error">High</span>
+                      </div>
+                      <div class="mock-row">
+                        <span class="mock-row-title">Missing Schema markup</span>
+                        <span class="mock-row-badge badge-warning">Medium</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {tool.id === "reporting-system" && (
+                  <div class="preview-mock preview-mock--reporting">
+                    <div class="mock-header">
+                      <span class="mock-tag">Client Performance Reporting</span>
+                      <span class="mock-badge">Active Sheet</span>
+                    </div>
+                    <div class="mock-metrics">
+                      <div class="metric-box">
+                        <span class="metric-title">GSC Organic Clicks</span>
+                        <span class="metric-val text-success">+32.4%</span>
+                      </div>
+                      <div class="metric-box">
+                        <span class="metric-title">KPI Achievement Rate</span>
+                        <span class="metric-val">94.8%</span>
+                      </div>
+                    </div>
+                    <div class="mock-progress-bar-wrapper">
+                      <div class="mock-progress-bar" style="width: 94%;"></div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <!-- Product metadata -->
+              <div class="tool-detail__meta">
+                <div class="tool-detail__meta-row">
+                  <span class="tool-detail__meta-label">Built for</span>
+                  <span class="tool-detail__meta-val">{tool.for}</span>
+                </div>
+                <div class="tool-detail__meta-row">
+                  <span class="tool-detail__meta-label">Solves</span>
+                  <span class="tool-detail__meta-val">{tool.solves}</span>
+                </div>
+                <div class="tool-detail__meta-row">
+                  <span class="tool-detail__meta-label">Output</span>
+                  <span class="tool-detail__meta-val"><strong>{tool.outputDesc}</strong></span>
+                </div>
+              </div>
+
+              <!-- Logic flow horizontal chain -->
+              <div class="tool-detail__logic">
+                <span class="tool-detail__logic-title">Logic Flow Pipeline</span>
+                <div class="tool-logic-flow__chips">
+                  <div class="logic-chip">
+                    <span class="logic-chip-label">Input</span>
+                    <span class="logic-chip-val">{tool.input}</span>
+                  </div>
+                  <div class="logic-arrow">→</div>
+                  <div class="logic-chip">
+                    <span class="logic-chip-label">Processing</span>
+                    <span class="logic-chip-val">{tool.logic}</span>
+                  </div>
+                  <div class="logic-arrow">→</div>
+                  <div class="logic-chip">
+                    <span class="logic-chip-label">Review</span>
+                    <span class="logic-chip-val">{tool.review}</span>
+                  </div>
+                  <div class="logic-arrow">→</div>
+                  <div class="logic-chip">
+                    <span class="logic-chip-label">Output</span>
+                    <span class="logic-chip-val">{tool.outputStep}</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- CTA -->
+              <div class="tool-detail__footer">
+                {tool.ctaDisabled ? (
+                  <span class="btn btn-secondary" style="opacity: 0.6; cursor: not-allowed;">{tool.ctaText}</span>
+                ) : (
+                  <a href={tool.ctaLink} class="btn btn-primary">{tool.ctaText} →</a>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- ================== MOBILE: Accordion Workspace ================== -->
+      <div class="workspace-mobile">
+        <div class="accordion-group-label">Built & Available</div>
+        {builtTools.map((tool, idx) => (
+          <div class={`accordion-item ${idx === 0 ? "is-open" : ""}`} data-tool-id={tool.id}>
+            <button 
+              class="accordion-trigger"
+              aria-expanded={idx === 0 ? "true" : "false"}
+              aria-controls={`mobile-panel-${tool.id}`}
+              id={`mobile-trigger-${tool.id}`}
+            >
+              <span class="accordion-trigger__icon">{tool.icon}</span>
+              <div class="accordion-trigger__text">
+                <span class="accordion-trigger__name">{tool.name}</span>
+              </div>
+              <span class={`tool-badge tool-badge--${tool.status === "Built" ? "built" : "dev"}`}>{tool.status}</span>
+              <span class="accordion-chevron" aria-hidden="true"></span>
+            </button>
+
+            <div 
+              class="accordion-panel"
+              id={`mobile-panel-${tool.id}`}
+              aria-labelledby={`mobile-trigger-${tool.id}`}
+              role="region"
+            >
+              <p class="accordion-panel__positioning">{tool.positioning}</p>
+
+              <!-- Visual Preview Area (same markup as desktop) -->
+              <div class="tool-detail__preview">
+                {tool.id === "content-audit" && (
+                  <div class="preview-mock preview-mock--content-audit">
+                    <div class="mock-header">
+                      <span class="mock-tag">URL Audit: /seo-strategy-v2</span>
+                      <span class="mock-badge">Intent: Information</span>
+                    </div>
+                    <div class="mock-score-row">
+                      <span class="mock-score-label">Priority SEO Score</span>
+                      <div class="mock-score-bar-wrapper">
+                        <div class="mock-score-bar" style="width: 85%;"></div>
+                      </div>
+                      <span class="mock-score-val">85/100</span>
+                    </div>
+                    <div class="mock-rows">
+                      <div class="mock-row">
+                        <span class="mock-row-title">Search Intent Coverage</span>
+                        <span class="mock-row-badge badge-warning">Needs Optimization</span>
+                      </div>
+                      <div class="mock-row">
+                        <span class="mock-row-title">Content Gap Analysis</span>
+                        <span class="mock-row-badge badge-error">Missing 3 LSI keywords</span>
+                      </div>
+                      <div class="mock-row">
+                        <span class="mock-row-title">Headings (H2/H3)</span>
+                        <span class="mock-row-badge badge-success">Passed</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {tool.id === "logfile-audit" && (
+                  <div class="preview-mock preview-mock--logfile-audit">
+                    <div class="mock-header">
+                      <span class="mock-tag">Googlebot Activity Log</span>
+                      <span class="mock-badge">24h Crawl Stats</span>
+                    </div>
+                    <div class="mock-chart-row">
+                      <div class="mock-chart-bar" style="height: 30%;"></div>
+                      <div class="mock-chart-bar" style="height: 55%;"></div>
+                      <div class="mock-chart-bar" style="height: 40%;"></div>
+                      <div class="mock-chart-bar" style="height: 75%;"></div>
+                      <div class="mock-chart-bar" style="height: 25%;"></div>
+                      <div class="mock-chart-bar" style="height: 60%;"></div>
+                      <div class="mock-chart-bar" style="height: 45%;"></div>
+                      <div class="mock-chart-bar" style="height: 80%;"></div>
+                    </div>
+                    <div class="mock-chips">
+                      <span class="mock-chip active">Googlebot (Mobile)</span>
+                      <span class="mock-chip active">Googlebot (Desktop)</span>
+                      <span class="mock-chip muted">AhrefsBot (Blocked)</span>
+                    </div>
+                    <div class="mock-rows">
+                      <div class="mock-row">
+                        <span class="mock-row-title">/tag/* crawl waste</span>
+                        <span class="mock-row-badge badge-error">42% waste</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {tool.id === "textlink-filter" && (
+                  <div class="preview-mock preview-mock--textlink-filter">
+                    <div class="mock-header">
+                      <span class="mock-tag">Textlink Screener</span>
+                      <span class="mock-badge">Filter Active</span>
+                    </div>
+                    <div class="mock-table">
+                      <div class="table-header">
+                        <span>Domain URL</span>
+                        <span>Score</span>
+                        <span>Dup</span>
+                        <span>Select</span>
+                      </div>
+                      <div class="table-row">
+                        <span>agency-review.vn/seo</span>
+                        <span class="text-success">9.2</span>
+                        <span>No</span>
+                        <span class="text-accent">✓</span>
+                      </div>
+                      <div class="table-row">
+                        <span>forum-tech.net/post-1</span>
+                        <span class="text-error">4.1</span>
+                        <span class="text-error">Yes</span>
+                        <span class="text-muted">—</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {tool.id === "portfolio-system" && (
+                  <div class="preview-mock preview-mock--portfolio">
+                    <div class="mock-header">
+                      <span class="mock-tag">SEO Portfolio Viewport</span>
+                      <span class="mock-badge">Static Mode</span>
+                    </div>
+                    <div class="mock-layout">
+                      <div class="mock-profile">
+                        <div class="mock-avatar"></div>
+                        <div class="mock-lines">
+                          <div class="mock-line short"></div>
+                          <div class="mock-line long"></div>
+                        </div>
+                      </div>
+                      <div class="mock-cards">
+                        <div class="mock-card">
+                          <div class="mock-card-title">Suối Tiên Case Study</div>
+                          <div class="mock-card-metric">+100% KPI</div>
+                        </div>
+                        <div class="mock-card">
+                          <div class="mock-card-title">DOL Grammar</div>
+                          <div class="mock-card-metric">66.8k traffic</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <!-- Compact metadata -->
+              <div class="tool-detail__meta">
+                <div class="tool-detail__meta-row">
+                  <span class="tool-detail__meta-label">Built for</span>
+                  <span class="tool-detail__meta-val">{tool.for}</span>
+                </div>
+                <div class="tool-detail__meta-row">
+                  <span class="tool-detail__meta-label">Solves</span>
+                  <span class="tool-detail__meta-val">{tool.solves}</span>
+                </div>
+                <div class="tool-detail__meta-row">
+                  <span class="tool-detail__meta-label">Output</span>
+                  <span class="tool-detail__meta-val"><strong>{tool.outputDesc}</strong></span>
+                </div>
+              </div>
+
+              <!-- Logic flow -->
+              <div class="tool-detail__logic">
+                <span class="tool-detail__logic-title">Logic Flow Pipeline</span>
+                <div class="tool-logic-flow__chips">
+                  <div class="logic-chip">
+                    <span class="logic-chip-label">Input</span>
+                    <span class="logic-chip-val">{tool.input}</span>
+                  </div>
+                  <div class="logic-arrow">↓</div>
+                  <div class="logic-chip">
+                    <span class="logic-chip-label">Processing</span>
+                    <span class="logic-chip-val">{tool.logic}</span>
+                  </div>
+                  <div class="logic-arrow">↓</div>
+                  <div class="logic-chip">
+                    <span class="logic-chip-label">Review</span>
+                    <span class="logic-chip-val">{tool.review}</span>
+                  </div>
+                  <div class="logic-arrow">↓</div>
+                  <div class="logic-chip">
+                    <span class="logic-chip-label">Output</span>
+                    <span class="logic-chip-val">{tool.outputStep}</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- CTA -->
+              <div class="tool-detail__footer">
+                {tool.ctaDisabled ? (
+                  <span class="btn btn-secondary" style="opacity: 0.6; cursor: not-allowed;">{tool.ctaText}</span>
+                ) : (
+                  <a href={tool.ctaLink} class="btn btn-primary">{tool.ctaText} →</a>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+
+        <div class="accordion-group-label" id="dev-tools-mobile">Under Development</div>
+        {devTools.map((tool) => (
+          <div class="accordion-item" data-tool-id={tool.id}>
+            <button 
+              class="accordion-trigger"
+              aria-expanded="false"
+              aria-controls={`mobile-panel-${tool.id}`}
+              id={`mobile-trigger-${tool.id}`}
+            >
+              <span class="accordion-trigger__icon">{tool.icon}</span>
+              <div class="accordion-trigger__text">
+                <span class="accordion-trigger__name">{tool.name}</span>
+              </div>
+              <span class="tool-badge tool-badge--dev">{tool.status}</span>
+              <span class="accordion-chevron" aria-hidden="true"></span>
+            </button>
+
+            <div 
+              class="accordion-panel"
+              id={`mobile-panel-${tool.id}`}
+              aria-labelledby={`mobile-trigger-${tool.id}`}
+              role="region"
+            >
+              <p class="accordion-panel__positioning">{tool.positioning}</p>
+
+              <div class="tool-detail__preview">
+                {tool.id === "technical-audit" && (
+                  <div class="preview-mock preview-mock--tech-audit">
+                    <div class="mock-header">
+                      <span class="mock-tag">Tech Crawl Diagnostics</span>
+                      <span class="mock-badge">Mock Mode</span>
+                    </div>
+                    <div class="mock-rows">
+                      <div class="mock-row">
+                        <span class="mock-row-title">404 Redirect Loops</span>
+                        <span class="mock-row-badge badge-error">Critical</span>
+                      </div>
+                      <div class="mock-row">
+                        <span class="mock-row-title">Missing Canonical URLs</span>
+                        <span class="mock-row-badge badge-error">High</span>
+                      </div>
+                      <div class="mock-row">
+                        <span class="mock-row-title">Missing Schema</span>
+                        <span class="mock-row-badge badge-warning">Medium</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {tool.id === "reporting-system" && (
+                  <div class="preview-mock preview-mock--reporting">
+                    <div class="mock-header">
+                      <span class="mock-tag">Performance Reporting</span>
+                      <span class="mock-badge">Active Sheet</span>
+                    </div>
+                    <div class="mock-metrics">
+                      <div class="metric-box">
+                        <span class="metric-title">GSC Organic Clicks</span>
+                        <span class="metric-val text-success">+32.4%</span>
+                      </div>
+                      <div class="metric-box">
+                        <span class="metric-title">KPI Achievement Rate</span>
+                        <span class="metric-val">94.8%</span>
+                      </div>
+                    </div>
+                    <div class="mock-progress-bar-wrapper">
+                      <div class="mock-progress-bar" style="width: 94%;"></div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div class="tool-detail__meta">
+                <div class="tool-detail__meta-row">
+                  <span class="tool-detail__meta-label">Built for</span>
+                  <span class="tool-detail__meta-val">{tool.for}</span>
+                </div>
+                <div class="tool-detail__meta-row">
+                  <span class="tool-detail__meta-label">Solves</span>
+                  <span class="tool-detail__meta-val">{tool.solves}</span>
+                </div>
+                <div class="tool-detail__meta-row">
+                  <span class="tool-detail__meta-label">Output</span>
+                  <span class="tool-detail__meta-val"><strong>{tool.outputDesc}</strong></span>
+                </div>
+              </div>
+
+              <div class="tool-detail__logic">
+                <span class="tool-detail__logic-title">Logic Flow Pipeline</span>
+                <div class="tool-logic-flow__chips">
+                  <div class="logic-chip">
+                    <span class="logic-chip-label">Input</span>
+                    <span class="logic-chip-val">{tool.input}</span>
+                  </div>
+                  <div class="logic-arrow">↓</div>
+                  <div class="logic-chip">
+                    <span class="logic-chip-label">Processing</span>
+                    <span class="logic-chip-val">{tool.logic}</span>
+                  </div>
+                  <div class="logic-arrow">↓</div>
+                  <div class="logic-chip">
+                    <span class="logic-chip-label">Review</span>
+                    <span class="logic-chip-val">{tool.review}</span>
+                  </div>
+                  <div class="logic-arrow">↓</div>
+                  <div class="logic-chip">
+                    <span class="logic-chip-label">Output</span>
+                    <span class="logic-chip-val">{tool.outputStep}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tool-detail__footer">
+                <span class="btn btn-secondary" style="opacity: 0.6; cursor: not-allowed;">{tool.ctaText}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <p class="workspace-note">
+        * Các công cụ này được thiết kế và lập trình hoàn toàn dựa trên kinh nghiệm giải quyết các bài toán vận hành thực tế của Senior SEO Specialist, không phải là sản phẩm thương mại thương hiệu (SaaS).
+      </p>
+
+    </div>
+  </section>
+
+  <!-- Section 3: System Design Philosophy -->
+  <section id="philosophy" class="section section-muted" style="border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding: 72px 0 88px 0; scroll-margin-top: 100px;">
+    <div class="container">
+      <div class="section-heading text-center" style="max-width: 800px; margin-bottom: 56px;">
+        <p class="section-kicker">Thiết kế hệ thống</p>
+        <h2 class="section-title">Triết lý xử lý dữ liệu</h2>
+        <p class="section-subtitle">
+          Quy trình thiết kế chung cho mọi cấu trúc công cụ tôi phát triển, đảm bảo đầu ra luôn chính xác và có giá trị hành động.
+        </p>
+      </div>
+
+      <div class="philosophy-pipeline">
+        <!-- Step 1 -->
+        <div class="philosophy-step">
+          <span class="philosophy-step-num">01</span>
+          <h3 class="philosophy-step-title">Input</h3>
+          <p class="philosophy-step-desc">
+            Dữ liệu từ GSC, crawl, logfile, keyword sheet hoặc sitemaps thô.
+          </p>
+        </div>
+
+        <div class="pipeline-arrow">
+          <span class="pipeline-arrow-desktop">→</span>
+          <span class="pipeline-arrow-mobile">↓</span>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="philosophy-step">
+          <span class="philosophy-step-num">02</span>
+          <h3 class="philosophy-step-title">Rules</h3>
+          <p class="philosophy-step-desc">
+            Bộ tiêu chí, quy tắc kiểm duyệt chuẩn hóa theo từng mục tiêu tối ưu.
+          </p>
+        </div>
+
+        <div class="pipeline-arrow">
+          <span class="pipeline-arrow-desktop">→</span>
+          <span class="pipeline-arrow-mobile">↓</span>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="philosophy-step">
+          <span class="philosophy-step-num">03</span>
+          <h3 class="philosophy-step-title">Scoring / Filtering</h3>
+          <p class="philosophy-step-desc">
+            Tự động sắp xếp mức độ ưu tiên, chấm điểm hoặc lọc bỏ dữ liệu nhiễu.
+          </p>
+        </div>
+
+        <div class="pipeline-arrow">
+          <span class="pipeline-arrow-desktop">→</span>
+          <span class="pipeline-arrow-mobile">↓</span>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="philosophy-step">
+          <span class="philosophy-step-num">04</span>
+          <h3 class="philosophy-step-title">Review Layer</h3>
+          <p class="philosophy-step-desc">
+            Chuyên viên kiểm duyệt lại để đảm bảo tính thực tiễn và ngữ cảnh dự án.
+          </p>
+        </div>
+
+        <div class="pipeline-arrow">
+          <span class="pipeline-arrow-desktop">→</span>
+          <span class="pipeline-arrow-mobile">↓</span>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="philosophy-step">
+          <span class="philosophy-step-num">05</span>
+          <h3 class="philosophy-step-title">Output</h3>
+          <p class="philosophy-step-desc">
+            Checklist hành động, shortlist hoặc dashboard chiến dịch sẵn sàng vận hành.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Final CTA Section -->
+  <section class="section section-dark" style="padding: 80px 0; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+    <div class="container text-center" style="max-width: 800px; text-align: center; margin-inline: auto;">
+      <p class="section-kicker" style="color: rgba(255, 248, 240, 0.65);">Áp dụng thực tế</p>
+      <h2 class="section-title" style="color: var(--color-footer-text); margin-bottom: 20px;">Muốn xem các tool này được dùng trong dự án thực tế?</h2>
+      <p class="section-subtitle" style="color: rgba(255, 248, 240, 0.75); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">
+        Xem cách tôi áp dụng tooling, workflow và SEO strategy trong các case study đã triển khai.
+      </p>
+      <div class="btn-group center">
+        <a href="/case-studies/" class="btn btn-primary">Xem Case Studies</a>
+        <a href={cvUrl} download class="btn btn-light" aria-label="Tải xuống CV của Bùi Trường Thịnh">Tải xuống CV</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* =============================================
+     HERO SECTION
+     ============================================= */
+  .systems-hero {
+    padding-top: 80px;
+    padding-bottom: 32px;
+  }
+
+  .systems-hero__inner {
+    max-width: 840px;
+    text-align: center;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .systems-hero__title {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    line-height: 1.15;
+    margin-bottom: 16px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .systems-hero__desc {
+    font-size: 1.08rem;
+    line-height: 1.7;
+    color: var(--color-muted-text);
+    text-align: center;
+    margin: 0 0 20px 0;
+    max-width: 700px;
+  }
+
+  .systems-hero__chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .hero-chip {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--color-muted-text);
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    padding: 5px 14px;
+    border-radius: var(--radius-pill);
+    white-space: nowrap;
+  }
+
+  /* =============================================
+     WHY I BUILD THESE TOOLS SECTION
+     ============================================= */
+  .systems-why {
+    padding-top: 24px;
+    padding-bottom: 40px;
+  }
+
+  .systems-why__heading {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 36px auto;
+  }
+
+  .systems-why__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 640px) {
+    .systems-why__grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+  }
+
+  .why-block {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 24px 20px;
+    box-shadow: var(--shadow-card);
+    text-align: center;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+
+  .why-block:hover {
+    box-shadow: var(--shadow-card-hover);
+    border-color: rgba(193, 18, 31, 0.2);
+  }
+
+  .why-block__icon {
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 10px;
+    line-height: 1;
+  }
+
+  .why-block__title {
+    font-size: 0.92rem;
+    font-weight: 800;
+    color: var(--color-text);
+    margin: 0 0 6px 0;
+  }
+
+  .why-block__desc {
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: var(--color-muted-text);
+    margin: 0;
+  }
+
+  /* =============================================
+     TOOL EXPLORER WORKSPACE — SCOPED STYLES
+     ============================================= */
+
+  /* --- Section heading --- */
+  .workspace-heading {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+  }
+
+  .workspace-heading__title {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: 800;
+    color: var(--color-text);
+    margin-bottom: 12px;
+  }
+
+  .workspace-heading__subtitle {
+    font-size: 1.05rem;
+    color: var(--color-muted-text);
+    line-height: 1.6;
+  }
+
+  /* --- Status badges (shared) --- */
+  .tool-badge {
+    font-size: 0.62rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: var(--radius-pill);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    user-select: none;
+    flex-shrink: 0;
+    line-height: 1.4;
+  }
+
+  .tool-badge--built {
+    background-color: rgba(193, 18, 31, 0.05);
+    color: var(--color-accent);
+    border: 1px solid rgba(193, 18, 31, 0.15);
+  }
+
+  .tool-badge--dev {
+    background-color: rgba(75, 85, 99, 0.05);
+    color: var(--color-muted-text);
+    border: 1px solid rgba(75, 85, 99, 0.15);
+  }
+
+  /* =============================================
+     DESKTOP: Vertical Tab Layout (>=769px)
+     ============================================= */
+  .workspace-mobile {
+    display: none;
+  }
+
+  .workspace-desktop {
+    display: grid;
+    grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+    gap: 32px;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* --- Left: Tool Index Panel --- */
+  .tool-index-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: sticky;
+    top: 100px;
+  }
+
+  .tool-group-label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--color-muted-text);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 12px 16px 4px 16px;
+    user-select: none;
+  }
+
+  .tool-group-label:not(:first-child) {
+    margin-top: 12px;
+    padding-top: 16px;
+    border-top: 1px solid var(--color-border);
+  }
+
+  /* --- Tab Trigger Button --- */
+  .tool-tab {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    padding: 14px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-card);
+    color: var(--color-text);
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    font-family: inherit;
+    font-size: inherit;
+  }
+
+  .tool-tab:hover {
+    background-color: rgba(193, 18, 31, 0.02);
+    border-color: rgba(193, 18, 31, 0.25);
+  }
+
+  .tool-tab:focus-visible {
+    box-shadow: 0 0 0 3px rgba(193, 18, 31, 0.25);
+    border-color: var(--color-accent);
+  }
+
+  .tool-tab.is-active {
+    background-color: rgba(193, 18, 31, 0.04);
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .tool-tab.is-active::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: var(--color-accent);
+    border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+  }
+
+  .tool-tab__icon {
+    font-size: 1.3rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .tool-tab__text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .tool-tab__name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-text);
+    line-height: 1.3;
+  }
+
+  .tool-tab__summary {
+    font-size: 0.72rem;
+    color: var(--color-muted-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4;
+  }
+
+  /* --- Right: Tool Detail Panel --- */
+  .tool-detail-panel {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    padding: 40px;
+    min-height: 500px;
+  }
+
+  .tool-detail {
+    display: none;
+  }
+
+  .tool-detail.is-active {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .tool-detail__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .tool-detail__title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .tool-detail__positioning {
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--color-muted-text);
+    margin: 0;
+    font-weight: 600;
+  }
+
+  /* --- Metadata section --- */
+  .tool-detail__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .tool-detail__meta-row {
+    font-size: 0.92rem;
+    line-height: 1.5;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .tool-detail__meta-label {
+    font-weight: 800;
+    color: var(--color-muted-text);
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    min-width: 90px;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  .tool-detail__meta-val {
+    color: var(--color-text);
+  }
+
+  /* --- Logic flow pipeline --- */
+  .tool-detail__logic {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .tool-detail__logic-title {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--color-muted-text);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .tool-logic-flow__chips {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #FAF8F5;
+    border: 1px dashed var(--color-border);
+    padding: 14px 16px;
+    border-radius: var(--radius-sm);
+  }
+
+  .logic-chip {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 2px;
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    padding: 6px 12px;
+    border-radius: 6px;
+    flex: 1;
+    min-width: 80px;
+    text-align: center;
+  }
+
+  .logic-chip-label {
+    font-size: 0.58rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .logic-chip-val {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--color-text);
+    line-height: 1.25;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .logic-arrow {
+    color: var(--color-border);
+    font-weight: 800;
+    font-size: 0.9rem;
+    user-select: none;
+    flex-shrink: 0;
+  }
+
+  /* --- CTA Footer --- */
+  .tool-detail__footer {
+    border-top: 1px solid var(--color-border);
+    padding-top: 20px;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  /* =============================================
+     MOCK UI PREVIEWS (shared by both trees)
+     ============================================= */
+  .tool-detail__preview {
+    width: 100%;
+    min-height: 160px;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.02);
+  }
+
+  .preview-mock {
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+    font-family: monospace;
+    font-size: 0.72rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: var(--color-text);
+  }
+
+  .mock-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 6px;
+    color: var(--color-muted-text);
+    font-weight: 700;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .mock-tag {
+    font-weight: 800;
+    color: var(--color-accent);
+  }
+
+  .mock-badge {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 0.65rem;
+  }
+
+  .mock-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .mock-row {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    padding: 8px 12px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mock-row-title {
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .mock-row-badge {
+    font-size: 0.62rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .badge-success {
+    background-color: rgba(16, 185, 129, 0.08);
+    color: #10B981;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+  }
+
+  .badge-warning {
+    background-color: rgba(245, 158, 11, 0.08);
+    color: #F59E0B;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+  }
+
+  .badge-error {
+    background-color: rgba(193, 18, 31, 0.06);
+    color: var(--color-accent);
+    border: 1px solid rgba(193, 18, 31, 0.15);
+  }
+
+  /* Mock: Content Audit score */
+  .preview-mock--content-audit .mock-score-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    padding: 8px 12px;
+    border-radius: 4px;
+  }
+
+  .mock-score-label {
+    font-weight: 700;
+    color: var(--color-muted-text);
+    white-space: nowrap;
+  }
+
+  .mock-score-bar-wrapper {
+    flex: 1;
+    height: 6px;
+    background-color: var(--color-bg);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .mock-score-bar {
+    height: 100%;
+    background-color: var(--color-accent);
+  }
+
+  .mock-score-val {
+    font-weight: 800;
+    color: var(--color-accent);
+    white-space: nowrap;
+  }
+
+  /* Mock: Logfile Audit bar chart */
+  .preview-mock--logfile-audit .mock-chart-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: 52px;
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    padding: 8px 24px;
+    border-radius: 4px;
+  }
+
+  .mock-chart-bar {
+    width: 8%;
+    background-color: rgba(193, 18, 31, 0.25);
+    border-radius: 2px;
+    transition: background-color 0.2s;
+  }
+
+  .mock-chart-bar:hover,
+  .mock-chart-bar:nth-child(4),
+  .mock-chart-bar:nth-child(8) {
+    background-color: var(--color-accent);
+  }
+
+  .mock-chips {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .mock-chip {
+    font-size: 0.62rem;
+    padding: 2px 8px;
+    border-radius: 3px;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-card);
+    font-weight: 600;
+  }
+
+  .mock-chip.active {
+    color: var(--color-accent);
+    border-color: rgba(193, 18, 31, 0.25);
+    background-color: rgba(193, 18, 31, 0.03);
+  }
+
+  .mock-chip.muted {
+    opacity: 0.45;
+    text-decoration: line-through;
+  }
+
+  /* Mock: Textlink Filter table */
+  .preview-mock--textlink-filter .mock-table {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .table-header,
+  .table-row {
+    display: grid;
+    grid-template-columns: 2.2fr 1fr 1fr 1fr;
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--color-border);
+    align-items: center;
+  }
+
+  .table-header {
+    background-color: var(--color-bg);
+    font-weight: 800;
+    color: var(--color-muted-text);
+  }
+
+  .table-row:last-child {
+    border-bottom: none;
+  }
+
+  .text-success {
+    color: #10B981;
+    font-weight: 700;
+  }
+
+  .text-error {
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+
+  .text-accent {
+    color: var(--color-accent);
+    font-weight: 800;
+  }
+
+  .text-muted {
+    color: var(--color-muted-text);
+    opacity: 0.6;
+  }
+
+  /* Mock: Portfolio mockup */
+  .preview-mock--portfolio .mock-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+
+  .mock-profile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    padding: 6px 10px;
+    border-radius: 4px;
+  }
+
+  .mock-avatar {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--color-accent);
+    flex-shrink: 0;
+  }
+
+  .mock-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+  }
+
+  .mock-line {
+    height: 4px;
+    border-radius: 2px;
+    background-color: var(--color-border);
+  }
+
+  .mock-line.short {
+    width: 30%;
+    background-color: var(--color-text);
+  }
+
+  .mock-line.long {
+    width: 70%;
+  }
+
+  .mock-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .mock-card {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    padding: 6px 8px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .mock-card-title {
+    font-weight: 800;
+    font-size: 0.62rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .mock-card-metric {
+    font-size: 0.58rem;
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+
+  /* Mock: Technical Audit */
+  .preview-mock--tech-audit .mock-rows .mock-row-badge {
+    font-size: 0.62rem;
+  }
+
+  /* Mock: SEO Reporting dashboard */
+  .preview-mock--reporting .mock-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .metric-box {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    padding: 8px 12px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .metric-title {
+    font-size: 0.6rem;
+    color: var(--color-muted-text);
+    font-weight: 700;
+  }
+
+  .metric-val {
+    font-size: 0.88rem;
+    font-weight: 800;
+    color: var(--color-text);
+  }
+
+  .preview-mock--reporting .mock-progress-bar-wrapper {
+    height: 6px;
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 4px;
+  }
+
+  .preview-mock--reporting .mock-progress-bar {
+    height: 100%;
+    background-color: #10B981;
+  }
+
+  /* =============================================
+     MOBILE: Accordion Layout (<=768px)
+     ============================================= */
+  @media (max-width: 768px) {
+    .workspace-desktop {
+      display: none;
+    }
+
+    .workspace-mobile {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+
+  .accordion-group-label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--color-muted-text);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 12px 4px 4px 4px;
+    user-select: none;
+  }
+
+  .accordion-group-label:not(:first-child) {
+    margin-top: 8px;
+    padding-top: 16px;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .accordion-item {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    transition: border-color 0.2s;
+  }
+
+  .accordion-item.is-open {
+    border-color: var(--color-accent);
+  }
+
+  /* --- Accordion trigger --- */
+  .accordion-trigger {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    padding: 14px 16px;
+    border: none;
+    background: none;
+    color: var(--color-text);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    outline: none;
+    position: relative;
+    transition: background-color 0.2s;
+  }
+
+  .accordion-trigger:hover {
+    background-color: rgba(193, 18, 31, 0.02);
+  }
+
+  .accordion-trigger:focus-visible {
+    box-shadow: inset 0 0 0 3px rgba(193, 18, 31, 0.25);
+  }
+
+  .accordion-trigger__icon {
+    font-size: 1.2rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .accordion-trigger__text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .accordion-trigger__name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .accordion-chevron {
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid var(--color-muted-text);
+    border-bottom: 2px solid var(--color-muted-text);
+    transform: rotate(45deg);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  .accordion-item.is-open .accordion-chevron {
+    transform: rotate(-135deg);
+  }
+
+  /* --- Accordion panel --- */
+  .accordion-panel {
+    display: none;
+    padding: 0 16px 20px 16px;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .accordion-item.is-open .accordion-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 16px;
+  }
+
+  .accordion-panel__positioning {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--color-muted-text);
+    margin: 0;
+    font-weight: 600;
+  }
+
+  /* Mobile-specific logic flow: vertical stack */
+  @media (max-width: 768px) {
+    .tool-logic-flow__chips {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .logic-chip {
+      min-width: unset;
+    }
+
+    .logic-arrow {
+      text-align: center;
+    }
+
+    .tool-detail__meta-row {
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .tool-detail__meta-label {
+      min-width: unset;
+      margin-top: 0;
+    }
+
+    /* Compact mobile table */
+    .table-header,
+    .table-row {
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      font-size: 0.65rem;
+      padding: 4px 8px;
+    }
+  }
+
+  /* --- General note below workspace --- */
+  .workspace-note {
+    font-size: 0.85rem;
+    color: var(--color-muted-text);
+    font-style: italic;
+    margin-top: 32px;
+    text-align: center;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // ============ DESKTOP: Vertical Tab Switching ============
+    const desktopWorkspace = document.querySelector('.workspace-desktop');
+    if (desktopWorkspace) {
+      const tabs = Array.from(desktopWorkspace.querySelectorAll('.tool-tab')) as HTMLButtonElement[];
+      const panels = Array.from(desktopWorkspace.querySelectorAll('.tool-detail')) as HTMLElement[];
+
+      const activateDesktopTab = (targetId: string) => {
+        tabs.forEach((tab) => {
+          const isTarget = tab.getAttribute('data-tool-id') === targetId;
+          tab.classList.toggle('is-active', isTarget);
+          tab.setAttribute('aria-selected', isTarget ? 'true' : 'false');
+          tab.setAttribute('tabindex', isTarget ? '0' : '-1');
+        });
+
+        panels.forEach((panel) => {
+          const panelId = panel.id.replace('desktop-panel-', '');
+          const isTarget = panelId === targetId;
+          panel.classList.toggle('is-active', isTarget);
+          panel.setAttribute('aria-hidden', isTarget ? 'false' : 'true');
+        });
+      };
+
+      tabs.forEach((tab, idx) => {
+        tab.addEventListener('click', (e) => {
+          e.preventDefault();
+          const toolId = tab.getAttribute('data-tool-id');
+          if (toolId) activateDesktopTab(toolId);
+        });
+
+        tab.addEventListener('keydown', (e: KeyboardEvent) => {
+          let targetIdx = idx;
+
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            targetIdx = (idx + 1) % tabs.length;
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            targetIdx = (idx - 1 + tabs.length) % tabs.length;
+          } else if (e.key === 'Home') {
+            e.preventDefault();
+            targetIdx = 0;
+          } else if (e.key === 'End') {
+            e.preventDefault();
+            targetIdx = tabs.length - 1;
+          } else {
+            return;
+          }
+
+          tabs[targetIdx].focus();
+          const toolId = tabs[targetIdx].getAttribute('data-tool-id');
+          if (toolId) activateDesktopTab(toolId);
+        });
+      });
+    }
+
+    // ============ MOBILE: Accordion ============
+    const mobileWorkspace = document.querySelector('.workspace-mobile');
+    if (mobileWorkspace) {
+      const triggers = Array.from(mobileWorkspace.querySelectorAll('.accordion-trigger')) as HTMLButtonElement[];
+
+      triggers.forEach((trigger) => {
+        trigger.addEventListener('click', (e) => {
+          e.preventDefault();
+          const item = trigger.closest('.accordion-item') as HTMLElement;
+          if (!item) return;
+
+          const isAlreadyOpen = item.classList.contains('is-open');
+
+          // Close all accordion items
+          const allItems = Array.from(mobileWorkspace.querySelectorAll('.accordion-item')) as HTMLElement[];
+          allItems.forEach((accItem) => {
+            accItem.classList.remove('is-open');
+            const accTrigger = accItem.querySelector('.accordion-trigger') as HTMLButtonElement;
+            if (accTrigger) accTrigger.setAttribute('aria-expanded', 'false');
+          });
+
+          // Toggle the clicked item (if it wasn't already open)
+          if (!isAlreadyOpen) {
+            item.classList.add('is-open');
+            trigger.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+    }
+  });
+</script>

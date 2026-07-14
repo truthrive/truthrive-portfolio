@@ -1,21 +1,25 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { personSchema } from "../data/schema";
+import BrandMarquee from "../components/BrandMarquee.astro";
+
 
 const caseStudies = [
   {
     title: 'Suối Tiên',
     badge: 'Domain Migration · Tourism SEO',
-    logoSrc: null,
+    logoSrc: '/images/case-studies/suoi-tien-logo.png',
     logoAlt: 'Suối Tiên logo',
+    monogram: 'ST',
     status: 'available',
     href: '/case-studies/suoi-tien-seo/',
-    summary: 'Dự án di chuyển tên miền (migration) quy mô lớn từ suoitiien.com sang suoitiien.vn, bảo vệ hiệu suất kỹ thuật toàn diện và mở rộng tối đa tệp từ khóa phi thương hiệu.',
+    summary: 'Dự án di chuyển tên miền (migration) quy mô lớn từ suoitien.com sang suoitien.vn, bảo vệ hiệu suất kỹ thuật toàn diện và mở rộng tối đa tệp từ khóa phi thương hiệu.',
     challenge: [
-      'Bảo toàn hiệu suất khi di chuyển từ suoitiien.com sang suoitiien.vn',
+      'Bảo toàn hiệu suất khi di chuyển từ suoitien.com sang suoitien.vn',
       'Duy trì sức khỏe kỹ thuật và mở rộng tệp từ khóa phi thương hiệu'
     ],
     role: [
+      'Project Lead & Hands-on SEO Executive',
       'Technical Audit',
       'Migration Roadmap',
       'On-page Structure',
@@ -24,33 +28,78 @@ const caseStudies = [
     actions: [
       'Xây dựng bản đồ redirect 1:1 chi tiết',
       'Cấu hình tín hiệu thực thể và kỹ thuật di chuyển',
-      'Tối ưu Topical Map và hệ thống GSC/GA4'
+      'Tối ưu topical map và hệ thống GSC/GA4'
     ],
     metrics: [
-      { value: '32.198', label: 'Sessions (100,8% KPI)', countTo: '32198', format: 'vi-dot' },
-      { value: '77', label: 'Keywords Top 3 (35%)', countTo: '77' },
+      { value: '32.198', label: 'Sessions', countTo: '32198', format: 'vi-dot' },
+      { value: '77', label: 'Keywords Top 3', countTo: '77' },
       { value: '500', label: 'AIO Traffic (GA4)', countTo: '500' }
     ]
   },
   {
-    title: 'Content System SEO',
-    badge: 'Content Strategy · Topical Authority',
+    title: 'DOL Grammar',
+    badge: 'New Website SEO · Topical Authority',
     logoSrc: null,
-    logoAlt: '',
-    status: 'coming-soon',
-    summary: 'Xây dựng hệ thống nội dung chuyên sâu phục vụ chuyển đổi và xác lập Topical Authority ngành.',
-    chips: ['Content System', 'Topical Authority', 'Measurement']
+    logoAlt: 'DOL Grammar logo',
+    monogram: 'DOL',
+    status: 'available',
+    href: '/case-studies/dol-grammar-seo/',
+    summary: 'Dự án SEO cho grammar.dolenglish.vn từ giai đoạn launch, tập trung xây nền tảng topical authority, cấu trúc nội dung có khả năng mở rộng và quy trình tối ưu nội dung bền vững.',
+    challenge: [
+      'Website mới ra mắt cần xây dựng Topical Authority từ vạch số 0',
+      'Thiết lập cấu trúc nội dung và workflow sản xuất quy mô lớn'
+    ],
+    role: [
+      'Middle SEO / SEO Project Leader',
+      'SEO Strategy',
+      'KPI/OKR Planning',
+      'Topical Map & Site Structure',
+      'Content Optimization Workflow'
+    ],
+    actions: [
+      'Xây topical map và cấu trúc website theo cụm chủ đề Grammar',
+      'Chuẩn hóa tiêu chuẩn content, on-page và internal linking',
+      'Triển khai schema, author, PR/entity và kế hoạch live web'
+    ],
+    metrics: [
+      { value: '66.000', label: 'Organic Traffic', countTo: '66000', format: 'vi-dot' },
+      { value: '252', label: 'Ranking Keywords', countTo: '252' },
+      { value: '16%', label: 'Keywords Top 1–3', countTo: '16', suffix: '%' }
+    ]
   },
   {
-    title: 'Technical SEO Audit',
-    badge: 'Technical SEO · Crawl & Indexing',
+    title: 'Hoàng Long Computer',
+    badge: 'SEO Recovery · E-commerce SEO · AI/GEO Growth',
     logoSrc: null,
-    logoAlt: '',
-    status: 'coming-soon',
-    summary: 'Chẩn đoán và xử lý lỗi crawlability, indexing quy mô lớn cho website thương mại điện tử.',
-    chips: ['Technical SEO', 'Crawl', 'Indexing']
+    logoAlt: 'Hoàng Long Computer logo',
+    monogram: 'HLC',
+    status: 'available',
+    href: '/case-studies/hoang-long-computer-seo/',
+    summary: 'Dự án SEO e-commerce ngành PC/Gaming, kết hợp phục hồi hiệu suất, xác thực KPI và mở rộng tăng trưởng sau khi khách hàng tiếp tục ký hợp đồng 12 tháng.',
+    challenge: [
+      'Website gặp nhiều lỗi technical quan trọng do CMS tự code',
+      'Mở rộng ranking và traffic chất lượng cao có conversion events'
+    ],
+    role: [
+      'SEO Project Leader',
+      'KPI Planning & Forecasting',
+      'Technical Audit',
+      'Content Strategy',
+      'SEO Execution Direction'
+    ],
+    actions: [
+      'Chuẩn hóa KPI theo nhóm maintenance và growth keywords',
+      'Audit technical, content structure và search intent',
+      'Mở rộng SEO theo nhóm PC gaming, bộ PC, RTX, màn hình và linh kiện'
+    ],
+    metrics: [
+      { value: '356.547', label: 'Organic Traffic', countTo: '356547', format: 'vi-dot' },
+      { value: '7.406', label: 'AI/GEO Traffic', countTo: '7406', format: 'vi-dot' },
+      { value: '58.902', label: 'Conversion Events', countTo: '58902', format: 'vi-dot' }
+    ]
   }
 ];
+
 
 const capabilities = [
   {
@@ -97,17 +146,19 @@ const capabilities = [
   },
   {
     num: '04',
-    title: 'AI-assisted SEO Automation & GEO/AIO',
-    shortLabel: 'Tự động hóa & Sẵn sàng cho AI',
-    outcome: 'Tự động hóa các tác vụ lặp lại và chuẩn bị hệ thống SEO cho AI Search.',
-    explanation: 'Tôi viết các script tự động hóa để cắt giảm thời gian xử lý thủ công các tác vụ lặp lại, đồng thời tối ưu cấu trúc thực thể chuẩn bị cho kỷ nguyên tìm kiếm AI (GEO/AIO).',
+    title: 'SEO Systems & Automation',
+    shortLabel: 'Chuẩn hóa & Tự động hóa',
+    outcome: 'Quy chuẩn hóa quy trình thực thi SEO và tự động hóa tác vụ phân tích để scale hiệu quả organic.',
+    explanation: 'Tôi thiết kế các workflow, checklist, audit framework và internal tools giúp giảm thiểu sai sót thủ công, chuẩn hóa năng lực thực thi của đội ngũ và giải phóng thời gian phân tích dữ liệu lớn.',
     whatItSolves: [
-      'Tự động hóa việc theo dõi lỗi kỹ thuật và gửi thông báo cảnh báo sớm',
-      'Xây dựng các script tùy biến kết xuất dữ liệu qua API GSC, Semrush',
-      'Tối ưu hóa Entity và Schema cấu trúc nhằm tương thích với AI Search',
-      'Thiết kế dashboard báo cáo động giúp biến dữ liệu thành quyết định'
+      'Chuẩn hóa năng lực thực thi SEO giữa các nhân sự thông qua bộ quy chuẩn thông minh',
+      'Cắt giảm 80% thời gian xử lý thủ công các tác vụ lặp đi lặp lại bằng công cụ nội bộ',
+      'Tự động hóa logfile audit, content review, on-page và textlink filtering bằng script',
+      'Tối ưu hóa và giám sát tín hiệu thực thể chuẩn bị cho kỷ nguyên AI Search (GEO/AIO)'
     ],
-    chips: ['SEO Tooling', 'GEO/AIO', 'Apps Script', 'Entity SEO']
+    chips: ['SEO Tooling', 'Apps Script', 'AI Systems', 'Workflow Design'],
+    href: '/seo-systems/',
+    cta: 'Khám phá Hệ thống SEO →'
   }
 ];
 ---
@@ -122,11 +173,11 @@ const capabilities = [
           <h1 class="hero-title" style="font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 16px;">
             Bùi Trường Thịnh
             <span style="display: block; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: var(--color-accent); margin-top: 8px;">
-              Senior SEO Specialist / SEO Project Leader
+              Senior SEO Specialist
             </span>
           </h1>
           <p class="hero-description" style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 32px; color: var(--color-muted-text);">
-            Tôi đồng hành cùng doanh nghiệp xây dựng nền tảng tăng trưởng organic bền vững. Bằng sự kết hợp giữa Technical SEO chuyên sâu, chiến lược Content & Topical Authority tối ưu và các giải pháp SEO Automation hiện đại, tôi giúp tối ưu hóa hiệu suất và chuẩn bị sẵn sàng cho kỷ nguyên tìm kiếm AI (GEO/AIO).
+            Tôi xây dựng hệ thống tăng trưởng organic dựa trên Technical SEO, Content Strategy, dữ liệu đo lường và AI-assisted SEO workflows.
           </p>
           <div class="btn-group">
             <a href="#case-showcase-wrapper" class="btn btn-primary">Xem Case Studies</a>
@@ -141,7 +192,7 @@ const capabilities = [
               <span class="headshot-helper">Bùi Trường Thịnh</span>
             </div>
             <h3 style="text-align: center; margin-bottom: 4px;">Profile Overview</h3>
-            <p class="title" style="text-align: center; font-size: 0.95rem; color: var(--color-muted-text); margin-bottom: 20px;">SEO Project Leader</p>
+            <p class="title" style="text-align: center; font-size: 0.95rem; color: var(--color-muted-text); margin-bottom: 20px;">Senior SEO Specialist</p>
             <ul class="hero-focus-list" style="margin-bottom: 0; padding-top: 16px; border-top: 1px solid var(--color-border);">
               <li style="font-size: 0.95rem; margin-bottom: 10px; color: var(--color-text); font-weight: 500;"><span class="focus-icon" style="color: var(--color-accent); margin-right: 8px;">✓</span> Technical SEO & Site Architecture</li>
               <li style="font-size: 0.95rem; margin-bottom: 10px; color: var(--color-text); font-weight: 500;"><span class="focus-icon" style="color: var(--color-accent); margin-right: 8px;">✓</span> Content Strategy & Topical Authority</li>
@@ -178,6 +229,8 @@ const capabilities = [
     </div>
   </section>
 
+  <!-- Reusable Logo Marquee Section -->
+  <BrandMarquee />
 
   <!-- Featured Case Study Showcase (Pinned Scroll on Desktop) -->
   <section class="case-showcase-wrapper" id="case-showcase-wrapper">
@@ -189,9 +242,10 @@ const capabilities = [
             <p class="section-kicker">SELECTED SEO CASE STUDIES</p>
             <h2 class="section-title">Case Study nổi bật</h2>
             <p class="section-subtitle">
-              Mỗi case tóm tắt bối cảnh dự án, vai trò của tôi, hành động cốt lõi và kết quả SEO đo lường được.
+              Ba case tiêu biểu tóm tắt bối cảnh dự án, vai trò của tôi, hướng triển khai chính và kết quả SEO đo lường được.
             </p>
           </div>
+
           <div class="case-showcase-viewport">
             <div class="case-showcase__track" id="case-showcase-track">
               {caseStudies.map((cs) => (
@@ -203,7 +257,7 @@ const capabilities = [
                         {cs.logoSrc ? (
                           <img src={cs.logoSrc} alt={cs.logoAlt} loading="lazy" width="64" height="64" />
                         ) : (
-                          <span>📁</span>
+                          <span class="case-card__monogram">{cs.monogram}</span>
                         )}
                       </div>
                       <span class="pill" style="margin-bottom: 0;">{cs.badge}</span>
@@ -301,7 +355,7 @@ const capabilities = [
       let maxTranslate = 0;
       
       const calculateDimensions = () => {
-        isDesktop = window.matchMedia('(min-width: 1680px) and (min-height: 900px)').matches;
+        isDesktop = window.innerWidth >= 1360;
         
         if (isDesktop && !prefersReducedMotion) {
           // Reset transform to calculate real width
@@ -367,6 +421,68 @@ const capabilities = [
     });
   </script>
 
+
+  <!-- Explore My Work (Navigation Bridge) -->
+  <section class="section" id="explore-work" style="border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding-top: 72px; padding-bottom: 72px;">
+    <div class="container">
+      <div class="section-heading text-center" style="max-width: 900px; margin-left: auto; margin-right: auto; margin-bottom: 40px;">
+        <p class="section-kicker">EXPLORE MY WORK</p>
+        <h2 class="section-title" style="max-width: 800px; margin-left: auto; margin-right: auto; font-size: clamp(1.8rem, 3.5vw, 2.3rem); line-height: 1.25; margin-bottom: 16px;">Khám phá năng lực qua dự án và hệ thống</h2>
+        <p class="section-subtitle" style="max-width: 820px; margin-left: auto; margin-right: auto; font-size: 1.02rem; line-height: 1.65; color: var(--color-muted-text);">
+          Bạn có thể xem các case SEO thực tế đã nghiệm thu hoặc khám phá những hệ thống, checklist và công cụ tôi dùng để vận hành SEO có quy trình.
+        </p>
+      </div>
+
+      <div class="work-bridge-grid">
+        <!-- Card 1: Case Studies -->
+        <article class="work-bridge-card is-primary">
+          <div>
+            <div class="work-bridge-card__meta">
+              <div class="work-bridge-card__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+              </div>
+              <span class="work-bridge-card__badge">Proof of Work</span>
+            </div>
+            <h3>Case Studies</h3>
+            <p>Các dự án SEO thực tế thể hiện cách tôi xử lý bối cảnh, xây chiến lược, phối hợp triển khai và đo lường kết quả tăng trưởng organic.</p>
+            
+            <ul class="work-bridge-card__points">
+              <li>Migration & Technical SEO</li>
+              <li>Topical Authority</li>
+              <li>SEO Recovery & Growth</li>
+            </ul>
+          </div>
+          <div>
+            <a href="/case-studies/" class="btn btn-primary" style="font-size: 0.9rem; padding: 12px 24px; width: 100%; justify-content: center; display: inline-flex;">Xem Case Studies</a>
+          </div>
+        </article>
+
+        <!-- Card 2: SEO Systems -->
+        <article class="work-bridge-card">
+          <div>
+            <div class="work-bridge-card__meta">
+              <div class="work-bridge-card__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+              </div>
+              <span class="work-bridge-card__badge secondary">Operating System</span>
+            </div>
+            <h3>SEO Systems</h3>
+            <p>Các framework, checklist, workflow và công cụ nội bộ giúp chuẩn hóa audit, content, tracking và tốc độ triển khai SEO.</p>
+            
+            <ul class="work-bridge-card__points">
+              <li>Audit Frameworks</li>
+              <li>SEO Automation</li>
+              <li>Workflow & Checklist</li>
+            </ul>
+          </div>
+          <div>
+            <a href="/seo-systems/" class="btn btn-secondary" style="font-size: 0.9rem; padding: 12px 24px; width: 100%; justify-content: center; display: inline-flex;">Khám phá SEO Systems</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- Core Expertise -->
   <section id="expertise" class="section section-muted">
     <div class="container">
@@ -411,6 +527,12 @@ const capabilities = [
                       ))}
                     </ul>
                   </div>
+                  
+                  {cap.href && (
+                    <div style="margin-bottom: 24px;">
+                      <a href={cap.href} class="btn btn-secondary" style="font-size: 0.85rem; padding: 8px 16px;">{cap.cta || 'Xem chi tiết'}</a>
+                    </div>
+                  )}
                   
                   <div class="expertise-panel-footer" style="margin-top: auto; padding-top: 16px; border-top: 1px solid rgba(216, 207, 196, 0.4);">
                     <div class="expertise-panel-chips-title" style="font-size: 0.78rem; font-weight: 800; color: var(--color-muted-text); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Đầu ra kỹ thuật (Output chips):</div>
@@ -489,6 +611,12 @@ const capabilities = [
                       ))}
                     </ul>
                   </div>
+                  
+                  {cap.href && (
+                    <div style="margin-bottom: 16px;">
+                      <a href={cap.href} class="btn btn-secondary" style="font-size: 0.8rem; padding: 6px 12px; width: auto; display: inline-flex;">{cap.cta || 'Xem chi tiết'}</a>
+                    </div>
+                  )}
                   
                   <div class="expertise-panel-footer" style="margin-top: auto; padding-top: 12px; border-top: 1px solid rgba(216, 207, 196, 0.4);">
                     <div class="expertise-panel-chips-title" style="font-size: 0.75rem; font-weight: 800; color: var(--color-muted-text); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Đầu ra kỹ thuật:</div>
@@ -773,50 +901,7 @@ const capabilities = [
   <!-- Audience Fit -->
   <section class="section section-muted" id="audience">
     <div class="container">
-      <div class="section-heading text-center">
-        <h2 class="section-title">Trang này phù hợp với ai?</h2>
-      </div>
-      <div class="audience-grid">
-        {[
-          {
-            badge: 'Hiring',
-            title: 'Recruiters / Hiring teams',
-            desc: 'Đánh giá nhanh năng lực SEO Lead/Senior SEO qua kinh nghiệm, case study và cách tôi vận hành dự án.',
-            chips: ['CV', 'Case Studies', 'Project Leadership']
-          },
-          {
-            badge: 'Service',
-            title: 'Freelance clients',
-            desc: 'Xem cách tôi tiếp cận audit, technical/content strategy và growth roadmap cho dự án SEO.',
-            chips: ['SEO Audit', 'Roadmap', 'Growth System']
-          },
-          {
-            badge: 'Connect',
-            title: 'SEO peers / Network',
-            desc: 'Kết nối để trao đổi framework, automation, GEO/AIO và các case SEO thực tế.',
-            chips: ['Framework', 'Automation', 'GEO/AIO']
-          }
-        ].map(item => (
-          <article class="audience-card">
-            <span class="audience-badge">{item.badge}</span>
-            <h3 class="audience-title">{item.title}</h3>
-            <p class="audience-desc">{item.desc}</p>
-            <div class="audience-chips-label">Nội dung liên quan:</div>
-            <div class="audience-chips">
-              {item.chips.map(chip => (
-                <span class="audience-chip">{chip}</span>
-              ))}
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- About Preview -->
-  <section class="section" id="about-preview">
-    <div class="container">
-      <div class="about-preview-grid">
+ <div class="about-preview-grid">
         <div class="about-preview-content">
           <p class="section-kicker">GIỚI THIỆU</p>
           <h2 class="section-title">Bùi Trường Thịnh</h2>

@@ -2,7 +2,8 @@
 const navItems = [
   { label: 'Trang chủ', href: '/' },
   { label: 'Giới thiệu', href: '/about/' },
-  { label: 'Case Study', href: '/case-studies/suoi-tien-seo/' },
+  { label: 'Case Study', href: '/case-studies/' },
+  { label: 'Hệ thống SEO', href: '/seo-systems/' },
   { label: 'Liên hệ', href: '/contact/' },
 ];
 ---
@@ -21,11 +22,97 @@ const navItems = [
 
     <nav id="nav-menu" class="header-nav">
       <ul class="nav-list">
-        {navItems.map(item => (
-          <li><a href={item.href} class="nav-link">{item.label}</a></li>
-        ))}
+        {navItems.map(item => {
+          if (item.label === 'Case Study') {
+            return (
+              <li class="nav-item-dropdown">
+                <div class="nav-link-group">
+                  <a href={item.href} class="nav-link">{item.label}</a>
+                  <button 
+                    class="dropdown-toggle" 
+                    aria-expanded="false" 
+                    aria-haspopup="true" 
+                    aria-controls="case-study-submenu"
+                    aria-label="Toggle submenu"
+                  >
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </button>
+                </div>
+                <ul id="case-study-submenu" class="submenu-list">
+                  <!-- Hub Link -->
+                  <li class="submenu-hub-item">
+                    <a href="/case-studies/" class="submenu-link hub-link">
+                      <div class="hub-content">
+                        <span class="submenu-title">Xem tất cả Case Studies</span>
+                        <span class="submenu-desc">Hub tổng hợp các dự án SEO, vai trò triển khai và kết quả nghiệm thu.</span>
+                      </div>
+                      <span class="hub-arrow" aria-hidden="true">→</span>
+                    </a>
+                  </li>
+                  
+                  <!-- Section Label -->
+                  <li class="submenu-section-label">
+                    <span>Featured Case Studies</span>
+                  </li>
+
+                  <!-- Case 1: Suối Tiên -->
+                  <li class="submenu-case-item">
+                    <a href="/case-studies/suoi-tien-seo/" class="submenu-link case-link">
+                      <div class="case-header">
+                        <span class="submenu-title">Suối Tiên</span>
+                        <span class="submenu-desc">Domain Migration · Tourism SEO</span>
+                      </div>
+                      <div class="case-metrics-hover">
+                        <div class="case-metric-pill"><strong>32.198</strong> Sessions</div>
+                        <div class="case-metric-pill"><strong>77</strong> Top 3</div>
+                        <div class="case-metric-pill"><strong>500</strong> AIO Traffic</div>
+                      </div>
+                    </a>
+                  </li>
+
+                  <!-- Case 2: DOL Grammar -->
+                  <li class="submenu-case-item">
+                    <a href="/case-studies/dol-grammar-seo/" class="submenu-link case-link">
+                      <div class="case-header">
+                        <span class="submenu-title">DOL Grammar</span>
+                        <span class="submenu-desc">New Website SEO · Topical Authority</span>
+                      </div>
+                      <div class="case-metrics-hover">
+                        <div class="case-metric-pill"><strong>66.000</strong> Organic Traffic</div>
+                        <div class="case-metric-pill"><strong>252</strong> Keywords</div>
+                        <div class="case-metric-pill"><strong>16%</strong> Top 1–3</div>
+                      </div>
+                    </a>
+                  </li>
+
+                  <!-- Case 3: Hoàng Long Computer -->
+                  <li class="submenu-case-item">
+                    <a href="/case-studies/hoang-long-computer-seo/" class="submenu-link case-link">
+                      <div class="case-header">
+                        <span class="submenu-title">Hoàng Long Computer</span>
+                        <span class="submenu-desc">SEO Recovery · E-commerce Growth</span>
+                      </div>
+                      <div class="case-metrics-hover">
+                        <div class="case-metric-pill"><strong>356.547</strong> Traffic</div>
+                        <div class="case-metric-pill"><strong>7.406</strong> AI/GEO</div>
+                        <div class="case-metric-pill"><strong>58.902</strong> Conversions</div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            );
+          }
+          return (
+            <li>
+              <a href={item.href} class="nav-link">{item.label}</a>
+            </li>
+          );
+        })}
         <li>
-          <a href="/contact/" class="btn btn-primary cta-btn">Kết nối</a>
+          <a href="/files/Bui_Truong_Thinh_CV_Revised.pdf" download class="btn btn-primary cta-btn" aria-label="Tải CV PDF của Bùi Trường Thịnh">Tải CV</a>
         </li>
       </ul>
     </nav>
@@ -89,6 +176,210 @@ const navItems = [
     cursor: pointer;
   }
 
+  /* Dropdown container */
+  .nav-item-dropdown {
+    position: relative;
+  }
+  
+  /* Link + Button group */
+  .nav-link-group {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  /* Toggle chevron button */
+  .dropdown-toggle {
+    background: none;
+    border: none;
+    padding: 6px;
+    color: var(--color-muted-text);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  
+  .dropdown-toggle:hover,
+  .dropdown-toggle:focus {
+    background-color: rgba(17, 24, 39, 0.05);
+    color: var(--color-text);
+    outline: none;
+  }
+  
+  .dropdown-toggle svg {
+    transition: transform 0.2s ease;
+  }
+  
+  /* Submenu list upgraded to responsive mega-menu */
+  .submenu-list {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(8px);
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card-hover);
+    padding: 12px;
+    width: min(520px, calc(100vw - 32px));
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  /* Show dropdown on hover/focus-within or explicit class open */
+  .nav-item-dropdown:hover .submenu-list,
+  .nav-item-dropdown:focus-within .submenu-list,
+  .nav-item-dropdown.is-open .submenu-list {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+  
+  /* Rotate chevron when dropdown is active */
+  .nav-item-dropdown:hover .dropdown-toggle svg,
+  .nav-item-dropdown:focus-within .dropdown-toggle svg,
+  .nav-item-dropdown.is-open .dropdown-toggle svg {
+    transform: rotate(180deg);
+  }
+  
+  /* Submenu item link styling */
+  .submenu-link {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    transition: background-color 0.2s, border-color 0.2s;
+    text-align: left;
+    text-decoration: none;
+    border: 1px solid transparent;
+  }
+  
+  .submenu-link:hover,
+  .submenu-link:focus {
+    background-color: var(--color-bg);
+    outline: none;
+  }
+  
+  .submenu-title {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--color-text);
+  }
+  
+  .submenu-desc {
+    font-size: 12.5px;
+    color: var(--color-muted-text);
+    margin-top: 2px;
+    line-height: 1.4;
+  }
+  
+  .submenu-link:hover .submenu-title,
+  .submenu-link:focus .submenu-title {
+    color: var(--color-accent);
+  }
+
+  /* Upgraded Hub Link */
+  .hub-link {
+    background-color: rgba(193, 18, 31, 0.03);
+    border-color: rgba(193, 18, 31, 0.1);
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .hub-link:hover,
+  .hub-link:focus {
+    background-color: rgba(193, 18, 31, 0.06);
+    border-color: rgba(193, 18, 31, 0.2);
+  }
+
+  .hub-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .hub-arrow {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .hub-link:hover .hub-arrow,
+  .hub-link:focus .hub-arrow {
+    transform: translateX(4px);
+  }
+
+  /* Section Label & Divider */
+  .submenu-section-label {
+    list-style: none;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-muted-text);
+    letter-spacing: 0.08em;
+    padding: 8px 16px 4px 16px;
+    border-top: 1px solid rgba(216, 207, 196, 0.4);
+    margin-top: 4px;
+  }
+
+  /* Metrics Panel on Hover/Focus */
+  .case-metrics-hover {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease-out, opacity 0.2s ease, margin-top 0.25s ease-out;
+  }
+
+  .case-link:hover .case-metrics-hover,
+  .case-link:focus .case-metrics-hover {
+    opacity: 1;
+    max-height: 40px; /* Safe height for single row without layout jumps */
+    margin-top: 8px;
+  }
+
+  .case-metric-pill {
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--color-muted-text);
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    transition: border-color 0.2s, background-color 0.2s;
+  }
+
+  .case-metric-pill strong {
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+
+  .case-link:hover .case-metric-pill,
+  .case-link:focus .case-metric-pill {
+    border-color: rgba(193, 18, 31, 0.25);
+    background-color: rgba(255, 248, 240, 0.5);
+  }
+
+  :global(body.no-scroll) {
+    overflow: hidden !important;
+    touch-action: none;
+  }
+
   @media (max-width: 768px) {
     .menu-toggle {
       display: inline-flex;
@@ -112,6 +403,13 @@ const navItems = [
       border-radius: 20px;
       box-shadow: var(--shadow-card);
       z-index: 50;
+      
+      /* Viewport containment and custom scroll behavior */
+      max-height: calc(100vh - 72px - 24px);
+      max-height: calc(100dvh - 72px - 24px);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
     }
     
     .nav-list {
@@ -123,25 +421,267 @@ const navItems = [
     .cta-btn {
       width: 100%;
       text-align: center;
+      margin-top: 8px; /* push slightly from links */
     }
 
     .header-container {
       position: relative;
+    }
+    
+    /* Mobile specific styles for dropdown */
+    .nav-item-dropdown {
+      width: 100%;
+    }
+    
+    .nav-link-group {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+    
+    .dropdown-toggle {
+      padding: 8px; /* Larger touch target */
+    }
+    
+    /* Compact Accordion Submenu Layout on Mobile */
+    .submenu-list {
+      position: static;
+      transform: none;
+      opacity: 1;
+      visibility: visible;
+      box-shadow: none;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+      margin: 8px 0 0 0;
+      display: none;
+      min-width: 0;
+      transition: none;
+      gap: 8px;
+      width: 100%;
+    }
+    
+    .nav-item-dropdown.is-open .submenu-list {
+      display: flex;
+    }
+    
+    /* Disable desktop hover behaviors on mobile */
+    .nav-item-dropdown:hover .submenu-list,
+    .nav-item-dropdown:focus-within .submenu-list {
+      opacity: initial;
+      visibility: initial;
+      transform: none;
+      display: none;
+    }
+    
+    .nav-item-dropdown.is-open:hover .submenu-list,
+    .nav-item-dropdown.is-open:focus-within .submenu-list {
+      display: flex;
+    }
+    
+    .nav-item-dropdown:hover .dropdown-toggle svg,
+    .nav-item-dropdown:focus-within .dropdown-toggle svg {
+      transform: none;
+    }
+    
+    .nav-item-dropdown.is-open .dropdown-toggle svg {
+      transform: rotate(180deg);
+    }
+
+    /* Compact Hub Link Accordion Item on Mobile */
+    .hub-link {
+      background-color: rgba(193, 18, 31, 0.02) !important;
+      border-color: rgba(193, 18, 31, 0.05) !important;
+      padding: 10px 12px !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      margin-left: 8px;
+    }
+
+    .hub-link .submenu-desc {
+      font-size: 11px !important;
+      margin-top: 1px !important;
+    }
+
+    .hub-link .hub-arrow {
+      font-size: 1.1rem !important;
+      color: var(--color-accent) !important;
+      transform: none !important;
+      transition: none !important;
+    }
+
+    /* Compact Featured Case Accordion Items on Mobile */
+    .case-link {
+      padding: 10px 12px !important;
+      margin-left: 8px;
+      background-color: transparent !important;
+      border-color: transparent !important;
+    }
+
+    .case-header {
+      margin-bottom: 6px;
+    }
+
+    .case-link .submenu-title {
+      font-size: 14px !important;
+      font-weight: 700 !important;
+    }
+
+    .case-link .submenu-desc {
+      font-size: 11px !important;
+      color: var(--color-muted-text) !important;
+      margin-top: 1px !important;
+    }
+
+    .submenu-section-label {
+      border-top: none !important;
+      padding: 4px 16px 2px 8px !important;
+      margin-top: 0 !important;
+      font-size: 10.5px !important;
+    }
+
+    /* Force static metrics visibility on mobile */
+    .case-metrics-hover {
+      display: flex !important;
+      opacity: 1 !important;
+      max-height: none !important;
+      overflow: visible !important;
+      margin-top: 0 !important;
+      flex-wrap: wrap !important;
+      gap: 6px !important;
+    }
+
+    .case-metric-pill {
+      background-color: rgba(26, 37, 48, 0.03) !important;
+      border-color: rgba(216, 207, 196, 0.5) !important;
+      color: var(--color-muted-text) !important;
+      font-size: 10.5px !important;
+      padding: 3px 6px !important;
+      border-radius: 4px !important;
+      line-height: 1.2 !important;
+    }
+
+    .case-metric-pill strong {
+      color: var(--color-accent) !important;
+      font-weight: 700 !important;
     }
   }
 </style>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const toggle = document.getElementById('menu-toggle');
-    const menu = document.getElementById('nav-menu');
-    
-    if (toggle && menu) {
-      toggle.addEventListener('click', () => {
-        const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
-        toggle.setAttribute('aria-expanded', String(!isExpanded));
-        menu.classList.toggle('is-open');
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    const dropdownContainers = document.querySelectorAll('.nav-item-dropdown');
+
+    const closeMobileMenu = () => {
+      if (menuToggle && navMenu) {
+        menuToggle.setAttribute('aria-expanded', 'false');
+        navMenu.classList.remove('is-open');
+      }
+      document.body.classList.remove('no-scroll');
+      dropdownContainers.forEach(container => {
+        container.classList.remove('is-open');
+        const toggle = container.querySelector('.dropdown-toggle');
+        if (toggle) toggle.setAttribute('aria-expanded', 'false');
+      });
+    };
+
+    if (menuToggle && navMenu) {
+      menuToggle.addEventListener('click', () => {
+        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', String(!isExpanded));
+        navMenu.classList.toggle('is-open', !isExpanded);
+        document.body.classList.toggle('no-scroll', !isExpanded);
       });
     }
+
+    // Close mobile menu when a navigation link is clicked
+    const navLinks = navMenu ? navMenu.querySelectorAll('a') : [];
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+          closeMobileMenu();
+        }
+      });
+    });
+
+    // Dropdown submenu toggles (supports desktop toggle button and mobile tap toggle)
+    dropdownContainers.forEach(container => {
+      const dropdownToggle = container.querySelector('.dropdown-toggle');
+      
+      if (dropdownToggle) {
+        dropdownToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          
+          const isOpen = container.classList.contains('is-open');
+          
+          // Close other dropdowns
+          dropdownContainers.forEach(otherContainer => {
+            if (otherContainer !== container) {
+              otherContainer.classList.remove('is-open');
+              const otherToggle = otherContainer.querySelector('.dropdown-toggle');
+              if (otherToggle) otherToggle.setAttribute('aria-expanded', 'false');
+            }
+          });
+          
+          // Toggle current dropdown
+          container.classList.toggle('is-open', !isOpen);
+          dropdownToggle.setAttribute('aria-expanded', String(!isOpen));
+        });
+      }
+    });
+
+    // Close dropdowns and mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      dropdownContainers.forEach(container => {
+        const dropdownToggle = container.querySelector('.dropdown-toggle');
+        if (!container.contains(e.target as Node)) {
+          container.classList.remove('is-open');
+          if (dropdownToggle) {
+            dropdownToggle.setAttribute('aria-expanded', 'false');
+          }
+        }
+      });
+
+      const header = document.querySelector('.header');
+      if (header && !header.contains(e.target as Node) && navMenu && navMenu.classList.contains('is-open')) {
+        closeMobileMenu();
+      }
+    });
+
+    // Close dropdowns and mobile menu on Escape key press
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        dropdownContainers.forEach(container => {
+          const dropdownToggle = container.querySelector('.dropdown-toggle');
+          container.classList.remove('is-open');
+          if (dropdownToggle) {
+            dropdownToggle.setAttribute('aria-expanded', 'false');
+            // Shift focus back to parent link if focus was inside the submenu
+            if (container.contains(document.activeElement)) {
+              const mainLink = container.querySelector('.nav-link') as HTMLElement;
+              if (mainLink) mainLink.focus();
+            }
+          }
+        });
+
+        if (navMenu && navMenu.classList.contains('is-open')) {
+          closeMobileMenu();
+          if (menuToggle) menuToggle.focus();
+        }
+      }
+    });
+
+    // Reset mobile menu and scroll locking state on transitioning to desktop screen widths
+    const mql = window.matchMedia('(min-width: 769px)');
+    const handleViewportChange = (e) => {
+      if (e.matches) {
+        closeMobileMenu();
+      }
+    };
+    mql.addEventListener('change', handleViewportChange);
   });
 </script>

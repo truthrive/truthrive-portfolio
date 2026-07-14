@@ -1,0 +1,4217 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import EvidenceCard from "../../components/ui/EvidenceCard.astro";
+import MetricCard from "../../components/ui/MetricCard.astro";
+
+const seoProblems = [
+  {
+    num: '01',
+    title: 'Technical foundation & CMS limitation',
+    shortLabel: 'Technical Recovery',
+    severity: 'Critical',
+    shortDesc: 'Website sử dụng CMS code tay và gặp nhiều lỗi technical quan trọng, khiến việc xử lý crawl, index, canonical, schema và các hạng mục hỗ trợ SEO gặp giới hạn.',
+    impact: 'Technical issues làm chậm tốc độ phục hồi ranking, ảnh hưởng crawl/index và khiến Google cần thêm thời gian để đánh giá lại các tín hiệu tích cực.',
+    response: 'Audit technical foundation, ưu tiên xử lý canonical/indexing, kiểm soát URL và phối hợp kỹ thuật để cải thiện nền tảng SEO có khả năng scale.',
+    tags: ['Crawl/index', 'Canonical', 'CMS limitation']
+  },
+  {
+    num: '02',
+    title: 'Thin content / Panda risk',
+    shortLabel: 'Content Quality',
+    severity: 'High priority',
+    shortDesc: 'Website có nhiều nội dung mỏng, chất lượng thấp hoặc chưa đáp ứng đủ intent người dùng, tạo rủi ro bị đánh giá thấp về chất lượng nội dung.',
+    impact: 'Content quality yếu có thể kéo giảm hiệu suất toàn site, làm traffic thiếu ổn định và hạn chế khả năng cạnh tranh ở nhóm keyword thương mại.',
+    response: 'Audit content, xác định nhóm cần giữ / tối ưu / loại bỏ / làm mới, đồng thời xây content strategy theo nhóm sản phẩm và search intent.',
+    tags: ['Thin content', 'Panda risk', 'Content audit']
+  },
+  {
+    num: '03',
+    title: 'Backlink spam & authority risk',
+    shortLabel: 'Backlink Risk',
+    severity: 'High priority',
+    shortDesc: 'Website ghi nhận lượng backlink spam/kém chất lượng, có thể làm giảm độ tin cậy và ảnh hưởng đến khả năng phục hồi SEO.',
+    impact: 'Backlink không tự nhiên khiến authority signal bị nhiễu, làm quá trình phục hồi ranking cần nhiều thời gian hơn.',
+    response: 'Audit backlink profile, xác định nhóm link rủi ro, triển khai hướng xử lý/disavow phù hợp và theo dõi tác động sau khi Google đánh giá lại.',
+    tags: ['Backlink spam', 'Authority', 'Disavow']
+  },
+  {
+    num: '04',
+    title: 'Commercial keyword scalability',
+    shortLabel: 'Growth Scaling',
+    severity: 'Growth blocker',
+    shortDesc: 'Các nhóm keyword thương mại như PC gaming, bộ PC, PC văn phòng, VGA/RTX/GTX, màn hình và PC đồ họa cần được gom cụm, ưu tiên và tối ưu theo intent chuyển đổi.',
+    impact: 'Nếu chỉ tối ưu từng keyword riêng lẻ, website khó mở rộng độ phủ ranking và khó chuyển traffic thành hành vi mua hàng.',
+    response: 'Chia nhóm keyword theo sản phẩm/danh mục, xây roadmap SEO theo cụm commercial intent, tối ưu product/category SEO và internal linking để tăng khả năng scale.',
+    tags: ['Commercial intent', 'Keyword clustering', 'Product SEO']
+  }
+] as const;
+
+const evidenceCards = [
+  {
+    title: "Phase 1 Ranking KPI Snapshot",
+    sourceLabel: "Rank Tracker",
+    imageSrc: "#",
+    placeholder: "Thêm ảnh chụp KPI ranking Phase 1",
+    alt: "Bảng KPI ranking Phase 1 của dự án Hoàng Long Computer",
+    caption: "Phase 1 ranking KPI: Top 3 đạt 232%, Top 5 đạt 151% so với KPI cam kết.",
+    insights: [
+      "Top 3 và Top 5 vượt KPI mạnh, cho thấy chiến lược tập trung nhóm keyword chuyển đổi hiệu quả.",
+      "Top 10 đạt 89% — cần thêm thời gian để nhóm keyword rộng hơn cải thiện vị trí.",
+    ]
+  },
+  {
+    title: "Phase 2 Month 6 KPI Snapshot",
+    sourceLabel: "Rank Tracker",
+    imageSrc: "#",
+    placeholder: "Thêm ảnh chụp KPI ranking Phase 2 — Month 6",
+    alt: "Bảng KPI ranking Phase 2 Month 6 của dự án Hoàng Long Computer",
+    caption: "Bộ từ khóa duy trì: 67% Top 3 (vượt KPI 45%). Bộ từ khóa thúc đẩy: 32% Top 3 (vượt KPI 15%).",
+    insights: [
+      "Track duy trì đã vượt KPI cuối ở cả Top 3 và Top 5 tại Month 6.",
+      "Track thúc đẩy đang tích lũy — Top 10 cần thêm nửa sau dự án để scale.",
+    ]
+  },
+  {
+    title: "Traffic Cumulative Snapshot",
+    sourceLabel: "GA4",
+    imageSrc: "#",
+    placeholder: "Thêm ảnh chụp traffic tích lũy",
+    alt: "Biểu đồ traffic tích lũy của dự án Hoàng Long Computer",
+    caption: "Traffic tích lũy đạt 356.547 tại Month 6, tiến về KPI 1.000.000 cumulative traffic.",
+    insights: [
+      "Traffic tích lũy phản ánh tổng lượng organic traffic ghi nhận từ đầu Phase 2.",
+      "KPI traffic tích lũy được thiết kế để đo lường theo toàn bộ 12 tháng dự án.",
+    ]
+  },
+  {
+    title: "AI/GEO Traffic Snapshot",
+    sourceLabel: "GA4",
+    imageSrc: "#",
+    placeholder: "Thêm ảnh chụp AI/GEO traffic",
+    alt: "Biểu đồ AI/GEO traffic của dự án Hoàng Long Computer",
+    caption: "7.406 cumulative AI/GEO traffic ghi nhận từ 12/11/2025 đến hiện tại.",
+    insights: [
+      "AI/GEO traffic được tracking bổ sung để đánh giá tín hiệu từ các bề mặt tìm kiếm mới.",
+      "Số liệu phản ánh tổng lượng traffic từ AI/GEO sources tích lũy trong Phase 2.",
+    ]
+  },
+  {
+    title: "Conversion Tracking Snapshot",
+    sourceLabel: "GA4",
+    imageSrc: "#",
+    placeholder: "Thêm ảnh chụp conversion tracking",
+    alt: "Bảng conversion tracking của dự án Hoàng Long Computer",
+    caption: "58.902 tracked conversion events bao gồm add_to_cart, view_item, click_phone, form_submit, purchase và các key events khác.",
+    insights: [
+      "Conversion tracking giúp đánh giá chất lượng traffic thay vì chỉ đo lượng traffic.",
+      "Các events được cấu hình phù hợp với mô hình e-commerce để đánh giá intent người dùng.",
+    ]
+  },
+  {
+    title: "PC Gaming / PC Văn phòng Ranking Snapshot",
+    sourceLabel: "Rank Tracker",
+    imageSrc: "#",
+    placeholder: "Thêm ảnh chụp ranking nhóm PC gaming / PC văn phòng",
+    alt: "Bảng ranking nhóm keyword PC gaming và PC văn phòng của Hoàng Long Computer",
+    caption: "Nhóm keyword thương mại trọng tâm: PC gaming, bộ PC, PC văn phòng, PC đồ họa.",
+    insights: [
+      "Các nhóm keyword commercial intent được ưu tiên tối ưu product/category SEO.",
+      "Ranking được tracking riêng để đánh giá khả năng chuyển đổi từ search traffic.",
+    ]
+  }
+];
+---
+<BaseLayout 
+  title="Case Study SEO Hoàng Long Computer | TruThrive" 
+  description="Case study SEO Hoàng Long Computer: phục hồi nền SEO cho website e-commerce công nghệ và mở rộng sang hợp đồng 12 tháng với KPI ranking, traffic tích lũy, AI/GEO traffic và conversion tracking."
+>
+  <!-- 1. Hero / Case Intro -->
+  <section class="section hero-section">
+    <div class="container">
+      <div class="section-heading text-center" style="max-width: 840px; margin-left: auto; margin-right: auto; margin-bottom: 32px;">
+      <span class="pill" style="margin-bottom: 16px;">SEO Case Studies</span>
+        <h1 class="hero-title" style="margin-bottom: 8px;">Hoàng Long Computer</h1>
+        <p class="hero-subtitle" style="font-size: 1.25rem; font-weight: 500; color: var(--text-primary); margin-bottom: 24px; opacity: 0.9;">E-commerce SEO Recovery & Scaling Partnership</p>
+        <p class="hero-description" style="margin-left: auto; margin-right: auto; max-width: 640px; margin-bottom: 20px;">
+          Phục hồi nền tảng SEO e-commerce và mở rộng hợp đồng đối tác chiến lược 12 tháng với bộ KPI toàn diện.
+        </p>
+        <div class="chip-group" style="justify-content: center; margin-bottom: 24px; margin-top: 16px;">
+          <span class="chip">E-commerce SEO</span>
+          <span class="chip">Technical Recovery</span>
+          <span class="chip">KPI Planning</span>
+          <span class="chip">GEO / AI Tracking</span>
+        </div>
+        
+        <!-- Hero result hook -->
+        <div class="hero-result-hook" style="display: flex; justify-content: center; margin-top: 16px;">
+          <span class="hook-pill">Recovery → Renewal → Scaling</span>
+        </div>
+
+        <!-- Result pills -->
+        <div class="hl-result-pills">
+          <span class="hl-result-pill">Renewed 12-month partnership</span>
+          <span class="hl-result-pill">67% Top 3 maintenance keywords</span>
+          <span class="hl-result-pill">356.547 cumulative traffic</span>
+        </div>
+      </div>
+
+      <!-- 2. Snapshot / Project Brief -->
+      <div class="case-snapshot">
+        <div class="case-snapshot-top">
+          <!-- Column 1: Client -->
+          <div class="snapshot-col col-client">
+            <span class="snapshot-label">Client</span>
+            <div class="client-info">
+              <div class="client-logo-frame">
+                <span class="client-logo-text">HLC</span>
+              </div>
+              <span class="snapshot-value">hoanglongcomputer.vn</span>
+            </div>
+          </div>
+          
+          <!-- Column 2: Timeline -->
+          <div class="snapshot-col col-timeline">
+            <span class="snapshot-label">Timeline</span>
+            <div class="snapshot-value-group">
+              <span class="snapshot-value">Phase 1: 02/2025 – 09/2025</span>
+              <span class="snapshot-subvalue">Phase 2: 12/11/2025 – ongoing</span>
+            </div>
+          </div>
+          
+          <!-- Column 3: Industry -->
+          <div class="snapshot-col col-industry">
+            <span class="snapshot-label">Ngành</span>
+            <div class="snapshot-value-group">
+              <span class="snapshot-value">E-commerce Technology</span>
+              <span class="snapshot-subvalue">PC / Gaming PC / Computer Hardware</span>
+            </div>
+          </div>
+          
+          <!-- Column 4: Role -->
+          <div class="snapshot-col col-role">
+            <span class="snapshot-label">Vai trò</span>
+            <div class="snapshot-value-group">
+              <span class="snapshot-value">SEO Project Leader</span>
+              <span class="snapshot-subvalue">KPI Planning · Technical Audit · Content Strategy · SEO Roadmap</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scope Row -->
+        <div class="case-snapshot-bottom">
+          <span class="snapshot-label">Phạm vi triển khai</span>
+          <div class="snapshot-chips">
+            <span class="snapshot-chip">E-commerce SEO</span>
+            <span class="snapshot-chip">Technical Recovery</span>
+            <span class="snapshot-chip">KPI Planning</span>
+            <span class="snapshot-chip">Content Strategy</span>
+            <span class="snapshot-chip">Product / Category SEO</span>
+            <span class="snapshot-chip">Internal Linking</span>
+            <span class="snapshot-chip">GEO / AI Tracking</span>
+            <span class="snapshot-chip">Conversion Tracking</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-group center" style="margin-top: 40px;">
+        <a href="#results" class="btn btn-primary">Xem kết quả</a>
+        <a href="#insights" class="btn btn-secondary">Bài học rút ra</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Project Context -->
+  <section class="section">
+    <div class="container">
+      <div class="section-heading text-center">
+        <p class="section-kicker">BỐI CẢNH DỰ ÁN</p>
+        <h2 class="section-title">Bối cảnh và hướng tiếp cận</h2>
+      </div>
+      <div class="hl-context-block card" style="max-width: 900px; margin: 40px auto 0;">
+        <p class="hl-context-text">
+          Hoàng Long Computer không chỉ cần tăng traffic, mà cần phục hồi nền SEO cho một website e-commerce công nghệ có nhiều biến động: technical issues, thin content risk, backlink spam, CMS limitation và tác động từ Google updates. Sau giai đoạn nghiệm thu ban đầu, dự án tiếp tục được mở rộng thành hợp đồng SEO 12 tháng với KPI ranking, traffic tích lũy, AI/GEO traffic và conversion tracking.
+        </p>
+        <div class="hl-context-highlights">
+          <div class="hl-context-highlight-item">
+            <span class="hl-highlight-label">Phase 1</span>
+            <span class="hl-highlight-value">Recovery & KPI Validation — phục hồi ranking, validate hướng SEO, cải thiện chất lượng traffic và conversion signals.</span>
+          </div>
+          <div class="hl-context-highlight-item">
+            <span class="hl-highlight-label">Phase 2</span>
+            <span class="hl-highlight-value">Scaling Partnership — hợp đồng 12 tháng mới từ 12/11/2025, mở rộng phạm vi SEO sang two-track ranking KPI, traffic tích lũy, AI/GEO traffic và conversion event tracking.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- 7. My Role -->
+  <section class="section section-muted">
+    <div class="container">
+      <div class="cs-role-card card" style="max-width: 900px; margin: 0 auto;">
+        <div class="cs-role-header">
+          <p class="section-kicker">VAI TRÒ CỦA TÔI</p>
+          <h2 class="section-title" style="font-size: 1.8rem;">SEO Project Leader</h2>
+          <p class="cs-role-subtitle" style="font-weight: 700; color: var(--color-accent); margin-top: -8px; margin-bottom: 16px; font-size: 1.05rem;">KPI Planning · Technical Audit · Content Strategy · SEO Roadmap</p>
+        </div>
+        <p class="cs-role-desc">
+          Trong dự án này, tôi đảm nhiệm vai trò SEO Project Leader, phụ trách định hướng SEO tổng thể: hoạch định KPI, xây chiến lược SEO, audit technical, content strategy, keyword/product/category SEO direction và theo dõi hiệu suất triển khai. Tôi phối hợp với các bộ phận content, technical và account/reporting để đảm bảo output bám sát roadmap và KPI đã hoạch định.
+        </p>
+        <div class="cs-role-tags">
+          <span class="cs-role-tag">KPI Planning</span>
+          <span class="cs-role-tag">SEO Strategy</span>
+          <span class="cs-role-tag">Technical Audit</span>
+          <span class="cs-role-tag">Content Strategy</span>
+          <span class="cs-role-tag">Product / Category SEO</span>
+          <span class="cs-role-tag">Internal Linking</span>
+          <span class="cs-role-tag">Performance Monitoring</span>
+          <span class="cs-role-tag">Strategic Adjustment</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Core SEO Problems -->
+  <section id="hl-problems-section" class="section section-muted">
+    <div class="container">
+      <div class="section-heading text-center">
+        <p class="section-kicker">VẤN ĐỀ CẦN GIẢI QUYẾT</p>
+        <h2 class="section-title">4 vấn đề SEO cốt lõi</h2>
+        <p class="section-subtitle">Những rủi ro cần xử lý đúng ưu tiên để phục hồi và mở rộng hiệu suất SEO.</p>
+      </div>
+
+      <div class="problems-layout">
+        <!-- Left Column: Interactive Modules -->
+        <div class="problems-modules">
+          {seoProblems.map((prob, index) => {
+            const isActive = index === 0;
+            return (
+              <div class="problems-accordion-item">
+                <button 
+                  id={`hl-problem-btn-${prob.num}`}
+                  class={`problems-module ${isActive ? 'is-active' : ''}`}
+                  aria-expanded={isActive ? "true" : "false"}
+                  aria-controls={`hl-problems-mobile-panel-${prob.num}`}
+                  data-problem-id={prob.num}
+                >
+                  <div class="problems-module__header">
+                    <span class="problems-num">{prob.num}</span>
+                    <h4 class="problems-module__title">{prob.title}</h4>
+                  </div>
+                  <p class="problems-module__outcome">{prob.shortDesc}</p>
+                  <span class="problems-module__label">{prob.shortLabel}</span>
+                </button>
+                
+                <!-- Mobile accordion inline detail panel -->
+                <div 
+                  id={`hl-problems-mobile-panel-${prob.num}`}
+                  class={`problems-mobile-panel ${isActive ? 'is-active' : ''}`}
+                  aria-hidden={isActive ? "false" : "true"}
+                  role="region"
+                  aria-labelledby={`hl-problem-btn-${prob.num}`}
+                >
+                  <div class="problems-mobile-panel-header">
+                    <span class="severity-badge">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="warning-icon"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                      {prob.severity}
+                    </span>
+                  </div>
+
+                  <div class="problems-detail-section">
+                    <h4 class="problems-section-title">Mô tả vấn đề:</h4>
+                    <p class="problems-panel-desc">{prob.shortDesc}</p>
+                  </div>
+
+                  <div class="problem-outcome-stack">
+                    <div class="problem-impact">
+                      <h4>Hậu quả & Tác động (Impact)</h4>
+                      <p>{prob.impact}</p>
+                    </div>
+
+                    <div class="problem-response">
+                      <h4>Giải pháp xử lý (Response)</h4>
+                      <p>{prob.response}</p>
+                    </div>
+                  </div>
+
+                  {prob.tags && prob.tags.length > 0 && (
+                    <div class="case-problem-card__tags" style="margin-top: 16px;">
+                      {prob.tags.map(tag => (
+                        <span class="case-problem-card__tag">{tag}</span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <!-- Right Column: Desktop active detail panel -->
+        <div class="card problems-detail-panel desktop-panel-only">
+          <span class="problems-detail-eyebrow">Thông tin chi tiết</span>
+          
+          <div class="problems-panels-stack">
+            {seoProblems.map((prob, index) => {
+              const isActive = index === 0;
+              return (
+                <div 
+                  id={`hl-problem-panel-${prob.num}`}
+                  class={`problems-panel-content ${isActive ? 'is-active' : ''}`}
+                  role="region"
+                  aria-labelledby={`hl-problem-btn-${prob.num}`}
+                  aria-hidden={isActive ? "false" : "true"}
+                >
+                  <div class="problems-panel-header">
+                    <div class="problems-panel-title-group">
+                      <span class="problems-panel-num">{prob.num}</span>
+                      <h3 class="problems-panel-title">{prob.title}</h3>
+                    </div>
+                    <span class="severity-badge">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="warning-icon"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                      {prob.severity}
+                    </span>
+                  </div>
+
+                  <div class="problems-detail-section">
+                    <h4 class="problems-section-title">Mô tả vấn đề:</h4>
+                    <p class="problems-panel-desc">{prob.shortDesc}</p>
+                  </div>
+
+                  <div class="problem-outcome-stack">
+                    <div class="problem-impact">
+                      <h4>Hậu quả & Tác động (Impact)</h4>
+                      <p>{prob.impact}</p>
+                    </div>
+
+                    <div class="problem-response">
+                      <h4>Giải pháp xử lý (Response)</h4>
+                      <p>{prob.response}</p>
+                    </div>
+                  </div>
+
+                  {prob.tags && prob.tags.length > 0 && (
+                    <div class="case-problem-card__tags" style="margin-top: 20px;">
+                      {prob.tags.map(tag => (
+                        <span class="case-problem-card__tag">{tag}</span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Search Demand Map -->
+  <section class="section">
+    <div class="container" style="max-width: 1120px;">
+      <div class="section-heading text-center">
+        <p class="section-kicker">SEARCH DEMAND MAP</p>
+        <h2 class="section-title">Bản đồ nhu cầu tìm kiếm thương mại</h2>
+        <p class="section-subtitle">Dự án được chia theo các nhóm demand có khả năng tạo traffic và chuyển đổi khác nhau, từ nhóm build PC tổng quan đến nhóm sản phẩm VGA/GPU và màn hình.</p>
+      </div>
+
+      <div class="cs-demand-map-grid">
+        <!-- Card 1 -->
+        <article class="card cs-demand-card">
+          <div class="demand-header">
+            <span class="demand-intent-badge">Commercial / Category Intent</span>
+            <h3>PC / Build PC Demand</h3>
+          </div>
+          <p class="demand-desc">Nhóm truy vấn thể hiện nhu cầu tìm cấu hình, build máy và lựa chọn bộ PC theo mục đích sử dụng.</p>
+          <div class="demand-topics">
+            <span class="demand-topic-title">Cụm chủ đề ưu tiên</span>
+            <div class="demand-topic-chips">
+              <span class="chip chip-outline">PC gaming</span>
+              <span class="chip chip-outline">bộ PC</span>
+              <span class="chip chip-outline">PC văn phòng</span>
+              <span class="chip chip-outline">PC đồ họa</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="card cs-demand-card">
+          <div class="demand-header">
+            <span class="demand-intent-badge">Product / Transactional Intent</span>
+            <h3>GPU / VGA Commercial Demand</h3>
+          </div>
+          <p class="demand-desc">Nhóm truy vấn sản phẩm có buyer intent rõ, thường gắn với nhu cầu nâng cấp cấu hình hoặc mua linh kiện cụ thể.</p>
+          <div class="demand-topics">
+            <span class="demand-topic-title">Cụm chủ đề ưu tiên</span>
+            <div class="demand-topic-chips">
+              <span class="chip chip-outline">RTX 2060</span>
+              <span class="chip chip-outline">RTX 3060</span>
+              <span class="chip chip-outline">GTX 1660</span>
+              <span class="chip chip-outline">GTX 1060</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="card cs-demand-card">
+          <div class="demand-header">
+            <span class="demand-intent-badge">Product Discovery Intent</span>
+            <h3>Monitor / Product Demand</h3>
+          </div>
+          <p class="demand-desc">Nhóm truy vấn sản phẩm hỗ trợ mở rộng độ phủ SEO ngoài PC chính, giúp kéo thêm traffic từ nhu cầu thiết bị liên quan.</p>
+          <div class="demand-topics">
+            <span class="demand-topic-title">Cụm chủ đề ưu tiên</span>
+            <div class="demand-topic-chips">
+              <span class="chip chip-outline">màn 27 inch</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. SEO Growth System -->
+  <section class="section">
+    <div class="container" style="max-width: 1120px;">
+      <div class="section-heading text-center">
+        <p class="section-kicker">SEO GROWTH SYSTEM</p>
+        <h2 class="section-title">Hệ thống SEO từ phục hồi đến mở rộng</h2>
+        <p class="section-subtitle">Case Hoàng Long không chỉ là tối ưu từng keyword riêng lẻ, mà là quá trình phục hồi nền SEO, gom cụm demand thương mại và mở rộng tracking theo ranking, traffic, AI/GEO và conversion events.</p>
+      </div>
+
+      <!-- Strategic Thesis Card -->
+      <div class="card cs-strategy-thesis-card" style="max-width: 800px; margin: 0 auto 48px;">
+        <span class="thesis-kicker">Strategic Thesis</span>
+        <p class="thesis-text">Tập trung giải quyết rào cản kỹ thuật của CMS tự code, gom cụm và phủ rộng từ khóa theo intent thương mại, thiết lập mô hình tracking đa chiều (Ranking, Traffic, AI/GEO, Conversion) để tối ưu hóa hiệu quả đầu tư SEO.</p>
+      </div>
+
+      <!-- Strategy Ladder -->
+      <div class="cs-strategy-ladder">
+        <!-- Block 1 -->
+        <div class="cs-strategy-block-wrapper">
+          <div class="cs-strategy-block card">
+            <div class="block-header">
+              <span class="block-num">01</span>
+              <div class="block-meta">
+                <span class="block-phase">Foundation layer</span>
+                <h3>Technical Recovery</h3>
+              </div>
+            </div>
+            <div class="block-body">
+              <div class="block-field">
+                <span class="field-label">Tín hiệu vấn đề</span>
+                <p class="field-text">Website dùng CMS code tay gặp lỗi canonical, indexing và giới hạn cấu hình technical.</p>
+              </div>
+              <div class="block-field">
+                <span class="field-label">Quyết định chiến lược</span>
+                <p class="field-text highlighted">Audit technical foundation, xử lý canonical/indexing, kiểm soát URL và tối ưu crawl signal.</p>
+              </div>
+            </div>
+            <div class="outcome-badge">
+              <span class="badge-label">Tác động kỳ vọng</span>
+              <span class="badge-value">Tạo nền tảng kỹ thuật vững chắc để Google crawl, index và phục hồi ranking hiệu quả.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Block 2 -->
+        <div class="cs-strategy-block-wrapper">
+          <div class="cs-strategy-block card">
+            <div class="block-header">
+              <span class="block-num">02</span>
+              <div class="block-meta">
+                <span class="block-phase">Demand layer</span>
+                <h3>Commercial Demand Mapping</h3>
+              </div>
+            </div>
+            <div class="block-body">
+              <div class="block-field">
+                <span class="field-label">Tín hiệu vấn đề</span>
+                <p class="field-text">Từ khóa dàn trải, thiếu phân nhóm rõ rệt theo intent mua hàng và nhóm sản phẩm e-commerce.</p>
+              </div>
+              <div class="block-field">
+                <span class="field-label">Quyết định chiến lược</span>
+                <p class="field-text highlighted">Phân chia keyword thành các cụm PC gaming, bộ PC, GPU/VGA, monitor theo buyer intent.</p>
+              </div>
+            </div>
+            <div class="outcome-badge">
+              <span class="badge-label">Tác động kỳ vọng</span>
+              <span class="badge-value">Định vị chính xác các nhóm từ khóa chuyển đổi cao để tập trung tối ưu hóa nguồn lực.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Block 3 -->
+        <div class="cs-strategy-block-wrapper">
+          <div class="cs-strategy-block card">
+            <div class="block-header">
+              <span class="block-num">03</span>
+              <div class="block-meta">
+                <span class="block-phase">Relevance layer</span>
+                <h3>Product / Category SEO</h3>
+              </div>
+            </div>
+            <div class="block-body">
+              <div class="block-field">
+                <span class="field-label">Tín hiệu vấn đề</span>
+                <p class="field-text">Các trang danh mục và sản phẩm chưa tối ưu sâu theo search intent của người mua.</p>
+              </div>
+              <div class="block-field">
+                <span class="field-label">Quyết định chiến lược</span>
+                <p class="field-text highlighted">Tối ưu on-page danh mục, sản phẩm, và cấu trúc nội dung thương mại theo intent của từng nhóm.</p>
+              </div>
+            </div>
+            <div class="outcome-badge">
+              <span class="badge-label">Tác động kỳ vọng</span>
+              <span class="badge-value">Tăng độ liên quan (relevance) và tỷ lệ chuyển đổi trực tiếp trên các trang đích e-commerce.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Block 4 -->
+        <div class="cs-strategy-block-wrapper">
+          <div class="cs-strategy-block card">
+            <div class="block-header">
+              <span class="block-num">04</span>
+              <div class="block-meta">
+                <span class="block-phase">Authority layer</span>
+                <h3>Content & Internal Link System</h3>
+              </div>
+            </div>
+            <div class="block-body">
+              <div class="block-field">
+                <span class="field-label">Tín hiệu vấn đề</span>
+                <p class="field-text">Liên kết nội bộ rời rạc, chưa tập trung truyền link equity về các URL mục tiêu.</p>
+              </div>
+              <div class="block-field">
+                <span class="field-label">Quyết định chiến lược</span>
+                <p class="field-text highlighted">Xây dựng content strategy bổ trợ và bản đồ internal link chặt chẽ cho cả hai nhóm từ khóa.</p>
+              </div>
+            </div>
+            <div class="outcome-badge">
+              <span class="badge-label">Tác động kỳ vọng</span>
+              <span class="badge-value">Củng cố Topical Authority và phân phối đều dòng chảy PageRank đến các trang cần thúc đẩy.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Block 5 -->
+        <div class="cs-strategy-block-wrapper">
+          <div class="cs-strategy-block card">
+            <div class="block-header">
+              <span class="block-num">05</span>
+              <div class="block-meta">
+                <span class="block-phase">Feedback loop</span>
+                <h3>Tracking & Scaling</h3>
+              </div>
+            </div>
+            <div class="block-body">
+              <div class="block-field">
+                <span class="field-label">Tín hiệu vấn đề</span>
+                <p class="field-text">Theo dõi traffic chung chung không phản ánh đúng giá trị SEO và chất lượng chuyển đổi e-commerce.</p>
+              </div>
+              <div class="block-field">
+                <span class="field-label">Quyết định chiến lược</span>
+                <p class="field-text highlighted">Theo dõi chi tiết hai bộ keyword, traffic tích lũy, AI/GEO traffic và các conversion events.</p>
+              </div>
+            </div>
+            <div class="outcome-badge">
+              <span class="badge-label">Tác động kỳ vọng</span>
+              <span class="badge-value">Đo lường chính xác hiệu quả kinh tế của SEO và tối ưu hóa roadmap theo thời gian thực.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- 8. Workflow triển khai dự án -->
+  <section class="section section-muted">
+    <div class="container" style="max-width: 1000px;">
+      <div class="section-heading text-center">
+        <p class="section-kicker">EXECUTION WORKFLOW</p>
+        <h2 class="section-title">Workflow triển khai dự án</h2>
+        <p class="section-subtitle">Từ audit nền SEO đến mở rộng ranking theo hai nhóm keyword duy trì và thúc đẩy.</p>
+      </div>
+
+      <div class="workflow-scrollytelling" data-workflow>
+        <!-- Sticky Sidebar Nav (Desktop) -->
+        <div class="workflow-sidebar">
+          <ul class="workflow-nav">
+            <li class="workflow-nav-item active" data-target="step-1">
+              <span class="step-num">01</span>
+              <span class="step-label">KPI Planning & Baseline</span>
+            </li>
+            <li class="workflow-nav-item" data-target="step-2">
+              <span class="step-num">02</span>
+              <span class="step-label">Technical Recovery</span>
+            </li>
+            <li class="workflow-nav-item" data-target="step-3">
+              <span class="step-num">03</span>
+              <span class="step-label">Commercial Demand Mapping</span>
+            </li>
+            <li class="workflow-nav-item" data-target="step-4">
+              <span class="step-num">04</span>
+              <span class="step-label">Content & Product/Category SEO</span>
+            </li>
+            <li class="workflow-nav-item" data-target="step-5">
+              <span class="step-num">05</span>
+              <span class="step-label">Tracking & Scaling</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Scrolling Detail Cards -->
+        <div class="workflow-content">
+          <!-- Step 1 -->
+          <div class="workflow-detail card active-card" id="step-1" data-workflow-step="step-1">
+            <div class="step-header">
+              <span class="step-mobile-num">01</span>
+              <h3>KPI Planning & Baseline</h3>
+            </div>
+            <div class="workflow-rows">
+              <div class="workflow-row">
+                <span class="row-label">Hành động</span>
+                <span class="row-value">Hoạch định KPI ranking/traffic theo từng phase, tách bộ từ khóa duy trì và bộ từ khóa thúc đẩy để theo dõi hiệu suất rõ ràng.</span>
+              </div>
+              <div class="workflow-row">
+                <span class="row-label">Output</span>
+                <span class="row-value highlighted">SEO roadmap với framework KPI phân tách, thiết lập baseline tracking rõ ràng.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="workflow-detail card" id="step-2" data-workflow-step="step-2">
+            <div class="step-header">
+              <span class="step-mobile-num">02</span>
+              <h3>Technical Recovery</h3>
+            </div>
+            <div class="workflow-rows">
+              <div class="workflow-row">
+                <span class="row-label">Hành động</span>
+                <span class="row-value">Audit technical, canonical, indexing, CMS limitation và các vấn đề ảnh hưởng crawl/ranking trước khi scale nội dung.</span>
+              </div>
+              <div class="workflow-row">
+                <span class="row-label">Output</span>
+                <span class="row-value highlighted">Technical audit report với danh sách fixes ưu tiên theo impact.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="workflow-detail card" id="step-3" data-workflow-step="step-3">
+            <div class="step-header">
+              <span class="step-mobile-num">03</span>
+              <h3>Commercial Demand Mapping</h3>
+            </div>
+            <div class="workflow-rows">
+              <div class="workflow-row">
+                <span class="row-label">Hành động</span>
+                <span class="row-value">Gom nhóm keyword theo PC gaming, bộ PC, PC văn phòng, GPU/VGA, màn hình và nhóm sản phẩm có buyer intent.</span>
+              </div>
+              <div class="workflow-row">
+                <span class="row-label">Output</span>
+                <span class="row-value highlighted">Content strategy theo nhóm sản phẩm và commercial intent clusters.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="workflow-detail card" id="step-4" data-workflow-step="step-4">
+            <div class="step-header">
+              <span class="step-mobile-num">04</span>
+              <h3>Content & Product/Category SEO</h3>
+            </div>
+            <div class="workflow-rows">
+              <div class="workflow-row">
+                <span class="row-label">Hành động</span>
+                <span class="row-value">Định hướng content strategy, on-page, internal link và tối ưu danh mục/sản phẩm theo search intent thương mại.</span>
+              </div>
+              <div class="workflow-row">
+                <span class="row-label">Output</span>
+                <span class="row-value highlighted">Product/category SEO optimization với internal link map cho các URL trọng tâm.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="workflow-detail card" id="step-5" data-workflow-step="step-5">
+            <div class="step-header">
+              <span class="step-mobile-num">05</span>
+              <h3>Tracking & Scaling</h3>
+            </div>
+            <div class="workflow-rows">
+              <div class="workflow-row">
+                <span class="row-label">Hành động</span>
+                <span class="row-value">Theo dõi ranking, traffic tích lũy, AI/GEO traffic và conversion events để điều chỉnh chiến lược theo từng tháng.</span>
+              </div>
+              <div class="workflow-row">
+                <span class="row-label">Output</span>
+                <span class="row-value highlighted">Monthly performance report với insight và strategic adjustments.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Results Dashboard -->
+  <section id="results" class="section">
+    <div class="container">
+      <div class="section-heading text-center">
+        <p class="section-kicker">KẾT QUẢ ĐẠT ĐƯỢC</p>
+        <h2 class="section-title">Kết quả đạt được: Recovery → Scaling</h2>
+        <p class="section-subtitle">Hiệu quả triển khai qua hai giai đoạn: phục hồi và mở rộng.</p>
+      </div>
+
+      <!-- Results Columns Container -->
+      <div class="hl-results-dashboard hl-results-columns">
+        
+        <!-- COLUMN A — PHASE 1: Recovery & KPI Validation -->
+        <div class="hl-phase-one">
+          <div class="hl-phase-header-simple">
+            <span class="hl-phase-badge">Phase 1</span>
+            <h3 class="hl-phase-title">Recovery & KPI Validation</h3>
+          </div>
+
+          <div class="hl-phase1-cards">
+            <!-- 1. Ranking Coverage Card -->
+            <div class="card hl-coverage-chart-card">
+              <h4 class="hl-coverage-chart-title">Ranking coverage trên 153 keywords</h4>
+              
+              <div class="hl-coverage-bars">
+                <!-- Top 3 -->
+                <div class="hl-coverage-bar-item">
+                  <div class="hl-coverage-bar-info">
+                    <span class="hl-coverage-bar-name">Top 3</span>
+                    <span class="hl-coverage-bar-detail">37,11% <span class="hl-bullet">·</span> 57/153 keywords</span>
+                  </div>
+                  <div class="hl-coverage-bar-track">
+                    <div class="hl-coverage-bar-fill top-3" style="width: 37.11%;"></div>
+                  </div>
+                </div>
+
+                <!-- Top 5 -->
+                <div class="hl-coverage-bar-item">
+                  <div class="hl-coverage-bar-info">
+                    <span class="hl-coverage-bar-name">Top 5</span>
+                    <span class="hl-coverage-bar-detail">48,43% <span class="hl-bullet">·</span> 74/153 keywords</span>
+                  </div>
+                  <div class="hl-coverage-bar-track">
+                    <div class="hl-coverage-bar-fill top-5" style="width: 48.43%;"></div>
+                  </div>
+                </div>
+
+                <!-- Top 10 -->
+                <div class="hl-coverage-bar-item">
+                  <div class="hl-coverage-bar-info">
+                    <span class="hl-coverage-bar-name">Top 10</span>
+                    <span class="hl-coverage-bar-detail">55,97% <span class="hl-bullet">·</span> 86/153 keywords</span>
+                  </div>
+                  <div class="hl-coverage-bar-track">
+                    <div class="hl-coverage-bar-fill top-10" style="width: 55.97%;"></div>
+                  </div>
+                </div>
+              </div>
+
+              <p class="hl-coverage-footnote">
+                * Top 5 đã bao gồm Top 3; Top 10 đã bao gồm Top 5.
+              </p>
+            </div>
+
+            <!-- 2. Donut Chart Card -->
+            <div class="card hl-phase1-donut-card">
+              <h4 class="hl-phase1-donut-title">Phân bổ xếp hạng</h4>
+              
+              <div class="donut-wrapper" style="margin-bottom: 20px; margin-top: 16px;">
+                <div class="donut-multi hl-phase1-donut-circle" style="background: conic-gradient(var(--color-accent) 0% 37.11%, var(--color-text) 37.11% 48.43%, var(--color-muted-text) 48.43% 55.97%, var(--color-border) 55.97% 100%);">
+                  <div class="donut-inner hl-phase1-donut-inner">
+                    <div class="hl-phase1-donut-center-val" style="font-size: 1.6rem; font-weight: 800; color: var(--color-text); line-height: 1;">55,97%</div>
+                    <div class="hl-phase1-donut-center-label" style="font-size: 0.72rem; color: var(--color-muted-text); margin-top: 2px; text-align: center;">Top 10 coverage</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="distribution-legend" style="width: 100%; max-width: 320px; margin: 0 auto;">
+                <div class="legend-row">
+                  <div class="legend-dot-wrapper">
+                    <span class="legend-dot" style="background: var(--color-accent);"></span> 
+                    <span class="legend-label">Top 1–3</span>
+                  </div>
+                  <span class="legend-value">37,11%</span>
+                </div>
+                <div class="legend-row">
+                  <div class="legend-dot-wrapper">
+                    <span class="legend-dot" style="background: var(--color-text);"></span> 
+                    <span class="legend-label">Top 4–5</span>
+                  </div>
+                  <span class="legend-value">11,32%</span>
+                </div>
+                <div class="legend-row">
+                  <div class="legend-dot-wrapper">
+                    <span class="legend-dot" style="background: var(--color-muted-text);"></span> 
+                    <span class="legend-label">Top 6–10</span>
+                  </div>
+                  <span class="legend-value">7,54%</span>
+                </div>
+                <div class="legend-row">
+                  <div class="legend-dot-wrapper">
+                    <span class="legend-dot" style="background: var(--color-border);"></span> 
+                    <span class="legend-label">Ngoài Top 10</span>
+                  </div>
+                  <span class="legend-value">44,03%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Traffic + Conversion Mini Grid -->
+            <div class="hl-phase1-metrics-grid">
+              <div class="card hl-phase1-metric-card">
+                <span class="hl-phase1-metric-label">Traffic nghiệm thu</span>
+                <div class="hl-phase1-metric-value">52.862</div>
+              </div>
+
+              <div class="card hl-phase1-metric-card">
+                <span class="hl-phase1-metric-label">Conversion events</span>
+                <div class="hl-phase1-metric-value">31.382</div>
+              </div>
+            </div>
+
+            <!-- 4. Insight Card -->
+            <div class="card hl-phase1-insight-card">
+              <span class="hl-phase1-insight-label">Insight</span>
+              <p class="hl-phase1-insight-text">
+                Phase 1 tập trung xác thực khả năng phục hồi ranking và chất lượng tín hiệu chuyển đổi, tạo nền tảng cho giai đoạn scale 12 tháng.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- COLUMN B — PHASE 2: Scaling Partnership — Month 6 Progress -->
+        <div class="hl-phase-two">
+          <div class="hl-phase-header-simple">
+            <span class="hl-phase-badge active">Phase 2</span>
+            <h3 class="hl-phase-title">Scaling Partnership: Month 6 Progress</h3>
+            <span class="hl-phase-status">Đang triển khai · Hợp đồng 12 tháng từ 12/11/2025</span>
+          </div>
+
+          <!-- Compact top summary cards -->
+          <div class="hl-summary-grid">
+            <!-- Card 1 -->
+            <div class="card hl-headline-card">
+              <span class="hl-card-label">Scaling Partnership</span>
+              <div class="hl-card-value text-medium">12 tháng</div>
+              <span class="hl-card-caption">Hợp đồng SEO bắt đầu từ 12/11/2025</span>
+            </div>
+            <!-- Card 2 -->
+            <div class="card hl-headline-card">
+              <span class="hl-card-label">Traffic tích lũy</span>
+              <div class="hl-card-value">356.547</div>
+              <span class="hl-card-caption">KPI cuối dự án: 1.000.000</span>
+            </div>
+            <!-- Card 3 -->
+            <div class="card hl-headline-card">
+              <span class="hl-card-label">AI/GEO Traffic</span>
+              <div class="hl-card-value">7.406</div>
+              <span class="hl-card-caption">Tích lũy từ 12/11/2025</span>
+            </div>
+            <!-- Card 4 -->
+            <div class="card hl-headline-card">
+              <span class="hl-card-label">Tracked conversion events</span>
+              <div class="hl-card-value">58.902</div>
+              <span class="hl-card-caption" title="add_to_cart, view_item, click_phone, form_submit, purchase...">add_to_cart, view_item, click_phone, form_submit, purchase...</span>
+            </div>
+          </div>
+
+          <!-- Line chart card -->
+          <div class="card hl-chart-card">
+            <div class="hl-chart-card-header">
+              <div class="hl-chart-title-group">
+                <h4 class="hl-chart-title">Biểu đồ tăng trưởng Phase 2</h4>
+                <p class="hl-chart-subtitle">Xu hướng Top 3 / Top 5 / Top 10 theo từng tháng của từng bộ keyword.</p>
+              </div>
+              <div class="hl-chart-tabs">
+                <button class="hl-chart-tab active" data-tab="maintenance">Bộ duy trì</button>
+                <button class="hl-chart-tab" data-tab="growth">Bộ thúc đẩy</button>
+              </div>
+            </div>
+
+            <!-- Dynamic Chart Legends -->
+            <div class="hl-chart-legends">
+              <div class="hl-chart-legend hl-legend-keywords active">
+                <div class="legend-item">
+                  <span class="legend-color" style="background: var(--color-accent);"></span> Top 3
+                </div>
+                <div class="legend-item">
+                  <span class="legend-color" style="background: var(--color-text);"></span> Top 5
+                </div>
+                <div class="legend-item">
+                  <span class="legend-color" style="background: #8A7E72;"></span> Top 10
+                </div>
+              </div>
+            </div>
+
+            <!-- SVG Container -->
+            <div class="svg-chart-container" style="position: relative;">
+              <div id="hl-chart-tooltip" class="hl-chart-tooltip"></div>
+              <svg viewBox="0 0 800 300" class="growth-chart" preserveAspectRatio="xMidYMid meet">
+                <!-- Grid lines -->
+                <line x1="50" y1="250" x2="750" y2="250" class="grid-line x-axis" />
+                <line x1="50" y1="200" x2="750" y2="200" class="grid-line" />
+                <line x1="50" y1="150" x2="750" y2="150" class="grid-line" />
+                <line x1="50" y1="100" x2="750" y2="100" class="grid-line" />
+                <line x1="50" y1="50" x2="750" y2="50" class="grid-line" />
+
+                <!-- X Axis Labels -->
+                <text x="80" y="275" class="axis-label">Tháng 1</text>
+                <text x="208" y="275" class="axis-label">Tháng 2</text>
+                <text x="336" y="275" class="axis-label">Tháng 3</text>
+                <text x="464" y="275" class="axis-label">Tháng 4</text>
+                <text x="592" y="275" class="axis-label">Tháng 5</text>
+                <text x="720" y="275" class="axis-label">Tháng 6</text>
+
+                <!-- Static Y Axis Labels (Percentages) -->
+                <g class="hl-chart-y-axis hl-axis-keywords active">
+                  <text x="40" y="55" class="axis-label y-label">100%</text>
+                  <text x="40" y="105" class="axis-label y-label">75%</text>
+                  <text x="40" y="155" class="axis-label y-label">50%</text>
+                  <text x="40" y="205" class="axis-label y-label">25%</text>
+                  <text x="40" y="255" class="axis-label y-label">0%</text>
+                </g>
+
+                <!-- 1. Maintenance lines group (Active by default) -->
+                <g class="hl-chart-line-group hl-lines-maintenance active">
+                  <!-- Top 3 (red) -->
+                  <polyline points="80,146 208,126 336,130 464,166 592,120 720,116" class="chart-line" style="stroke: var(--color-accent);" />
+                  <!-- Top 5 (charcoal) -->
+                  <polyline points="80,124 208,110 336,110 464,142 592,114 720,104" class="chart-line" style="stroke: var(--color-text);" />
+                  <!-- Top 10 (muted/gray) -->
+                  <!-- WARNING: Month 1 (Top 10 = 60% < Top 5 = 63%), Month 2 (Top 10 = 68% < Top 5 = 70%), and Month 3 (Top 10 = 60% < Top 5 = 70%) have user-provided data validation inconsistencies. -->
+                  <polyline points="80,130 208,114 336,130 464,110 592,104 720,96" class="chart-line" style="stroke: #8A7E72;" />
+                  
+                  <g class="chart-points">
+                    <!-- Top 3 -->
+                    <circle cx="80" cy="146" r="3.5" style="stroke: var(--color-accent);" data-month="Tháng 1" data-series="Top 3" data-value="52%" />
+                    <circle cx="208" cy="126" r="3.5" style="stroke: var(--color-accent);" data-month="Tháng 2" data-series="Top 3" data-value="62%" />
+                    <circle cx="336" cy="130" r="3.5" style="stroke: var(--color-accent);" data-month="Tháng 3" data-series="Top 3" data-value="60%" />
+                    <circle cx="464" cy="166" r="3.5" style="stroke: var(--color-accent);" data-month="Tháng 4" data-series="Top 3" data-value="42%" />
+                    <circle cx="592" cy="120" r="3.5" style="stroke: var(--color-accent);" data-month="Tháng 5" data-series="Top 3" data-value="65%" />
+                    <circle cx="720" cy="116" r="5.5" style="stroke: var(--color-accent); fill: var(--color-accent);" data-month="Tháng 6" data-series="Top 3" data-value="67%" />
+                    <text x="745" y="120" class="point-label" style="fill: var(--color-accent); font-size: 11px; text-anchor: start;">67%</text>
+
+                    <!-- Top 5 -->
+                    <circle cx="80" cy="124" r="3.5" style="stroke: var(--color-text);" data-month="Tháng 1" data-series="Top 5" data-value="63%" />
+                    <circle cx="208" cy="110" r="3.5" style="stroke: var(--color-text);" data-month="Tháng 2" data-series="Top 5" data-value="70%" />
+                    <circle cx="336" cy="110" r="3.5" style="stroke: var(--color-text);" data-month="Tháng 3" data-series="Top 5" data-value="70%" />
+                    <circle cx="464" cy="142" r="3.5" style="stroke: var(--color-text);" data-month="Tháng 4" data-series="Top 5" data-value="54%" />
+                    <circle cx="592" cy="114" r="3.5" style="stroke: var(--color-text);" data-month="Tháng 5" data-series="Top 5" data-value="68%" />
+                    <circle cx="720" cy="104" r="5.5" style="stroke: var(--color-text); fill: var(--color-text);" data-month="Tháng 6" data-series="Top 5" data-value="73%" />
+                    <text x="745" y="108" class="point-label" style="fill: var(--color-text); font-size: 11px; text-anchor: start;">73%</text>
+
+                    <!-- Top 10 -->
+                    <circle cx="80" cy="130" r="3.5" style="stroke: #8A7E72;" data-month="Tháng 1" data-series="Top 10" data-value="60%" />
+                    <circle cx="208" cy="114" r="3.5" style="stroke: #8A7E72;" data-month="Tháng 2" data-series="Top 10" data-value="68%" />
+                    <circle cx="336" cy="130" r="3.5" style="stroke: #8A7E72;" data-month="Tháng 3" data-series="Top 10" data-value="60%" />
+                    <circle cx="464" cy="110" r="3.5" style="stroke: #8A7E72;" data-month="Tháng 4" data-series="Top 10" data-value="70%" />
+                    <circle cx="592" cy="104" r="3.5" style="stroke: #8A7E72;" data-month="Tháng 5" data-series="Top 10" data-value="73%" />
+                    <circle cx="720" cy="96" r="5.5" style="stroke: #8A7E72; fill: #8A7E72;" data-month="Tháng 6" data-series="Top 10" data-value="77%" />
+                    <text x="745" y="100" class="point-label" style="fill: #8A7E72; font-size: 11px; text-anchor: start;">77%</text>
+                  </g>
+                </g>
+
+                <!-- 2. Growth lines group -->
+                <g class="hl-chart-line-group hl-lines-growth">
+                  <!-- Top 3 (red) -->
+                  <polyline points="80,224 208,196 336,200 464,198 592,200 720,186" class="chart-line" style="stroke: var(--color-accent);" />
+                  <!-- Top 5 (charcoal) -->
+                  <polyline points="80,194 208,184 336,192 464,188 592,192 720,174" class="chart-line" style="stroke: var(--color-text);" />
+                  <!-- Top 10 (muted/gray) -->
+                  <polyline points="80,180 208,154 336,150 464,174 592,154 720,140" class="chart-line" style="stroke: #8A7E72;" />
+
+                  <g class="chart-points">
+                    <!-- Top 3 -->
+                    <circle cx="80" cy="224" r="3.5" style="stroke: var(--color-accent);" data-month="Tháng 1" data-series="Top 3" data-value="13%" />
+                    <circle cx="208" cy="196" r="3.5" style="stroke: var(--color-accent);" data-month="Tháng 2" data-series="Top 3" data-value="27%" />
+                    <circle cx="336" cy="200" r="3.5" style="stroke: var(--color-accent);" data-month="Tháng 3" data-series="Top 3" data-value="25%" />
+                    <circle cx="464" cy="198" r="3.5" style="stroke: var(--color-accent);" data-month="Tháng 4" data-series="Top 3" data-value="26%" />
+                    <circle cx="592" cy="200" r="3.5" style="stroke: var(--color-accent);" data-month="Tháng 5" data-series="Top 3" data-value="25%" />
+                    <circle cx="720" cy="186" r="5.5" style="stroke: var(--color-accent); fill: var(--color-accent);" data-month="Tháng 6" data-series="Top 3" data-value="32%" />
+                    <text x="745" y="190" class="point-label" style="fill: var(--color-accent); font-size: 11px; text-anchor: start;">32%</text>
+
+                    <!-- Top 5 -->
+                    <circle cx="80" cy="194" r="3.5" style="stroke: var(--color-text);" data-month="Tháng 1" data-series="Top 5" data-value="28%" />
+                    <circle cx="208" cy="184" r="3.5" style="stroke: var(--color-text);" data-month="Tháng 2" data-series="Top 5" data-value="33%" />
+                    <circle cx="336" cy="192" r="3.5" style="stroke: var(--color-text);" data-month="Tháng 3" data-series="Top 5" data-value="29%" />
+                    <circle cx="464" cy="188" r="3.5" style="stroke: var(--color-text);" data-month="Tháng 4" data-series="Top 5" data-value="31%" />
+                    <circle cx="592" cy="192" r="3.5" style="stroke: var(--color-text);" data-month="Tháng 5" data-series="Top 5" data-value="29%" />
+                    <circle cx="720" cy="174" r="5.5" style="stroke: var(--color-text); fill: var(--color-text);" data-month="Tháng 6" data-series="Top 5" data-value="38%" />
+                    <text x="745" y="178" class="point-label" style="fill: var(--color-text); font-size: 11px; text-anchor: start;">38%</text>
+
+                    <!-- Top 10 -->
+                    <circle cx="720" cy="140" r="5.5" style="stroke: var(--color-border); fill: var(--color-border);" data-month="Tháng 6" data-series="Top 10" data-value="55%" />
+                    <text x="745" y="144" class="point-label" style="fill: var(--color-muted-text); font-size: 11px; text-anchor: start;">55%</text>
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Donut chart card -->
+          <div class="card hl-donut-card text-center">
+            <div class="hl-donut-card-header">
+              <h4 class="hl-donut-title">Phân bổ xếp hạng (Tháng 6)</h4>
+              <div class="hl-donut-tabs">
+                <button class="hl-donut-tab active" data-donut-tab="maintenance">Bộ duy trì</button>
+                <button class="hl-donut-tab" data-donut-tab="growth">Bộ thúc đẩy</button>
+              </div>
+            </div>
+
+            <div class="donut-wrapper" style="margin-bottom: 24px; margin-top: 16px;">
+              <div id="hl-donut-chart" class="donut-multi" style="background: conic-gradient(var(--color-accent) 0% 67%, var(--color-text) 67% 73%, var(--color-muted-text) 73% 77%, var(--color-border) 77% 100%);">
+                <div class="donut-inner">
+                  <div id="hl-donut-center-val" style="font-size: 2.2rem; font-weight: 800; color: var(--color-text); line-height: 1;">77%</div>
+                  <div id="hl-donut-center-label" style="font-size: 0.82rem; color: var(--color-muted-text); margin-top: 4px;">Tỷ lệ lọt Top 10</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="distribution-legend" style="max-width: 360px; margin: 0 auto;">
+              <div class="legend-row">
+                <div class="legend-dot-wrapper">
+                  <span class="legend-dot" style="background: var(--color-accent);"></span> 
+                  <span class="legend-label">Top 1–3</span>
+                </div>
+                <span id="hl-donut-legend-val-1" class="legend-value">67%</span>
+              </div>
+              <div class="legend-row">
+                <div class="legend-dot-wrapper">
+                  <span class="legend-dot" style="background: var(--color-text);"></span> 
+                  <span class="legend-label">Top 4–5</span>
+                </div>
+                <span id="hl-donut-legend-val-2" class="legend-value">6%</span>
+              </div>
+              <div class="legend-row">
+                <div class="legend-dot-wrapper">
+                  <span class="legend-dot" style="background: var(--color-muted-text);"></span> 
+                  <span class="legend-label">Top 6–10</span>
+                </div>
+                <span id="hl-donut-legend-val-3" class="legend-value">4%</span>
+              </div>
+              <div class="legend-row">
+                <div class="legend-dot-wrapper">
+                  <span class="legend-dot" style="background: var(--color-border);"></span> 
+                  <span class="legend-label">Ngoài Top 10</span>
+                </div>
+                <span id="hl-donut-legend-val-4" class="legend-value">23%</span>
+              </div>
+            </div>
+            
+            <p class="hl-donut-helper-note" style="font-size: 0.76rem; color: var(--color-muted-text); margin-top: 16px; font-style: italic; text-align: center; border-top: 1px dashed rgba(216, 207, 196, 0.4); padding-top: 12px; margin-bottom: 0;">
+              * Top 10 coverage = Top 1–3 + Top 4–5 + Top 6–10
+            </p>
+          </div>
+
+          <!-- Two-track KPI blocks -->
+          <div class="hl-phase2-grid">
+            <!-- Track Card 1: Duy trì -->
+            <div class="card hl-track-card">
+              <div class="hl-track-card-header">
+                <span class="hl-track-meta">Track 1 · 113 keywords</span>
+                <h4 class="hl-track-card-title">Bộ từ khóa duy trì</h4>
+              </div>
+              
+              <div class="hl-track-rows">
+                <!-- Row 1: Top 3 -->
+                <div class="hl-progress-row">
+                  <div class="hl-progress-row-top">
+                    <span class="hl-progress-kpi-label">Top 3</span>
+                    <div class="hl-progress-values">
+                      <span class="hl-progress-val-current">67%</span>
+                      <span class="hl-progress-val-separator">/</span>
+                      <span class="hl-progress-val-target">KPI 45%</span>
+                    </div>
+                    <span class="hl-status-chip success">Vượt KPI</span>
+                  </div>
+                  <div class="hl-progress-bar-container">
+                    <div class="hl-progress-bar bg-success" style="width: 100%;"></div>
+                  </div>
+                </div>
+
+                <!-- Row 2: Top 5 -->
+                <div class="hl-progress-row">
+                  <div class="hl-progress-row-top">
+                    <span class="hl-progress-kpi-label">Top 5</span>
+                    <div class="hl-progress-values">
+                      <span class="hl-progress-val-current">73%</span>
+                      <span class="hl-progress-val-separator">/</span>
+                      <span class="hl-progress-val-target">KPI 59%</span>
+                    </div>
+                    <span class="hl-status-chip success">Vượt KPI</span>
+                  </div>
+                  <div class="hl-progress-bar-container">
+                    <div class="hl-progress-bar bg-success" style="width: 100%;"></div>
+                  </div>
+                </div>
+
+                <!-- Row 3: Top 10 -->
+                <div class="hl-progress-row">
+                  <div class="hl-progress-row-top">
+                    <span class="hl-progress-kpi-label">Top 10</span>
+                    <div class="hl-progress-values">
+                      <span class="hl-progress-val-current">77%</span>
+                      <span class="hl-progress-val-separator">/</span>
+                      <span class="hl-progress-val-target">KPI 77%</span>
+                    </div>
+                    <span class="hl-status-chip success">Đạt KPI</span>
+                  </div>
+                  <div class="hl-progress-bar-container">
+                    <div class="hl-progress-bar bg-success" style="width: 100%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Track Card 2: Thúc đẩy -->
+            <div class="card hl-track-card">
+              <div class="hl-track-card-header">
+                <span class="hl-track-meta">Track 2 · 153 keywords</span>
+                <h4 class="hl-track-card-title">Bộ từ khóa thúc đẩy</h4>
+              </div>
+
+              <div class="hl-track-rows">
+                <!-- Row 1: Top 3 -->
+                <div class="hl-progress-row">
+                  <div class="hl-progress-row-top">
+                    <span class="hl-progress-kpi-label">Top 3</span>
+                    <div class="hl-progress-values">
+                      <span class="hl-progress-val-current">32%</span>
+                      <span class="hl-progress-val-separator">/</span>
+                      <span class="hl-progress-val-target">KPI 15%</span>
+                    </div>
+                    <span class="hl-status-chip success">Vượt KPI</span>
+                  </div>
+                  <div class="hl-progress-bar-container">
+                    <div class="hl-progress-bar bg-success" style="width: 100%;"></div>
+                  </div>
+                </div>
+
+                <!-- Row 2: Top 5 -->
+                <div class="hl-progress-row">
+                  <div class="hl-progress-row-top">
+                    <span class="hl-progress-kpi-label">Top 5</span>
+                    <div class="hl-progress-values">
+                      <span class="hl-progress-val-current">38%</span>
+                      <span class="hl-progress-val-separator">/</span>
+                      <span class="hl-progress-val-target">KPI 25%</span>
+                    </div>
+                    <span class="hl-status-chip success">Vượt KPI</span>
+                  </div>
+                  <div class="hl-progress-bar-container">
+                    <div class="hl-progress-bar bg-success" style="width: 100%;"></div>
+                  </div>
+                </div>
+
+                <!-- Row 3: Top 10 -->
+                <div class="hl-progress-row">
+                  <div class="hl-progress-row-top">
+                    <span class="hl-progress-kpi-label">Top 10</span>
+                    <div class="hl-progress-values">
+                      <span class="hl-progress-val-current">55%</span>
+                      <span class="hl-progress-val-separator">/</span>
+                      <span class="hl-progress-val-target">KPI 60%</span>
+                    </div>
+                    <span class="hl-status-chip warning">Gần đạt KPI</span>
+                  </div>
+                  <div class="hl-progress-bar-container">
+                    <div class="hl-progress-bar bg-warning" style="width: 91.7%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Current Read & Insights Card -->
+          <div class="card hl-current-read-card">
+            <div class="hl-current-read-header">
+              <svg class="hl-current-read-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              <span class="hl-current-read-title">Current Read & Insights</span>
+            </div>
+            <p class="hl-current-read-text">
+              Ở tháng thứ 6 của hợp đồng mới, nhóm từ khóa duy trì đã vượt KPI cuối kỳ ở Top 3 và Top 5, đồng thời chạm KPI Top 10. Nhóm từ khóa thúc đẩy cũng vượt KPI Top 3 và Top 5, trong khi Top 10 đã tiệm cận mục tiêu cuối kỳ và còn dư địa scale trong nửa sau dự án.
+            </p>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Ranking Wins Board -->
+  <section class="section">
+    <div class="container" style="max-width: 1240px;">
+      <div class="section-heading text-center">
+        <p class="section-kicker">RANKING WINS</p>
+        <h2 class="section-title">Ranking Wins Board</h2>
+        <p class="section-subtitle">Nhóm từ khóa thương mại trọng tâm được tracking trong dự án.</p>
+      </div>
+
+      <div class="ranking-proof-layout">
+        <!-- Left Column: Keyword Groups -->
+        <div class="ranking-keywords-column">
+          <div class="interaction-helper">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="helper-svg-icon" style="margin-right: 8px; flex-shrink: 0; opacity: 0.85;">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="16" x2="12" y2="12"/>
+              <line x1="12" y1="8" x2="12.01" y2="8"/>
+            </svg>
+            <span>Click từng keyword để xem thông tin tracking.</span>
+          </div>
+
+          <!-- Group 1: PC / Build PC -->
+          <div class="ranking-keyword-group">
+            <span class="win-intent">PC / Build PC</span>
+            <ul class="ranking-keyword-list">
+              <li class="ranking-keyword-item is-active" 
+                  data-keyword="PC gaming" 
+                  data-rank="Commercial Intent" 
+                  data-image="#"
+                  data-caption="Keyword thương mại trọng tâm nhóm PC gaming — tracked trong cả Phase 1 và Phase 2.">
+                <span class="keyword-name">PC gaming</span>
+                <span class="keyword-rank-badge rank-commercial">Commercial Intent</span>
+              </li>
+              <li class="ranking-keyword-item" 
+                  data-keyword="bộ PC" 
+                  data-rank="Commercial Intent" 
+                  data-image="#"
+                  data-caption="Keyword thương mại cao cho nhóm cấu hình bộ PC theo nhu cầu người dùng.">
+                <span class="keyword-name">bộ PC</span>
+                <span class="keyword-rank-badge rank-commercial">Commercial Intent</span>
+              </li>
+              <li class="ranking-keyword-item" 
+                  data-keyword="PC văn phòng" 
+                  data-rank="Commercial Intent" 
+                  data-image="#"
+                  data-caption="Keyword nhóm sản phẩm PC văn phòng — buyer intent rõ ràng.">
+                <span class="keyword-name">PC văn phòng</span>
+                <span class="keyword-rank-badge rank-commercial">Commercial Intent</span>
+              </li>
+              <li class="ranking-keyword-item" 
+                  data-keyword="PC đồ họa" 
+                  data-rank="Product Keyword" 
+                  data-image="#"
+                  data-caption="Keyword chuyên biệt cho nhóm PC đồ họa chuyên nghiệp và sáng tạo nội dung.">
+                <span class="keyword-name">PC đồ họa</span>
+                <span class="keyword-rank-badge rank-product">Product Keyword</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Group 2: GPU / VGA -->
+          <div class="ranking-keyword-group">
+            <span class="win-intent">GPU / VGA Commercial Intent</span>
+            <ul class="ranking-keyword-list">
+              <li class="ranking-keyword-item" 
+                  data-keyword="RTX 2060" 
+                  data-rank="Product Keyword" 
+                  data-image="#"
+                  data-caption="Keyword sản phẩm GPU phân khúc gaming phổ thông.">
+                <span class="keyword-name">RTX 2060</span>
+                <span class="keyword-rank-badge rank-product">Product Keyword</span>
+              </li>
+              <li class="ranking-keyword-item" 
+                  data-keyword="RTX 3060" 
+                  data-rank="Phase 2 Keyword" 
+                  data-image="#"
+                  data-caption="GPU mainstream gaming — tracked trong bộ keyword thúc đẩy Phase 2.">
+                <span class="keyword-name">RTX 3060</span>
+                <span class="keyword-rank-badge rank-phase2">Phase 2 Keyword</span>
+              </li>
+              <li class="ranking-keyword-item" 
+                  data-keyword="GTX 1660" 
+                  data-rank="Tracked Growth" 
+                  data-image="#"
+                  data-caption="GPU phân khúc giá rẻ — tracked để đánh giá tín hiệu tăng trưởng.">
+                <span class="keyword-name">GTX 1660</span>
+                <span class="keyword-rank-badge rank-tracked">Tracked Growth</span>
+              </li>
+              <li class="ranking-keyword-item" 
+                  data-keyword="GTX 1060" 
+                  data-rank="Tracked Growth" 
+                  data-image="#"
+                  data-caption="GPU legacy demand — ghi nhận tín hiệu tìm kiếm từ segment budget gaming.">
+                <span class="keyword-name">GTX 1060</span>
+                <span class="keyword-rank-badge rank-tracked">Tracked Growth</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Group 3: Monitor / Peripheral Demand -->
+          <div class="ranking-keyword-group">
+            <span class="win-intent">Monitor / Peripheral Demand</span>
+            <ul class="ranking-keyword-list">
+              <li class="ranking-keyword-item" 
+                  data-keyword="màn 27 inch" 
+                  data-rank="Product Keyword" 
+                  data-image="#"
+                  data-caption="Keyword sản phẩm màn hình 27 inch — nhu cầu tìm kiếm ổn định.">
+                <span class="keyword-name">màn 27 inch</span>
+                <span class="keyword-rank-badge rank-product">Product Keyword</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right Column: Preview Panel -->
+        <div class="serp-preview-column">
+          <div class="serp-proof-card card">
+            <div class="serp-proof-header">
+              <span class="serp-proof-label">Keyword Tracking Info</span>
+              <h4 class="serp-proof-title">Thông tin từ khóa</h4>
+            </div>
+            
+            <div class="serp-proof-meta">
+              <span id="hl-active-kw-name" class="serp-kw-title">PC gaming</span>
+              <span id="hl-active-kw-badge" class="keyword-rank-badge rank-commercial">Commercial Intent</span>
+            </div>
+            
+            <div class="serp-proof-frame">
+              <img id="hl-serp-proof-image" src="#" alt="Keyword tracking: PC gaming" class="serp-proof-image" />
+              
+              <!-- Premium Placeholder State -->
+              <div id="hl-serp-proof-placeholder" class="serp-proof-placeholder">
+                <div class="placeholder-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="placeholder-svg">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                    <polyline points="21 15 16 10 5 21"/>
+                  </svg>
+                </div>
+                <p class="placeholder-title">Ranking Screenshot Pending</p>
+                <p class="placeholder-desc">TODO: Add keyword tracking proof for this group.</p>
+              </div>
+            </div>
+            
+            <p id="hl-serp-proof-caption" class="serp-proof-caption">Keyword thương mại trọng tâm nhóm PC gaming — tracked trong cả Phase 1 và Phase 2.</p>
+          </div>
+        </div>
+      </div>
+
+      <p style="text-align: center; font-size: 0.82rem; color: var(--color-muted-text); margin-top: 32px; font-style: italic;">
+        * Từ khóa được phân nhóm theo intent thương mại. Ảnh chụp ranking sẽ được bổ sung khi có dữ liệu public.
+      </p>
+    </div>
+  </section>
+
+  <!-- 9. Evidence / Proof Cards -->
+  <section class="section section-muted">
+    <div class="container">
+      <div class="section-heading text-center">
+        <p class="section-kicker">BẰNG CHỨNG THỰC THI</p>
+        <h2 class="section-title">Evidence & Proof Cards</h2>
+        <p class="section-subtitle">Minh chứng hiệu suất từ các nguồn tracking chính thức.</p>
+      </div>
+      <div class="results-evidence-grid">
+        {evidenceCards.map((evidence) => (
+          <EvidenceCard 
+            title={evidence.title}
+            caption={evidence.caption}
+            imageSrc={evidence.imageSrc}
+            placeholder={evidence.placeholder}
+            sourceLabel={evidence.sourceLabel}
+            alt={evidence.alt}
+            insights={evidence.insights}
+            showPlaceholder={true}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. What This Project Proves -->
+  <section id="insights" class="section section-muted">
+    <div class="container">
+      <div class="section-heading text-center">
+        <p class="section-kicker">BÀI HỌC RÚT RA</p>
+        <h2 class="section-title">Case này cho thấy điều gì?</h2>
+      </div>
+      <div class="cs-insights-grid" style="grid-template-columns: repeat(4, 1fr);">
+        <article class="card cs-insight-card">
+          <div class="cs-insight-icon cs-insight-worked" aria-hidden="true">✓</div>
+          <h3>Recovery-to-scale SEO leadership</h3>
+          <p>Dự án chuyển từ giai đoạn phục hồi technical/content sang hợp đồng 12 tháng mới — chứng minh khả năng dẫn dắt SEO từ recovery đến scaling.</p>
+        </article>
+        <article class="card cs-insight-card">
+          <div class="cs-insight-icon cs-insight-growth" aria-hidden="true">⬆</div>
+          <h3>E-commerce keyword prioritization</h3>
+          <p>Chiến lược keyword tập trung vào nhóm buyer-intent: PC gaming, bộ PC, PC văn phòng, GPU/VGA và monitor demand — không dàn trải trên các keyword không có intent chuyển đổi.</p>
+        </article>
+        <article class="card cs-insight-card">
+          <div class="cs-insight-icon cs-insight-system" aria-hidden="true">⚙</div>
+          <h3>KPI planning by keyword maturity</h3>
+          <p>Phase 2 tách bộ keyword duy trì và bộ keyword thúc đẩy, giúp tracking ranking progress rõ ràng hơn và dễ communicate kết quả với stakeholders.</p>
+        </article>
+        <article class="card cs-insight-card">
+          <div class="cs-insight-icon cs-insight-data" aria-hidden="true">📊</div>
+          <h3>Traffic quality and conversion tracking</h3>
+          <p>Dự án tracking ranking, cumulative traffic, AI/GEO traffic và conversion events — thay vì chỉ nhìn generic traffic, giúp đánh giá chất lượng SEO output chính xác hơn.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. CTA -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-heading text-center">
+        <h2 class="section-title">Muốn xem cách tôi xây dựng hệ thống SEO cho e-commerce?</h2>
+        <p class="section-subtitle">
+          Tôi có thể chia sẻ thêm về quy trình KPI planning, technical recovery, content strategy và conversion tracking cho các dự án e-commerce SEO.
+        </p>
+        <div class="btn-group center" style="margin-top: 32px;">
+          <a class="btn btn-primary" href="/contact/">Kết nối</a>
+          <a class="btn btn-light" href="/case-studies/">Xem thêm case study</a>
+          <a class="btn btn-light" href="/seo-systems/">Explore SEO Systems</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<script>
+  import "../../scripts/interactions.js";
+
+  // Hoàng Long Computer — Interactive SERP/Wins Board Panel logic
+  document.addEventListener('DOMContentLoaded', () => {
+    const keywordItems = document.querySelectorAll('.ranking-keyword-item');
+    const activeKwName = document.getElementById('hl-active-kw-name');
+    const activeKwBadge = document.getElementById('hl-active-kw-badge');
+    const serpImage = document.getElementById('hl-serp-proof-image') as HTMLImageElement;
+    const serpPlaceholder = document.getElementById('hl-serp-proof-placeholder');
+    const serpCaption = document.getElementById('hl-serp-proof-caption');
+
+    if (!keywordItems.length || !serpImage || !serpPlaceholder) return;
+
+    // Handle image loading error to show custom placeholder
+    serpImage.addEventListener('error', () => {
+      serpImage.style.display = 'none';
+      serpPlaceholder.style.display = 'flex';
+    });
+
+    serpImage.addEventListener('load', () => {
+      if (serpImage.getAttribute('src') === '#' || !serpImage.getAttribute('src')) {
+        serpImage.style.display = 'none';
+        serpPlaceholder.style.display = 'flex';
+      } else {
+        serpImage.style.display = 'block';
+        serpPlaceholder.style.display = 'none';
+      }
+    });
+
+    // Initial check
+    if (serpImage.complete) {
+      if (serpImage.naturalWidth === 0 || serpImage.getAttribute('src') === '#') {
+        serpImage.style.display = 'none';
+        serpPlaceholder.style.display = 'flex';
+      }
+    }
+
+    keywordItems.forEach(item => {
+      item.addEventListener('click', () => {
+        keywordItems.forEach(i => i.classList.remove('is-active'));
+        item.classList.add('is-active');
+
+        const name = item.getAttribute('data-keyword') || '';
+        const rank = item.getAttribute('data-rank') || '';
+        const imgUrl = item.getAttribute('data-image') || '#';
+        const caption = item.getAttribute('data-caption') || '';
+
+        serpImage.style.display = 'block';
+        serpPlaceholder.style.display = 'none';
+        serpImage.style.opacity = '0';
+        
+        setTimeout(() => {
+          if (activeKwName) activeKwName.textContent = name;
+          if (activeKwBadge) {
+            activeKwBadge.textContent = rank;
+            activeKwBadge.className = 'keyword-rank-badge';
+            if (rank === 'Commercial Intent') {
+              activeKwBadge.classList.add('rank-commercial');
+            } else if (rank === 'Product Keyword') {
+              activeKwBadge.classList.add('rank-product');
+            } else if (rank === 'Phase 2 Keyword') {
+              activeKwBadge.classList.add('rank-phase2');
+            } else {
+              activeKwBadge.classList.add('rank-tracked');
+            }
+          }
+
+          serpImage.setAttribute('src', imgUrl);
+          serpImage.setAttribute('alt', `Keyword tracking: ${name}`);
+          if (serpCaption) serpCaption.textContent = caption;
+          
+          serpImage.style.opacity = '1';
+        }, 150);
+      });
+    });
+
+    // Hoàng Long — Line Chart Tab Toggle Logic
+    const chartTabs = document.querySelectorAll('.hl-chart-tab');
+    chartTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        chartTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        const tabType = tab.getAttribute('data-tab');
+
+        // Toggle lines
+        document.querySelectorAll('.hl-chart-line-group').forEach(group => {
+          if (group.classList.contains(`hl-lines-${tabType}`)) {
+            group.classList.add('active');
+          } else {
+            group.classList.remove('active');
+          }
+        });
+      });
+    });
+
+    // Hoàng Long — Line Chart Premium Tooltip Logic
+    const tooltip = document.getElementById('hl-chart-tooltip');
+    const chartPoints = document.querySelectorAll('.chart-points circle');
+    
+    if (chartPoints.length && tooltip) {
+      chartPoints.forEach(point => {
+        point.addEventListener('mouseenter', () => {
+          const month = point.getAttribute('data-month');
+          const series = point.getAttribute('data-series');
+          const val = point.getAttribute('data-value');
+          
+          if (month && series && val) {
+            tooltip.innerHTML = `<strong>${month}</strong>${series}: ${val}`;
+            tooltip.style.display = 'block';
+          }
+        });
+        
+        point.addEventListener('mousemove', (e) => {
+          const container = document.querySelector('.svg-chart-container');
+          if (container) {
+            const rect = container.getBoundingClientRect();
+            const x = e.clientX - rect.left + 12;
+            const y = e.clientY - rect.top - 36;
+            
+            tooltip.style.left = `${x}px`;
+            tooltip.style.top = `${y}px`;
+          }
+        });
+        
+        point.addEventListener('mouseleave', () => {
+          tooltip.style.display = 'none';
+        });
+      });
+    }
+
+    // Hoàng Long — Donut Chart Tab Toggle Logic
+    const donutTabs = document.querySelectorAll('.hl-donut-tab');
+    const donutChart = document.getElementById('hl-donut-chart');
+    const donutCenterVal = document.getElementById('hl-donut-center-val');
+    const donutLegendVal1 = document.getElementById('hl-donut-legend-val-1');
+    const donutLegendVal2 = document.getElementById('hl-donut-legend-val-2');
+    const donutLegendVal3 = document.getElementById('hl-donut-legend-val-3');
+    const donutLegendVal4 = document.getElementById('hl-donut-legend-val-4');
+
+    if (donutTabs.length && donutChart && donutCenterVal && donutLegendVal1) {
+      donutTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          donutTabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+
+          const donutType = tab.getAttribute('data-donut-tab');
+          if (donutType === 'maintenance') {
+            donutChart.style.background = 'conic-gradient(var(--color-accent) 0% 67%, var(--color-text) 67% 73%, var(--color-muted-text) 73% 77%, var(--color-border) 77% 100%)';
+            donutCenterVal.textContent = '77%';
+            donutLegendVal1.textContent = '67%';
+            donutLegendVal2.textContent = '6%';
+            donutLegendVal3.textContent = '4%';
+            donutLegendVal4.textContent = '23%';
+          } else {
+            donutChart.style.background = 'conic-gradient(var(--color-accent) 0% 32%, var(--color-text) 32% 38%, var(--color-muted-text) 38% 55%, var(--color-border) 55% 100%)';
+            donutCenterVal.textContent = '55%';
+            donutLegendVal1.textContent = '32%';
+            donutLegendVal2.textContent = '6%';
+            donutLegendVal3.textContent = '17%';
+            donutLegendVal4.textContent = '45%';
+          }
+        });
+      });
+    }
+
+    // Hoàng Long — Interactive SEO Problems Section logic (scoped)
+    const hlProblemsSection = document.querySelector('#hl-problems-section');
+    if (hlProblemsSection) {
+      const tabButtons = hlProblemsSection.querySelectorAll('.problems-module');
+      const tabPanels = hlProblemsSection.querySelectorAll('.problems-panel-content');
+      const mobilePanels = hlProblemsSection.querySelectorAll('.problems-mobile-panel');
+
+      const isMobileQuery = window.matchMedia('(max-width: 1023.98px)');
+      const isMobile = () => isMobileQuery.matches;
+
+      let currentActiveId: string | null = 'hl-problem-panel-01';
+
+      const updateActiveState = (activePanelId: string | null) => {
+        const activeNum = activePanelId ? activePanelId.replace('hl-problems-mobile-panel-', '').replace('hl-problem-panel-', '') : null;
+
+        tabButtons.forEach(btn => {
+          const num = btn.getAttribute('data-problem-id');
+          const isActive = activeNum === num;
+
+          btn.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+          if (isActive) {
+            btn.classList.add('is-active');
+          } else {
+            btn.classList.remove('is-active');
+          }
+        });
+
+        tabPanels.forEach(panel => {
+          const num = panel.id.replace('hl-problem-panel-', '');
+          const isActive = activeNum === num;
+          panel.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+          if (isActive) {
+            panel.classList.add('is-active');
+          } else {
+            panel.classList.remove('is-active');
+          }
+        });
+
+        mobilePanels.forEach(panel => {
+          const num = panel.id.replace('hl-problems-mobile-panel-', '');
+          const isActive = activeNum === num;
+          panel.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+          if (isActive) {
+            panel.classList.add('is-active');
+          } else {
+            panel.classList.remove('is-active');
+          }
+        });
+      };
+
+      updateActiveState(currentActiveId);
+
+      isMobileQuery.addEventListener('change', () => {
+        if (!isMobile() && !currentActiveId) {
+          currentActiveId = 'hl-problem-panel-01';
+        }
+        updateActiveState(currentActiveId);
+      });
+
+      tabButtons.forEach(btn => {
+        const num = btn.getAttribute('data-problem-id');
+
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const isMobileView = isMobile();
+          const isActive = btn.classList.contains('is-active');
+
+          if (isMobileView) {
+            if (isActive) {
+              currentActiveId = null;
+              updateActiveState(null);
+            } else {
+              currentActiveId = `hl-problems-mobile-panel-${num}`;
+              updateActiveState(currentActiveId);
+            }
+          } else {
+            currentActiveId = `hl-problem-panel-${num}`;
+            updateActiveState(currentActiveId);
+          }
+        });
+      });
+    }
+  });
+</script>
+</BaseLayout>
+
+<style>
+  /* ---- Hoàng Long Computer — Scoped Case Study Styles ---- */
+  /* Reuses shared case study classes from the design system.
+     Only adds Hoàng Long-specific styles for:
+     - Two-phase results dashboard
+     - KPI comparison tables
+     - Two-track ranking progress
+     - Result pills
+     - Context block
+     - Evidence placeholders
+     - Insight variants */
+
+  /* === Hero Result Pills === */
+  .hl-result-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .hl-result-pill {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--color-text);
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 767.98px) {
+    .hl-result-pills {
+      gap: 6px;
+    }
+    .hl-result-pill {
+      font-size: 0.72rem;
+      padding: 5px 10px;
+      white-space: normal;
+      text-align: center;
+    }
+  }
+
+  /* === Hook Pill (shared pattern, scoped for safety) === */
+  .hero-result-hook {
+    display: flex;
+    justify-content: center;
+  }
+
+  .hook-pill {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    background: rgba(193, 18, 31, 0.04);
+    border: 1px solid rgba(193, 18, 31, 0.12);
+    padding: 8px 20px;
+    border-radius: var(--radius-pill);
+    letter-spacing: 0.02em;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* === Project Snapshot Card (DOL-style, scoped) === */
+  .case-snapshot {
+    max-width: 1120px;
+    margin: 40px auto 0;
+    background: #FFFFFF;
+    border: 1px solid rgba(216, 207, 196, 0.4);
+    border-radius: 24px;
+    box-shadow: 0 4px 24px rgba(17, 24, 39, 0.02);
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .case-snapshot-top {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    background: transparent;
+    padding: 0;
+  }
+
+  .snapshot-col {
+    padding-inline: clamp(1rem, 2vw, 1.75rem);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    min-width: 0;
+  }
+
+  .snapshot-col + .snapshot-col {
+    border-left: 1px solid rgba(216, 207, 196, 0.4);
+  }
+
+  .snapshot-col:first-child {
+    padding-left: 0;
+  }
+
+  .snapshot-col:last-child {
+    padding-right: 0;
+  }
+
+  .snapshot-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #C1121F;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 2px;
+  }
+
+  .snapshot-value-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .snapshot-value {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1A2530;
+    line-height: 1.35;
+  }
+
+  .snapshot-subvalue {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-muted-text);
+    line-height: 1.3;
+  }
+
+  .client-info {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 2px;
+  }
+
+  .client-logo-frame {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px 8px;
+    background: #FCFAF7;
+    border: 1px solid rgba(216, 207, 196, 0.6);
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+
+  .client-logo-text {
+    font-weight: 800;
+    color: #C1121F;
+    font-size: 0.75rem;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+
+  .case-snapshot-bottom {
+    margin-top: 1.75rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(216, 207, 196, 0.4);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .case-snapshot-bottom .snapshot-label {
+    flex-shrink: 0;
+    color: #C1121F;
+  }
+
+  .snapshot-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .snapshot-chip {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #334155;
+    background: #FFFFFF;
+    border: 1px solid rgba(216, 207, 196, 0.6);
+    padding: 6px 14px;
+    border-radius: 99px;
+    line-height: 1;
+    box-shadow: 0 1px 2px rgba(17, 24, 39, 0.01);
+  }
+
+  @media (max-width: 1023px) {
+    .case-snapshot-top {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .snapshot-col {
+      padding-inline: 0;
+    }
+
+    .snapshot-col + .snapshot-col {
+      border-left: none;
+    }
+
+    .case-snapshot-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .case-snapshot-top {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+  }
+
+  /* === Context Block === */
+  .hl-context-block {
+    padding: 40px;
+  }
+
+  .hl-context-text {
+    font-size: 1.05rem;
+    color: var(--color-text);
+    line-height: 1.7;
+    margin-bottom: 28px;
+    font-weight: 500;
+  }
+
+  .hl-context-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .hl-context-highlight-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 16px 20px;
+    background: rgba(193, 18, 31, 0.02);
+    border: 1px solid rgba(193, 18, 31, 0.08);
+    border-left: 3px solid var(--color-accent);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+
+  .hl-highlight-label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    flex-shrink: 0;
+    min-width: 60px;
+    padding-top: 2px;
+  }
+
+  .hl-highlight-value {
+    font-size: 0.92rem;
+    color: var(--color-text);
+    line-height: 1.55;
+    font-weight: 500;
+  }
+
+  @media (max-width: 640px) {
+    .hl-context-block {
+      padding: 24px;
+    }
+    .hl-context-highlight-item {
+      flex-direction: column;
+      gap: 6px;
+    }
+  }
+
+  /* === My Role Card (shared, scoped) === */
+  .cs-role-card {
+    padding: 40px;
+  }
+
+  .cs-role-header {
+    margin-bottom: 16px;
+  }
+
+  .cs-role-desc {
+    font-size: 1.05rem;
+    color: var(--color-muted-text);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .cs-role-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .cs-role-tag {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--color-text);
+    background: rgba(216, 207, 196, 0.2);
+    border: 1px solid var(--color-border);
+    padding: 6px 14px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* === Results Dashboard Wrapper === */
+  .hl-results-dashboard {
+    max-width: 1200px;
+    margin: 40px auto 0;
+  }
+
+  /* === Results Columns Layout === */
+  .hl-results-columns {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  @media (min-width: 1024px) {
+    .hl-results-columns {
+      grid-template-columns: 39% 61%;
+      gap: 40px;
+    }
+  }
+
+  /* === Column A — Phase 1 === */
+  .hl-phase-one {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* === Column B — Phase 2 === */
+  .hl-phase-two {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* === Panel Body Grouping (Deprecated) === */
+
+  /* === Top Summary Grid === */
+  .hl-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 480px) {
+    .hl-summary-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .hl-headline-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-width: 0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .hl-headline-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(17, 24, 39, 0.04);
+    border-color: rgba(193, 18, 31, 0.2);
+  }
+
+  .hl-card-label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--color-muted-text);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+    display: block;
+    line-height: 1.2;
+  }
+
+  .hl-card-value {
+    font-size: clamp(1.8rem, 3vw, 2.3rem);
+    font-weight: 800;
+    color: var(--color-accent);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 10px;
+  }
+
+  .hl-card-value.text-medium {
+    font-size: clamp(1.3rem, 2vw, 1.6rem);
+    letter-spacing: -0.015em;
+  }
+
+  .hl-card-caption {
+    font-size: 0.75rem;
+    color: var(--color-muted-text);
+    line-height: 1.45;
+    margin-top: auto;
+    display: block;
+    word-break: break-word;
+  }
+
+  /* === Phase Panel & Headers === */
+  .hl-phase-header-simple {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  .hl-phase-badge {
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--color-muted-text);
+    background: rgba(216, 207, 196, 0.15);
+    border: 1px solid var(--color-border);
+    padding: 5px 14px;
+    border-radius: var(--radius-pill);
+    letter-spacing: 0.06em;
+  }
+
+  .hl-phase-badge.active {
+    color: var(--color-accent);
+    background: rgba(193, 18, 31, 0.04);
+    border-color: rgba(193, 18, 31, 0.15);
+  }
+
+  .hl-phase-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .hl-phase-status {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--color-muted-text);
+    font-style: italic;
+  }
+
+  /* === Phase 1 Vertically Stacked Cards === */
+  .hl-phase1-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* --- Ranking Coverage Chart Card --- */
+  .hl-coverage-chart-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    box-shadow: 0 2px 12px rgba(17, 24, 39, 0.01);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .hl-coverage-chart-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+    line-height: 1.35;
+  }
+
+  .hl-coverage-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .hl-coverage-bar-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .hl-coverage-bar-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .hl-coverage-bar-name {
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: var(--color-text);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .hl-coverage-bar-detail {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--color-muted-text);
+  }
+
+  .hl-bullet {
+    color: var(--color-border);
+    font-weight: normal;
+    margin: 0 2px;
+  }
+
+  .hl-coverage-bar-track {
+    height: 8px;
+    background: rgba(216, 207, 196, 0.25);
+    border-radius: var(--radius-pill);
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .hl-coverage-bar-fill {
+    height: 100%;
+    border-radius: var(--radius-pill);
+    transition: width 1s ease;
+  }
+
+  .hl-coverage-bar-fill.top-3 {
+    background-color: var(--color-accent);
+  }
+
+  .hl-coverage-bar-fill.top-5 {
+    background-color: var(--color-text);
+  }
+
+  .hl-coverage-bar-fill.top-10 {
+    background-color: #8A7E72;
+  }
+
+  .hl-coverage-footnote {
+    font-size: 0.76rem;
+    color: var(--color-muted-text);
+    margin: 0;
+    font-style: italic;
+    line-height: 1.4;
+    border-top: 1px dashed rgba(216, 207, 196, 0.4);
+    padding-top: 12px;
+    margin-top: 4px;
+  }
+
+  /* --- Donut Chart Card --- */
+  .hl-phase1-donut-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    box-shadow: 0 2px 12px rgba(17, 24, 39, 0.01);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .hl-phase1-donut-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+    line-height: 1.35;
+  }
+
+  .hl-phase1-donut-circle {
+    width: clamp(140px, 16vw, 190px);
+    height: clamp(140px, 16vw, 190px);
+  }
+
+  .hl-phase1-donut-inner {
+    width: 72%;
+    height: 72%;
+  }
+
+  /* --- Metrics Cards Grid --- */
+  .hl-phase1-metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  @media (min-width: 480px) {
+    .hl-phase1-metrics-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+  }
+
+  .hl-phase1-metric-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+    box-shadow: 0 2px 12px rgba(17, 24, 39, 0.01);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .hl-phase1-metric-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(17, 24, 39, 0.04);
+  }
+
+  .hl-phase1-metric-label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--color-muted-text);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+
+  .hl-phase1-metric-value {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    line-height: 1.1;
+  }
+
+  /* --- Insight Card --- */
+  .hl-phase1-insight-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--color-accent);
+    border-radius: var(--radius-md);
+    padding: 18px 20px;
+    box-shadow: 0 2px 12px rgba(17, 24, 39, 0.01);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .hl-phase1-insight-label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+
+  .hl-phase1-insight-text {
+    font-size: 0.88rem;
+    color: var(--color-text);
+    line-height: 1.6;
+    margin: 0;
+    font-weight: 500;
+  }
+
+  /* --- Status Chips (Preserved for Phase 2) --- */
+  .hl-status-chip {
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: var(--radius-pill);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    display: inline-block;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .hl-status-chip.success {
+    color: #059669;
+    background: rgba(5, 150, 105, 0.08);
+    border: 1px solid rgba(5, 150, 105, 0.15);
+  }
+
+  .hl-status-chip.warning {
+    color: #b45309;
+    background: rgba(180, 83, 9, 0.06);
+    border: 1px solid rgba(180, 83, 9, 0.15);
+  }
+
+  .hl-status-chip.neutral {
+    color: var(--color-muted-text);
+    background: rgba(216, 207, 196, 0.15);
+    border: 1px solid var(--color-border);
+  }
+
+  /* === Phase 2 Two-Track Grid === */
+  .hl-phase2-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  @media (min-width: 1200px) {
+    .hl-phase2-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+  }
+
+  .hl-track-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    box-shadow: 0 4px 24px rgba(17, 24, 39, 0.02);
+  }
+
+  .hl-track-card-header {
+    border-bottom: 1px solid rgba(216, 207, 196, 0.4);
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+  }
+
+  .hl-track-meta {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+
+  .hl-track-card-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .hl-track-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .hl-progress-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .hl-progress-row-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .hl-progress-kpi-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .hl-progress-values {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-left: auto;
+  }
+
+  .hl-progress-val-current {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--color-accent);
+  }
+
+  .hl-progress-val-separator {
+    font-size: 0.8rem;
+    color: var(--color-muted-text);
+    margin: 0 1px;
+  }
+
+  .hl-progress-val-target {
+    font-size: 0.8rem;
+    color: var(--color-muted-text);
+    font-weight: 600;
+  }
+
+  .hl-progress-bar-container {
+    height: 6px;
+    background: rgba(216, 207, 196, 0.25);
+    border-radius: var(--radius-pill);
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .hl-progress-bar {
+    height: 100%;
+    border-radius: var(--radius-pill);
+    transition: width 1s ease;
+  }
+
+  .hl-progress-bar.bg-success {
+    background-color: #059669;
+  }
+
+  .hl-progress-bar.bg-warning {
+    background-color: #b45309;
+  }
+
+  .hl-progress-bar.bg-scale {
+    background-color: var(--color-border);
+  }
+
+  /* === Current Read Insight Card === */
+  .hl-current-read-card {
+    background: rgba(193, 18, 31, 0.02);
+    border: 1px solid rgba(193, 18, 31, 0.08);
+    border-left: 4px solid var(--color-accent);
+    padding: 20px 24px;
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    margin-top: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    box-shadow: 0 4px 24px rgba(17, 24, 39, 0.02);
+  }
+
+  .hl-current-read-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(17, 24, 39, 0.04);
+    border-color: rgba(193, 18, 31, 0.15);
+  }
+
+  .hl-current-read-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .hl-current-read-icon {
+    color: var(--color-accent);
+    flex-shrink: 0;
+  }
+
+  .hl-current-read-title {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+
+  .hl-current-read-text {
+    font-size: 0.92rem;
+    color: var(--color-text);
+    line-height: 1.65;
+    margin: 0;
+    font-weight: 500;
+  }
+
+  /* === Line Chart Card & Interactive SVG === */
+  .hl-chart-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: 0 4px 24px rgba(17, 24, 39, 0.02);
+  }
+
+  .hl-chart-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid rgba(216, 207, 196, 0.4);
+    padding-bottom: 12px;
+  }
+
+  .hl-chart-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .hl-chart-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .hl-chart-subtitle {
+    font-size: 0.78rem;
+    color: var(--color-muted-text);
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .hl-chart-tabs {
+    display: flex;
+    gap: 4px;
+    background: rgba(216, 207, 196, 0.15);
+    padding: 3px;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(216, 207, 196, 0.3);
+  }
+
+  .hl-chart-tab {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-muted-text);
+    background: transparent;
+    border: none;
+    padding: 6px 12px;
+    border-radius: var(--radius-xs);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    line-height: 1;
+  }
+
+  .hl-chart-tab:hover {
+    color: var(--color-text);
+  }
+
+  .hl-chart-tab.active {
+    color: var(--color-accent);
+    background: #FFFFFF;
+  }
+
+  /* === Tooltip styles === */
+  .hl-chart-tooltip {
+    display: none;
+    position: absolute;
+    pointer-events: none;
+    background: rgba(26, 37, 48, 0.95);
+    color: #FFFFFF;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 0.78rem;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(17, 24, 39, 0.15);
+    line-height: 1.4;
+    border: 1px solid rgba(216, 207, 196, 0.35);
+  }
+
+  .hl-chart-tooltip strong {
+    color: #FFFFFF;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .hl-chart-legends {
+    margin-bottom: 16px;
+    min-height: 22px;
+  }
+
+  .hl-chart-legend {
+    display: none;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .hl-chart-legend.active {
+    display: flex;
+  }
+
+  .legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-muted-text);
+  }
+
+  .legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    display: inline-block;
+  }
+
+  .svg-chart-container {
+    width: 100%;
+    margin-top: 16px;
+    position: relative;
+  }
+
+  .growth-chart {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+  }
+
+  .grid-line {
+    stroke: rgba(216, 207, 196, 0.3);
+    stroke-width: 1;
+    stroke-dasharray: 4 4;
+  }
+
+  .grid-line.x-axis {
+    stroke: rgba(216, 207, 196, 0.6);
+    stroke-dasharray: none;
+  }
+
+  .axis-label {
+    font-size: 11px;
+    font-weight: 600;
+    fill: var(--color-muted-text);
+    text-anchor: middle;
+  }
+
+  .axis-label.y-label {
+    text-anchor: end;
+  }
+
+  .chart-line {
+    fill: none;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .chart-points circle {
+    fill: #FFFFFF;
+    stroke-width: 2.5;
+    transition: r 0.2s ease, fill 0.2s ease;
+  }
+
+  .chart-points circle:hover {
+    r: 6;
+  }
+
+  .point-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-anchor: middle;
+  }
+
+  .hl-chart-card .chart-line {
+    stroke-dasharray: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+
+  .hl-chart-card .chart-points {
+    opacity: 1 !important;
+  }
+
+  .hl-chart-line-group {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+  }
+
+  .hl-chart-line-group.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .hl-chart-y-axis {
+    display: none;
+  }
+
+  .hl-chart-y-axis.active {
+    display: block;
+  }
+
+  /* === Donut Chart Card === */
+  .hl-donut-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: 0 4px 24px rgba(17, 24, 39, 0.02);
+  }
+
+  .hl-donut-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid rgba(216, 207, 196, 0.4);
+    padding-bottom: 12px;
+  }
+
+  .hl-donut-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .hl-donut-tabs {
+    display: flex;
+    gap: 4px;
+    background: rgba(216, 207, 196, 0.15);
+    padding: 3px;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(216, 207, 196, 0.3);
+  }
+
+  .hl-donut-tab {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-muted-text);
+    background: transparent;
+    border: none;
+    padding: 6px 12px;
+    border-radius: var(--radius-xs);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    line-height: 1;
+  }
+
+  .hl-donut-tab:hover {
+    color: var(--color-text);
+  }
+
+  .hl-donut-tab.active {
+    color: var(--color-accent);
+    background: #FFFFFF;
+    box-shadow: 0 2px 4px rgba(17, 24, 39, 0.04);
+  }
+
+  .donut-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .donut-multi {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: background 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  .donut-inner {
+    width: 130px;
+    height: 130px;
+    background: #FFFFFF;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(17, 24, 39, 0.03);
+  }
+
+  .distribution-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .legend-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: rgba(216, 207, 196, 0.04);
+    border: 1px solid rgba(216, 207, 196, 0.2);
+    border-radius: var(--radius-sm);
+  }
+
+  .legend-dot-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .legend-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .legend-value {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  /* === Responsive Adjustments === */
+  @media (max-width: 1023.98px) {
+    .hl-summary-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+  }
+
+  @media (max-width: 899.98px) {
+    .hl-phase2-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .hl-track-card {
+      padding: 24px;
+    }
+  }
+
+  @media (max-width: 639.98px) {
+    .hl-summary-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hl-headline-card {
+      padding: 20px;
+    }
+
+    .hl-current-read-card {
+      padding: 20px 24px;
+    }
+  }
+
+  @media (max-width: 479.98px) {
+    .hl-progress-row-top {
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .hl-progress-values {
+      width: 100%;
+      margin-left: 0;
+      order: 3;
+    }
+    
+    .hl-progress-row-top .hl-status-chip {
+      margin-left: auto;
+    }
+  }
+
+  /* === Problems Section (shared patterns, scoped) === */
+  .problems-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  @media (min-width: 1024px) {
+    .problems-layout {
+      grid-template-columns: minmax(320px, 1fr) minmax(420px, 1.25fr);
+      gap: 48px;
+      align-items: start;
+    }
+  }
+
+  .problems-detail-panel {
+    padding: 32px clamp(20px, 2.5vw, 32px);
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    min-height: 480px;
+  }
+
+  @media (min-width: 1024px) {
+    .problems-detail-panel {
+      position: sticky;
+      top: 96px;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
+    }
+    .problems-detail-panel::-webkit-scrollbar {
+      width: 6px;
+    }
+    .problems-detail-panel::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .problems-detail-panel::-webkit-scrollbar-thumb {
+      background: var(--color-border);
+      border-radius: 3px;
+    }
+    .problems-detail-panel::-webkit-scrollbar-thumb:hover {
+      background: var(--color-muted-text);
+    }
+  }
+
+  .problems-detail-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .problems-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid rgba(216, 207, 196, 0.35);
+    padding-bottom: 16px;
+  }
+
+  .problems-panel-title-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .problems-panel-num {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    background: rgba(193, 18, 31, 0.05);
+    padding: 2px 8px;
+    border-radius: 99px;
+    letter-spacing: 0.02em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 26px;
+    height: 22px;
+  }
+
+  .problems-panel-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .severity-badge {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    background: rgba(193, 18, 31, 0.04);
+    border: 1px solid rgba(193, 18, 31, 0.12);
+    padding: 3px 8px;
+    border-radius: var(--radius-pill);
+    letter-spacing: 0.05em;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    line-height: 1;
+  }
+
+  .severity-badge svg {
+    flex-shrink: 0;
+  }
+
+  .problems-detail-section {
+    margin-bottom: 0;
+  }
+
+  .problems-section-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--color-muted-text);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+
+  .problems-panel-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .problem-outcome-stack {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  @media (max-width: 1023.98px) {
+    .problem-outcome-stack {
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+  }
+
+  .problem-impact {
+    padding: 16px 20px;
+    background: rgba(193, 18, 31, 0.02);
+    border: 1px solid rgba(193, 18, 31, 0.06);
+    border-left: 3px solid var(--color-accent);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+
+  .problem-impact h4 {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .problem-impact h4::before {
+    content: "⚠";
+    font-size: 0.95rem;
+    font-weight: bold;
+    line-height: 1;
+  }
+
+  .problem-impact p {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .problem-response {
+    padding: 16px 20px;
+    background: rgba(5, 150, 105, 0.03);
+    border: 1px solid rgba(5, 150, 105, 0.10);
+    border-left: 3px solid #059669;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+
+  .problem-response h4 {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #059669;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .problem-response h4::before {
+    content: "✓";
+    font-size: 0.95rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .problem-response p {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .problems-mobile-panel .problem-impact,
+  .problems-mobile-panel .problem-response {
+    padding: 14px 16px;
+  }
+
+  .problems-mobile-panel .problem-impact h4,
+  .problems-mobile-panel .problem-response h4 {
+    font-size: 0.75rem;
+    margin-bottom: 4px;
+  }
+
+  .problems-mobile-panel .problem-impact p,
+  .problems-mobile-panel .problem-response p {
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  .problems-panels-stack {
+    display: grid;
+    grid-template-areas: "stack";
+    width: 100%;
+    height: 100%;
+  }
+
+  .problems-panel-content {
+    grid-area: stack;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+    transform: translateY(8px);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .problems-panel-content.is-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+    z-index: 2;
+  }
+
+  .problems-modules {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .problems-accordion-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .problems-module {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: #ffffff;
+    border: 1px solid rgba(193, 18, 31, 0.08);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    cursor: pointer;
+    font-family: inherit;
+    color: inherit;
+    transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+    box-shadow: none;
+    outline: none;
+    position: relative;
+    padding-right: 40px;
+    overflow: hidden;
+  }
+
+  .problems-module::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: var(--color-accent);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .problems-module:hover {
+    background: #FAF9F6;
+    border-color: rgba(193, 18, 31, 0.2);
+    box-shadow: 0 4px 12px rgba(193, 18, 31, 0.04);
+    transform: translateY(-2px);
+  }
+
+  .problems-module.is-active {
+    background: rgba(193, 18, 31, 0.02);
+    border-color: rgba(193, 18, 31, 0.18);
+    box-shadow: 0 4px 16px rgba(193, 18, 31, 0.04);
+    transform: translateY(-1px);
+  }
+
+  .problems-module.is-active::before {
+    opacity: 1;
+  }
+
+  .problems-module::after {
+    content: "→";
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%) translateX(-4px);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-muted-text);
+    opacity: 0;
+    transition: opacity 0.25s ease, transform 0.25s ease, color 0.25s ease;
+  }
+
+  .problems-module:hover::after,
+  .problems-module:focus-visible::after {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+    color: var(--color-accent);
+  }
+
+  .problems-module.is-active::after {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+    color: var(--color-accent);
+  }
+
+  .problems-module__header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .problems-num {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    background: rgba(193, 18, 31, 0.05);
+    padding: 2px 8px;
+    border-radius: 99px;
+    letter-spacing: 0.02em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    height: 20px;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  .problems-module.is-active .problems-num {
+    background: var(--color-accent);
+    color: #ffffff;
+  }
+
+  .problems-module__title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+    line-height: 1.25;
+  }
+
+  .problems-module__outcome {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--color-muted-text);
+    margin: 0 0 10px 0;
+  }
+
+  .problems-module__label {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: rgba(193, 18, 31, 0.85);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 8px;
+  }
+
+  .problems-module:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 1023.98px) {
+    .desktop-panel-only {
+      display: none !important;
+    }
+
+    .problems-module.is-active::after {
+      content: "↓";
+    }
+
+    .problems-module.is-active {
+      border-radius: var(--radius-md) var(--radius-md) 0 0;
+    }
+
+    .problems-mobile-panel {
+      display: none;
+      padding: 16px 20px 20px;
+      background: var(--color-card);
+      border: 1px solid rgba(193, 18, 31, 0.15);
+      border-top: none;
+      border-left: 4px solid var(--color-accent);
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+      margin-top: -1px;
+      z-index: 1;
+      box-shadow: 0 8px 24px rgba(193, 18, 31, 0.02);
+    }
+
+    .problems-mobile-panel.is-active {
+      display: block;
+      animation: hlAccordionSlideDown 0.2s ease-out forwards;
+    }
+  }
+
+  @keyframes hlAccordionSlideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .problems-mobile-panel {
+      display: none !important;
+    }
+  }
+
+  /* === Search Demand Map Styles === */
+  .cs-demand-map-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .cs-demand-card {
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .demand-intent-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    background: rgba(193, 18, 31, 0.05);
+    border: 1px solid rgba(193, 18, 31, 0.15);
+    padding: 4px 10px;
+    border-radius: var(--radius-pill);
+    letter-spacing: 0.05em;
+    display: inline-block;
+    margin-bottom: 12px;
+  }
+
+  .cs-demand-card h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 12px;
+    line-height: 1.3;
+  }
+
+  .demand-desc {
+    font-size: 0.95rem;
+    color: var(--color-muted-text);
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  .demand-topics {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px dashed var(--color-border);
+  }
+
+  .demand-topic-title {
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-text);
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 10px;
+    font-size: 0.72rem;
+  }
+
+  .demand-topic-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .chip-outline {
+    background: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: var(--radius-sm);
+  }
+
+  @media (max-width: 900px) {
+    .cs-demand-map-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* === SEO Growth System & Strategy Ladder Styling === */
+  .cs-strategy-thesis-card {
+    background: rgba(193, 18, 31, 0.03);
+    border: 1px solid rgba(193, 18, 31, 0.12);
+    padding: 24px 32px;
+    margin-bottom: 48px;
+  }
+
+  .thesis-kicker {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .thesis-text {
+    font-size: 1.02rem;
+    color: var(--color-text);
+    line-height: 1.6;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .cs-strategy-ladder {
+    position: relative;
+    max-width: 1040px;
+    margin: 48px auto 0;
+    padding: 20px 0;
+  }
+
+  /* Vertical timeline line */
+  .cs-strategy-ladder::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--color-border);
+    transform: translateX(-50%);
+  }
+
+  .cs-strategy-block-wrapper {
+    position: relative;
+    margin-bottom: 48px;
+    width: 100%;
+  }
+
+  .cs-strategy-block-wrapper::after {
+    content: '';
+    clear: both;
+    display: table;
+  }
+
+  .cs-strategy-block {
+    width: calc(50% - 40px);
+    position: relative;
+    padding: 32px 28px;
+  }
+
+  .cs-strategy-block-wrapper:nth-child(odd) .cs-strategy-block {
+    float: left;
+  }
+
+  .cs-strategy-block-wrapper:nth-child(even) .cs-strategy-block {
+    float: right;
+  }
+
+  /* Timeline dots */
+  .cs-strategy-block-wrapper::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 44px;
+    width: 14px;
+    height: 14px;
+    background: var(--color-bg);
+    border: 3px solid var(--color-accent);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+  }
+
+  .block-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(216, 207, 196, 0.4);
+    padding-bottom: 16px;
+  }
+
+  .block-num {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  .block-meta {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .block-phase {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+
+  .block-header h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+    line-height: 1.25;
+  }
+
+  .block-body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .block-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .col-label, .field-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-muted-text);
+    letter-spacing: 0.06em;
+    display: block;
+  }
+
+  .col-text, .field-text {
+    font-size: 0.92rem;
+    color: var(--color-text);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .col-text.highlighted, .field-text.highlighted {
+    font-weight: 700;
+  }
+
+  .outcome-badge {
+    background: rgba(193, 18, 31, 0.03);
+    border: 1px solid rgba(193, 18, 31, 0.12);
+    border-left: 3px solid var(--color-accent);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .badge-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    letter-spacing: 0.05em;
+  }
+
+  .badge-value {
+    font-size: 0.9rem;
+    color: var(--color-text);
+    line-height: 1.5;
+    font-weight: 600;
+  }
+
+  @media (max-width: 900px) {
+    .cs-strategy-ladder::before {
+      left: 20px;
+    }
+    
+    .cs-strategy-block-wrapper::before {
+      left: 20px;
+      top: 44px;
+    }
+    
+    .cs-strategy-block {
+      width: calc(100% - 40px);
+      float: none !important;
+      margin-left: 40px !important;
+      padding: 24px;
+    }
+    
+    .cs-strategy-block-wrapper {
+      margin-bottom: 32px;
+    }
+  }
+
+  /* === Ranking Wins Board (shared patterns) === */
+  .ranking-proof-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    align-items: start;
+    margin-top: 40px;
+  }
+
+  .ranking-keywords-column {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .interaction-helper {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.78rem;
+    color: var(--color-muted-text);
+    background: rgba(216, 207, 196, 0.06);
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(216, 207, 196, 0.2);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .helper-svg-icon {
+    stroke: var(--color-accent);
+  }
+
+  .ranking-keyword-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .win-intent {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    margin-bottom: 2px;
+    display: block;
+  }
+
+  .ranking-keyword-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .ranking-keyword-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 16px;
+    padding: 9px 16px;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    border: 1px solid rgba(216, 207, 196, 0.25);
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .ranking-keyword-item:hover {
+    background: rgba(193, 18, 31, 0.02);
+    border-color: rgba(193, 18, 31, 0.2);
+    padding-left: 22px;
+  }
+
+  .ranking-keyword-item.is-active {
+    background: rgba(193, 18, 31, 0.04) !important;
+    border-color: var(--color-accent) !important;
+    box-shadow: 0 4px 12px rgba(193, 18, 31, 0.06);
+    padding-left: 22px;
+  }
+
+  .keyword-name {
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--color-text);
+    transition: color 0.2s ease;
+  }
+
+  .ranking-keyword-item.is-active .keyword-name {
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+
+  /* Rank Badges — Hoàng Long variants */
+  .keyword-rank-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 99px;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    background: rgba(216, 207, 196, 0.2);
+    color: var(--color-text-muted, #666);
+    border: 1px solid rgba(216, 207, 196, 0.35);
+  }
+
+  .rank-commercial {
+    background: rgba(193, 18, 31, 0.05);
+    color: var(--color-accent);
+    border: 1px solid rgba(193, 18, 31, 0.15);
+  }
+
+  .rank-product {
+    background: rgba(30, 41, 59, 0.05);
+    color: #1e293b;
+    border: 1px solid rgba(30, 41, 59, 0.15);
+  }
+
+  .rank-phase2 {
+    background: rgba(230, 95, 0, 0.05);
+    color: #c25c00;
+    border: 1px solid rgba(230, 95, 0, 0.15);
+  }
+
+  .rank-tracked {
+    background: rgba(5, 150, 105, 0.05);
+    color: #059669;
+    border: 1px solid rgba(5, 150, 105, 0.15);
+  }
+
+  .ranking-keyword-item.is-active .keyword-rank-badge {
+    background: var(--color-accent) !important;
+    color: #ffffff !important;
+    border-color: var(--color-accent) !important;
+    box-shadow: 0 2px 4px rgba(193, 18, 31, 0.2);
+  }
+
+  #hl-active-kw-badge {
+    background: var(--color-accent) !important;
+    color: #ffffff !important;
+    border-color: var(--color-accent) !important;
+  }
+
+  .serp-preview-column {
+    width: 100%;
+  }
+
+  .serp-proof-card {
+    padding: 28px 32px;
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+  }
+
+  .serp-proof-header {
+    margin-bottom: 12px;
+    border-bottom: 1px dashed var(--color-border);
+    padding-bottom: 12px;
+  }
+
+  .serp-proof-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .serp-proof-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .serp-proof-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    gap: 12px;
+  }
+
+  .serp-kw-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .serp-proof-frame {
+    background: #FAF6F0;
+    border: 1px solid rgba(216, 207, 196, 0.5);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    position: relative;
+    width: 100%;
+  }
+
+  .serp-proof-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    transition: opacity 0.15s ease-in-out;
+  }
+
+  .serp-proof-placeholder {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 32px;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.15s ease-in-out;
+  }
+
+  .placeholder-icon {
+    margin-bottom: 16px;
+    color: var(--color-accent);
+    opacity: 0.8;
+  }
+
+  .placeholder-svg {
+    stroke: var(--color-accent);
+  }
+
+  .placeholder-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 6px 0;
+  }
+
+  .placeholder-desc {
+    font-size: 0.85rem;
+    color: var(--color-muted-text);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .serp-proof-caption {
+    font-size: 0.88rem;
+    color: var(--color-muted-text);
+    line-height: 1.55;
+    margin: 0;
+    font-style: italic;
+  }
+
+  @media (min-width: 900px) {
+    .ranking-proof-layout {
+      grid-template-columns: minmax(360px, 0.85fr) minmax(600px, 1.3fr);
+      gap: 36px;
+    }
+
+    .serp-preview-column {
+      position: sticky;
+      top: 96px;
+      align-self: start;
+    }
+
+    .serp-proof-frame {
+      min-height: 420px;
+      aspect-ratio: 16 / 10;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .serp-proof-frame {
+      min-height: 480px;
+    }
+  }
+
+  @media (max-width: 899.98px) {
+    .serp-preview-column {
+      position: static;
+    }
+
+    .serp-proof-frame {
+      min-height: 300px;
+    }
+
+    .ranking-keywords-column {
+      padding: 20px 16px;
+      gap: 24px;
+    }
+
+    .ranking-keyword-item {
+      padding: 10px 14px;
+      gap: 12px;
+    }
+  }
+
+  /* === Workflow Rows (shared pattern, scoped) === */
+  .workflow-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 20px;
+  }
+
+  .workflow-row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+
+  .row-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    letter-spacing: 0.06em;
+    margin-top: 3px;
+  }
+
+  .row-value {
+    font-size: 0.95rem;
+    color: var(--color-text);
+    line-height: 1.6;
+  }
+
+  .row-value.highlighted {
+    font-weight: 600;
+  }
+
+  .workflow-row:last-child {
+    padding-top: 14px;
+    border-top: 1px dashed var(--color-border);
+  }
+
+  @media (max-width: 767.98px) {
+    .workflow-row {
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .workflow-sidebar {
+      flex: 0 0 280px;
+    }
+    
+    .workflow-nav-item {
+      cursor: pointer;
+    }
+  }
+
+  /* === Evidence Grid === */
+  .results-evidence-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  @media (max-width: 767.98px) {
+    .results-evidence-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* === Insights Grid === */
+  .cs-insights-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cs-insight-card {
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .cs-insight-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .cs-insight-worked {
+    background: rgba(5, 150, 105, 0.08);
+    color: var(--color-success);
+    border: 1px solid rgba(5, 150, 105, 0.15);
+  }
+
+  .cs-insight-growth {
+    background: rgba(193, 18, 31, 0.06);
+    color: var(--color-accent);
+    border: 1px solid rgba(193, 18, 31, 0.12);
+  }
+
+  .cs-insight-system {
+    background: rgba(30, 41, 59, 0.06);
+    color: #1e293b;
+    border: 1px solid rgba(30, 41, 59, 0.12);
+  }
+
+  .cs-insight-data {
+    background: rgba(59, 130, 246, 0.06);
+    color: #2563eb;
+    border: 1px solid rgba(59, 130, 246, 0.12);
+  }
+
+  .cs-insight-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 10px;
+    line-height: 1.3;
+  }
+
+  .cs-insight-card p {
+    font-size: 0.95rem;
+    color: var(--color-muted-text);
+    line-height: 1.65;
+  }
+
+  @media (max-width: 1023.98px) {
+    .cs-insights-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 20px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .cs-insights-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
