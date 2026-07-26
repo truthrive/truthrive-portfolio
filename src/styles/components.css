@@ -1247,9 +1247,29 @@
 
 /* Coming-soon variant */
 .case-card--coming-soon {
-  flex: 0 0 min(520px, 42vw);
+  flex: 0 0 min(860px, 68vw);
   border-style: dashed;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.86));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.9));
+}
+
+.case-card__cta--disabled {
+  background: var(--color-border, #D8CFC4) !important;
+  color: var(--color-muted-text, #4B5563) !important;
+  border-color: var(--color-border, #D8CFC4) !important;
+  cursor: not-allowed;
+  opacity: 0.85;
+  pointer-events: none;
+  font-size: 0.88rem;
+  padding: 8px 16px;
+}
+
+.case-card__locked-wrapper {
+  position: relative;
+  filter: blur(4px);
+  opacity: 0.55;
+  user-select: none;
+  pointer-events: none;
+  transition: filter 0.3s ease;
 }
 
 /* Logo + Badge row */
