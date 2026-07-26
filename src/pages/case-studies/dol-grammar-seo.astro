@@ -156,7 +156,11 @@ const seoProblems = [
             <span class="snapshot-label">Client</span>
             <div class="client-info">
               <div class="client-logo-frame">
-                <span class="client-logo-text">DOL</span>
+                <img 
+                  src="/images/logos/dol-grammar-logo-logo.png" 
+                  alt="DOL English Logo" 
+                  class="client-logo" 
+                />
               </div>
               <span class="snapshot-value">grammar.dolenglish.vn</span>
             </div>
@@ -1377,22 +1381,22 @@ const seoProblems = [
   }
 
   .client-logo-frame {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 3px 8px;
+    width: 44px;
+    height: 44px;
     background: #FCFAF7;
     border: 1px solid rgba(216, 207, 196, 0.6);
     border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
     flex-shrink: 0;
   }
 
-  .client-logo-text {
-    font-weight: 800;
-    color: #C1121F;
-    font-size: 0.75rem;
-    letter-spacing: -0.01em;
-    line-height: 1;
+  .client-logo {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
   }
 
   .case-snapshot-bottom {

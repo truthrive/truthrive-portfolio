@@ -9,7 +9,9 @@ const navItems = [
 ---
 <header class="header">
   <div class="container header-container">
-    <a href="/" class="logo">TruThrive</a>
+    <a href="/" class="logo" aria-label="TruThrive Trang chủ">
+      <img src="/images/logos/logo-truthrive-primary.png" alt="TruThrive" class="logo-img" width="160" height="38" />
+    </a>
     
     <!-- Mobile Menu Button -->
     <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -92,12 +94,12 @@ const navItems = [
                     <a href="/case-studies/hoang-long-computer-seo/" class="submenu-link case-link">
                       <div class="case-header">
                         <span class="submenu-title">Hoàng Long Computer</span>
-                        <span class="submenu-desc">SEO Recovery · E-commerce Growth</span>
+                        <span class="submenu-desc">E-commerce SEO · GEO/AIO Growth</span>
                       </div>
                       <div class="case-metrics-hover">
-                        <div class="case-metric-pill"><strong>356.547</strong> Traffic</div>
-                        <div class="case-metric-pill"><strong>7.406</strong> AI/GEO</div>
-                        <div class="case-metric-pill"><strong>58.902</strong> Conversions</div>
+                        <div class="case-metric-pill"><strong>980.965</strong> Organic</div>
+                        <div class="case-metric-pill"><strong>15.302</strong> AI Chats</div>
+                        <div class="case-metric-pill"><strong>67%</strong> Top 3 duy trì</div>
                       </div>
                     </a>
                   </li>
@@ -112,7 +114,7 @@ const navItems = [
           );
         })}
         <li>
-          <a href="/files/Bui_Truong_Thinh_CV_Revised.pdf" download class="btn btn-primary cta-btn" aria-label="Tải CV PDF của Bùi Trường Thịnh">Tải CV</a>
+          <a href="/files/Bui_Truong_Thinh_Senior_SEO_Specialist.pdf" download class="btn btn-primary cta-btn" aria-label="Tải CV PDF của Bùi Trường Thịnh">Tải CV</a>
         </li>
       </ul>
     </nav>
@@ -134,10 +136,16 @@ const navItems = [
     height: 72px;
   }
   .logo {
-    font-size: 24px;
-    font-weight: 800;
-    color: var(--color-text);
-    letter-spacing: -0.5px;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  .logo-img {
+    height: 38px;
+    width: auto;
+    max-height: 38px;
+    object-fit: contain;
+    display: block;
   }
   
   .header-nav {
@@ -382,50 +390,21 @@ const navItems = [
 
   @media (max-width: 768px) {
     .menu-toggle {
-      display: inline-flex;
-    }
-
-    .header-nav {
-      display: none;
-    }
-
-    .header-nav.is-open {
-      display: flex;
-      position: absolute;
-      top: 72px;
-      left: 16px;
-      right: 16px;
-      flex-direction: column;
-      gap: 16px;
-      padding: 20px;
-      background: var(--color-card);
-      border: 1px solid var(--color-border);
-      border-radius: 20px;
-      box-shadow: var(--shadow-card);
-      z-index: 50;
-      
-      /* Viewport containment and custom scroll behavior */
-      max-height: calc(100vh - 72px - 24px);
-      max-height: calc(100dvh - 72px - 24px);
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      overscroll-behavior: contain;
-    }
-    
-    .nav-list {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 20px;
-    }
-    
-    .cta-btn {
-      width: 100%;
-      text-align: center;
-      margin-top: 8px; /* push slightly from links */
+      display: none !important;
     }
 
     .header-container {
+      justify-content: center !important;
       position: relative;
+    }
+
+    .logo {
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .header-nav {
+      display: none !important;
     }
     
     /* Mobile specific styles for dropdown */

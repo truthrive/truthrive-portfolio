@@ -18,87 +18,75 @@ export interface BrandLogo {
  */
 export const brandLogos: BrandLogo[] = [
   {
-    name: 'MOA Marketing',
-    logoSrc: '',
-    alt: 'MOA Marketing Logo',
-    category: 'Agency'
-  },
-  {
-    name: 'Dân Helpers',
-    logoSrc: '',
-    alt: 'Dân Helpers Logo',
-    category: 'Community'
-  },
-  {
-    name: 'Trường Đại học Ngoại Thương',
-    logoSrc: '',
-    alt: 'Trường Đại học Ngoại Thương Logo',
-    category: 'Education'
-  },
-  {
-    name: 'Đại học Kinh tế Quốc dân',
-    logoSrc: '',
-    alt: 'Đại học Kinh tế Quốc dân Logo',
-    category: 'Education'
-  },
-  {
-    name: 'Đại học Thủ Dầu Một',
-    logoSrc: '',
-    alt: 'Đại học Thủ Dầu Một Logo',
-    category: 'Education'
-  },
-  {
-    name: 'Swinburne University of Technology',
-    logoSrc: '',
-    alt: 'Swinburne University of Technology Logo',
-    category: 'Education'
-  },
-  {
-    name: 'University of Greenwich',
-    logoSrc: '',
-    alt: 'University of Greenwich Logo',
-    category: 'Education'
-  },
-  {
-    name: 'UAN',
-    logoSrc: '',
-    alt: 'UAN Logo',
-    category: 'Community'
-  },
-  {
-    name: 'VMCC',
-    logoSrc: '',
-    alt: 'VMCC Logo',
-    category: 'Community'
-  },
-  {
-    name: 'DOL English',
-    logoSrc: '',
-    alt: 'DOL English Logo',
-    category: 'Education'
-  },
-  {
-    name: 'Việt Hoa Packaging',
-    logoSrc: '',
-    alt: 'Việt Hoa Packaging Logo',
-    category: 'Manufacturing'
-  },
-  {
-    name: 'GTVSEO',
-    logoSrc: '',
-    alt: 'GTVSEO Logo',
-    category: 'Agency'
-  },
-  {
-    name: 'AHC Vietnam',
-    logoSrc: '',
-    alt: 'AHC Vietnam Logo',
+    name: 'AHC Việt Nam',
+    logoSrc: '/images/logos/ahc-viet-nam-logo.png',
+    alt: 'AHC Việt Nam Logo',
     category: 'Beauty'
   },
   {
+    name: 'Ajinomoto',
+    logoSrc: '/images/logos/ajinomoto-logo.png',
+    alt: 'Ajinomoto Logo',
+    category: 'FMCG'
+  },
+  {
+    name: 'Bluestone',
+    logoSrc: '/images/logos/bluestone-logo.png',
+    alt: 'Bluestone Logo',
+    category: 'Home Appliances'
+  },
+  {
+    name: 'DOL Grammar',
+    logoSrc: '/images/logos/dol-grammar-logo-logo.png',
+    alt: 'DOL Grammar Logo',
+    category: 'Education'
+  },
+  {
+    name: 'GFC Alumi',
+    logoSrc: '/images/logos/gfc-alumi-logo.png',
+    alt: 'GFC Alumi Logo',
+    category: 'Manufacturing'
+  },
+  {
+    name: 'GTV SEO',
+    logoSrc: '/images/logos/gtv-seo-logo.png',
+    alt: 'GTV SEO Logo',
+    category: 'Agency'
+  },
+  {
+    name: 'HIKID',
+    logoSrc: '/images/logos/hikid-logo.png',
+    alt: 'HIKID Logo',
+    category: 'Nutrition'
+  },
+  {
+    name: 'Hoàng Long Computer',
+    logoSrc: '/images/logos/hoang-long-logo.png',
+    alt: 'Hoàng Long Computer Logo',
+    category: 'Technology'
+  },
+  {
+    name: 'PestShop',
+    logoSrc: '/images/logos/pestshop-logo.png',
+    alt: 'PestShop Logo',
+    category: 'E-commerce'
+  },
+  {
     name: 'Suối Tiên',
-    logoSrc: '',
+    logoSrc: '/images/logos/suoi-tien-logo.png',
     alt: 'Suối Tiên Logo',
     category: 'Tourism'
+  },
+  {
+    name: 'VietinBank',
+    logoSrc: '/images/logos/vietinbank-logo.png',
+    alt: 'VietinBank Logo',
+    category: 'Banking'
+  },
+  {
+    name: 'VinPest',
+    logoSrc: '/images/logos/vinpest-logo.png',
+    alt: 'VinPest Logo',
+    category: 'Services'
   }
 ];

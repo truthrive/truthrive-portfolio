@@ -67,9 +67,9 @@ export const featuredCaseStudies: FeaturedCaseStudy[] = [
     results: [
       '57% Top 3 on 113 maintenance keywords at Month 6',
       '22% Top 3 on 153 growth keywords at Month 6',
-      '356.547 cumulative traffic',
-      '7.406 AI/GEO traffic',
-      '58.902 tracked conversion events'
+      '980.965 Organic Search sessions tích lũy',
+      '15.302 AI Chats sessions',
+      '15,3K hành động thể hiện ý định thương mại'
     ],
     tags: ['E-commerce SEO', 'Technical Recovery', 'KPI Planning', 'GEO / AI Tracking'],
     ctaText: 'View case study',

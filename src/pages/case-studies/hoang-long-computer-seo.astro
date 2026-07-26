@@ -72,39 +72,39 @@ const evidenceCards = [
     ]
   },
   {
-    title: "Traffic Cumulative Snapshot",
+    title: "Organic Search Cumulative Snapshot",
     sourceLabel: "GA4",
     imageSrc: "#",
-    placeholder: "Thêm ảnh chụp traffic tích lũy",
-    alt: "Biểu đồ traffic tích lũy của dự án Hoàng Long Computer",
-    caption: "Traffic tích lũy đạt 356.547 tại Month 6, tiến về KPI 1.000.000 cumulative traffic.",
+    placeholder: "Thêm ảnh chụp Organic Search sessions tích lũy",
+    alt: "Biểu đồ Organic Search sessions tích lũy của dự án Hoàng Long Computer",
+    caption: "Tính từ thời điểm tiếp nhận dự án đến hiện tại, Organic Search ghi nhận 980.965 sessions tích lũy.",
     insights: [
-      "Traffic tích lũy phản ánh tổng lượng organic traffic ghi nhận từ đầu Phase 2.",
-      "KPI traffic tích lũy được thiết kế để đo lường theo toàn bộ 12 tháng dự án.",
+      "Organic Search sessions phản ánh lưu lượng truy cập tìm kiếm tự nhiên tích lũy tính từ thời điểm tiếp nhận dự án đến hiện tại.",
+      "Số liệu được đo lường nhất quán theo báo cáo GA4 / Looker Studio chính thức.",
     ]
   },
   {
-    title: "AI/GEO Traffic Snapshot",
+    title: "AI Chats Traffic Snapshot",
     sourceLabel: "GA4",
     imageSrc: "#",
-    placeholder: "Thêm ảnh chụp AI/GEO traffic",
-    alt: "Biểu đồ AI/GEO traffic của dự án Hoàng Long Computer",
-    caption: "7.406 cumulative AI/GEO traffic ghi nhận từ 12/11/2025 đến hiện tại.",
+    placeholder: "Thêm ảnh chụp AI Chats sessions",
+    alt: "Biểu đồ AI Chats sessions của dự án Hoàng Long Computer",
+    caption: "AI Chats ghi nhận thêm 15.302 sessions trong cùng giai đoạn đo lường.",
     insights: [
-      "AI/GEO traffic được tracking bổ sung để đánh giá tín hiệu từ các bề mặt tìm kiếm mới.",
-      "Số liệu phản ánh tổng lượng traffic từ AI/GEO sources tích lũy trong Phase 2.",
+      "AI Chats sessions phản ánh khả năng mở rộng Search Visibility sang các nền tảng AI Search.",
+      "Được theo dõi độc lập với kênh Organic Search truyền thống.",
     ]
   },
   {
-    title: "Conversion Tracking Snapshot",
+    title: "Commercial Intent Tracking Snapshot",
     sourceLabel: "GA4",
     imageSrc: "#",
-    placeholder: "Thêm ảnh chụp conversion tracking",
-    alt: "Bảng conversion tracking của dự án Hoàng Long Computer",
-    caption: "58.902 tracked conversion events bao gồm add_to_cart, view_item, click_phone, form_submit, purchase và các key events khác.",
+    placeholder: "Thêm ảnh chụp commercial intent tracking",
+    alt: "Bảng commercial intent tracking của dự án Hoàng Long Computer",
+    caption: "15,3K hành động thể hiện ý định thương mại bao gồm add_to_cart, begin_checkout, click_phone, form_submit.",
     insights: [
-      "Conversion tracking giúp đánh giá chất lượng traffic thay vì chỉ đo lượng traffic.",
-      "Các events được cấu hình phù hợp với mô hình e-commerce để đánh giá intent người dùng.",
+      "Đánh giá chất lượng người dùng và ý định mua hàng thực tế thay vì chỉ đo lường lượt xem trang thô.",
+      "Cấu hình đo lường các hành vi thương mại cốt lõi trên website e-commerce.",
     ]
   },
   {
@@ -151,7 +151,7 @@ const evidenceCards = [
         <div class="hl-result-pills">
           <span class="hl-result-pill">Renewed 12-month partnership</span>
           <span class="hl-result-pill">67% Top 3 maintenance keywords</span>
-          <span class="hl-result-pill">356.547 cumulative traffic</span>
+          <span class="hl-result-pill">980.965 Organic Search sessions tích lũy</span>
         </div>
       </div>
 
@@ -163,7 +163,11 @@ const evidenceCards = [
             <span class="snapshot-label">Client</span>
             <div class="client-info">
               <div class="client-logo-frame">
-                <span class="client-logo-text">HLC</span>
+                <img 
+                  src="/images/logos/hoang-long-logo.png" 
+                  alt="Hoàng Long Computer Logo" 
+                  class="client-logo" 
+                />
               </div>
               <span class="snapshot-value">hoanglongcomputer.vn</span>
             </div>
@@ -905,21 +909,21 @@ const evidenceCards = [
             </div>
             <!-- Card 2 -->
             <div class="card hl-headline-card">
-              <span class="hl-card-label">Traffic tích lũy</span>
-              <div class="hl-card-value">356.547</div>
-              <span class="hl-card-caption">KPI cuối dự án: 1.000.000</span>
+              <span class="hl-card-label">Organic Search sessions</span>
+              <div class="hl-card-value">980.965</div>
+              <span class="hl-card-caption">Tích lũy từ khi tiếp nhận dự án</span>
             </div>
             <!-- Card 3 -->
             <div class="card hl-headline-card">
-              <span class="hl-card-label">AI/GEO Traffic</span>
-              <div class="hl-card-value">7.406</div>
-              <span class="hl-card-caption">Tích lũy từ 12/11/2025</span>
+              <span class="hl-card-label">AI Chats sessions</span>
+              <div class="hl-card-value">15.302</div>
+              <span class="hl-card-caption">Mở rộng Search Visibility</span>
             </div>
             <!-- Card 4 -->
             <div class="card hl-headline-card">
-              <span class="hl-card-label">Tracked conversion events</span>
-              <div class="hl-card-value">58.902</div>
-              <span class="hl-card-caption" title="add_to_cart, view_item, click_phone, form_submit, purchase...">add_to_cart, view_item, click_phone, form_submit, purchase...</span>
+              <span class="hl-card-label">Ý định thương mại</span>
+              <div class="hl-card-value">15,3K</div>
+              <span class="hl-card-caption" title="add_to_cart, begin_checkout, click_phone, form_submit...">hành động thể hiện ý định thương mại</span>
             </div>
           </div>
 
@@ -1878,22 +1882,22 @@ const evidenceCards = [
   }
 
   .client-logo-frame {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 3px 8px;
+    width: 44px;
+    height: 44px;
     background: #FCFAF7;
     border: 1px solid rgba(216, 207, 196, 0.6);
     border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
     flex-shrink: 0;
   }
 
-  .client-logo-text {
-    font-weight: 800;
-    color: #C1121F;
-    font-size: 0.75rem;
-    letter-spacing: -0.01em;
-    line-height: 1;
+  .client-logo {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
   }
 
   .case-snapshot-bottom {

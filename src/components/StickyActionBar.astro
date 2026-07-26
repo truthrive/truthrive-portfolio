@@ -1,0 +1,293 @@
+---
+const linkedinUrl = "https://www.linkedin.com/in/truongthinhseo/";
+const cvUrl = "/files/Bui_Truong_Thinh_Senior_SEO_Specialist.pdf";
+const phone = "0779666784";
+const email = "bt.thinh2010@gmail.com";
+---
+
+<nav class="sticky-action-bar" aria-label="Liên hệ nhanh">
+  <div class="sticky-action-bar__container">
+    <!-- LinkedIn -->
+    <a
+      href={linkedinUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="sticky-action-bar__item"
+      aria-label="Kết nối với Bùi Trường Thịnh trên LinkedIn"
+    >
+      <span class="sticky-action-bar__icon">
+        <img
+          src="/images/logos/linkedIn-logo-social.webp"
+          alt="LinkedIn Logo"
+          class="sticky-action-bar__img"
+          width="20"
+          height="20"
+        />
+      </span>
+      <span class="sticky-action-bar__tooltip" role="tooltip">LinkedIn</span>
+    </a>
+
+    <!-- View CV -->
+    <a
+      href={cvUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="sticky-action-bar__item"
+      aria-label="Xem CV của Bùi Trường Thịnh"
+    >
+      <span class="sticky-action-bar__icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+      </span>
+      <span class="sticky-action-bar__tooltip" role="tooltip">Xem CV</span>
+    </a>
+
+    <!-- Menu Toggle (Mobile Only) -->
+    <button
+      type="button"
+      id="dock-menu-toggle"
+      class="sticky-action-bar__item sticky-action-bar__item--menu"
+      aria-label="Mở menu điều hướng"
+      aria-expanded="false"
+      aria-controls="mobile-menu-sheet"
+    >
+      <span class="sticky-action-bar__icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </span>
+      <span class="sticky-action-bar__tooltip" role="tooltip">Menu</span>
+    </button>
+
+    <!-- Call -->
+    <a
+      href={`tel:${phone}`}
+      class="sticky-action-bar__item"
+      aria-label={`Gọi điện cho Bùi Trường Thịnh: ${phone}`}
+    >
+      <span class="sticky-action-bar__icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
+      </span>
+      <span class="sticky-action-bar__tooltip" role="tooltip">Liên hệ</span>
+    </a>
+
+    <!-- Email -->
+    <a
+      href={`mailto:${email}`}
+      class="sticky-action-bar__item"
+      aria-label={`Gửi Email cho Bùi Trường Thịnh: ${email}`}
+    >
+      <span class="sticky-action-bar__icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+      </span>
+      <span class="sticky-action-bar__tooltip" role="tooltip">Email</span>
+    </a>
+  </div>
+</nav>
+
+<style>
+  /* Base Container */
+  .sticky-action-bar {
+    position: fixed;
+    z-index: 99;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .sticky-action-bar__container {
+    display: flex;
+    background: var(--color-card, #ffffff);
+    border: 1px solid var(--color-border, rgba(216, 207, 196, 0.6));
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+    backdrop-filter: blur(8px);
+  }
+
+  .sticky-action-bar__item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text, #1A2530);
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+
+  .sticky-action-bar__item:hover,
+  .sticky-action-bar__item:focus-visible {
+    color: var(--color-accent, #C1121F);
+    background-color: rgba(193, 18, 31, 0.05);
+    outline: none;
+  }
+
+  .sticky-action-bar__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+  }
+
+  .sticky-action-bar__img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+
+  /* Tooltip styling */
+  .sticky-action-bar__tooltip {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    white-space: nowrap;
+    background: #1A2530;
+    color: #FFF8F0;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 6px 10px;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    z-index: 100;
+  }
+
+  .sticky-action-bar__item:hover .sticky-action-bar__tooltip,
+  .sticky-action-bar__item:focus-visible .sticky-action-bar__tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* --- Desktop Layout (Right vertical bar) --- */
+  @media (min-width: 769px) {
+    .sticky-action-bar {
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .sticky-action-bar__item--menu {
+      display: none !important;
+    }
+
+    .sticky-action-bar__container {
+      flex-direction: column;
+      border-radius: 30px;
+      padding: 8px 4px;
+      gap: 6px;
+    }
+
+    .sticky-action-bar__item {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+    }
+
+    .sticky-action-bar__tooltip {
+      right: calc(100% + 12px);
+      top: 50%;
+      transform: translateY(-50%) translateX(6px);
+    }
+
+    .sticky-action-bar__item:hover .sticky-action-bar__tooltip,
+    .sticky-action-bar__item:focus-visible .sticky-action-bar__tooltip {
+      transform: translateY(-50%) translateX(0);
+    }
+
+    .sticky-action-bar__tooltip::after {
+      content: "";
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: transparent transparent transparent #1A2530;
+    }
+  }
+
+  /* --- Mobile Layout (iOS Floating Bottom Dock) --- */
+  @media (max-width: 768px) {
+    :global(body) {
+      padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .sticky-action-bar__item--menu {
+      display: flex;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+
+    .sticky-action-bar__item--menu.is-active,
+    .sticky-action-bar__item--menu[aria-expanded="true"] {
+      background-color: var(--color-accent, #C1121F);
+      color: #ffffff;
+    }
+
+    .sticky-action-bar {
+      bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+      left: 16px;
+      right: 16px;
+      top: auto;
+      transform: none;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .sticky-action-bar__container {
+      pointer-events: auto;
+      width: min(100%, 380px);
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(216, 207, 196, 0.6);
+      border-radius: 32px;
+      padding: 6px 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .sticky-action-bar__item {
+      flex: 0 0 44px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+    }
+
+    .sticky-action-bar__tooltip {
+      bottom: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%) translateY(4px);
+    }
+
+    .sticky-action-bar__item:hover .sticky-action-bar__tooltip,
+    .sticky-action-bar__item:focus-visible .sticky-action-bar__tooltip {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .sticky-action-bar__tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #1A2530 transparent transparent transparent;
+    }
+  }
+</style>

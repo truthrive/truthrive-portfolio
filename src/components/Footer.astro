@@ -1,43 +1,419 @@
 ---
 const currentYear = new Date().getFullYear();
+const linkedinUrl = "https://linkedin.com/in/truongthinhseo";
 ---
-<footer class="section-dark" style="padding: 48px 0; border-top: 1px solid rgba(255,255,255,0.1); margin-top: auto;">
-  <div class="container footer-container">
-    <div class="footer-brand">
-      <h2 class="logo">TruThrive</h2>
-      <p class="tagline">True SEO. Sustainable Growth.</p>
+
+<footer class="site-footer">
+  <!-- Shared Final CTA Banner -->
+  <section class="footer-cta-section">
+    <div class="footer-container">
+      <div class="footer-cta-content">
+        <h2 class="footer-cta-title">
+          Hãy cùng trao đổi về cơ hội và mục tiêu SEO tiếp theo
+        </h2>
+        <p class="footer-cta-desc">
+          Sẵn sàng trao đổi về cơ hội nghề nghiệp, dự án SEO, Technical SEO, GEO/AIO và các hệ thống SEO nội bộ.
+        </p>
+        <div class="footer-cta-actions">
+          <a class="footer-btn-primary" href="/contact/">Liên hệ với tôi</a>
+          <div class="footer-cta-row-2">
+            <button id="open-cv-modal-footer" data-open-cv-modal type="button" class="footer-btn-secondary">Xem nhanh CV</button>
+            <a 
+              href={linkedinUrl} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="footer-btn-linkedin"
+              aria-label="Xem LinkedIn của Bùi Trường Thịnh"
+              title="LinkedIn"
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.74a1.62 1.62 0 1 0 0 3.24 1.62 1.62 0 0 0 0-3.24z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; {currentYear} Bùi Trường Thịnh. Đã đăng ký bản quyền.</p>
+  </section>
+
+  <!-- Footer Information Section -->
+  <div class="footer-info-section">
+    <div class="footer-container">
+      <div class="footer-info-grid">
+        <!-- Column 1: Brand -->
+        <div class="footer-col footer-brand-col">
+          <a href="/" class="footer-logo-link" aria-label="TruThrive Trang chủ">
+            <img src="/images/logos/logo-truthrivev-mono-chrome.png" alt="TruThrive" class="footer-logo-img" width="160" height="36" />
+          </a>
+          <p class="footer-tagline">True SEO. Sustainable Growth.</p>
+        </div>
+
+        <!-- Column 2: Profile -->
+        <div class="footer-col footer-profile-col">
+          <h4 class="footer-profile-name">Bùi Trường Thịnh</h4>
+          <p class="footer-profile-title">Senior SEO Specialist & AI Builder</p>
+        </div>
+
+        <!-- Column 3: Contact Details -->
+        <div class="footer-col footer-contact-col">
+          <a href="mailto:bt.thinh2010@gmail.com" class="footer-contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span>bt.thinh2010@gmail.com</span>
+          </a>
+          <a href="tel:0779666784" class="footer-contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <span>0779 666 784</span>
+          </a>
+          <p class="footer-contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span>TP. Hồ Chí Minh, Việt Nam</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Navigation & Copyright Bottom Row -->
+      <div class="footer-bottom-row">
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="/">Trang chủ</a>
+          <a href="/about/">Giới thiệu</a>
+          <a href="/case-studies/">Case Studies</a>
+          <a href="/seo-systems/">SEO Systems</a>
+          <a href="/contact/">Liên hệ</a>
+        </nav>
+
+        <p class="footer-copyright">
+          &copy; {currentYear} Bùi Trường Thịnh. Đã đăng ký bản quyền.
+        </p>
+      </div>
     </div>
   </div>
 </footer>
 
 <style>
-  .footer-container {
+  /* Self-Contained Shared Footer Styles */
+  .site-footer {
+    width: 100%;
+    margin-top: auto;
+    background-color: #111827;
+    color: #FFF8F0;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    box-sizing: border-box;
+  }
+
+  .site-footer *,
+  .site-footer *::before,
+  .site-footer *::after {
+    box-sizing: border-box;
+  }
+
+  /* Footer Inner Container - Rigid self-contained width */
+  .site-footer .footer-container {
+    width: min(100% - 48px, 1120px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* 1. CTA Area */
+  .footer-cta-section {
+    padding: 64px 0 56px 0;
+    background-color: #111827;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .footer-cta-content {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .footer-cta-title {
+    color: #ffffff;
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    font-weight: 800;
+    line-height: 1.25;
+    margin: 0 0 16px 0;
+    letter-spacing: -0.01em;
+  }
+
+  .footer-cta-desc {
+    color: rgba(255, 248, 240, 0.8);
+    font-size: 1.02rem;
+    line-height: 1.6;
+    margin: 0 0 28px 0;
+  }
+
+  .footer-cta-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .footer-cta-row-2 {
+    display: contents;
+  }
+
+  /* Action Buttons */
+  .footer-btn-primary {
+    height: 52px;
+    padding: 0 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.98rem;
+    color: #ffffff;
+    background-color: #C1121F;
+    border: 1px solid #C1121F;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .footer-btn-primary:hover,
+  .footer-btn-primary:focus {
+    background-color: #991B1B;
+    border-color: #991B1B;
+    outline: none;
+  }
+
+  .footer-btn-secondary {
+    height: 52px;
+    padding: 0 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .footer-btn-secondary:hover,
+  .footer-btn-secondary:focus {
+    background-color: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.35);
+    outline: none;
+  }
+
+  .footer-btn-linkedin {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    min-height: 52px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #C1121F;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .footer-btn-linkedin:hover,
+  .footer-btn-linkedin:focus {
+    background-color: #C1121F;
+    color: #ffffff;
+    border-color: #C1121F;
+    outline: none;
+  }
+
+  /* 2. Footer Information Area */
+  .footer-info-section {
+    padding: 48px 0 36px 0;
+    background-color: #111827;
+  }
+
+  .footer-info-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1.2fr 1fr;
+    gap: 40px;
+    align-items: start;
+    padding-bottom: 36px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-logo-link {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 6px;
+    text-decoration: none;
+  }
+
+  .footer-logo-img {
+    height: 36px;
+    width: auto;
+    max-height: 36px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .footer-tagline {
+    font-size: 0.9rem;
+    color: rgba(255, 248, 240, 0.7);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .footer-profile-name {
+    font-size: 1.12rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0 0 6px 0;
+  }
+
+  .footer-profile-title {
+    font-size: 0.88rem;
+    color: #C1121F;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .footer-contact-col {
+    gap: 10px;
+  }
+
+  .footer-contact-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: rgba(255, 248, 240, 0.85);
+    text-decoration: none;
+    margin: 0;
+    transition: color 0.2s ease;
+  }
+
+  .footer-contact-item svg {
+    color: #C1121F;
+    stroke: currentColor;
+    flex-shrink: 0;
+  }
+
+  a.footer-contact-item:hover,
+  a.footer-contact-item:focus {
+    color: #ffffff;
+    outline: none;
+  }
+
+  /* Bottom Navigation & Copyright Row */
+  .footer-bottom-row {
+    padding-top: 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
   }
-  .logo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.5px;
+
+  .footer-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
   }
-  .tagline {
-    color: rgba(255, 248, 240, 0.7);
+
+  .footer-nav a {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: rgba(255, 248, 240, 0.75);
+    text-decoration: none;
+    transition: color 0.2s ease;
   }
-  .footer-bottom {
-    font-size: 0.875rem;
+
+  .footer-nav a:hover,
+  .footer-nav a:focus {
+    color: #ffffff;
+    text-decoration: underline;
+    outline: none;
+  }
+
+  .footer-copyright {
+    font-size: 0.85rem;
     color: rgba(255, 248, 240, 0.5);
+    margin: 0;
   }
-  
+
+  /* Responsive Media Queries */
   @media (max-width: 768px) {
-    .footer-container {
+    .site-footer .footer-container {
+      width: min(100% - 32px, 1120px);
+    }
+
+    .footer-info-grid {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .footer-bottom-row {
       flex-direction: column;
-      text-align: center;
-      gap: 1.5rem;
+      align-items: flex-start;
+      gap: 16px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .footer-cta-section {
+      padding: 44px 0 36px 0;
+    }
+
+    .footer-cta-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .footer-btn-primary {
+      width: 100%;
+      height: 52px;
+    }
+
+    .footer-cta-row-2 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .footer-btn-secondary {
+      flex: 1;
+      width: auto;
+      height: 52px;
+    }
+
+    .footer-btn-linkedin {
+      width: 52px;
+      height: 52px;
     }
   }
 </style>

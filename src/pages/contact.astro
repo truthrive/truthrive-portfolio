@@ -3,8 +3,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 // --- Contact Configuration ---
 const contactConfig = {
-  email: "your-email@example.com",
-  linkedIn: "https://linkedin.com/in/your-profile",
+  email: "bt.thinh2010@gmail.com",
+  phone: "0779666784",
+  linkedIn: "https://www.linkedin.com/in/truongthinhseo/",
   location: "TP. Hồ Chí Minh, Việt Nam",
   auditPage: "/request-seo-audit/" // Keep consistent with Header
 };
@@ -122,7 +123,22 @@ const description = "Liên hệ TruThrive để trao đổi về SEO Audit, Tech
                 </div>
               </div>
               <div class="info-item">
-                <span class="info-icon">🔗</span>
+                <span class="info-icon">📞</span>
+                <div class="info-text">
+                  <span class="info-label">Điện thoại</span>
+                  <a href={`tel:${contactConfig.phone}`}>{contactConfig.phone}</a>
+                </div>
+              </div>
+              <div class="info-item">
+                <span class="info-icon info-icon--img">
+                  <img 
+                    src="/images/logos/linkedIn-logo-social.webp" 
+                    alt="LinkedIn Logo" 
+                    class="social-icon-img"
+                    width="24"
+                    height="24"
+                  />
+                </span>
                 <div class="info-text">
                   <span class="info-label">LinkedIn</span>
                   <a href={contactConfig.linkedIn} target="_blank" rel="noopener noreferrer">Kết nối Profile</a>
@@ -276,6 +292,19 @@ const description = "Liên hệ TruThrive để trao đổi về SEO Audit, Tech
   .info-icon {
     font-size: 1.5rem;
     line-height: 1;
+  }
+  .info-icon--img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin-top: 2px;
+  }
+  .social-icon-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
   .info-text {
     display: flex;
