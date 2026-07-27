@@ -4407,6 +4407,15 @@
 }
 
 @media (max-width: 1023.98px) {
+  .career-journey-section {
+    padding-bottom: calc(104px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .career-journey-section .container {
+    padding-inline: 16px;
+    box-sizing: border-box;
+  }
+
   .career-scroll-steps {
     display: none;
   }
@@ -4417,15 +4426,157 @@
 
   .career-sticky-body {
     grid-template-columns: 1fr;
+    gap: 0;
   }
 
+  .career-detail-panels {
+    width: 100%;
+  }
+
+  /* Mobile Card Structure */
   .career-detail-card {
     display: block !important;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    height: auto;
+    box-sizing: border-box;
+    margin-inline: 0;
     margin-bottom: 24px;
+    padding: 20px;
+    border-radius: 24px;
+    overflow: visible;
+  }
+
+  .career-card-header {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 12px;
+    align-items: start;
+    margin-bottom: 18px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .career-company-meta {
+    display: contents;
+  }
+
+  .career-logo-placeholder {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  .career-title-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
   }
 
   .career-card-mobile-year {
     display: block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 2px;
+  }
+
+  .career-company-name {
+    font-size: 1.38rem;
+    font-weight: 800;
+    color: var(--color-text);
+    margin: 0 0 2px 0;
+    line-height: 1.25;
+    flex-wrap: wrap;
+  }
+
+  .career-role {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    margin-top: 2px;
+    line-height: 1.35;
+  }
+
+  .career-time {
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    padding: 5px 9px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--color-muted-text);
+    background: rgba(216, 207, 196, 0.25);
+    border-radius: 4px;
+  }
+
+  .career-desc {
+    font-size: 0.95rem;
+    line-height: 1.68;
+    color: var(--color-text);
+    margin: 0 0 18px 0;
+  }
+
+  /* Capability & Leadership Blocks Simplification */
+  .career-capability-box {
+    background: rgba(26, 37, 48, 0.03);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-top: 18px;
+  }
+
+  .capability-title {
+    display: block;
+    font-size: 0.76rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-accent);
+    margin-bottom: 6px;
+  }
+
+  .capability-desc {
+    font-size: 0.92rem;
+    color: var(--color-muted-text);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .career-leadership-box {
+    margin-top: 12px;
+    padding: 14px 16px;
+    background-color: rgba(193, 18, 31, 0.03);
+    border: 1px solid rgba(193, 18, 31, 0.12);
+    border-radius: 12px;
+  }
+
+  .leadership-title {
+    display: block;
+    font-size: 0.76rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-accent);
+    margin-bottom: 6px;
+  }
+
+  .leadership-desc {
+    font-size: 0.9rem;
+    color: var(--color-muted-text);
+    line-height: 1.6;
+    margin: 0;
   }
 }
 
