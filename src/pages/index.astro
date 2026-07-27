@@ -6,6 +6,7 @@ import BrandMarquee from "../components/BrandMarquee.astro";
 
 const caseStudies = [
   {
+    seq: '01',
     title: 'Suối Tiên',
     badge: 'Domain Migration · Tourism SEO',
     logoSrc: '/images/logos/suoi-tien-logo.png',
@@ -13,10 +14,11 @@ const caseStudies = [
     monogram: 'ST',
     status: 'available',
     href: '/case-studies/suoi-tien-seo/',
-    summary: 'Dự án di chuyển tên miền (migration) quy mô lớn từ suoitien.com sang suoitien.vn, bảo vệ hiệu suất kỹ thuật toàn diện và mở rộng tối đa tệp từ khóa phi thương hiệu.',
+    compactRole: 'Project Lead & Technical SEO',
+    summary: 'Migration từ suoitien.com sang suoitien.vn, duy trì hiệu suất kỹ thuật và mở rộng độ phủ từ khóa phi thương hiệu.',
     challenge: [
-      'Bảo toàn hiệu suất khi di chuyển từ suoitien.com sang suoitien.vn',
-      'Duy trì sức khỏe kỹ thuật và mở rộng tệp từ khóa phi thương hiệu'
+      'Duy trì hiệu suất SEO trong quá trình migration tên miền.',
+      'Mở rộng độ phủ từ khóa phi thương hiệu sau migration.'
     ],
     role: [
       'Project Lead & Hands-on SEO Executive',
@@ -37,6 +39,7 @@ const caseStudies = [
     ]
   },
   {
+    seq: '02',
     title: 'DOL Grammar',
     badge: 'New Website SEO · Topical Authority',
     logoSrc: '/images/logos/dol-grammar-logo-logo.png',
@@ -44,10 +47,11 @@ const caseStudies = [
     monogram: 'DOL',
     status: 'available',
     href: '/case-studies/dol-grammar-seo/',
-    summary: 'Dự án SEO cho grammar.dolenglish.vn từ giai đoạn launch, tập trung xây nền tảng topical authority, cấu trúc nội dung có khả năng mở rộng và quy trình tối ưu nội dung bền vững.',
+    compactRole: 'SEO Strategy & Project Lead',
+    summary: 'Xây nền tảng SEO cho website mới từ giai đoạn launch, tập trung topical authority, cấu trúc nội dung và workflow có thể mở rộng.',
     challenge: [
-      'Website mới ra mắt cần xây dựng Topical Authority từ vạch số 0',
-      'Thiết lập cấu trúc nội dung và workflow sản xuất quy mô lớn'
+      'Xây topical authority cho một website hoàn toàn mới.',
+      'Chuẩn hóa cấu trúc nội dung và workflow có thể mở rộng.'
     ],
     role: [
       'Middle SEO / SEO Project Leader',
@@ -68,6 +72,7 @@ const caseStudies = [
     ]
   },
   {
+    seq: '03',
     title: 'Hoàng Long Computer',
     badge: 'SEO Recovery · E-commerce SEO · AI/GEO Growth',
     logoSrc: '/images/logos/hoang-long-logo.png',
@@ -75,10 +80,11 @@ const caseStudies = [
     monogram: 'HLC',
     status: 'available',
     href: '/case-studies/hoang-long-computer-seo/',
-    summary: 'Dự án SEO e-commerce ngành PC/Gaming, kết hợp phục hồi hiệu suất, xác thực KPI và mở rộng tăng trưởng sau khi khách hàng tiếp tục ký hợp đồng 12 tháng.',
+    compactRole: 'SEO Project Leader',
+    summary: 'Phục hồi và mở rộng SEO e-commerce ngành PC/Gaming, kết hợp Technical SEO, Content Strategy và đo lường tăng trưởng AI/GEO.',
     challenge: [
-      'Website gặp nhiều lỗi technical quan trọng do CMS tự code',
-      'Mở rộng ranking và traffic chất lượng cao có conversion events'
+      'Khắc phục các vấn đề Technical SEO từ custom CMS.',
+      'Phục hồi ranking và mở rộng traffic có giá trị chuyển đổi.'
     ],
     role: [
       'SEO Project Leader',
@@ -99,6 +105,7 @@ const caseStudies = [
     ]
   },
   {
+    seq: '04',
     title: 'Hikid',
     badge: 'Coming soon',
     logoSrc: '/images/logos/hikid-logo.png',
@@ -106,10 +113,11 @@ const caseStudies = [
     monogram: 'HKD',
     status: 'coming-soon',
     href: '',
-    summary: 'Dự án SEO thương hiệu sản phẩm dinh dưỡng cao cấp. Full case study đang được biên soạn và sẽ sớm ra mắt.',
+    compactRole: 'Case study đang biên soạn',
+    summary: 'Dự án SEO cho thương hiệu dinh dưỡng cao cấp; case study đang được chuẩn hóa dữ liệu và hoàn thiện nội dung.',
     challenge: [
-      'Xây dựng chiến lược SEO tổng thể cho sản phẩm dinh dưỡng cao cấp',
-      'Định vị thương hiệu và tối ưu chuyển đổi theo hành trình tìm kiếm'
+      'Xây nền tảng SEO cho thương hiệu dinh dưỡng cao cấp.',
+      'Dữ liệu kết quả đang được chuẩn hóa để hoàn thiện case study.'
     ],
     role: [
       'SEO Project Leader',
@@ -399,131 +407,265 @@ const capabilities = [
   <!-- Reusable Logo Marquee Section -->
   <BrandMarquee />
 
-  <!-- Featured Case Study Showcase (Pinned Scroll on Desktop) -->
-  <section class="case-showcase-wrapper" id="case-showcase-wrapper">
-    <div class="case-showcase-sticky">
-      <!-- section padding added here so the sticky area covers it -->
-      <div class="section case-showcase-inner">
+  <!-- Featured Case Study Showcase (Sticky Horizontal Story Slider) -->
+  <section class="case-showcase-section" id="case-studies">
+    <div class="case-showcase-wrapper" id="case-showcase-wrapper">
+      <div class="case-showcase-sticky" id="case-showcase-sticky">
+        <!-- Row 1: Section Header + Story Progress (inside container) -->
         <div class="container">
-          <div class="section-heading case-showcase-heading">
-            <p class="section-kicker">SELECTED SEO CASE STUDIES</p>
-            <h2 class="section-title">Case Study nổi bật</h2>
-            <p class="section-subtitle">
-              Ba case tiêu biểu tóm tắt bối cảnh dự án, vai trò của tôi, hướng triển khai chính và kết quả SEO đo lường được.
-            </p>
+          <div class="case-showcase-header-row">
+            <div class="section-heading case-showcase-heading">
+              <p class="section-kicker">SELECTED SEO CASE STUDIES</p>
+              <h2 class="section-title">Case Study nổi bật</h2>
+              <p class="section-subtitle">
+                Hành trình tăng trưởng Organic Search qua các dự án thực tế tiêu biểu.
+              </p>
+            </div>
+
+            <!-- Compact Story Progress Indicator -->
+            <div class="case-story-progress" id="case-story-progress">
+              <span class="story-progress__count">
+                <strong id="story-current-num">01</strong> / 04
+              </span>
+              <div class="story-progress__bar" aria-hidden="true">
+                <div class="story-progress__fill" id="story-progress-fill" style="width: 25%;"></div>
+              </div>
+            </div>
           </div>
+        </div>
 
-          <div class="case-showcase-viewport">
-            <div class="case-showcase__track" id="case-showcase-track">
-              {caseStudies.map((cs) => (
-                <article class={`card case-card case-card--${cs.status}`}>
-                  {/* Subtle Background Watermark (Only rendered if an image logo exists) */}
-                  {cs.logoSrc && (
-                    <div class={`case-card__watermark ${cs.logoSrc.includes('dol-grammar') ? 'case-card__watermark--wordmark' : ''}`} aria-hidden="true">
-                      <img src={cs.logoSrc} alt="" loading="lazy" />
-                    </div>
-                  )}
+        <!-- Row 2: Full-Bleed Viewport & Track (100vw width) -->
+        <div class="case-showcase-viewport">
+          <div class="case-showcase__track" id="case-showcase-track">
+            {caseStudies.map((cs) => (
+              <article class={`card case-story-card case-story-card--${cs.status}`} data-card-seq={cs.seq}>
+                {/* Subtle Background Watermark (single background decoration) */}
+                {cs.logoSrc && (
+                  <div class={`case-card__watermark ${cs.logoSrc.includes('dol-grammar') ? 'case-card__watermark--wordmark' : ''}`} aria-hidden="true">
+                    <img src={cs.logoSrc} alt="" loading="lazy" />
+                  </div>
+                )}
 
-                  {/* Logo + Badge row */}
-                  <div class="case-card__top">
-                    <div class="case-card__top-info">
+                {/* Left Column: Project Info (~58%) */}
+                <div class="case-story-card__body">
+                  {/* Header: Logo & Badge */}
+                  <div class="case-story-card__header">
+                    <div class="case-story-card__identity">
                       <div class="case-card__logo">
                         {cs.logoSrc ? (
-                          <img src={cs.logoSrc} alt={cs.logoAlt} loading="lazy" width="64" height="64" />
+                          <img src={cs.logoSrc} alt={cs.logoAlt} loading="lazy" width="52" height="52" />
                         ) : (
                           <span class="case-card__monogram">{cs.monogram}</span>
                         )}
                       </div>
                       <span class="pill" style="margin-bottom: 0;">{cs.badge}</span>
                     </div>
-                    {cs.status === 'available' && cs.href && (
-                      <a class="btn case-card__cta" href={cs.href}>Xem Case Study</a>
-                    )}
-                    {cs.status === 'coming-soon' && (
-                      <span class="btn case-card__cta case-card__cta--disabled" aria-disabled="true">Coming soon</span>
-                    )}
+                    <span class="case-story-card__seq-badge">{cs.seq} / 04</span>
                   </div>
 
-                  {/* Body */}
-                  <div class="case-card__body">
-                    <h3>{cs.title}</h3>
-                    <p style="font-size: 1rem; color: var(--color-muted-text); margin-bottom: 24px;">{cs.summary}</p>
+                  {/* Grouped Title, Role & Summary Content Block */}
+                  <div class="case-story-card__content-group">
+                    <div class="case-story-card__title-area">
+                      <h3 class="case-story-card__title">{cs.title}</h3>
+                      {cs.compactRole && (
+                        <span class="case-story-card__role-tag">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                          </svg>
+                          {cs.compactRole}
+                        </span>
+                      )}
+                    </div>
 
-                    <div class={cs.status === 'coming-soon' ? 'case-card__locked-wrapper' : ''}>
-                      <div class="case-detail-grid">
-                        <div class="case-detail-group">
-                          <strong class="case-detail-label">Thách thức (Challenge)</strong>
-                          <ul class="case-detail-list">
-                            {cs.challenge.map(item => (
-                              <li>
-                                <svg class="case-item-icon challenge-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                  <circle cx="12" cy="12" r="10"></circle>
-                                  <circle cx="12" cy="12" r="3"></circle>
-                                </svg>
-                                <span>{item}</span>
-                              </li>
-                            ))}
-                          </ul>
+                    <p class="case-story-card__summary">{cs.summary}</p>
+
+                    {/* Thách thức chính block */}
+                    {cs.challenge && cs.challenge.length > 0 && (
+                      <div class="case-story-card__challenges">
+                        <span class="case-story-card__challenge-label">THÁCH THỨC CHÍNH</span>
+                        <ul class="case-story-card__challenge-list">
+                          {cs.challenge.slice(0, 2).map((item) => (
+                            <li class="case-story-card__challenge-item">
+                              <svg class="case-story-card__challenge-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="12"></line>
+                                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                              </svg>
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Right Column: Results Panel (~42%) */}
+                {cs.status === 'available' ? (
+                  <div class="results-panel">
+                    <div class="results-panel__tiles">
+                      {/* Primary Metric Tile */}
+                      {cs.metrics && cs.metrics.length > 0 && (
+                        <div class="results-tile results-tile--primary">
+                          <span class="results-tile__icon" aria-hidden="true">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                              <polyline points="17 6 23 6 23 12"></polyline>
+                            </svg>
+                          </span>
+                          <strong
+                            class="results-tile__value animated-number"
+                            data-scramble
+                            data-final={cs.metrics[0].value}
+                            aria-label={cs.metrics[0].value}
+                            data-count-to={cs.metrics[0].countTo}
+                            {...(cs.metrics[0].format ? { 'data-count-format': cs.metrics[0].format } : {})}
+                            {...(cs.metrics[0].suffix ? { 'data-count-suffix': cs.metrics[0].suffix } : {})}
+                          >{cs.metrics[0].value}</strong>
+                          <span class="results-tile__label">{cs.metrics[0].label}</span>
                         </div>
-                        <div class="case-detail-group">
-                          <strong class="case-detail-label">Vai trò của tôi (My Role)</strong>
-                          <ul class="case-detail-list">
-                            {cs.role.map(item => (
-                              <li>
-                                <svg class="case-item-icon role-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                  <circle cx="12" cy="7" r="4"></circle>
+                      )}
+
+                      {/* Secondary Metrics (side by side below primary) */}
+                      {cs.metrics && cs.metrics.length > 1 && (
+                        <div class="results-panel__secondary-grid">
+                          <div class="results-tile results-tile--secondary">
+                            <span class="results-tile__icon" aria-hidden="true">
+                              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                              </svg>
+                            </span>
+                            <strong
+                              class="results-tile__value animated-number"
+                              data-scramble
+                              data-final={cs.metrics[1].value}
+                              aria-label={cs.metrics[1].value}
+                              data-count-to={cs.metrics[1].countTo}
+                              {...(cs.metrics[1].suffix ? { 'data-count-suffix': cs.metrics[1].suffix } : {})}
+                            >{cs.metrics[1].value}</strong>
+                            <span class="results-tile__label">{cs.metrics[1].label}</span>
+                          </div>
+
+                          {cs.metrics[2] && (
+                            <div class="results-tile results-tile--secondary">
+                              <span class="results-tile__icon" aria-hidden="true">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
                                 </svg>
-                                <span>{item}</span>
-                              </li>
-                            ))}
-                          </ul>
+                              </span>
+                              <strong
+                                class="results-tile__value animated-number"
+                                data-scramble
+                                data-final={cs.metrics[2].value}
+                                aria-label={cs.metrics[2].value}
+                                data-count-to={cs.metrics[2].countTo}
+                                {...(cs.metrics[2].suffix ? { 'data-count-suffix': cs.metrics[2].suffix } : {})}
+                              >{cs.metrics[2].value}</strong>
+                              <span class="results-tile__label">{cs.metrics[2].label}</span>
+                            </div>
+                          )}
                         </div>
-                        <div class="case-detail-group">
-                          <strong class="case-detail-label">Hành động cốt lõi (Key Actions)</strong>
-                          <ul class="case-detail-list">
-                            {cs.actions.map(item => (
-                              <li>
-                                <svg class="case-item-icon action-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                  <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg>
-                                <span>{item}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
+                      )}
+                    </div>
+
+                    {/* CTA Action visually separate from metric tiles */}
+                    {cs.href && (
+                      <div class="results-panel__action">
+                        <a class="btn case-card__cta" href={cs.href}>
+                          Xem Case Study →
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div class="results-panel results-panel--muted">
+                    <div class="results-panel__tiles">
+                      {/* Primary — shows collecting state */}
+                      <div class="results-tile results-tile--primary">
+                        <span class="results-tile__icon" aria-hidden="true">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                            <polyline points="17 6 23 6 23 12"></polyline>
+                          </svg>
+                        </span>
+                        <span class="results-tile__value results-tile__value--muted" aria-hidden="true">—</span>
+                        <span class="results-tile__label">Đang tổng hợp dữ liệu</span>
                       </div>
 
-                      <div class="case-card__footer">
-                        {cs.metrics && cs.metrics.length > 0 && (
-                          <>
-                            <div class="case-results-header">
-                              <div class="case-results-divider"></div>
-                              <strong class="case-results-label">KẾT QUẢ ĐO LƯỜNG</strong>
-                            </div>
-                            <div class="case-metrics">
-                              {cs.metrics.map((m) => (
-                                <div class="case-metric">
-                                  <strong
-                                    class={cs.status === 'available' ? 'animated-number' : ''}
-                                    data-count-to={m.countTo}
-                                    {...(m.format ? { 'data-count-format': m.format } : {})}
-                                    {...(m.suffix ? { 'data-count-suffix': m.suffix } : {})}
-                                    {...(m.decimals ? { 'data-count-decimals': m.decimals } : {})}
-                                  >{m.value}</strong>
-                                  <span>{m.label}</span>
-                                </div>
-                              ))}
-                            </div>
-                          </>
-                        )}
+                      {/* Secondary Metrics — masked */}
+                      <div class="results-panel__secondary-grid">
+                        <div class="results-tile results-tile--secondary results-tile--masked" aria-hidden="true">
+                          <span class="results-tile__icon">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <circle cx="11" cy="11" r="8"></circle>
+                              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                          </span>
+                          <span class="results-tile__value results-tile__value--muted">—</span>
+                          <span class="results-tile__label">Đang tổng hợp</span>
+                        </div>
+
+                        <div class="results-tile results-tile--secondary results-tile--masked" aria-hidden="true">
+                          <span class="results-tile__icon">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                          </span>
+                          <span class="results-tile__value results-tile__value--muted">—</span>
+                          <span class="results-tile__label">Đang tổng hợp</span>
+                        </div>
                       </div>
                     </div>
+
+                    {/* Disabled CTA */}
+                    <div class="results-panel__action">
+                      <span class="btn case-card__cta case-card__cta--disabled" aria-disabled="true">
+                        Coming soon
+                      </span>
+                    </div>
+
+                    <div class="case-story-card__notice">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                      </svg>
+                      <span>Full case study đang được chuẩn hóa</span>
+                    </div>
                   </div>
-                </article>
-              ))}
-            </div>
+                )}
+              </article>
+            ))}
           </div>
+        </div>
+
+        <!-- Mobile Slider Navigation Controls (Prev, Dots, Next) -->
+        <div class="cs-mobile-controls" id="cs-mobile-controls">
+          <button type="button" class="cs-mobile-btn" id="cs-mobile-prev" aria-label="Previous slide" disabled>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+
+          <div class="cs-mobile-dots" id="cs-mobile-dots" aria-label="Slide indicators">
+            {caseStudies.map((_, idx) => (
+              <button
+                type="button"
+                class={`cs-mobile-dot ${idx === 0 ? 'is-active' : ''}`}
+                data-slide-index={idx}
+                aria-label={`Go to slide ${idx + 1}`}
+              ></button>
+            ))}
+          </div>
+
+          <button type="button" class="cs-mobile-btn" id="cs-mobile-next" aria-label="Next slide">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
         </div>
       </div>
     </div>
@@ -532,79 +674,334 @@ const capabilities = [
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const wrapper = document.getElementById('case-showcase-wrapper');
+      const sticky = document.getElementById('case-showcase-sticky');
       const track = document.getElementById('case-showcase-track');
-      if (!wrapper || !track) return;
+      const header = document.querySelector('header');
+      const currentNumEl = document.getElementById('story-current-num');
+      const fillEl = document.getElementById('story-progress-fill');
+      const cards = Array.from(track.children);
+      
+      if (!wrapper || !sticky || !track) return;
 
+      const cardCount = cards.length;
       let scrollWidth = 0;
       let viewportWidth = 0;
       let isDesktop = false;
       let prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       let maxTranslate = 0;
-      
+      let headerHeight = 0;
+      let scrollRange = 0;
+
       const calculateDimensions = () => {
-        isDesktop = window.innerWidth >= 1360;
-        
+        isDesktop = window.innerWidth >= 1024;
+        headerHeight = header ? header.offsetHeight : 80;
+
         if (isDesktop && !prefersReducedMotion) {
-          // Reset transform to calculate real width
+          wrapper.style.height = '';
           track.style.transform = 'translate3d(0, 0, 0)';
+          track.style.paddingRight = '';
+          sticky.style.top = '';
+          sticky.style.height = '';
           
           viewportWidth = track.parentElement.clientWidth;
+
+          const lastCard = cards[cards.length - 1];
+          const cardWidth = lastCard ? lastCard.offsetWidth : 0;
+          const centeringOffset = cardWidth > 0
+            ? Math.max(0, (viewportWidth - cardWidth) / 2)
+            : 0;
+
+          if (centeringOffset > 0) {
+            track.style.paddingRight = `${centeringOffset}px`;
+          }
+
           scrollWidth = track.scrollWidth;
           maxTranslate = scrollWidth - viewportWidth;
-          
-          // Only pin if track is wider than viewport
+
           if (maxTranslate > 0) {
-            // Set wrapper height to create scrollable space (viewport height + horizontal travel distance)
-            wrapper.style.height = `calc(100vh + ${maxTranslate}px)`;
+            sticky.style.top = `${headerHeight}px`;
+            const availableStickyHeight = window.innerHeight - headerHeight;
+            sticky.style.height = `${availableStickyHeight}px`;
+
+            const vhStep = window.innerHeight * 0.55;
+            const stepScroll = Math.min(Math.max(vhStep, 360), 560);
+            scrollRange = (cardCount - 1) * stepScroll;
+
+            const stickyHeight = sticky.offsetHeight;
+            wrapper.style.height = `${stickyHeight + scrollRange}px`;
             wrapper.classList.add('is-pinned-mode');
           } else {
             wrapper.style.height = 'auto';
+            track.style.transform = '';
+            track.style.paddingRight = '';
+            sticky.style.top = '';
+            sticky.style.height = '';
             wrapper.classList.remove('is-pinned-mode');
           }
         } else {
-          // Mobile / Reduced Motion: clear inline styles
           wrapper.style.height = '';
           track.style.transform = '';
+          track.style.paddingRight = '';
+          sticky.style.top = '';
+          sticky.style.height = '';
           wrapper.classList.remove('is-pinned-mode');
         }
       };
 
-      // Recalculate on load/resize
       calculateDimensions();
       window.addEventListener('resize', calculateDimensions);
-      // Extra recalculate after fonts load
       if (document.fonts) {
         document.fonts.ready.then(calculateDimensions);
       }
+      if (window.ResizeObserver) {
+        const ro = new ResizeObserver(() => calculateDimensions());
+        ro.observe(track);
+      }
 
-      // Scroll logic with rAF
+      const SCRAMBLE_CHARS = '0123456789';
+      const REVEAL_STEP_MS = 50;
+      const SCRAMBLE_FRAMES = 6;
+      const FRAME_MS = 40;
+
+      const elTimers = new WeakMap();
+
+      const scrambleEl = (el) => {
+        const finalText = el.dataset.final;
+        if (!finalText || !/\d/.test(finalText)) return;
+
+        if (prefersReducedMotion) {
+          el.textContent = finalText;
+          return;
+        }
+
+        const existing = elTimers.get(el);
+        if (existing) { clearTimeout(existing); elTimers.delete(el); }
+
+        const chars = finalText.split('');
+        const digitPositions = chars
+          .map((c, i) => (/\d/.test(c) ? i : null))
+          .filter(i => i !== null);
+
+        let revealedCount = 0;
+        const totalDigits = digitPositions.length;
+        const frameCounters = new Array(totalDigits).fill(0);
+
+        const randomChar = () => SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
+
+        const buildDisplay = () => {
+          const out = chars.slice();
+          digitPositions.forEach((pos, di) => {
+            if (di < revealedCount) {
+              out[pos] = chars[pos];
+            } else {
+              out[pos] = randomChar();
+            }
+          });
+          return out.join('');
+        };
+
+        const tick = () => {
+          if (revealedCount >= totalDigits) {
+            el.textContent = finalText;
+            elTimers.delete(el);
+            return;
+          }
+
+          frameCounters[revealedCount]++;
+          if (frameCounters[revealedCount] >= SCRAMBLE_FRAMES) {
+            revealedCount++;
+          }
+
+          el.textContent = buildDisplay();
+          elTimers.set(el, setTimeout(tick, revealedCount >= totalDigits ? REVEAL_STEP_MS : FRAME_MS));
+        };
+
+        tick();
+      };
+
+      const triggerScrambleForCard = (card) => {
+        card.querySelectorAll('[data-scramble]').forEach(el => {
+          if (prefersReducedMotion) {
+            el.textContent = el.dataset.final || el.textContent;
+            return;
+          }
+          scrambleEl(el);
+        });
+      };
+
+      let lastActiveIndex = -1;
+
       let ticking = false;
       window.addEventListener('scroll', () => {
         if (!isDesktop || prefersReducedMotion || !wrapper.classList.contains('is-pinned-mode')) return;
-        
+
         if (!ticking) {
           window.requestAnimationFrame(() => {
             const rect = wrapper.getBoundingClientRect();
-            // How far we have scrolled past the top of the wrapper
-            // rect.top is 0 when sticky starts, becomes negative as we scroll down the wrapper
             let progress = 0;
-            
-            // Wait until the sticky top is reached (rect.top <= 0)
-            if (rect.top <= 0) {
-              const scrolledDistance = Math.abs(rect.top);
-              // Max distance we can scroll is wrapper height - 100vh
-              const maxScrollDistance = wrapper.offsetHeight - window.innerHeight;
-              
-              progress = Math.min(Math.max(scrolledDistance / maxScrollDistance, 0), 1);
+
+            if (rect.top <= headerHeight) {
+              const scrolledDistance = headerHeight - rect.top;
+              if (scrollRange > 0) {
+                progress = Math.min(Math.max(scrolledDistance / scrollRange, 0), 1);
+              }
             }
-            
+
             const translate = progress * maxTranslate;
             track.style.transform = `translate3d(-${translate}px, 0, 0)`;
+
+            const activeIndex = Math.min(
+              Math.floor(progress * cardCount * 0.999),
+              cardCount - 1
+            );
+
+            cards.forEach((card, idx) => {
+              if (idx === activeIndex) {
+                card.classList.add('is-active');
+              } else {
+                card.classList.remove('is-active');
+              }
+            });
+
+            if (activeIndex !== lastActiveIndex) {
+              triggerScrambleForCard(cards[activeIndex]);
+              lastActiveIndex = activeIndex;
+            }
+
+            if (currentNumEl) {
+              currentNumEl.textContent = `0${activeIndex + 1}`;
+            }
+            if (fillEl) {
+              fillEl.style.width = `${Math.max(25, (progress * 100))}%`;
+            }
+
             ticking = false;
           });
           ticking = true;
         }
       }, { passive: true });
+
+      const mobilePrevBtn = document.getElementById('cs-mobile-prev');
+      const mobileNextBtn = document.getElementById('cs-mobile-next');
+      const mobileDotsContainer = document.getElementById('cs-mobile-dots');
+      const mobileDots = mobileDotsContainer ? Array.from(mobileDotsContainer.querySelectorAll('.cs-mobile-dot')) : [];
+
+      let isTrackScrolling = false;
+
+      const getActiveMobileIndex = () => {
+        const trackRect = track.getBoundingClientRect();
+        const viewportCenter = trackRect.left + trackRect.width / 2;
+        let closestIndex = 0;
+        let minDistance = Infinity;
+
+        cards.forEach((card, idx) => {
+          const cardRect = card.getBoundingClientRect();
+          const cardCenter = cardRect.left + cardRect.width / 2;
+          const distance = Math.abs(cardCenter - viewportCenter);
+
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestIndex = idx;
+          }
+        });
+
+        return closestIndex;
+      };
+
+      const updateMobileSlider = () => {
+        if (isDesktop || !cards.length) return;
+
+        const activeIndex = getActiveMobileIndex();
+
+        cards.forEach((card, idx) => {
+          if (idx === activeIndex) {
+            card.classList.add('is-active');
+          } else {
+            card.classList.remove('is-active');
+          }
+        });
+
+        mobileDots.forEach((dot, idx) => {
+          if (idx === activeIndex) {
+            dot.classList.add('is-active');
+          } else {
+            dot.classList.remove('is-active');
+          }
+        });
+
+        if (mobilePrevBtn) mobilePrevBtn.disabled = activeIndex === 0;
+        if (mobileNextBtn) mobileNextBtn.disabled = activeIndex === cardCount - 1;
+
+        if (activeIndex !== lastActiveIndex) {
+          triggerScrambleForCard(cards[activeIndex]);
+          lastActiveIndex = activeIndex;
+        }
+      };
+
+      track.addEventListener('scroll', () => {
+        if (isDesktop) return;
+        if (!isTrackScrolling) {
+          window.requestAnimationFrame(() => {
+            updateMobileSlider();
+            isTrackScrolling = false;
+          });
+          isTrackScrolling = true;
+        }
+      }, { passive: true });
+
+      if (mobilePrevBtn) {
+        mobilePrevBtn.addEventListener('click', () => {
+          if (isDesktop) return;
+          const currentIndex = getActiveMobileIndex();
+          const targetIndex = Math.max(0, currentIndex - 1);
+          const targetCard = cards[targetIndex];
+          if (targetCard) {
+            targetCard.scrollIntoView({
+              behavior: prefersReducedMotion ? 'auto' : 'smooth',
+              inline: 'center',
+              block: 'nearest'
+            });
+          }
+        });
+      }
+
+      if (mobileNextBtn) {
+        mobileNextBtn.addEventListener('click', () => {
+          if (isDesktop) return;
+          const currentIndex = getActiveMobileIndex();
+          const targetIndex = Math.min(cardCount - 1, currentIndex + 1);
+          const targetCard = cards[targetIndex];
+          if (targetCard) {
+            targetCard.scrollIntoView({
+              behavior: prefersReducedMotion ? 'auto' : 'smooth',
+              inline: 'center',
+              block: 'nearest'
+            });
+          }
+        });
+      }
+
+      mobileDots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+          if (isDesktop) return;
+          const slideIdx = parseInt(dot.dataset.slideIndex || '0', 10);
+          const targetCard = cards[slideIdx];
+          if (targetCard) {
+            targetCard.scrollIntoView({
+              behavior: prefersReducedMotion ? 'auto' : 'smooth',
+              inline: 'center',
+              block: 'nearest'
+            });
+          }
+        });
+      });
+
+      if (!prefersReducedMotion && cards.length > 0) {
+        setTimeout(() => {
+          if (!isDesktop) updateMobileSlider();
+          triggerScrambleForCard(cards[0]);
+        }, 600);
+      }
     });
   </script>
 
