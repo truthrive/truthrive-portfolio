@@ -3,6 +3,55 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { personSchema } from "../data/schema";
 import BrandMarquee from "../components/BrandMarquee.astro";
 
+const careerJourney = [
+  {
+    year: "2021–2022",
+    company: "SALA",
+    role: "Content SEO Specialist",
+    time: "03/2021 – 10/2022",
+    description: "Nghiên cứu từ khóa, lập kế hoạch Content SEO và quản lý chất lượng nội dung cho hơn 10 dự án thuộc nhiều lĩnh vực.",
+    capability: "Search intent, content planning, content review và quản lý quy trình sản xuất nội dung.",
+    logoText: "SALA"
+  },
+  {
+    year: "2023",
+    company: "GTV SEO",
+    role: "SEO Executive",
+    time: "03/2023 – 10/2023",
+    description: "Triển khai keyword research, content audit, topical map, on-page, off-page và content planning cho nhiều dự án agency; đồng thời quản lý outsource và training intern.",
+    capability: "Kinh nghiệm triển khai đa ngành, vận hành agency, topical authority và phối hợp nguồn lực.",
+    logoText: "GTV"
+  },
+  {
+    year: "2023–2024",
+    company: "DOL English",
+    role: "Middle SEO / SEO Project Leader",
+    time: "10/2023 – 07/2024",
+    description: "Lead grammar.dolenglish.vn từ giai đoạn website launch, xây SEO strategy, KPI/OKR, topical map, site structure, content standards và internal linking.",
+    capability: "Sở hữu dự án website mới từ strategy đến execution; kết quả đạt 66.000 organic traffic và 252 từ khóa ranking.",
+    logoText: "DOL"
+  },
+  {
+    year: "2024–2025",
+    company: "Bao Bì Nhựa Việt Hoa",
+    role: "SEO Freelancer",
+    time: "09/2024 – 01/2025",
+    description: "Định hướng migration từ Custom CMS sang WordPress, xây website structure và kế hoạch SEO sau khi website ra mắt.",
+    capability: "Kinh nghiệm độc lập trong website migration, technical monitoring và phối hợp triển khai website.",
+    logoText: "VH",
+    isFreelance: true
+  },
+  {
+    year: "2025–nay",
+    company: "GYB Asia",
+    role: "Senior SEO Project Leader",
+    time: "03/2025 – Hiện tại",
+    description: "Sở hữu chiến lược và trực tiếp triển khai hơn 8 dự án SEO tại agency, đồng thời phụ trách tối đa 5 dự án; trực tiếp xây KPI, roadmap, trình bày với client và điều phối các bên liên quan.",
+    capability: "SEO Project Ownership, hands-on execution, KPI accountability, client communication, cross-functional delivery và functional leadership.",
+    leadershipNote: "Đồng thời quản lý chuyên môn cho 01 SEO Executive phụ trách danh mục dự án riêng, bao gồm định hướng chiến lược, thiết lập và theo dõi KPI, review kế hoạch cùng kết quả triển khai; phối hợp với 01 Content Project Leader để kiểm soát kế hoạch và chất lượng nội dung.",
+    logoText: "GYB"
+  }
+];
 
 const caseStudies = [
   {
@@ -385,7 +434,7 @@ const capabilities = [
             </div>
 
             <div class="personal-cta-wrapper">
-              <a class="btn btn-secondary personal-cta-btn" href="/about/">Xem hành trình nghề nghiệp →</a>
+              <a class="btn btn-secondary personal-cta-btn" href="#career-journey">Xem hành trình nghề nghiệp →</a>
             </div>
           </div>
         </div>
@@ -399,6 +448,111 @@ const capabilities = [
               loading="lazy"
             />
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hành trình tạo nên cách tôi làm SEO (Timeline) -->
+  <section class="section section-muted career-journey-section" id="career-journey">
+    <div class="container">
+      <div class="career-journey-container">
+        
+        <div class="career-sticky-shell">
+          <div class="career-sticky-inner">
+            
+            <!-- Sticky Header inside the shell so it stays visible while scrolling -->
+            <div class="career-sticky-header">
+              <p class="section-kicker">KINH NGHIỆM TÍCH LŨY</p>
+              <h2 class="section-title">Hành trình tạo nên cách tôi làm SEO</h2>
+              <p class="section-subtitle">
+                Quá trình phát triển tư duy từ thực thi chi tiết đến quản lý hệ thống dự án toàn diện.
+              </p>
+            </div>
+
+            <!-- Career Interactive Body -->
+            <div class="career-sticky-body">
+              
+              <!-- Left column: year/milestone navigation -->
+              <nav class="career-years" aria-label="Mốc thời gian sự nghiệp">
+                {careerJourney.map((item, index) => (
+                  <button 
+                    type="button"
+                    class={`career-year-item ${index === 0 ? 'active' : ''} ${item.isFreelance ? 'is-freelance-year' : ''}`} 
+                    data-index={index}
+                    aria-label={`Xem chi tiết kinh nghiệm năm ${item.year} tại ${item.company}`}
+                    aria-current={index === 0 ? 'step' : undefined}
+                  >
+                    <span class="year-text">{item.year}</span>
+                    <span class="company-sub">
+                      {item.company}
+                      {item.isFreelance && <span class="freelance-indicator">(Freelance)</span>}
+                    </span>
+                  </button>
+                ))}
+              </nav>
+
+              <!-- Right column: company detail panels -->
+              <div class="career-detail-panels">
+                {careerJourney.map((item, index) => (
+                  <div 
+                    class={`career-detail-card card ${index === 0 ? 'active' : ''} ${item.isFreelance ? 'is-freelance-card' : ''}`} 
+                    data-index={index}
+                    role="tabpanel"
+                    aria-label={`Kinh nghiệm tại ${item.company}`}
+                  >
+                    <div class="career-card-header">
+                      <div class="career-company-meta">
+                        <div class="career-logo-placeholder" aria-hidden="true">
+                          {item.logoText}
+                        </div>
+                        <div class="career-title-group">
+                          <span class="career-card-mobile-year">{item.year}</span>
+                          <h3 class="career-company-name">
+                            {item.company}
+                            {item.isFreelance && <span class="freelance-badge">Freelance Role</span>}
+                          </h3>
+                          <span class="career-role">{item.role}</span>
+                        </div>
+                      </div>
+                      <span class="career-time">
+                        <svg class="calendar-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                          <line x1="16" y1="2" x2="16" y2="6"></line>
+                          <line x1="8" y1="2" x2="8" y2="6"></line>
+                          <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        {item.time}
+                      </span>
+                    </div>
+                    
+                    <p class="career-desc">“{item.description}”</p>
+                    
+                    <div class="career-capability-box">
+                      <span class="capability-title">Năng lực tích lũy:</span>
+                      <p class="capability-desc">“{item.capability}”</p>
+                    </div>
+
+                    {item.leadershipNote && (
+                      <div class="career-leadership-box">
+                        <span class="leadership-title">Phạm vi điều phối chuyên môn:</span>
+                        <p class="leadership-desc">{item.leadershipNote}</p>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+              
+            </div>
+            
+          </div>
+        </div>
+
+        <!-- Scroll trigger steps (Desktop only, absolute triggers stacked in parallel) -->
+        <div class="career-scroll-steps">
+          {careerJourney.map((_, index) => (
+            <div class="career-scroll-step" data-index={index}></div>
+          ))}
         </div>
       </div>
     </div>
@@ -1002,7 +1156,100 @@ const capabilities = [
           triggerScrambleForCard(cards[0]);
         }, 600);
       }
+
+      // Initialize Career Journey section
+      initCareerJourney();
     });
+
+    function initCareerJourney() {
+      const section = document.querySelector('.career-journey-section') as HTMLElement | null;
+      const container = document.querySelector('.career-journey-container');
+      const steps = document.querySelectorAll('.career-scroll-step');
+      const years = document.querySelectorAll('.career-year-item');
+      const cards = document.querySelectorAll('.career-detail-card');
+
+      if (!section || !container || steps.length === 0) return;
+
+      // Prevent duplicate initialization on the same DOM section element
+      if ((section as any)._careerInitialized) {
+        return;
+      }
+      (section as any)._careerInitialized = true;
+
+      section.classList.add('js-enabled');
+
+      let observer: IntersectionObserver | null = null;
+
+      function setupObserver() {
+        if (observer) {
+          observer.disconnect();
+          observer = null;
+        }
+
+        if (window.innerWidth >= 1024) {
+          const observerOptions = {
+            root: null,
+            rootMargin: '-35% 0px -45% 0px',
+            threshold: 0
+          };
+
+          observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const index = parseInt(entry.target.getAttribute('data-index') || '0', 10);
+                activateStep(index);
+              }
+            });
+          }, observerOptions);
+
+          steps.forEach(step => observer.observe(step));
+        } else {
+          years.forEach(year => {
+            year.classList.remove('active');
+            year.removeAttribute('aria-current');
+          });
+          cards.forEach(card => card.classList.remove('active'));
+        }
+      }
+
+      function activateStep(index: number) {
+        years.forEach((year, i) => {
+          if (i === index) {
+            year.classList.add('active');
+            year.setAttribute('aria-current', 'step');
+          } else {
+            year.classList.remove('active');
+            year.removeAttribute('aria-current');
+          }
+        });
+
+        cards.forEach((card, i) => {
+          if (i === index) {
+            card.classList.add('active');
+          } else {
+            card.classList.remove('active');
+          }
+        });
+      }
+
+      years.forEach((year) => {
+        year.addEventListener('click', () => {
+          const index = parseInt(year.getAttribute('data-index') || '0', 10);
+          const targetStep = steps[index];
+          if (targetStep) {
+            targetStep.scrollIntoView({
+              behavior: 'smooth',
+              block: 'center'
+            });
+          }
+        });
+      });
+
+      setupObserver();
+      window.addEventListener('resize', setupObserver, { passive: true });
+    }
+
+    document.addEventListener('astro:page-load', initCareerJourney);
   </script>
 
 

@@ -1,0 +1,24 @@
+{
+  "redirects": [
+    {
+      "source": "/about",
+      "destination": "/#career-journey",
+      "permanent": true
+    },
+    {
+      "source": "/about/",
+      "destination": "/#career-journey",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/#contact",
+      "permanent": true
+    },
+    {
+      "source": "/contact/",
+      "destination": "/#contact",
+      "permanent": true
+    }
+  ]
+}
