@@ -25,6 +25,7 @@ pnpm-debug.log*
 
 # AI agent workspace configuration
 .agent/
+.codex-backup/
 
 # Local screenshot images
 public/img/localhost_*.png
@@ -34,4 +35,3 @@ public/img/beacons.ai_* (*).png
 
 # Sample excel files
 public/img/social_accounts_sample.xlsx
-

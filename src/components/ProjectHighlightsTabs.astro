@@ -101,15 +101,20 @@ const projects: ProjectData[] = [
     ]
   }
 ];
+
+const supportingProjectsUpdating = true;
 ---
 
-<section id="explore-highlights" class="highlights-section section-muted" data-explore-highlights>
+<section id="explore-highlights" class:list={["highlights-section", "section-muted", { "highlights-section--updating": supportingProjectsUpdating }]} data-explore-highlights data-updating={supportingProjectsUpdating ? "true" : undefined}>
   <div class="highlights-container">
     <div class="section-heading highlights-header">
       <p class="section-kicker">KHO DỰ ÁN BỔ TRỢ</p>
-      <h2 class="section-title">Dự án bổ trợ</h2>
+      <div class="highlights-heading-title-row">
+        <h2 class="section-title">Dự án bổ trợ</h2>
+        <span class="highlights-update-badge">ĐANG CẬP NHẬT</span>
+      </div>
       <p class="section-subtitle">
-        Một số dự án bổ trợ thể hiện kinh nghiệm SEO đa lĩnh vực, từ B2B, dịch vụ local, agency website đến Finance/YMYL.
+        Thông tin chi tiết của các dự án bổ trợ đang được tổng hợp và chuẩn hóa để cập nhật vào portfolio.
       </p>
     </div>
 
@@ -118,12 +123,16 @@ const projects: ProjectData[] = [
       <div class="highlights-tabs__list" role="tablist" aria-label="Danh sách dự án bổ trợ">
         {projects.map((project, idx) => (
           <button 
+            type="button"
             role="tab" 
-            aria-selected={idx === 0 ? "true" : "false"} 
-            aria-controls={`panel-${project.id}`} 
+            aria-selected={supportingProjectsUpdating ? "false" : idx === 0 ? "true" : "false"}
+            aria-disabled={supportingProjectsUpdating ? "true" : undefined}
+            aria-controls={!supportingProjectsUpdating ? `panel-${project.id}` : undefined}
             id={`tab-${project.id}`} 
-            tabindex={idx === 0 ? "0" : "-1"}
-            class={`highlights-tabs__tab ${idx === 0 ? "is-active" : ""}`}
+            tabindex={supportingProjectsUpdating ? "-1" : idx === 0 ? "0" : "-1"}
+            disabled={supportingProjectsUpdating}
+            class={`highlights-tabs__tab ${!supportingProjectsUpdating && idx === 0 ? "is-active" : ""} ${supportingProjectsUpdating ? "is-updating" : ""}`}
+            aria-label={supportingProjectsUpdating ? `${project.tabText} — thông tin đang cập nhật` : undefined}
           >
             <span class="highlights-tabs__tab-monogram">{project.tabMonogram}</span>
             <span class="highlights-tabs__tab-text">{project.tabText}</span>
@@ -133,16 +142,16 @@ const projects: ProjectData[] = [
     </div>
 
     <!-- Content Panel Card -->
-    <div class="highlights-tabs__panel-card">
+    <div class="highlights-tabs__panel-card highlights-tabs__panel-card--updating">
       {projects.map((project, idx) => (
         <div 
           role="tabpanel" 
           id={`panel-${project.id}`} 
           aria-labelledby={`tab-${project.id}`} 
           class={`highlights-tabs__panel ${idx === 0 ? "is-active" : ""}`}
-          aria-hidden={idx === 0 ? "false" : "true"}
+          aria-hidden={supportingProjectsUpdating ? "true" : idx === 0 ? "false" : "true"}
         >
-          <div class="highlights-tabs__panel-content">
+          <div class:list={["highlights-tabs__panel-content", { "highlights-tabs__panel-content--obscured": supportingProjectsUpdating }]} aria-hidden={supportingProjectsUpdating ? "true" : undefined} inert={supportingProjectsUpdating ? true : undefined}>
             <!-- Top Row Header -->
             <div class="highlights-tabs__panel-header">
               <div>
@@ -276,6 +285,17 @@ const projects: ProjectData[] = [
           </div>
         </div>
       ))}
+      {supportingProjectsUpdating && (
+        <div class="highlights-tabs__update-overlay" role="status" aria-label="Thông tin dự án bổ trợ đang được cập nhật.">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="4" y="10" width="16" height="10" rx="2"></rect>
+            <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+          </svg>
+          <span class="highlights-tabs__update-status">ĐANG CẬP NHẬT</span>
+          <p>Nội dung dự án đang được tổng hợp và chuẩn hóa trước khi công bố.</p>
+          <span class="highlights-tabs__update-note">Vui lòng quay lại sau để xem đầy đủ vai trò, phạm vi triển khai và kết quả.</span>
+        </div>
+      )}
     </div>
   </div>
 </section>
@@ -304,6 +324,33 @@ const projects: ProjectData[] = [
   .highlights-header {
     margin-bottom: 40px;
     text-align: center;
+  }
+
+  .highlights-heading-title-row {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+  }
+
+  .highlights-heading-title-row .section-title {
+    margin: 0;
+  }
+
+  .highlights-update-badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 0 10px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    background: rgba(26, 37, 48, 0.04);
+    color: var(--color-muted-text);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
   }
 
   /* --- Tab Bar Wrapper --- */
@@ -350,12 +397,12 @@ const projects: ProjectData[] = [
     flex-shrink: 0;
   }
 
-  .highlights-tabs__tab:hover {
+  .highlights-tabs__tab:not(:disabled):hover {
     background-color: rgba(193, 18, 31, 0.03);
     border-color: rgba(193, 18, 31, 0.3);
   }
 
-  .highlights-tabs__tab:focus-visible {
+  .highlights-tabs__tab:not(:disabled):focus-visible {
     box-shadow: 0 0 0 3px rgba(193, 18, 31, 0.25);
     border-color: var(--color-accent);
   }
@@ -384,6 +431,19 @@ const projects: ProjectData[] = [
     border-color: var(--color-accent);
   }
 
+  .highlights-tabs__tab.is-updating,
+  .highlights-tabs__tab:disabled {
+    cursor: not-allowed;
+    color: var(--color-muted-text);
+    opacity: 0.62;
+  }
+
+  .highlights-tabs__tab.is-updating .highlights-tabs__tab-monogram {
+    color: var(--color-muted-text);
+    background: rgba(26, 37, 48, 0.04);
+    border-color: var(--color-border);
+  }
+
   /* --- Panel Container Card --- */
   .highlights-tabs__panel-card {
     background-color: #FFFFFF;
@@ -396,9 +456,75 @@ const projects: ProjectData[] = [
     margin-right: auto;
   }
 
+  .highlights-tabs__panel-card--updating {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .highlights-tabs__panel-content--obscured {
+    filter: blur(6px);
+    opacity: 0.22;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .highlights-tabs__update-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 28px;
+    text-align: center;
+    color: var(--color-text);
+    pointer-events: none;
+  }
+
+  .highlights-tabs__update-overlay svg {
+    width: 26px;
+    height: 26px;
+    margin-bottom: 10px;
+    color: var(--color-accent);
+  }
+
+  .highlights-tabs__update-status {
+    color: var(--color-accent);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+  }
+
+  .highlights-tabs__update-overlay p {
+    max-width: 440px;
+    margin: 8px 0 4px;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  .highlights-tabs__update-note {
+    max-width: 480px;
+    color: var(--color-muted-text);
+    font-size: 0.86rem;
+    line-height: 1.5;
+  }
+
   @media (max-width: 768px) {
     .highlights-tabs__panel-card {
       padding: 24px;
+    }
+
+    .highlights-tabs__update-overlay {
+      padding: 22px;
+    }
+
+    .highlights-tabs__update-overlay p {
+      font-size: 0.94rem;
+    }
+
+    .highlights-tabs__update-note {
+      font-size: 0.8rem;
     }
   }
 
@@ -714,6 +840,7 @@ const projects: ProjectData[] = [
   document.addEventListener('DOMContentLoaded', () => {
     const wrapper = document.querySelector('[data-explore-highlights]');
     if (!(wrapper instanceof HTMLElement)) return;
+    if (wrapper.dataset.updating === 'true') return;
 
     const list = wrapper.querySelector('[role="tablist"]');
     if (!list) return;
