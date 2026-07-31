@@ -1087,6 +1087,14 @@ const capabilities = [
         }
       };
 
+      const scrollToMobileCard = (card) => {
+        const targetLeft = Math.max(0, card.offsetLeft - 16);
+        track.scrollTo({
+          left: targetLeft,
+          behavior: prefersReducedMotion ? 'auto' : 'smooth'
+        });
+      };
+
       track.addEventListener('scroll', () => {
         if (isDesktop) return;
         if (!isTrackScrolling) {
@@ -1105,11 +1113,7 @@ const capabilities = [
           const targetIndex = Math.max(0, currentIndex - 1);
           const targetCard = cards[targetIndex];
           if (targetCard) {
-            targetCard.scrollIntoView({
-              behavior: prefersReducedMotion ? 'auto' : 'smooth',
-              inline: 'center',
-              block: 'nearest'
-            });
+            scrollToMobileCard(targetCard);
           }
         });
       }
@@ -1121,11 +1125,7 @@ const capabilities = [
           const targetIndex = Math.min(cardCount - 1, currentIndex + 1);
           const targetCard = cards[targetIndex];
           if (targetCard) {
-            targetCard.scrollIntoView({
-              behavior: prefersReducedMotion ? 'auto' : 'smooth',
-              inline: 'center',
-              block: 'nearest'
-            });
+            scrollToMobileCard(targetCard);
           }
         });
       }
@@ -1136,11 +1136,7 @@ const capabilities = [
           const slideIdx = parseInt(dot.dataset.slideIndex || '0', 10);
           const targetCard = cards[slideIdx];
           if (targetCard) {
-            targetCard.scrollIntoView({
-              behavior: prefersReducedMotion ? 'auto' : 'smooth',
-              inline: 'center',
-              block: 'nearest'
-            });
+            scrollToMobileCard(targetCard);
           }
         });
       });
@@ -2462,9 +2458,28 @@ const capabilities = [
     overflow-wrap: anywhere;
   }
 
-  @media (max-width: 420px) {
+  @media (max-width: 767px) {
+    .case-story-card--hoang-long .results-panel {
+      align-self: stretch;
+      width: 100%;
+      padding: 0.75rem;
+    }
+
+    .case-story-card--hoang-long .results-panel__tiles {
+      gap: 0.55rem;
+    }
+
     .case-story-card--hoang-long .results-panel__secondary-grid {
-      grid-template-columns: minmax(0, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.45rem;
+    }
+
+    .case-story-card--hoang-long .results-tile--secondary {
+      padding: 0.5rem 0.55rem;
+    }
+
+    .case-story-card--hoang-long .results-panel__action {
+      margin-top: 0.85rem;
     }
   }
 

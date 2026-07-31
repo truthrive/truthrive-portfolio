@@ -1304,7 +1304,7 @@
     gap: 0.75rem;
     overflow: visible;
     padding: 1rem;
-    scroll-snap-align: center;
+    scroll-snap-align: start;
     scroll-snap-stop: always;
     box-sizing: border-box;
   }
@@ -2353,13 +2353,26 @@
 
   .workflow-step {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
     padding: 16px 0;
   }
 
   .workflow-step-number {
     margin-right: 0;
     margin-bottom: 12px;
+  }
+
+  .workflow-step-content {
+    align-items: center;
+  }
+
+  .workflow-step-desc {
+    text-align: center;
+  }
+
+  .workflow-step-output {
+    justify-content: center;
   }
 
   #expertise .card-grid {
@@ -3951,6 +3964,11 @@
   .case-problems-grid {
     grid-template-columns: 1fr;
     gap: 20px;
+  }
+
+  .work-split-motif.growth-motif,
+  .work-split-motif.workflow-motif {
+    display: none;
   }
 }
 

@@ -160,9 +160,9 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
   description="Case study SEO/GEO Hoàng Long Computer: quản trị KPI ranking, mở rộng Search Visibility, tăng trưởng Build PC và Product Search, cải thiện chất lượng Organic Search và đo lường traffic từ AI assistants."
 >
   <!-- 1. Hero / Case Intro -->
-  <section class="section hero-section">
+  <section class="section hero-section hlc-parallax-root">
     <div class="container">
-      <div class="section-heading text-center" style="max-width: 840px; margin-left: auto; margin-right: auto; margin-bottom: 20px;">
+      <div class="section-heading text-center" data-hlc-parallax="hero-content" style="max-width: 840px; margin-left: auto; margin-right: auto; margin-bottom: 20px;">
       <span class="pill" style="margin-bottom: 16px;">SEO Case Studies</span>
         <h1 class="hero-title" style="margin-bottom: 8px;">Hoàng Long Computer</h1>
         <p class="hero-subtitle" style="font-size: 1.2rem; font-weight: 500; color: var(--text-primary); margin-bottom: 20px; opacity: 0.78;">E-commerce SEO, Commercial Search & GEO Growth</p>
@@ -188,6 +188,7 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
           src="/images/logos/hoang-long-logo.png"
           alt=""
           class="case-snapshot-watermark"
+          data-hlc-parallax="hero-decor"
           aria-hidden="true"
           draggable="false"
         />
@@ -270,7 +271,7 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
         </div>
 
         <!-- Key Results Row -->
-        <div class="case-snapshot-results">
+        <div class="case-snapshot-results" data-hlc-parallax="metrics">
           <span class="snapshot-label">KẾT QUẢ CHÍNH</span>
           <div class="case-snapshot-results-grid">
             <div class="case-snapshot-result-item">
@@ -2051,6 +2052,43 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
         });
       });
     }
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const root = document.querySelector('.hlc-parallax-root');
+    if (!(root instanceof HTMLElement) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const items = [
+      ...root.querySelectorAll<HTMLElement>('[data-hlc-parallax]'),
+      ...document.querySelectorAll<HTMLElement>('.geo-os-evidence-zoom img, .results-evidence-zoom img')
+    ];
+    const active = new Set<HTMLElement>();
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(({ target, isIntersecting }) => {
+        if (target instanceof HTMLElement) active[isIntersecting ? 'add' : 'delete'](target);
+      });
+    }, { rootMargin: '20% 0px', threshold: 0 });
+    items.forEach((item) => observer.observe(item));
+
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const mobile = window.innerWidth < 768;
+      const factor = mobile ? 0 : window.innerWidth < 1024 ? 0.5 : 1;
+      active.forEach((item) => {
+        const rect = item.getBoundingClientRect();
+        const progress = (rect.top + rect.height / 2 - window.innerHeight / 2) / window.innerHeight;
+        const kind = item.dataset.hlcParallax || 'image';
+        const distance = kind === 'hero-decor' ? 12 : kind === 'hero-content' ? 5 : kind === 'metrics' ? 7 : 16;
+        item.style.transform = `translate3d(0, ${Math.max(-1, Math.min(1, progress)) * distance * factor}px, 0)`;
+        item.style.opacity = kind === 'hero-content' ? `${Math.min(1, 0.88 + (1 - Math.abs(progress)) * 0.12)}` : '';
+      });
+    };
+    const requestUpdate = () => { if (!frame) frame = requestAnimationFrame(update); };
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate, { passive: true });
+    requestUpdate();
   });
 </script>
 </BaseLayout>
@@ -5530,4 +5568,10 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
   }
   @media (max-width: 1023px) { .geo-os-phase, .geo-os-phase--reverse, .geo-os-phase-outcome-layout, .geo-os-overall-layout { grid-template-columns: 1fr; } .geo-os-phase--phase-2 { grid-template-areas: "intro" "evidence" "system"; } .geo-os-phase--reverse .geo-os-phase-content, .geo-os-phase--reverse .geo-os-evidence { order: initial; } .geo-os-phase .geo-os-evidence, .geo-os-phase-outcome .geo-os-outcome-evidence, .geo-os-overall-primary { position: static; } .geo-os-transition-causes { grid-template-columns: 1fr; } .geo-os-transition-decision { grid-template-columns: 1fr; gap: 9px; } .geo-os-transition-decision svg { transform: none; } .geo-os-transition-timeline { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 0; } .geo-os-output-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .geo-os-output-grid section:nth-child(2)::after { display: none; } .geo-os-overall-secondary { max-width: 420px; } }
   @media (prefers-reduced-motion: reduce) { .geo-os-zoom-indicator { transition: none; } }
-  @media (max-width: 640px) { .geo-os-phase { gap: 24px; margin-top: 42px; } .geo-os-groups ul, .geo-os-layers, .geo-os-baseline, .geo-os-phase2-system .geo-os-layers, .geo-os-business-value ul, .geo-os-overall-insight { grid-template-columns: 1fr; } .geo-os-phase-outcome-layout { gap: 22px; margin-top: 24px; } .geo-os-outcome-metrics div { grid-template-columns: 20px minmax(0, 1fr); gap: 5px 10px; } .geo-os-outcome-metrics em { grid-column: 2; grid-row: auto; justify-self: start; } .geo-os-transition { gap: 22px; padding: 24px 18px; } .geo-os-transition-causes article { padding: 17px; } .geo-os-transition-decision { grid-template-columns: 1fr; gap: 9px; } .geo-os-transition-timeline { grid-template-columns: 1fr; gap: 0; padding-top: 4px; border-top: 0; } .geo-os-transition-timeline li { padding: 0 0 22px 25px; } .geo-os-transition-timeline li::before { top: 4px; } .geo-os-transition-timeline li:not(:last-child)::after { top: 14px; left: 5px; width: 1px; height: calc(100% - 14px); } .geo-os-layers section, .geo-os-output-grid section, .geo-os-phase2-system .geo-os-layers section { padding: 16px; } .geo-os-output-grid { grid-template-columns: 1fr; } .geo-os-output-grid section::after { display: none; } .geo-os-framework-outputs { grid-template-columns: 1fr; gap: 8px; } .geo-os-overall-evidence-header { align-items: start; flex-direction: column; gap: 4px; } .geo-os-overall-insight { gap: 10px; } }</style>
+  @media (max-width: 640px) { .geo-os-phase { gap: 24px; margin-top: 42px; } .geo-os-groups ul, .geo-os-layers, .geo-os-baseline, .geo-os-phase2-system .geo-os-layers, .geo-os-business-value ul, .geo-os-overall-insight { grid-template-columns: 1fr; } .geo-os-phase-outcome-layout { gap: 22px; margin-top: 24px; } .geo-os-outcome-metrics div { grid-template-columns: 20px minmax(0, 1fr); gap: 5px 10px; } .geo-os-outcome-metrics em { grid-column: 2; grid-row: auto; justify-self: start; } .geo-os-transition { gap: 22px; padding: 24px 18px; } .geo-os-transition-causes article { padding: 17px; } .geo-os-transition-decision { grid-template-columns: 1fr; gap: 9px; } .geo-os-transition-timeline { grid-template-columns: 1fr; gap: 0; padding-top: 4px; border-top: 0; } .geo-os-transition-timeline li { padding: 0 0 22px 25px; } .geo-os-transition-timeline li::before { top: 4px; } .geo-os-transition-timeline li:not(:last-child)::after { top: 14px; left: 5px; width: 1px; height: calc(100% - 14px); } .geo-os-layers section, .geo-os-output-grid section, .geo-os-phase2-system .geo-os-layers section { padding: 16px; } .geo-os-output-grid { grid-template-columns: 1fr; } .geo-os-output-grid section::after { display: none; } .geo-os-framework-outputs { grid-template-columns: 1fr; gap: 8px; } .geo-os-overall-evidence-header { align-items: start; flex-direction: column; gap: 4px; } .geo-os-overall-insight { gap: 10px; } }
+
+  /* Page-local parallax pilot */
+  [data-hlc-parallax], .geo-os-evidence-zoom img, .results-evidence-zoom img { will-change: transform; transition: transform 120ms linear, opacity 180ms ease-out; }
+  .case-snapshot-watermark[data-hlc-parallax] { pointer-events: none; }
+  @media (prefers-reduced-motion: reduce), (max-width: 767px) { [data-hlc-parallax], .geo-os-evidence-zoom img, .results-evidence-zoom img { transform: none !important; transition: none; } }
+</style>
