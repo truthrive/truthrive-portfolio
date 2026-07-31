@@ -26,6 +26,14 @@ const { title, description, canonical, image, type, schema, robots } = Astro.pro
 <html lang="vi">
   <head>
     <SEOHead title={title} description={description} canonical={canonical} image={image} type={type} schema={schema} robots={robots} />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TLXTJ7X507"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TLXTJ7X507');
+    </script>
   </head>
   <body>
     <Header />
