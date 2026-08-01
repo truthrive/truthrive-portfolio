@@ -1604,7 +1604,7 @@
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  align-self: start;
+  align-self: center;
   justify-content: flex-start;
   gap: 0;
   box-sizing: border-box;

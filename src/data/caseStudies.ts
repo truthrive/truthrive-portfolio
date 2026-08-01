@@ -1,122 +1,178 @@
-// src/data/caseStudies.ts
+export interface CaseStudyMetric {
+  value: string;
+  label: string;
+  countTo: string;
+  format?: 'vi-dot' | 'decimal' | 'decimal-comma';
+  decimals?: string;
+  prefix?: string;
+  suffix?: string;
+}
 
-export interface FeaturedCaseStudy {
-  id: string;
+export interface CaseStudyShowcaseItem {
+  seq: string;
   title: string;
-  industry: string;
-  role: string;
-  projectType: string;
-  challenge: string;
-  results: string[];
-  tags: string[];
-  ctaText: string;
-  detailUrl: string;
+  badge: string;
+  logoSrc: string;
+  logoAlt: string;
+  watermarkSrc: string;
+  watermarkModifierClass?: string;
+  monogram: string;
+  status: 'available' | 'coming-soon';
+  href: string;
+  compactRole: string;
+  headline?: string;
+  summary: string;
+  migration?: {
+    from: string;
+    to: string;
+  };
+  highlightsLabel?: string;
+  challenge: string[];
+  role: string[];
+  actions: string[];
+  ctaText?: string;
+  metrics: CaseStudyMetric[];
+  cardModifierClass?: string;
 }
 
-export interface ProjectHighlight {
-  id: string;
-  projectLabel: string;
-  industry: string;
-  role: string;
-  scope: string;
-  evidence: string;
-  tags: string[];
-  statusBadge: string;
-}
-
-export const featuredCaseStudies: FeaturedCaseStudy[] = [
+export const caseStudies: CaseStudyShowcaseItem[] = [
   {
-    id: 'suoi-tien-seo',
-    title: 'Suối Tiên — Tourism SEO Growth',
-    industry: 'Tourism / Entertainment',
-    role: 'SEO Project Leader & Hands-on SEO Executive',
-    projectType: 'Organic Growth / KPI Delivery / Tourism SEO',
-    challenge: 'Grow organic visibility and meet committed traffic/ranking targets for a tourism brand.',
-    results: [
-      '32.198 organic sessions (100.8% KPI achievement)',
-      '+241 sessions above target',
-      '219 ranking keywords (77 Top 3, 94 Top 5)'
+    seq: '01',
+    title: 'Hoàng Long Computer',
+    badge: 'SEO E-commerce · GEO/AIO',
+    logoSrc: '/images/logos/hoang-long-logo.png',
+    logoAlt: 'Hoàng Long Computer logo',
+    watermarkSrc: '/images/logos/hoang-long-logo.png',
+    monogram: 'HLC',
+    status: 'available',
+    href: '/case-studies/hoang-long-computer-seo',
+    compactRole: 'SEO Project Owner · Senior SEO Specialist',
+    summary: 'Xây dựng chiến lược SEO và GEO Operating System cho website thương mại điện tử ngành máy tính, tập trung vào ranking, mở rộng Organic Visibility và đo lường AI Referral.',
+    highlightsLabel: 'ĐIỂM NỔI BẬT',
+    challenge: [
+      'Ranking & Organic Visibility',
+      'GEO Operating System V2',
+      'Đo lường AI Referral'
     ],
-    tags: ['Organic Growth', 'Technical SEO', 'Website Migration'],
-    ctaText: 'View case study',
-    detailUrl: '/case-studies/suoi-tien-seo/'
-  },
-  {
-    id: 'dol-grammar-seo',
-    title: 'DOL Grammar — Topical Authority from Launch',
-    industry: 'Education / English Learning',
-    role: 'SEO Project Leader',
-    projectType: 'Topical Authority / New Website SEO / Content Strategy',
-    challenge: 'Build SEO growth for a new grammar-focused sub-domain while managing sandbox risk, academic content quality, cannibalization risk, and Custom CMS limitations.',
-    results: [
-      'Website live date: 13/03/2024',
-      'Estimated Traffic (Semrush): 0 → 66.800 by 07/2024',
-      '252 ranking keywords in Phase 1 (Top 1–3: 16%, Top 4–5: 8%, Top 6–10: 21%)'
+    role: [],
+    actions: [],
+    ctaText: 'Xem case study',
+    metrics: [
+      { value: '70%', label: 'Top 3 Ranking', countTo: '70', suffix: '%' },
+      { value: '+8.8%', label: 'Organic Traffic', countTo: '8.8', format: 'decimal', decimals: '1', prefix: '+', suffix: '%' },
+      { value: '307 / tuần', label: 'AI Referral', countTo: '307', suffix: ' / tuần' }
     ],
-    tags: ['Topical Authority', 'New Website SEO', 'Content Strategy'],
-    ctaText: 'View case study',
-    detailUrl: '/case-studies/dol-grammar-seo/'
+    cardModifierClass: 'case-story-card--hoang-long'
   },
   {
-    id: 'hoang-long-computer-seo',
-    title: 'Hoàng Long Computer — E-commerce SEO Recovery & Scaling Partnership',
-    industry: 'E-commerce Technology / Computer Hardware',
-    role: 'SEO Project Leader',
-    projectType: 'E-commerce SEO / Technical Recovery / KPI Planning',
-    challenge: 'Phục hồi nền SEO cho website e-commerce công nghệ và mở rộng sang hợp đồng 12 tháng với KPI ranking, traffic tích lũy, AI/GEO traffic và conversion tracking.',
-    results: [
-      '57% Top 3 on 113 maintenance keywords at Month 6',
-      '22% Top 3 on 153 growth keywords at Month 6',
-      '980.965 Organic Search sessions tích lũy',
-      '15.302 AI Chats sessions',
-      '15,3K hành động thể hiện ý định thương mại'
+    seq: '02',
+    title: 'Suối Tiên',
+    badge: 'Domain Migration · Technical SEO',
+    logoSrc: '/images/logos/suoi-tien-logo.png',
+    logoAlt: 'Suối Tiên logo',
+    watermarkSrc: '/images/logos/suoi-tien-logo.png',
+    monogram: 'ST',
+    status: 'available',
+    href: '/case-studies/suoi-tien-seo/',
+    compactRole: 'SEO Project Lead · Technical SEO',
+    headline: 'Chuyển đổi domain, bảo toàn hiệu suất SEO',
+    summary: 'Lập kế hoạch và kiểm soát quá trình chuyển đổi từ suoitien.com sang suoitien.vn, tập trung bảo toàn tín hiệu SEO, quản trị redirect và indexation, đồng thời duy trì tăng trưởng Organic Search sau migration.',
+    highlightsLabel: 'ĐIỂM NỔI BẬT',
+    migration: {
+      from: 'suoitien.com',
+      to: 'suoitien.vn'
+    },
+    challenge: [
+      'Domain Migration & Redirect Control',
+      'Indexation & Technical Validation',
+      'Organic Search Growth'
     ],
-    tags: ['E-commerce SEO', 'Technical Recovery', 'KPI Planning', 'GEO / AI Tracking'],
-    ctaText: 'View case study',
-    detailUrl: '/case-studies/hoang-long-computer-seo/'
-  }
-];
-
-export const projectHighlights: ProjectHighlight[] = [
-  {
-    id: 'viet-hoa-packaging',
-    projectLabel: 'Việt Hoa Packaging',
-    industry: 'B2B / Manufacturing / Plastic Packaging',
-    role: 'SEO Freelancer / SEO Project Leader',
-    scope: 'Website migration direction, technical recovery, content audit, backlink cleanup, WordPress structure.',
-    evidence: '334 committed keywords improved; 22% Top 5; 42% Top 10; clicks +22%; CTR +52%.',
-    tags: ['Migration', 'Technical SEO', 'B2B SEO'],
-    statusBadge: 'Summary only'
+    role: [
+      'Project Lead & Hands-on SEO Executive',
+      'Technical Audit',
+      'Migration Roadmap',
+      'On-page Structure',
+      'Measurement Setup'
+    ],
+    actions: [
+      'Xây dựng bản đồ redirect 1:1 chi tiết',
+      'Cấu hình tín hiệu thực thể và kỹ thuật di chuyển',
+      'Tối ưu topical map và hệ thống GSC/GA4'
+    ],
+    metrics: [
+      { value: '43%', label: 'Top 5 Coverage', countTo: '43', suffix: '%' },
+      { value: '+28,23%', label: 'AI Search Keywords', countTo: '28.23', format: 'decimal-comma', decimals: '2', prefix: '+', suffix: '%' },
+      { value: '32.198', label: 'Organic Sessions', countTo: '32198', format: 'vi-dot' }
+    ],
+    ctaText: 'Xem case study',
+    cardModifierClass: 'case-story-card--suoi-tien'
   },
   {
-    id: 'gtv-seo',
-    projectLabel: 'GTVSEO',
-    industry: 'SEO / Agency Website',
-    role: 'Main SEO executor',
-    // TODO: Verify exact dates and resolve timeline inconsistencies before considering a full detail page.
-    scope: 'Content audit, keyword research, outline review, on-page optimization, internal linking, entity offsite, backlink execution.',
-    evidence: '125.000 organic traffic; 183 ranking keywords; 70% Top 3.',
-    tags: ['Agency SEO', 'Content Audit', 'Off-page'],
-    statusBadge: 'Summary only'
+    seq: '03',
+    title: 'DOL Grammar',
+    badge: 'New Website SEO · Topical Authority',
+    logoSrc: '/images/logos/dol-grammar-logo-logo.png',
+    logoAlt: 'DOL Grammar logo',
+    watermarkSrc: '/images/logos/dol-grammar-logo-logo.png',
+    watermarkModifierClass: 'case-card__watermark--wordmark',
+    monogram: 'DOL',
+    status: 'available',
+    href: '/case-studies/dol-grammar-seo/',
+    compactRole: 'SEO Strategy & Project Lead',
+    summary: 'Xây nền tảng SEO cho website mới từ giai đoạn launch, tập trung topical authority, cấu trúc nội dung và workflow có thể mở rộng.',
+    challenge: [
+      'Xây topical authority cho một website hoàn toàn mới.',
+      'Chuẩn hóa cấu trúc nội dung và workflow có thể mở rộng.'
+    ],
+    role: [
+      'Middle SEO / SEO Project Leader',
+      'SEO Strategy',
+      'KPI/OKR Planning',
+      'Topical Map & Site Structure',
+      'Content Optimization Workflow'
+    ],
+    actions: [
+      'Xây topical map và cấu trúc website theo cụm chủ đề Grammar',
+      'Chuẩn hóa tiêu chuẩn content, on-page và internal linking',
+      'Triển khai schema, author, PR/entity và kế hoạch live web'
+    ],
+    metrics: [
+      { value: '66.000', label: 'Organic Traffic', countTo: '66000', format: 'vi-dot' },
+      { value: '252', label: 'Ranking Keywords', countTo: '252' },
+      { value: '16%', label: 'Keywords Top 1–3', countTo: '16', suffix: '%' }
+    ]
   },
   {
-    id: 'ahc-vietnam',
-    projectLabel: 'AHC Vietnam',
-    industry: 'Beauty / Cosmetics / YMYL',
-    role: 'Main SEO executor',
-    scope: 'Wireframe review, UX/UI review, website structure, topical map, entity pages, on-page, GMB optimization.',
-    evidence: '3.800 organic traffic by 09/2023.',
-    tags: ['YMYL', 'UX/UI SEO', 'Topical Map'],
-    statusBadge: 'Summary only'
-  },
-  {
-    id: 'content-seo-execution',
-    projectLabel: 'Multi-industry Content SEO',
-    industry: 'Multiple industries',
-    role: 'Content SEO Specialist',
-    scope: 'Keyword research, content planning, content review, search intent checks, client reporting.',
-    evidence: 'Participated in 10+ SEO projects across multiple industries.',
-    tags: ['Content SEO', 'Search Intent', 'Content Review'],
-    statusBadge: 'Summary only'
+    seq: '04',
+    title: 'Hikid',
+    badge: 'Coming soon',
+    logoSrc: '/images/logos/hikid-logo.png',
+    logoAlt: 'Hikid logo',
+    watermarkSrc: '/images/logos/hikid-logo.png',
+    monogram: 'HKD',
+    status: 'coming-soon',
+    href: '',
+    compactRole: 'Case study đang biên soạn',
+    summary: 'Dự án SEO cho thương hiệu dinh dưỡng cao cấp; case study đang được chuẩn hóa dữ liệu và hoàn thiện nội dung.',
+    challenge: [
+      'Xây nền tảng SEO cho thương hiệu dinh dưỡng cao cấp.',
+      'Dữ liệu kết quả đang được chuẩn hóa để hoàn thiện case study.'
+    ],
+    role: [
+      'SEO Project Leader',
+      'SEO Strategy & Execution',
+      'Technical & Content Audit',
+      'Performance Tracking'
+    ],
+    actions: [
+      'Nghiên cứu thị trường và hành vi tìm kiếm ngành hàng dinh dưỡng',
+      'Xây dựng topical map và kiến trúc thông tin website',
+      'Chuẩn hóa quy trình tối ưu Technical & Content'
+    ],
+    metrics: [
+      { value: '••.•••', label: 'Organic Sessions', countTo: '0' },
+      { value: '••%', label: 'Top 3 Keywords', countTo: '0' },
+      { value: '•••+', label: 'Conversion Intent', countTo: '0' }
+    ]
   }
 ];
