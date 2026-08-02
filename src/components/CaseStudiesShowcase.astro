@@ -602,98 +602,91 @@ import { caseStudies } from '../data/caseStudies';
 </script>
 
 <style>
-  /* Suối Tiên KPI treatment — scoped to this slide */
-
-  .case-story-card--suoi-tien .results-panel__tiles {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.5rem;
-  }
-
-  .case-story-card--suoi-tien .results-panel__secondary-grid {
-    display: contents;
-  }
-
-  .case-story-card--suoi-tien .results-tile--primary {
-    grid-column: 1 / -1;
-  }
-
-  .case-story-card--suoi-tien .results-tile {
-    min-width: 0;
-    padding: 0.55rem 0.65rem;
-  }
-
-  .case-story-card--suoi-tien .results-tile--secondary .results-tile__value {
-    font-size: clamp(0.98rem, 1.18vw, 1.15rem);
-  }
-
-  .case-story-card--suoi-tien .results-tile__label {
-    white-space: normal;
-    overflow: visible;
-    text-overflow: clip;
-  }
-
-  @media (max-width: 767px) {
-    .case-story-card--suoi-tien .results-panel {
-      align-self: stretch;
-      width: 100%;
-    }
-  }
-
-  /* Hoàng Long Homepage KPI fit — scoped to this slide only */
-  .case-story-card--hoang-long,
-  .case-story-card--hoang-long .results-panel,
-  .case-story-card--hoang-long .results-panel__tiles,
-  .case-story-card--hoang-long .results-panel__secondary-grid,
-  .case-story-card--hoang-long .results-tile {
+  .case-story-card,
+  .case-story-card__body,
+  .case-story-card__content-group,
+  .case-story-card__title-area,
+  .results-panel,
+  .results-panel__tiles,
+  .results-panel__secondary-grid,
+  .results-tile {
     min-width: 0;
     max-width: 100%;
   }
 
-  .case-story-card--hoang-long .results-panel__secondary-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .case-story-card--hoang-long .results-tile--secondary .results-tile__value {
+  .results-tile--secondary .results-tile__value {
     max-width: 100%;
-    font-size: clamp(0.92rem, 1.1vw, 1.05rem);
     line-height: 1.15;
-    white-space: normal;
+    white-space: nowrap;
     overflow-wrap: normal;
     word-break: normal;
-    text-wrap: balance;
   }
 
-  .case-story-card--hoang-long .results-tile__label {
+  .results-tile__label {
     max-width: 100%;
     white-space: normal;
     overflow: visible;
     text-overflow: clip;
-    overflow-wrap: anywhere;
+    overflow-wrap: normal;
+    word-break: normal;
   }
 
-  @media (max-width: 767px) {
-    .case-story-card--hoang-long .results-panel {
+  @media (min-width: 1024px) {
+    .case-story-card {
+      grid-template-columns: minmax(0, 1fr) 320px;
+      align-items: stretch;
+      min-height: 360px;
+    }
+
+    .case-story-card__body {
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: 0.85rem;
+    }
+
+    .case-story-card__content-group {
+      display: grid;
+      grid-template-rows: auto minmax(4.5em, auto) minmax(0, 1fr);
+      gap: 0.65rem;
+      min-height: 0;
+    }
+
+    .case-story-card__title-area {
+      display: grid;
+      grid-template-rows: minmax(2.5em, auto) minmax(1.4em, auto);
+      gap: 0.2rem;
+    }
+
+    .case-story-card__summary {
+      align-self: start;
+    }
+
+    .case-story-card__challenges {
+      align-self: end;
+      margin-top: 0;
+    }
+
+    .results-panel {
+      width: 100%;
+      align-self: center;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .case-story-card__body,
+    .case-story-card__content-group,
+    .case-story-card__title-area {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .case-story-card__challenges {
+      margin-top: 0.15rem;
+    }
+
+    .results-panel {
       align-self: stretch;
       width: 100%;
-      padding: 0.75rem;
-    }
-
-    .case-story-card--hoang-long .results-panel__tiles {
-      gap: 0.55rem;
-    }
-
-    .case-story-card--hoang-long .results-panel__secondary-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.45rem;
-    }
-
-    .case-story-card--hoang-long .results-tile--secondary {
-      padding: 0.5rem 0.55rem;
-    }
-
-    .case-story-card--hoang-long .results-panel__action {
-      margin-top: 0.85rem;
     }
   }
 </style>

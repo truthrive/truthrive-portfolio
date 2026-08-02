@@ -59,8 +59,8 @@ export const caseStudies: CaseStudyShowcaseItem[] = [
     ctaText: 'Xem case study',
     metrics: [
       { value: '70%', label: 'Top 3 Ranking', countTo: '70', suffix: '%' },
-      { value: '+8.8%', label: 'Organic Traffic', countTo: '8.8', format: 'decimal', decimals: '1', prefix: '+', suffix: '%' },
-      { value: '307 / tuần', label: 'AI Referral', countTo: '307', suffix: ' / tuần' }
+      { value: '₫433M', label: 'Organic Purchase Revenue', countTo: '433', prefix: '₫', suffix: 'M' },
+      { value: '≈307/tuần', label: 'AI Referral Sessions', countTo: '307', prefix: '≈', suffix: '/tuần' }
     ],
     cardModifierClass: 'case-story-card--hoang-long'
   },

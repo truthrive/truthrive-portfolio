@@ -95,12 +95,12 @@ const resultGroups = [
     index: "02",
     title: "Search Visibility",
     category: "SEARCH VISIBILITY",
-    insight: "Organic Visibility mở rộng đáng kể, vị trí trung bình cải thiện và click duy trì tương đối ổn định khi website xuất hiện trên nhiều truy vấn hơn.",
+    insight: "Organic Visibility tăng rõ rệt, nhưng tăng trưởng tập trung ở một số landing page chiến lược và chưa phân bổ đồng đều trên toàn website.",
     source: "Google Search Console",
     insights: [
-      { label: "Insight", html: "Organic Visibility mở rộng nhanh hơn click growth." },
-      { label: "Landing page đại diện", html: "<code>/buildpc</code> cho thấy commercial landing page có thể mở rộng query coverage và chuyển thêm visibility thành organic visits trong cùng giai đoạn tối ưu hệ thống." },
-      { label: "Cơ hội tiếp theo", html: "Ưu tiên query có impressions cao nhưng CTR thấp, đồng thời cải thiện title, description và vị trí của các truy vấn mới xuất hiện." },
+      { label: "Tăng trưởng có trọng tâm", html: "Các landing page chiến lược đóng vai trò chính trong việc mở rộng visibility và thu hút thêm click." },
+      { label: "Độ phủ chưa đồng đều", html: "Không phải toàn bộ nhóm Category, Product và informational content đều tăng cùng tốc độ." },
+      { label: "Hướng mở rộng tiếp theo", html: "Nhân rộng cấu trúc và cách tối ưu của nhóm URL hiệu quả sang các page type còn lại, đồng thời cải thiện CTR cho các truy vấn có impressions cao." },
     ],
   },
   {
@@ -108,12 +108,15 @@ const resultGroups = [
     index: "03",
     title: "Organic Quality",
     category: "ORGANIC QUALITY",
-    insight: "Organic Traffic duy trì chất lượng tương tác cao ở quy mô lớn.",
+    insight: "Organic Sessions tăng 9,19%, trong khi Engaged Sessions tăng 19,36%, Average Engagement Time tăng 26,72% và Events per Session tăng 32,09%. Điều này cho thấy chất lượng tương tác tăng nhanh hơn quy mô traffic, phản ánh khả năng thu hút đúng người dùng và đưa họ sâu hơn vào hành trình nội dung.",
     source: "Google Analytics 4",
     insights: [
-      { label: "Traffic Quality", html: "Organic Traffic duy trì chất lượng tương tác cao ở quy mô lớn, cho thấy người dùng tiếp tục khám phá sau khi truy cập." },
-      { label: "User Engagement", html: "Hành vi trên phiên phản ánh mức độ quan tâm thực chất, thay vì truy cập ngắn và rời đi ngay." },
-      { label: "Content Relevance", html: "Tín hiệu tương tác củng cố mức độ phù hợp giữa nội dung website và nhu cầu tìm kiếm của người dùng." },
+      { label: "Organic Sessions", html: "Đạt <strong>561.572</strong>, tăng <strong>9,19%</strong> so với kỳ đối chiếu." },
+      { label: "Engaged Sessions", html: "Tăng <strong>19,36%</strong>, nhanh hơn gấp đôi tốc độ tăng Sessions." },
+      { label: "Engagement Rate", html: "Tăng từ <strong>73,93% lên 80,81%</strong>, tương đương <strong>+6,88 điểm phần trăm</strong>." },
+      { label: "Average Engagement Time", html: "Tăng <strong>26,72%</strong>, đạt <strong>1 phút 21 giây/session</strong>." },
+      { label: "Events per Session", html: "Tăng <strong>32,09%</strong>, trong khi tổng Event Count đạt <strong>6.583.159</strong>, tăng <strong>44,23%</strong>." },
+      { label: "Key Events", html: "Đạt <strong>2.555.038</strong>, tăng <strong>29,02%</strong>, cho thấy tăng trưởng traffic đi kèm với mức độ tương tác và hành động cao hơn." },
     ],
   },
   {
@@ -121,12 +124,13 @@ const resultGroups = [
     index: "04",
     title: "Commercial Signals",
     category: "COMMERCIAL SIGNALS",
-    insight: "Organic Search ghi nhận các hành động thể hiện ý định thương mại, cho thấy người dùng tiếp tục đi sâu hơn sau khi truy cập.",
-    source: "Google Analytics 4",
+    insight: "Organic Search tạo ra ₫433.054.000 doanh thu Purchase, chiếm 72,78% tổng doanh thu Purchase, cao hơn 2,67 lần so với Paid Search (₫161.926.000). Điều này cho thấy SEO không chỉ gia tăng Organic Traffic mà còn đóng góp trực tiếp vào hiệu quả thương mại.",
+    source: "Google Analytics 4 · Traffic Acquisition",
     insights: [
-      { label: "Commercial Intent", html: "Organic Search ghi nhận các hành động thể hiện ý định thương mại, cho thấy người dùng tiếp tục đi sâu hơn sau khi truy cập." },
-      { label: "Purchase Journey", html: "Người dùng organic tiếp tục tiến sâu hơn trong hành trình mua hàng sau giai đoạn khám phá." },
-      { label: "Business Impact", html: "Các commercial signals cho thấy người dùng Organic Search tiếp tục tiến sâu hơn trong hành trình thương mại." },
+      { label: "Organic Contribution", html: "Organic Search đóng góp <strong>72,78% tổng Purchase Revenue</strong> trong giai đoạn theo dõi." },
+      { label: "Revenue Ratio", html: "Doanh thu Purchase từ Organic cao hơn Paid Search <strong>2,67 lần</strong>." },
+      { label: "Revenue Difference", html: "Chênh lệch doanh thu giữa Organic và Paid đạt <strong>₫271.128.000</strong>." },
+      { label: "Commercial Events", html: "Commercial Signals được đánh giá dựa trên hai sự kiện có giá trị kinh doanh: <strong>Purchase</strong> và <strong>Submit for Đặt Hàng</strong>." },
     ],
   },
   {
@@ -286,21 +290,21 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
             </div>
             <div class="case-snapshot-result-item">
               <svg class="snapshot-result-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
-                <path d="M4 17 9 12l3.5 3.5L20 8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M15 8h5v5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+                <rect x="5" y="3" width="14" height="18" rx="2" stroke="currentColor" stroke-width="1.7"></rect>
+                <path d="M8 7h8M8 17h8M12 9.5v5M14.2 11c0-.8-.8-1.4-2.2-1.4s-2.2.6-2.2 1.4c0 2 4.4.8 4.4 2.7 0 .9-.8 1.5-2.2 1.5s-2.2-.6-2.2-1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
               </svg>
-              <strong class="snapshot-result-metric" data-snapshot-counter data-target="8.84" data-decimals="2" data-suffix="M" data-decimal-separator="." aria-label="8.84M">8.84M</strong>
-              <span class="snapshot-result-label">Organic Impressions</span>
-              <span class="snapshot-result-caption">27/01/2026–26/07/2026</span>
+              <strong class="snapshot-result-metric" data-snapshot-counter data-target="433" data-decimals="0" data-prefix="₫" data-suffix="M" aria-label="433.054.000 đồng Organic Purchase Revenue">₫433M</strong>
+              <span class="snapshot-result-label">Organic Purchase Revenue</span>
+              <span class="snapshot-result-caption">19/07/2026–01/08/2026</span>
             </div>
             <div class="case-snapshot-result-item">
               <svg class="snapshot-result-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
-                <rect x="3" y="4" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.7"></rect>
-                <path d="M8 21h8M12 17v4M7 8h5M7 11h8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path>
+                <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12V3.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path>
+                <path d="M15 3.9A8.5 8.5 0 0 1 20.1 9H15V3.9Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path>
               </svg>
-              <strong class="snapshot-result-metric" data-snapshot-counter data-target="15.881" data-decimals="3" data-decimal-separator="." aria-label="15.881">15.881</strong>
-              <span class="snapshot-result-label">/buildpc Clicks</span>
-              <span class="snapshot-result-caption">27/01/2026–26/07/2026</span>
+              <strong class="snapshot-result-metric" data-snapshot-counter data-target="72.78" data-decimals="2" data-suffix="%" data-decimal-separator="," aria-label="72,78 phần trăm Purchase Revenue từ Organic Search">72,78%</strong>
+              <span class="snapshot-result-label">Purchase Revenue Share</span>
+              <span class="snapshot-result-caption">Organic Search</span>
             </div>
             <div class="case-snapshot-result-item">
               <svg class="snapshot-result-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
@@ -1245,18 +1249,6 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
                       </section>
                     </div>
 
-                    <section class="ranking-featured-keywords" aria-labelledby="ranking-featured-keywords-title">
-                      <h4 id="ranking-featured-keywords-title">Từ khóa tiêu biểu</h4>
-                      <ul>
-                        <li><span>laptop gaming</span><strong>Top 1</strong></li>
-                        <li><span>pc gaming</span><strong>Top 1</strong></li>
-                        <li><span>màn hình gaming</span><strong>Top 2</strong></li>
-                        <li><span>RTX 5070</span><strong>Top 2</strong></li>
-                        <li><span>build pc</span><strong>Top 3</strong></li>
-                        <li><span>PC đồ họa</span><strong>Top 3</strong></li>
-                      </ul>
-                    </section>
-
                     <button
                       type="button"
                       class="ranking-wins-trigger"
@@ -1308,20 +1300,20 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
                   <>
                     <header class="result-evidence-header visibility-evidence-header">
                       <span class="result-evidence-kicker">{group.index} / {totalResultGroups} · Bằng chứng Search Visibility</span>
-                      <h3 id={group.id + '-title'}>Organic Visibility mở rộng nhanh hơn click growth</h3>
-                      <p>Website xuất hiện trên nhiều truy vấn hơn và cải thiện vị trí trung bình; tuy nhiên, hiệu quả chuyển impressions thành clicks chưa tăng cùng tốc độ.</p>
+                      <h3 id={group.id + '-title'}>Organic Visibility tăng mạnh nhưng tập trung ở các landing page trọng điểm</h3>
+                      <p>Trong kỳ so sánh, impressions toàn site tăng từ 6,97M lên 8,84M. Tuy nhiên, phần lớn mức tăng đến từ trang chủ và /buildpc, trong khi tổng clicks chỉ tăng nhẹ, cho thấy visibility mới chưa được chuyển hóa đồng đều thành traffic trên toàn website.</p>
                     </header>
 
-                    <div class="visibility-executive-metrics" aria-label="Chỉ số Search Visibility nổi bật">
-                      <div class="visibility-headline-metric is-previous">
+                    <div class="visibility-sitewide-comparison" aria-label="So sánh Search Visibility toàn site">
+                      <div class="visibility-period-metric is-previous">
                         <strong>6.97M</strong>
                         <span>Trước đó · Organic Impressions · 324K Clicks · Position 8.2 · CTR 4.7%</span>
                       </div>
-                      <div class="visibility-headline-metric is-direction" aria-hidden="true">
+                      <div class="visibility-comparison-direction" aria-hidden="true">
                         <strong>→</strong>
                         <span>Organic Visibility</span>
                       </div>
-                      <div class="visibility-headline-metric is-current">
+                      <div class="visibility-period-metric is-current">
                         <strong>8.84M</strong>
                         <span>Hiện tại · Organic Impressions · 329K Clicks · Position 6.8 · CTR 3.7%</span>
                       </div>
@@ -1346,28 +1338,20 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
                       </button>
                     </figure>
 
-                    <section class="visibility-landing-highlights" aria-labelledby="visibility-landing-highlights-title">
-                      <h4 id="visibility-landing-highlights-title">Landing page đại diện · <code>/buildpc</code> · Trước → Sau</h4>
-                      <div class="visibility-highlight-list" role="list">
-                        <div class="visibility-highlight-item" role="listitem">
-                          <span>Organic Clicks</span>
-                          <strong><span class="is-before">7,703</span><span class="is-arrow" aria-hidden="true">→</span><span class="is-after">15,881</span></strong>
-                        </div>
-                        <div class="visibility-highlight-item" role="listitem">
-                          <span>Organic Impressions</span>
-                          <strong><span class="is-before">434,160</span><span class="is-arrow" aria-hidden="true">→</span><span class="is-after">1,582,184</span></strong>
-                        </div>
-                      </div>
-                    </section>
-
-                    <section class="result-executive-insights" aria-labelledby="visibility-executive-insights-title">
-                      <h4 id="visibility-executive-insights-title">Phân tích chính</h4>
+                    <section class="visibility-strategic-insight" aria-labelledby="visibility-strategic-insight-title">
+                      <span id="visibility-strategic-insight-title" class="visibility-strategic-label">NHẬN ĐỊNH CHÍNH</span>
+                      <p>Organic Visibility tăng rõ rệt trong kỳ so sánh, nhưng mức tăng chưa phân bổ đồng đều trên toàn bộ website. Phần lớn tăng trưởng đến từ một số landing page có nhu cầu tìm kiếm và giá trị thương mại cao, trong khi khả năng chuyển impressions thành clicks ở phần còn lại của site vẫn còn dư địa cải thiện.</p>
                       <ul>
                         {group.insights.map((insight) => (
-                          <li><p><strong>{insight.label}:</strong> <span set:html={insight.html}></span></p></li>
+                          <li>
+                            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"></circle><path d="m7 10 2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                            <p><strong>{insight.label}</strong><span set:html={insight.html}></span></p>
+                          </li>
                         ))}
                       </ul>
                     </section>
+
+                    <p class="visibility-data-note">GSC được sử dụng để đánh giá xu hướng visibility và click contribution theo landing page. Các số liệu tổng ở phần headline được Google làm tròn, vì vậy phần phân tích tập trung vào xu hướng thay vì quy kết tuyệt đối cho từng URL.</p>
 
                     <footer class="result-evidence-footer visibility-evidence-footer">
                       <div class="result-evidence-source">
@@ -1380,24 +1364,72 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
                   <>
                     <header class="result-evidence-header organic-evidence-header">
                       <span class="result-evidence-kicker">{group.index} / {totalResultGroups} · Bằng chứng Organic Quality</span>
-                      <h3 id={group.id + '-title'}>Organic Traffic không chỉ tăng mà còn duy trì chất lượng cao</h3>
-                      <p>Organic Traffic duy trì mức độ tương tác cao, cho thấy người dùng tiếp tục khám phá nội dung sau khi truy cập từ Google Search.</p>
-                      <p class="result-evidence-period">Kỳ đo lường: 26/09/2025–26/07/2026</p>
+                      <h3 id={group.id + '-title'}>Chất lượng tương tác tăng nhanh hơn quy mô Organic Traffic</h3>
+                      <p>Organic Sessions tăng 9,19%, trong khi Engaged Sessions tăng 19,36%, Average Engagement Time tăng 26,72% và Events per Session tăng 32,09%. Điều này cho thấy chất lượng tương tác tăng nhanh hơn quy mô traffic, phản ánh khả năng thu hút đúng người dùng và đưa họ sâu hơn vào hành trình nội dung.</p>
+                      <p class="result-evidence-period">26/09/2025–26/07/2026 so với 29/11/2024–28/09/2025</p>
                     </header>
 
                     <div class="organic-executive-metrics" aria-label="Chỉ số chất lượng Organic Traffic nổi bật">
                       <div class="organic-headline-metric">
-                        <strong>558,590</strong>
-                        <span>Organic Sessions</span>
-                      </div>
-                      <div class="organic-headline-metric">
-                        <strong>81.1%</strong>
+                        <svg class="organic-metric-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"></circle><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7"></circle><circle cx="12" cy="12" r="1" fill="currentColor"></circle></svg>
+                        <strong>80,81%</strong>
                         <span>Engagement Rate</span>
+                        <em>+6,88pp</em>
+                        <small>Từ 73,93% lên 80,81%</small>
                       </div>
                       <div class="organic-headline-metric">
-                        <strong>11.76</strong>
-                        <span>Events / Session</span>
+                        <svg class="organic-metric-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><circle cx="12" cy="13" r="7.5" stroke="currentColor" stroke-width="1.7"></circle><path d="M12 9v4l2.5 1.5M9 3h6M12 3v2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        <strong>1m 21s</strong>
+                        <span>Avg. Engagement Time</span>
+                        <em>+26,72%</em>
+                        <small>Tăng từ 1m 04s</small>
                       </div>
+                      <div class="organic-headline-metric">
+                        <svg class="organic-metric-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="m7 4 10 8-5 1.2L10 18l-3-14Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path><path d="m15.5 16.5 3 3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg>
+                        <strong>11,72</strong>
+                        <span>Events / Session</span>
+                        <em>+32,09%</em>
+                        <small>Tăng từ 8,87</small>
+                      </div>
+                    </div>
+
+                    <aside class="organic-quality-callout" aria-label="Quality Growth">
+                      <svg class="organic-quality-callout-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M4 17 9 12l3.5 3.5L20 8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path><path d="M15 8h5v5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                      <div>
+                        <span>QUALITY GROWTH</span>
+                        <strong>Chất lượng tương tác tăng nhanh hơn traffic</strong>
+                        <p>Sessions tăng 9,19%, nhưng Engaged Sessions tăng 19,36%, Events per Session tăng 32,09% và tổng Event Count tăng 44,23%.</p>
+                      </div>
+                    </aside>
+
+                    <section class="organic-evidence-container" aria-label="Bằng chứng Google Analytics 4 Organic Search">
+                      <div class="organic-evidence-meta">
+                        <span>Google Analytics 4</span>
+                        <strong>Traffic Acquisition Report</strong>
+                        <small>Organic Search Comparison</small>
+                      </div>
+
+                      <figure class="organic-ga4-media">
+                        <button type="button" class="results-evidence-zoom" data-geo-evidence-zoom data-geo-lightbox-title="GOOGLE ANALYTICS 4 · ORGANIC SEARCH" data-geo-lightbox-caption="Traffic Acquisition · 26/09/2025–26/07/2026 so với 29/11/2024–28/09/2025" aria-label="Phóng to báo cáo Google Analytics 4 Organic Search">
+                          <img
+                            src="/images/case-studies/hoang-long/Google_Analytics_Organic_Quality.jpg"
+                            alt="Báo cáo Google Analytics 4 so sánh chất lượng Organic Search từ 26 tháng 9 năm 2025 đến 26 tháng 7 năm 2026 với kỳ từ 29 tháng 11 năm 2024 đến 28 tháng 9 năm 2025."
+                            width="1917"
+                            height="1077"
+                            loading="lazy"
+                          />
+                          <span class="geo-os-zoom-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="5.5"></circle><path d="m16 16 4 4M11 8v6M8 11h6"></path></svg></span>
+                        </button>
+                        <figcaption>Traffic Acquisition · 26/09/2025–26/07/2026 so với 29/11/2024–28/09/2025</figcaption>
+                      </figure>
+                    </section>
+
+                    <div class="organic-supporting-metrics" aria-label="Chỉ số Organic Search hỗ trợ">
+                      <span><i aria-hidden="true"></i><strong>453.831</strong> Engaged Sessions <small>(+19,36%)</small></span>
+                      <span><i aria-hidden="true"></i><strong>561.572</strong> Organic Sessions <small>+9,19%</small></span>
+                      <span><i aria-hidden="true"></i><strong>6.583.159</strong> Event Count <small>+44,23%</small></span>
+                      <span><i aria-hidden="true"></i><strong>2.555.038</strong> Key Events <small>+29,02%</small></span>
+                      <span><i aria-hidden="true"></i><strong>353.740</strong> Active Users <small>+10,63%</small></span>
                     </div>
 
                     <section class="result-executive-insights" aria-labelledby="organic-executive-insights-title">
@@ -1420,55 +1452,98 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
                   <>
                     <header class="result-evidence-header commercial-evidence-header">
                       <span class="result-evidence-kicker">{group.index} / {totalResultGroups} · Bằng chứng Commercial Signals</span>
-                      <h3 id={group.id + '-title'}>Organic Search ghi nhận các hành động thể hiện ý định thương mại</h3>
-                      <p>Organic Search ghi nhận các hành động thể hiện ý định thương mại, cho thấy người dùng tiếp tục đi sâu hơn sau khi truy cập.</p>
-                      <p class="result-evidence-period">Kỳ đo lường: 26/09/2025–26/07/2026</p>
+                      <h3 id={group.id + '-title'}>Organic Search tạo hiệu quả chuyển đổi cao hơn Paid Search</h3>
+                      <p>Organic Search tạo ra <strong>₫433.054.000 doanh thu Purchase</strong>, chiếm <strong>72,78% tổng doanh thu Purchase</strong>, cao hơn <strong>2,67 lần</strong> so với Paid Search (<strong>₫161.926.000</strong>). Điều này cho thấy SEO không chỉ gia tăng Organic Traffic mà còn đóng góp trực tiếp vào hiệu quả thương mại.</p>
                     </header>
 
-                    <div class="commercial-executive-metrics" aria-label="Chỉ số hành động thương mại nổi bật">
-                      <div class="commercial-headline-metric">
-                        <strong>15,275</strong>
-                        <span>Commercial Events</span>
-                      </div>
-                      <div class="commercial-headline-metric">
-                        <strong>6,312</strong>
-                        <span>Users</span>
-                      </div>
-                      <div class="commercial-headline-metric">
-                        <strong>74.21%</strong>
-                        <span>Begin Checkout Share</span>
-                      </div>
-                    </div>
-
-                    <section class="commercial-actions" aria-labelledby="commercial-actions-title">
-                      <h4 id="commercial-actions-title">Top Commercial Actions</h4>
-                      <div class="commercial-actions-list" role="list">
-                        <div role="listitem">
-                          <span>Begin Checkout</span>
-                          <strong>11,335 <small>Events</small></strong>
-                          <em>74.21%</em>
+                    <section class="commercial-revenue-comparison" aria-labelledby="commercial-revenue-comparison-title">
+                      <h4 id="commercial-revenue-comparison-title">So sánh Revenue <span>Tổng Purchase Revenue · ₫594.980.000</span></h4>
+                      <div class="commercial-revenue-container">
+                        <div class="commercial-revenue-pair" role="list">
+                          <div class="is-organic" role="listitem" aria-label="Organic Search: ₫433.054.000, chiếm 72,78% tổng Purchase Revenue">
+                            <span>Organic Search</span>
+                            <strong>₫433,1M</strong>
+                            <small>72,78% tổng Purchase Revenue</small>
+                          </div>
+                          <div class="is-paid" role="listitem" aria-label="Paid Search: ₫161.926.000, chiếm 27,22% tổng Purchase Revenue">
+                            <span>Paid Search</span>
+                            <strong>₫161,9M</strong>
+                            <small>27,22% tổng Purchase Revenue</small>
+                          </div>
                         </div>
-                        <div role="listitem">
-                          <span>SEO Click-to-Call</span>
-                          <strong>3,183 <small>Events</small></strong>
-                          <em>20.84%</em>
+                        <div class="commercial-revenue-share" role="img" aria-label="Tỷ trọng Purchase Revenue: Organic Search 72,78 phần trăm, Paid Search 27,22 phần trăm">
+                          <span class="is-organic" style="width: 72.78%"></span>
+                          <span class="is-paid" style="width: 27.22%"></span>
                         </div>
+                        <div class="commercial-revenue-legend" aria-hidden="true">
+                          <span class="is-organic"><i></i>Organic Search · 72,78%</span>
+                          <span class="is-paid"><i></i>Paid Search · 27,22%</span>
+                        </div>
+                        <p class="commercial-revenue-difference" aria-label="Organic Search cao hơn Paid Search 271 triệu 128 nghìn đồng.">
+                          <span>Organic cao hơn Paid:</span><span class="commercial-revenue-difference-values"><strong>+₫271.128.000</strong></span>
+                        </p>
                       </div>
                     </section>
+
+                    <section class="commercial-actions" aria-labelledby="commercial-actions-title">
+                      <h4 id="commercial-actions-title">Hành động chuyển đổi tiêu biểu</h4>
+                      <div class="commercial-actions-list" role="list">
+                        <article class="conversion-card" role="listitem">
+                          <header class="conversion-card__header"><span class="commercial-action-icon conversion-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h9l3 3v15H6zM15 3v4h4M9 14l2 2 4-4"/></svg></span><h5 class="conversion-card__title">Submit for Đặt Hàng</h5></header>
+                          <div class="conversion-card__metrics">
+                            <div class="conversion-card__metric"><span class="conversion-card__source">Organic</span><div class="conversion-card__value-row"><strong>247</strong><span>Sessions</span></div></div>
+                            <div class="conversion-card__metric"><span class="conversion-card__source">Paid</span><div class="conversion-card__value-row"><strong>150</strong><span>Sessions</span></div></div>
+                          </div>
+                          <footer class="conversion-card__footer"><strong>+64,7%</strong><span>Organic cao hơn</span></footer>
+                        </article>
+                        <article class="conversion-card" role="listitem">
+                          <header class="conversion-card__header"><span class="commercial-action-icon conversion-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5"/><path d="m8.5 12 2.2 2.2 4.8-4.8"/></svg></span><h5 class="conversion-card__title">Purchase</h5></header>
+                          <div class="conversion-card__metrics">
+                            <div class="conversion-card__metric"><span class="conversion-card__source">Organic</span><div class="conversion-card__value-row"><strong>333</strong><span>Sessions</span></div></div>
+                            <div class="conversion-card__metric"><span class="conversion-card__source">Paid</span><div class="conversion-card__value-row"><strong>301</strong><span>Sessions</span></div></div>
+                          </div>
+                          <footer class="conversion-card__footer"><strong>+10,6%</strong><span>Organic cao hơn</span></footer>
+                        </article>
+                      </div>
+                    </section>
+
+                    <div class="commercial-evidence-meta" aria-label="Metadata của bằng chứng Google Analytics 4">
+                      <strong>GOOGLE ANALYTICS 4 · ORGANIC SEARCH VS PAID SEARCH</strong>
+                      <span>Traffic Acquisition · 19/07/2026–01/08/2026</span>
+                    </div>
+
+                    <figure class="commercial-ga4-media">
+                      <button type="button" class="results-evidence-zoom" data-geo-evidence-zoom data-geo-lightbox-title="GOOGLE ANALYTICS 4 · ORGANIC SEARCH VS PAID SEARCH" data-geo-lightbox-caption="Traffic Acquisition · 19/07/2026–01/08/2026" aria-label="Phóng to báo cáo Google Analytics 4 về Organic Search và Paid Search">
+                        <img
+                          src="/images/case-studies/hoang-long/Google_Analytics_Organic_vs_Paid_Commercial_Events_Jul_19_Aug_01_2026.jpg"
+                          alt="Báo cáo Google Analytics 4 so sánh Organic Search và Paid Search, hiển thị các event Purchase và Submit for Đặt Hàng từ 19 tháng 7 đến 1 tháng 8 năm 2026."
+                          width="1503"
+                          height="901"
+                          loading="lazy"
+                        />
+                        <span class="geo-os-zoom-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="5.5"></circle><path d="m16 16 4 4M11 8v6M8 11h6"></path></svg></span>
+                      </button>
+                    </figure>
 
                     <section class="result-executive-insights" aria-labelledby="commercial-executive-insights-title">
                       <h4 id="commercial-executive-insights-title">Phân tích chính</h4>
                       <ul>
                         {group.insights.map((insight) => (
-                          <li><p><strong>{insight.label}:</strong> <span set:html={insight.html}></span></p></li>
+                          <li class="commercial-analysis-item">
+                            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6"/></svg>
+                            <p><strong>{insight.label}:</strong> <span set:html={insight.html}></span></p>
+                          </li>
                         ))}
                       </ul>
                     </section>
 
+                    <p class="commercial-attribution-note">Revenue và conversion metrics được trình bày theo dữ liệu GA4 trong kỳ quan sát. Các chỉ số chưa được đối soát độc lập với hệ thống đơn hàng và không được dùng để kết luận ROI tuyệt đối.</p>
+
                     <footer class="result-evidence-footer commercial-evidence-footer">
                       <div class="result-evidence-source">
-                        <span>Nguồn dữ liệu</span>
+                        <span>NGUỒN DỮ LIỆU</span>
                         <strong>{group.source}</strong>
+                        <small>Organic Search và Paid Search · 19/07/2026–01/08/2026</small>
                       </div>
                     </footer>
                   </>
@@ -1591,8 +1666,8 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
     <div class="container">
       <div class="section-heading text-center">
         <p class="section-kicker">BÀI HỌC RÚT RA</p>
-        <h2 class="section-title">Case này cho thấy điều gì?</h2>
-        <p class="section-subtitle">Dự án cho thấy hiệu quả Search không nên được đánh giá bằng một chỉ số duy nhất. Ranking, visibility, clicks, GEO và dữ liệu attribution cần được xem cùng nhau để đưa ra quyết định chính xác hơn.</p>
+        <h2 class="section-title">Những bài học rút ra từ dự án</h2>
+        <p class="section-subtitle">Dự án cho thấy hiệu quả SEO cần được đánh giá toàn diện, kết hợp giữa Ranking, Organic Quality, Commercial Signals và AI Search thay vì chỉ tập trung vào một chỉ số riêng lẻ.</p>
       </div>
       <div class="cs-insights-grid">
         <article class="cs-insight-card cs-insight-card--featured">
@@ -1602,9 +1677,9 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
               <path d="M5 19V9m7 10V5m7 14v-7M3 19h18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
           </header>
-          <span class="cs-insight-eyebrow">KHÔNG CHỈ NHÌN VÀO THỨ HẠNG</span>
-          <h3>Ranking tốt chưa phản ánh toàn bộ hiệu quả SEO</h3>
-          <p>Thứ hạng là một tín hiệu quan trọng, nhưng cần xem thêm impressions, clicks và phạm vi từ khóa được hiển thị để đánh giá đầy đủ hiệu quả tìm kiếm.</p>
+          <span class="cs-insight-eyebrow">ĐÁNH GIÁ SEO TOÀN DIỆN</span>
+          <h3>Thứ hạng chỉ là điểm khởi đầu</h3>
+          <p>Hiệu quả SEO cần được đánh giá đồng thời qua Ranking, Organic Quality, Commercial Signals và AI Search thay vì chỉ dựa trên vị trí từ khóa.</p>
         </article>
         <article class="cs-insight-card">
           <header class="cs-insight-header">
@@ -1615,9 +1690,9 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
               <path d="m14.5 9.5 5-5M16 4.5h3.5V8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
           </header>
-          <span class="cs-insight-eyebrow">VISIBILITY VÀ CLICKS CẦN ĐƯỢC ĐỌC RIÊNG</span>
-          <h3>Hiển thị tăng chưa chắc clicks tăng tương ứng</h3>
-          <p>Website có thể xuất hiện trên nhiều truy vấn hơn nhưng CTR vẫn giảm. Vì vậy cần tiếp tục tối ưu mức độ liên quan, title, description và các truy vấn có impressions cao.</p>
+          <span class="cs-insight-eyebrow">ĐO LƯỜNG GIÁ TRỊ KINH DOANH</span>
+          <h3>Traffic tăng chưa đồng nghĩa với tăng trưởng kinh doanh</h3>
+          <p>Organic Sessions cần được phân tích cùng Purchase, Key Events và Revenue Attribution để đánh giá đúng giá trị thương mại của SEO.</p>
         </article>
         <article class="cs-insight-card">
           <header class="cs-insight-header">
@@ -1626,9 +1701,9 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
               <path d="M5 19V8m7 11V4m7 15v-7M3 19h18M4 8h2m5-4h2m5 8h2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path>
             </svg>
           </header>
-          <span class="cs-insight-eyebrow">GEO/AIO CẦN MỘT QUY TRÌNH RÕ RÀNG</span>
+          <span class="cs-insight-eyebrow">XÂY DỰNG GEO/AIO THEO HỆ THỐNG</span>
           <h3>GEO/AIO hiệu quả khi được vận hành như một hệ thống</h3>
-          <p>Technical SEO, semantic content, retrieval structure, QA và measurement cần được triển khai đồng bộ để cải thiện AI Search Visibility thay vì tối ưu từng bài viết riêng lẻ.</p>
+          <p>AI Search Visibility đến từ sự kết hợp giữa Technical SEO, Semantic Content, Retrieval Structure, Internal Linking và Measurement, thay vì tối ưu từng trang riêng lẻ.</p>
         </article>
         <article class="cs-insight-card">
           <header class="cs-insight-header">
@@ -1637,9 +1712,9 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
               <path d="M4 18.5V13h4v5.5m2 0V8h4v10.5m2 0V4h4v14.5M3 20h18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
           </header>
-          <span class="cs-insight-eyebrow">KHÔNG ĐÁNH ĐỒNG TRAFFIC VỚI KẾT QUẢ KINH DOANH</span>
-          <h3>AI Referral tăng chưa đủ để kết luận về chuyển đổi</h3>
-          <p>Traffic từ AI có thể theo dõi và cải thiện, nhưng chưa thể tự chứng minh tác động đến doanh thu, chuyển đổi hay ROI. Mọi kết luận cần nêu rõ giới hạn dữ liệu.</p>
+          <span class="cs-insight-eyebrow">ĐO LƯỜNG AI SEARCH RIÊNG BIỆT</span>
+          <h3>AI Search cần có hệ thống đo lường riêng</h3>
+          <p>AI Referral, AI Visibility và Commercial Signals nên được theo dõi độc lập để đánh giá chính xác tác động của AI Search bên cạnh Organic Search.</p>
         </article>
       </div>
     </div>
@@ -1946,16 +2021,32 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
 
       if (resultSteps.length && 'IntersectionObserver' in window) {
         resultsStory.classList.add('is-enhanced');
+        const visibleResults = new Map<HTMLElement, IntersectionObserverEntry>();
 
         const resultObserver = new IntersectionObserver((entries) => {
-          const visibleEntry = entries
-            .filter((entry) => entry.isIntersecting)
-            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+          entries.forEach((entry) => {
+            const step = entry.target as HTMLElement;
+            if (entry.isIntersecting) {
+              visibleResults.set(step, entry);
+            } else {
+              visibleResults.delete(step);
+            }
+          });
 
-          if (visibleEntry) updateActiveResult(visibleEntry.target as HTMLElement);
+          const readingAnchor = window.innerHeight * 0.42;
+          const activeEntry = Array.from(visibleResults.values())
+            .sort((a, b) => {
+              const aCenter = a.boundingClientRect.top + (a.boundingClientRect.height / 2);
+              const bCenter = b.boundingClientRect.top + (b.boundingClientRect.height / 2);
+              const aScore = Math.abs(aCenter - readingAnchor) - (a.intersectionRatio * 120);
+              const bScore = Math.abs(bCenter - readingAnchor) - (b.intersectionRatio * 120);
+              return aScore - bScore;
+            })[0];
+
+          if (activeEntry) updateActiveResult(activeEntry.target as HTMLElement);
         }, {
-          rootMargin: '-18% 0px -42% 0px',
-          threshold: [0.15, 0.35, 0.55],
+          rootMargin: '-14% 0px -32% 0px',
+          threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
         });
 
         resultSteps.forEach((step) => resultObserver.observe(step));
@@ -2937,8 +3028,8 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
   }
 
   .results-story.is-enhanced .result-story-step {
-    opacity: 0.48;
-    transform: translateY(12px);
+    opacity: 0.44;
+    transform: translateY(8px);
   }
 
   .results-story.is-enhanced .result-story-step.is-active {
@@ -3110,62 +3201,6 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
     background: #8A7E72;
   }
 
-  .ranking-featured-keywords {
-    margin-top: 34px;
-    padding-top: 26px;
-    border-top: 1px solid var(--color-border);
-  }
-
-  .ranking-featured-keywords h4 {
-    margin: 0;
-    color: var(--color-text);
-    font-size: 0.88rem;
-    font-weight: 750;
-    line-height: 1.3;
-    letter-spacing: 0.01em;
-  }
-
-  .ranking-featured-keywords ul {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: clamp(24px, 4vw, 40px);
-    row-gap: 0;
-    margin: 14px 0 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .ranking-featured-keywords li {
-    display: flex;
-    min-width: 0;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(216, 207, 196, 0.65);
-    color: var(--color-text);
-    font-size: 0.82rem;
-    font-weight: 550;
-    line-height: 1.35;
-  }
-
-  .ranking-featured-keywords li > span {
-    min-width: 0;
-    overflow-wrap: anywhere;
-  }
-
-  .ranking-featured-keywords li > strong {
-    flex: 0 0 auto;
-    padding: 4px 8px;
-    color: var(--color-accent);
-    background: rgba(193, 18, 31, 0.055);
-    border-radius: 999px;
-    font-size: 0.68rem;
-    font-weight: 750;
-    line-height: 1;
-    white-space: nowrap;
-  }
-
   /* Search Visibility evidence */
   .visibility-evidence-header p {
     max-width: 68ch;
@@ -3176,7 +3211,7 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
     line-height: 1.6;
   }
 
-  .visibility-executive-metrics {
+  .visibility-sitewide-comparison {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     gap: clamp(16px, 3vw, 34px);
@@ -3187,7 +3222,8 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
     border-bottom: 1px solid var(--color-border);
   }
 
-  .visibility-headline-metric {
+  .visibility-period-metric,
+  .visibility-comparison-direction {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -3196,7 +3232,7 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
     border-radius: 10px;
   }
 
-  .visibility-headline-metric strong {
+  .visibility-period-metric strong {
     display: block;
     color: var(--color-accent);
     font-size: clamp(1.9rem, 3.5vw, 2.8rem);
@@ -3479,37 +3515,38 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
     overflow: hidden;
   }
 
-  .visibility-headline-metric:nth-child(2) strong {
+  .visibility-comparison-direction strong {
     color: var(--color-text);
     font-size: clamp(1.35rem, 2.5vw, 2.05rem);
   }
 
-  .visibility-headline-metric.is-previous {
+  .visibility-period-metric.is-previous {
     background: rgba(247, 244, 240, 0.46);
   }
 
-  .visibility-headline-metric.is-previous strong {
+  .visibility-period-metric.is-previous strong {
     color: var(--color-muted-text);
     font-weight: 700;
   }
 
-  .visibility-headline-metric.is-current {
+  .visibility-period-metric.is-current {
     border-left: 2px solid var(--color-accent);
     background: rgba(193, 18, 31, 0.045);
   }
 
-  .visibility-headline-metric.is-direction {
+  .visibility-comparison-direction {
     align-items: center;
     align-self: center;
     padding-inline: 0;
     text-align: center;
   }
 
-  .visibility-headline-metric.is-direction span {
+  .visibility-comparison-direction span {
     max-width: 12ch;
   }
 
-  .visibility-headline-metric span {
+  .visibility-period-metric span,
+  .visibility-comparison-direction span {
     display: block;
     margin-top: 8px;
     color: var(--color-muted-text);
@@ -3552,22 +3589,6 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
     color: var(--color-border);
   }
 
-  .visibility-landing-highlights h4 {
-    margin: 0;
-    color: var(--color-text);
-    font-size: 0.88rem;
-    font-weight: 750;
-    line-height: 1.3;
-    letter-spacing: 0.01em;
-  }
-
-  .visibility-landing-highlights h4 code {
-    color: var(--color-accent);
-    font: inherit;
-    font-weight: 800;
-    white-space: nowrap;
-  }
-
   .visibility-gsc-media {
     width: 100%;
     margin: 12px 0 0;
@@ -3600,84 +3621,103 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
   }
 
   .visibility-gsc-media .results-evidence-zoom > img,
+  .organic-ga4-media .results-evidence-zoom > img,
   .ai-search-media .results-evidence-zoom > img,
-  .aio-evidence-media .results-evidence-zoom > img {
+  .aio-evidence-media .results-evidence-zoom > img,
+  .commercial-ga4-media .results-evidence-zoom > img {
     display: block;
     width: 100%;
     height: auto;
     object-fit: contain;
   }
 
-  .visibility-landing-highlights {
-    margin-top: 18px;
-    padding-top: 0;
-  }
-
-  .visibility-highlight-list {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    margin-top: 12px;
+  .visibility-strategic-insight {
+    margin-top: 26px;
+    padding: clamp(18px, 2.8vw, 24px);
+    border-left: 2px solid var(--color-accent);
     background: rgba(247, 244, 240, 0.58);
   }
 
-  .visibility-highlight-list > div {
+  .visibility-strategic-label {
+    display: block;
+    color: var(--color-accent);
+    font-size: 0.66rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    line-height: 1.3;
+  }
+
+  .visibility-strategic-insight > p {
+    max-width: 72ch;
+    margin: 9px 0 0;
+    color: var(--color-muted-text);
+    font-size: 0.84rem;
+    line-height: 1.58;
+  }
+
+  .visibility-strategic-insight ul {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(14px, 2.2vw, 22px);
+    margin: 18px 0 0;
+    padding: 16px 0 0;
+    border-top: 1px solid var(--color-border);
+    list-style: none;
+  }
+
+  .visibility-strategic-insight li {
     display: grid;
     min-width: 0;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 7px;
-    padding: 14px clamp(16px, 2.5vw, 22px);
+    grid-template-columns: 17px minmax(0, 1fr);
+    gap: 8px;
+    align-items: start;
   }
 
-  .visibility-highlight-list > div + div {
-    border-left: 1px solid var(--color-border);
+  .visibility-strategic-insight li > svg {
+    width: 17px;
+    height: 17px;
+    margin-top: 2px;
+    color: var(--color-accent);
   }
 
-  .visibility-highlight-list > div > span {
+  .visibility-strategic-insight li p,
+  .visibility-strategic-insight li strong,
+  .visibility-strategic-insight li span {
+    display: block;
+    margin: 0;
+  }
+
+  .visibility-strategic-insight li strong {
     color: var(--color-text);
-    font-size: 0.86rem;
-    font-weight: 700;
+    font-size: 0.78rem;
+    font-weight: 750;
     line-height: 1.35;
   }
 
-  .visibility-highlight-list strong {
-    display: grid;
-    min-width: 0;
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-    align-items: baseline;
-    gap: clamp(4px, 1vw, 7px);
-    color: var(--color-accent);
-    font-size: clamp(0.92rem, 1.8vw, 1.28rem);
-    font-weight: 800;
-    line-height: 1.2;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .visibility-highlight-list strong .is-before {
+  .visibility-strategic-insight li span {
+    margin-top: 5px;
     color: var(--color-muted-text);
-    font-size: 0.88em;
-    font-weight: 650;
-    min-width: 0;
-    overflow-wrap: anywhere;
-    text-align: right;
+    font-size: 0.74rem;
+    line-height: 1.5;
   }
 
-  .visibility-highlight-list strong .is-arrow {
-    color: var(--color-border);
-    font-size: 0.8em;
-    font-weight: 600;
-  }
-
-  .visibility-highlight-list strong .is-after {
-    color: var(--color-accent);
-    min-width: 0;
-    overflow-wrap: anywhere;
-    text-align: left;
-  }
-
-  .visibility-highlight-list strong small {
+  .visibility-data-note {
+    margin: 18px 0 0;
+    padding-left: 12px;
     color: var(--color-muted-text);
-    font-size: 0.64rem;
-    font-weight: 600;
+    border-left: 1px solid var(--color-border);
+    font-size: 0.72rem;
+    line-height: 1.55;
+  }
+
+  @media (min-width: 641px) and (max-width: 820px) {
+    .visibility-strategic-insight ul {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .visibility-strategic-insight li:last-child {
+      grid-column: 1 / -1;
+    }
   }
 
   /* Bằng chứng Organic Quality */
@@ -3699,41 +3739,287 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
 
   .organic-executive-metrics {
     display: grid;
-    grid-template-columns: 1.2fr 0.9fr 0.9fr;
-    gap: clamp(24px, 4vw, 46px);
-    align-items: start;
-    margin-top: 30px;
-    padding: 22px 0;
-    border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(12px, 1.8vw, 18px);
+    align-items: stretch;
+    margin-top: 34px;
   }
 
   .organic-headline-metric {
+    --organic-metric-accent: var(--color-accent);
+    --organic-metric-tint: rgba(193, 18, 31, 0.08);
+    display: flex;
     min-width: 0;
+    min-height: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(216, 207, 196, 0.82);
+    border-radius: 14px;
+    box-shadow: 0 3px 12px rgba(42, 31, 27, 0.025);
+    transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  }
+
+  .organic-headline-metric:nth-child(2) {
+    --organic-metric-accent: #29466f;
+    --organic-metric-tint: rgba(41, 70, 111, 0.09);
+  }
+
+  .organic-headline-metric:nth-child(3) {
+    --organic-metric-accent: #a65514;
+    --organic-metric-tint: rgba(166, 85, 20, 0.1);
+  }
+
+  .organic-headline-metric:hover {
+    transform: translateY(-2px);
+    border-color: rgba(193, 18, 31, 0.22);
+    box-shadow: 0 8px 22px rgba(42, 31, 27, 0.07);
+  }
+
+  .organic-metric-icon {
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    box-sizing: border-box;
+    margin-bottom: 18px;
+    padding: 8px;
+    color: var(--organic-metric-accent);
+    background: var(--organic-metric-tint);
+    border-radius: 50%;
   }
 
   .organic-headline-metric strong {
     display: block;
-    color: var(--color-text);
-    font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+    color: var(--color-accent);
+    font-size: clamp(2.25rem, 2.8vw, 2.5rem);
     font-weight: 800;
     line-height: 1;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.035em;
     white-space: nowrap;
     font-variant-numeric: tabular-nums;
   }
 
-  .organic-headline-metric:nth-child(2) strong {
-    color: var(--color-accent);
-  }
-
   .organic-headline-metric span {
     display: block;
+    margin-top: 9px;
+    color: var(--color-text);
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .organic-headline-metric em,
+  .organic-headline-metric small {
+    display: block;
+    font-style: normal;
+    line-height: 1.35;
+  }
+
+  .organic-headline-metric em {
+    width: fit-content;
+    margin-top: 12px;
+    padding: 4px 8px;
+    color: var(--organic-metric-accent);
+    background: var(--organic-metric-tint);
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 750;
+  }
+
+  .organic-headline-metric em::before {
+    content: '↑';
+    margin-right: 4px;
+  }
+
+  .organic-headline-metric small {
     margin-top: 8px;
     color: var(--color-muted-text);
-    font-size: 0.68rem;
+    font-size: 0.8rem;
     font-weight: 550;
+  }
+
+  .organic-quality-callout {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 16px;
+    align-items: start;
+    margin-top: 32px;
+    padding: clamp(22px, 3vw, 30px);
+    border: 1px solid rgba(193, 18, 31, 0.13);
+    border-radius: 14px;
+    background: linear-gradient(120deg, rgba(193, 18, 31, 0.075), rgba(255, 255, 255, 0.58) 58%, rgba(247, 244, 240, 0.65));
+    box-shadow: 0 7px 24px rgba(42, 31, 27, 0.035);
+  }
+
+  .organic-quality-callout-icon {
+    width: 44px;
+    height: 44px;
+    box-sizing: border-box;
+    padding: 10px;
+    color: var(--color-accent);
+    background: rgba(193, 18, 31, 0.08);
+    border-radius: 50%;
+  }
+
+  .organic-quality-callout > div > span,
+  .organic-quality-callout > div > strong {
+    display: block;
+  }
+
+  .organic-quality-callout > div > span {
+    color: var(--color-accent);
+    font-size: 0.64rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    line-height: 1.3;
+  }
+
+  .organic-quality-callout > div > strong {
+    margin-top: 7px;
+    color: var(--color-text);
+    font-size: clamp(1.06rem, 1.8vw, 1.24rem);
     line-height: 1.35;
+  }
+
+  .organic-quality-callout > div > p {
+    margin: 9px 0 0;
+    color: var(--color-muted-text);
+    font-size: 0.8rem;
+    line-height: 1.55;
+  }
+
+  .organic-evidence-container {
+    position: relative;
+    margin-top: 34px;
+    padding: clamp(14px, 2vw, 18px);
+    overflow: hidden;
+    background: rgba(247, 244, 240, 0.5);
+    border: 1px solid rgba(216, 207, 196, 0.82);
+    border-radius: 14px;
+  }
+
+  .organic-evidence-container::before {
+    content: '';
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    top: -90px;
+    right: -70px;
+    pointer-events: none;
+    opacity: 0.04;
+    background: radial-gradient(circle at center, var(--color-accent) 0 2px, transparent 3px 100%);
+    background-size: 18px 18px;
+  }
+
+  .organic-evidence-meta,
+  .organic-ga4-media {
+    position: relative;
+    z-index: 1;
+  }
+
+  .organic-evidence-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 2px 2px 12px;
+    color: var(--color-muted-text);
+    font-size: 0.7rem;
+    line-height: 1.4;
+  }
+
+  .organic-evidence-meta span {
+    color: var(--color-accent);
+    font-size: 0.66rem;
+    font-weight: 800;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .organic-evidence-meta strong {
+    color: var(--color-text);
+    font-size: 0.82rem;
+    font-weight: 700;
+  }
+
+  .organic-evidence-meta small {
+    color: var(--color-muted-text);
+    font-size: 0.7rem;
+    font-weight: 550;
+  }
+
+  .organic-ga4-media {
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+    background: rgba(247, 244, 240, 0.48);
+    border: 1px solid rgba(216, 207, 196, 0.88);
+    border-radius: 9px;
+  }
+
+  .organic-ga4-media figcaption {
+    padding: 10px 12px;
+    color: var(--color-muted-text);
+    border-top: 1px solid rgba(216, 207, 196, 0.7);
+    font-size: 0.7rem;
+    line-height: 1.45;
+  }
+
+  .organic-supporting-metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+  }
+
+  .organic-supporting-metrics > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    min-width: 0;
+    padding: 6px 9px;
+    color: var(--color-muted-text);
+    background: rgba(255, 255, 255, 0.36);
+    border: 1px solid rgba(216, 207, 196, 0.82);
+    border-radius: 999px;
+    font-size: 0.7rem;
+    line-height: 1.3;
+  }
+
+  .organic-supporting-metrics i {
+    width: 5px;
+    height: 5px;
+    flex: 0 0 5px;
+    background: var(--color-accent);
+    border-radius: 50%;
+  }
+
+  .organic-supporting-metrics strong {
+    color: var(--color-text);
+    font-weight: 700;
+  }
+
+  .organic-supporting-metrics small {
+    color: var(--color-accent);
+    font-size: inherit;
+    font-weight: 700;
+  }
+
+  @media (min-width: 641px) and (max-width: 980px) {
+    .organic-executive-metrics {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      row-gap: 20px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .organic-headline-metric {
+      transition: none;
+    }
+
+    .organic-headline-metric:hover {
+      transform: none;
+    }
   }
 
   /* Bằng chứng Commercial Signals */
@@ -3748,8 +4034,8 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
 
   .commercial-executive-metrics {
     display: grid;
-    grid-template-columns: 1.1fr 0.8fr 1fr;
-    gap: clamp(24px, 4vw, 46px);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(18px, 3vw, 34px);
     align-items: start;
     margin-top: 30px;
     padding: 22px 0;
@@ -3786,6 +4072,86 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
     line-height: 1.35;
   }
 
+  .commercial-headline-metric small {
+    display: block;
+    margin-top: 5px;
+    color: var(--color-muted-text);
+    font-size: 0.66rem;
+    font-weight: 550;
+    line-height: 1.35;
+  }
+
+  .commercial-headline-metric.is-primary {
+    padding-left: clamp(12px, 2vw, 20px);
+    border-left: 2px solid var(--color-accent);
+    background: rgba(193, 18, 31, 0.045);
+  }
+
+  .commercial-revenue-comparison {
+    margin-top: 26px;
+  }
+
+  .commercial-revenue-comparison h4 {
+    margin: 0;
+    color: var(--color-text);
+    font-size: 0.88rem;
+    font-weight: 750;
+    line-height: 1.3;
+  }
+
+  .commercial-revenue-comparison h4 > span {
+    display: block;
+    margin-top: 5px;
+    color: var(--color-muted-text);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+
+  .commercial-revenue-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 12px;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .commercial-revenue-list > div {
+    min-width: 0;
+    padding: 15px clamp(12px, 2vw, 20px);
+  }
+
+  .commercial-revenue-list > div + div {
+    border-left: 1px solid var(--color-border);
+  }
+
+  .commercial-revenue-list span,
+  .commercial-revenue-list small {
+    display: block;
+    color: var(--color-muted-text);
+    font-size: 0.68rem;
+    font-weight: 550;
+    line-height: 1.35;
+  }
+
+  .commercial-revenue-list strong {
+    display: block;
+    margin: 6px 0 4px;
+    color: var(--color-text);
+    font-size: clamp(1rem, 1.7vw, 1.35rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    overflow-wrap: anywhere;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .commercial-revenue-list .is-organic strong,
+  .commercial-revenue-list .is-difference strong,
+  .commercial-revenue-list .is-difference small {
+    color: var(--color-accent);
+  }
+
   .commercial-actions {
     margin-top: 26px;
   }
@@ -3801,7 +4167,7 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
 
   .commercial-actions-list {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     margin-top: 12px;
     background: rgba(247, 244, 240, 0.58);
   }
@@ -3840,14 +4206,631 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
     font-weight: 550;
   }
 
-  .commercial-actions-list em {
-    grid-column: 1 / -1;
+  .commercial-evidence-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 5px 10px;
+    margin-top: 24px;
+    color: var(--color-muted-text);
+    font-size: 0.7rem;
+    line-height: 1.4;
+  }
+
+  .commercial-evidence-meta strong {
+    color: var(--color-text);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+  }
+
+  .commercial-evidence-meta span {
+    font-weight: 550;
+  }
+
+  .commercial-actions-list > div {
+    grid-template-columns: 24px minmax(0, 1fr) auto;
+    grid-template-areas: "icon title difference" "icon values values";
+    gap: 7px 9px;
+    align-items: center;
+  }
+
+  .commercial-action-icon {
+    grid-area: icon;
+    display: grid;
+    width: 22px;
+    height: 22px;
+    place-items: center;
     color: var(--color-accent);
-    font-size: 0.78rem;
+  }
+
+  .commercial-action-icon svg {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .commercial-actions-list > div > span:not(.commercial-action-icon) {
+    grid-area: title;
+  }
+
+  .commercial-actions-list > div > span small {
+    display: block;
+    margin-top: 2px;
+    color: var(--color-muted-text);
+    font-size: 0.62rem;
+    font-weight: 550;
+  }
+
+  .commercial-actions-list > div > strong {
+    grid-area: values;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    min-width: 0;
+    white-space: normal;
+  }
+
+  .commercial-actions-list > div > strong b {
+    color: var(--color-text);
+    font-size: 1rem;
+    font-weight: 800;
+  }
+
+  .commercial-actions-list > div > strong i {
+    color: var(--color-muted-text);
+    font-size: 0.6rem;
+    font-style: normal;
+    font-weight: 550;
+  }
+
+  .commercial-actions-list > div > em {
+    grid-area: difference;
+    color: var(--color-accent);
+    font-size: 0.76rem;
     font-style: normal;
     font-weight: 750;
+    white-space: nowrap;
+  }
+
+  .commercial-attribution-note {
+    margin: 18px 0 0;
+    padding-left: 12px;
+    border-left: 2px solid rgba(193, 18, 31, 0.22);
+    color: var(--color-muted-text);
+    font-size: 0.78rem;
+    line-height: 1.55;
+  }
+
+  .commercial-ga4-media {
+    width: 100%;
+    margin: 12px 0 0;
+    overflow: hidden;
+    border: 1px solid rgba(216, 207, 196, 0.88);
+    border-radius: 10px;
+    background: rgba(247, 244, 240, 0.48);
+  }
+
+  /* Commercial Signals hierarchy refinements */
+  .commercial-executive-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 28px;
+    padding: 0;
+    border: 0;
+  }
+
+  .commercial-headline-metric {
+    padding: 17px 18px;
+    border: 1px solid rgba(216, 207, 196, 0.9);
+    border-radius: 12px;
+    background: rgba(247, 244, 240, 0.48);
+  }
+
+  .commercial-headline-metric.is-primary {
+    grid-column: 1 / -1;
+    padding: clamp(20px, 2.7vw, 26px);
+    background: linear-gradient(90deg, rgba(193, 18, 31, 0.075), rgba(193, 18, 31, 0.018));
+  }
+
+  .commercial-headline-metric strong {
+    font-size: clamp(1.85rem, 3.4vw, 2.55rem);
+  }
+
+  .commercial-headline-metric.is-primary strong {
+    font-size: clamp(2.45rem, 5vw, 3.65rem);
+  }
+
+  .commercial-headline-metric span {
+    margin-top: 7px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    line-height: 1.42;
+  }
+
+  .commercial-headline-metric small {
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .commercial-headline-metric.is-primary > span {
+    color: var(--color-text);
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .commercial-headline-metric.is-primary small {
+    font-size: 0.78rem;
+  }
+
+  .commercial-revenue-comparison,
+  .commercial-actions {
+    margin-top: 32px;
+  }
+
+  .commercial-revenue-comparison {
+    margin-top: 28px;
+  }
+
+  .commercial-revenue-comparison h4,
+  .commercial-actions h4 {
+    font-size: 0.94rem;
+  }
+
+  .commercial-revenue-list,
+  .commercial-actions-list {
+    margin-top: 13px;
+  }
+
+  .commercial-revenue-list > div {
+    padding: 18px clamp(13px, 2vw, 22px);
+  }
+
+  .commercial-revenue-list span,
+  .commercial-revenue-list small {
+    font-size: 0.74rem;
+    font-weight: 600;
+    line-height: 1.42;
+  }
+
+  .commercial-revenue-list strong {
+    margin: 8px 0 5px;
+    font-size: clamp(1.08rem, 2vw, 1.52rem);
+  }
+
+  .commercial-actions-list > div {
+    padding: 18px clamp(14px, 2.2vw, 22px);
+  }
+
+  .commercial-actions-list span {
+    font-size: 0.9rem;
+  }
+
+  .commercial-actions-list > div > strong b {
+    font-size: 1.08rem;
+  }
+
+  .commercial-actions-list > div > strong i {
+    font-size: 0.66rem;
+  }
+
+  .commercial-actions-list > div > em {
+    font-size: 0.82rem;
+  }
+
+  .commercial-evidence-meta {
+    margin-top: 32px;
+    font-size: 0.74rem;
+  }
+
+  .commercial-evidence-meta strong {
+    font-size: 0.74rem;
+  }
+
+  .commercial-attribution-note {
+    margin-top: 28px;
+    font-size: 0.82rem;
+  }
+
+  .commercial-ga4-media {
+    margin-top: 14px;
+  }
+
+  .commercial-analysis-item {
+    display: grid;
+    grid-template-columns: 18px minmax(0, 1fr);
+    gap: 9px;
+    align-items: start;
+    padding-left: 0;
+  }
+
+  .commercial-analysis-item > svg {
+    width: 16px;
+    height: 16px;
+    margin-top: 0.25em;
+    color: var(--color-accent);
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .commercial-analysis-item::before {
+    display: none;
+  }
+
+  .commercial-revenue-container {
+    margin-top: 13px;
+    overflow: hidden;
+    border: 1px solid rgba(216, 207, 196, 0.8);
+    border-radius: 10px;
+    background: rgba(247, 244, 240, 0.4);
+  }
+
+  .commercial-revenue-pair {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 0;
+    background: transparent;
+  }
+
+  .commercial-revenue-pair > div {
+    min-width: 0;
+    padding: 18px clamp(18px, 3vw, 28px);
+  }
+
+  .commercial-revenue-pair > div + div {
+    border-left: 1px solid var(--color-border);
+  }
+
+  .commercial-revenue-pair span,
+  .commercial-revenue-pair small {
+    display: block;
+    color: var(--color-muted-text);
+    font-size: 0.76rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .commercial-revenue-pair strong {
+    display: block;
+    margin: 7px 0 5px;
+    color: var(--color-text);
+    font-size: clamp(1.65rem, 3.6vw, 2.55rem);
+    font-weight: 850;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    white-space: nowrap;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .commercial-revenue-pair .is-organic strong {
+    color: var(--color-accent);
+  }
+
+  .commercial-revenue-share {
+    display: flex;
+    width: calc(100% - clamp(36px, 6vw, 56px));
+    height: 5px;
+    margin: 0 auto;
+    overflow: hidden;
+    background: rgba(42, 31, 27, 0.12);
+  }
+
+  .commercial-revenue-share .is-organic {
+    background: var(--color-accent);
+  }
+
+  .commercial-revenue-share .is-paid {
+    background: rgba(42, 31, 27, 0.42);
+  }
+
+  .commercial-revenue-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    padding: 9px clamp(18px, 3vw, 28px) 12px;
+  }
+
+  .commercial-revenue-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: rgba(42, 31, 27, 0.68);
+    font-size: 0.68rem;
+    font-weight: 650;
+    line-height: 1.35;
+  }
+
+  .commercial-revenue-legend i {
+    width: 7px;
+    height: 7px;
+    flex: 0 0 7px;
+    border-radius: 50%;
+    background: rgba(42, 31, 27, 0.42);
+  }
+
+  .commercial-revenue-legend .is-organic i {
+    background: var(--color-accent);
+  }
+
+  .commercial-revenue-difference {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 7px 12px;
+    margin: 0;
+    padding: 11px clamp(18px, 3vw, 28px);
+    border-top: 1px solid rgba(216, 207, 196, 0.72);
+    background: rgba(255, 255, 255, 0.32);
+  }
+
+  .commercial-revenue-difference > span:first-child {
+    color: var(--color-muted-text);
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .commercial-revenue-difference-values {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 7px;
+    white-space: nowrap;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .commercial-revenue-difference strong,
+  .commercial-revenue-difference em {
+    color: var(--color-accent);
+    font-style: normal;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+
+  .commercial-revenue-difference strong {
+    font-size: 1.02rem;
+    line-height: 1.4;
+  }
+
+  .commercial-revenue-difference em {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .commercial-actions-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    align-items: stretch;
+    background: transparent;
+  }
+
+  .commercial-actions-list > div {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 14px;
+    height: 100%;
+    padding: 17px;
+    border: 1px solid rgba(216, 207, 196, 0.82);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.34);
+  }
+
+  .commercial-actions-list > div + div {
+    border-left: 1px solid rgba(216, 207, 196, 0.82);
+  }
+
+  .commercial-actions-list header {
+    display: flex;
+    min-height: 38px;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .commercial-actions-list header > strong {
+    color: var(--color-text);
+    font-size: 0.88rem;
+    font-weight: 750;
     line-height: 1.3;
+  }
+
+  .commercial-action-values {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .commercial-action-values > span {
+    display: flex;
+    min-height: 51px;
+    flex-direction: column;
+    color: var(--color-muted-text);
+    font-size: 0.7rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .commercial-action-values > span > strong {
+    display: block;
+    margin-top: 4px;
+    color: var(--color-text);
+    font-size: clamp(1.05rem, 2vw, 1.22rem);
+    font-weight: 800;
+    white-space: nowrap;
+  }
+
+  .commercial-action-values small {
+    color: rgba(42, 31, 27, 0.68);
+    font-size: 0.64rem;
+    font-weight: 600;
+  }
+
+  .commercial-actions-list > div > p {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    margin: auto 0 0;
+    padding-top: 11px;
+    border-top: 1px solid rgba(216, 207, 196, 0.7);
+  }
+
+  .commercial-actions-list > div > p strong {
+    color: var(--color-accent);
+    font-size: 0.94rem;
+    font-weight: 800;
+  }
+
+  .commercial-actions-list > div > p span {
+    color: rgba(42, 31, 27, 0.68);
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+
+  .conversion-card {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    gap: 0;
+    min-width: 0;
+    height: 100%;
+    padding: 18px 20px;
+    border: 1px solid rgba(216, 207, 196, 0.82);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.34);
+  }
+
+  .conversion-card__header {
+    display: flex;
+    min-height: 24px;
+    align-items: center;
+    gap: 9px;
+  }
+
+  .conversion-card__icon {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+    margin-top: 1px;
+  }
+
+  .conversion-card__icon svg {
+    width: 18px;
+    height: 18px;
+    stroke-width: 1.8;
+  }
+
+  .conversion-card__title {
+    margin: 0;
+    color: var(--color-text);
+    font-size: 0.9rem;
+    font-weight: 750;
+    line-height: 1.35;
+  }
+
+  .conversion-card__metrics {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 16px;
+    row-gap: 14px;
+    align-items: start;
+    margin-top: 15px;
+  }
+
+  .conversion-card__metric {
+    min-width: 0;
+  }
+
+  .conversion-card__metric:first-child .conversion-card__source,
+  .conversion-card__metric:first-child .conversion-card__value-row strong {
+    color: var(--color-accent);
+  }
+
+  .conversion-card__metric:last-child .conversion-card__source,
+  .conversion-card__metric:last-child .conversion-card__value-row strong {
+    color: rgba(42, 31, 27, 0.72);
+  }
+
+  .conversion-card__source {
+    display: block;
+    min-height: 1.35em;
+    color: rgba(42, 31, 27, 0.7);
+    font-size: clamp(0.7rem, calc(0.65rem + 0.12vw), 0.78rem);
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .conversion-card__value-row {
+    display: flex;
+    min-width: 0;
+    align-items: baseline;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-top: 5px;
+    white-space: nowrap;
+  }
+
+  .conversion-card__value-row strong {
+    color: var(--color-text);
+    font-size: clamp(1.25rem, calc(1.1rem + 0.35vw), 1.55rem);
+    font-weight: 800;
+    line-height: 1;
     font-variant-numeric: tabular-nums;
+  }
+
+  .conversion-card__value-row span {
+    color: rgba(42, 31, 27, 0.68);
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .conversion-card__footer {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 15px;
+    padding-top: 11px;
+    border-top: 1px solid rgba(216, 207, 196, 0.7);
+  }
+
+  .conversion-card__footer strong {
+    color: var(--color-accent);
+    font-size: 0.96rem;
+    font-weight: 800;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .conversion-card__footer span {
+    color: rgba(42, 31, 27, 0.68);
+    font-size: 0.7rem;
+    font-weight: 600;
+    line-height: 1.3;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 820px) and (min-width: 641px) {
+    .commercial-actions-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .conversion-card {
+      padding: 16px 18px;
+    }
   }
 
   /* AI Search & GEO evidence */
@@ -4298,7 +5281,7 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .visibility-executive-metrics {
+    .visibility-sitewide-comparison {
       grid-template-columns: 1fr;
       gap: 8px;
       padding-block: 10px;
@@ -4307,7 +5290,24 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
     .organic-executive-metrics {
       grid-template-columns: 1fr;
       gap: 18px;
-      padding-block: 18px;
+      padding-block: 0;
+    }
+
+    .organic-headline-metric {
+      min-height: 0;
+      padding: 18px;
+    }
+
+    .organic-headline-metric strong {
+      font-size: clamp(2rem, 10vw, 2.35rem);
+    }
+
+    .organic-quality-callout {
+      padding: 20px;
+    }
+
+    .organic-evidence-container {
+      padding: 12px;
     }
 
     .commercial-executive-metrics {
@@ -4316,13 +5316,45 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
       padding-block: 18px;
     }
 
+    .commercial-revenue-list {
+      grid-template-columns: 1fr;
+    }
+
+    .commercial-revenue-list > div + div {
+      border-top: 1px solid var(--color-border);
+      border-left: 0;
+    }
+
     .commercial-actions-list {
       grid-template-columns: 1fr;
     }
 
     .commercial-actions-list > div + div {
+      border-left: 1px solid rgba(216, 207, 196, 0.82);
+    }
+
+    .commercial-revenue-pair {
+      grid-template-columns: 1fr;
+    }
+
+    .commercial-revenue-pair > div + div {
       border-top: 1px solid var(--color-border);
       border-left: 0;
+    }
+
+    .commercial-revenue-pair strong {
+      font-size: clamp(1.7rem, 9vw, 2.3rem);
+    }
+
+    .commercial-revenue-difference > span:first-child {
+      flex-basis: 100%;
+    }
+
+    .conversion-card {
+      grid-template-rows: auto auto auto;
+      gap: 0;
+      height: auto;
+      padding: 16px;
     }
 
     .ai-executive-metrics {
@@ -4340,22 +5372,22 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
       row-gap: 4px;
     }
 
-    .visibility-headline-metric {
+    .visibility-period-metric {
       padding: 14px;
     }
 
-    .visibility-headline-metric.is-direction,
+    .visibility-comparison-direction,
     .ai-headline-metric.is-direction {
       min-height: 42px;
       padding: 4px 0;
     }
 
-    .visibility-headline-metric.is-direction strong,
+    .visibility-comparison-direction strong,
     .ai-headline-metric.is-direction strong {
       transform: rotate(90deg);
     }
 
-    .visibility-headline-metric.is-direction span,
+    .visibility-comparison-direction span,
     .ai-headline-metric.is-direction span {
       margin-top: 2px;
       max-width: none;
@@ -4365,23 +5397,18 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
       padding: 14px;
     }
 
-    .visibility-highlight-list {
+    .visibility-strategic-insight {
+      margin-top: 22px;
+      padding: 17px 16px;
+    }
+
+    .visibility-strategic-insight ul {
       grid-template-columns: 1fr;
+      gap: 14px;
     }
 
-    .visibility-highlight-list > div + div {
-      border-top: 1px solid var(--color-border);
-      border-left: 0;
-    }
-
-    .visibility-highlight-list > div {
-      gap: 8px;
-    }
-
-    .visibility-highlight-list strong {
-      width: 100%;
-      max-width: 100%;
-      font-size: clamp(0.88rem, 4.4vw, 1.15rem);
+    .visibility-data-note {
+      margin-top: 16px;
     }
 
     .result-evidence-source > strong {
@@ -4403,8 +5430,8 @@ const totalResultGroups = String(resultGroups.length).padStart(2, '0');
       padding-top: 0;
     }
 
-    .ranking-featured-keywords ul {
-      grid-template-columns: 1fr;
+    .ranking-wins-trigger {
+      margin-top: 18px;
     }
 
     .evidence-report-link {
