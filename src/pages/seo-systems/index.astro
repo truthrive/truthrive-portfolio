@@ -7,7 +7,7 @@ const cvUrl = "/files/Bui_Truong_Thinh_Senior_SEO_Specialist.pdf";
 interface ToolItem {
   id: string;
   name: string;
-  status: "Built" | "In Development";
+  status: "Built" | "Internal MVP" | "Working MVP" | "In Development";
   positioning: string;
   icon: string;
   for: string;
@@ -20,9 +20,46 @@ interface ToolItem {
   ctaText: string;
   ctaLink: string;
   ctaDisabled?: boolean;
+  category?: string;
+  capabilities?: string[];
+  technology?: string[];
+  tags?: string[];
 }
 
 const builtTools: ToolItem[] = [
+  {
+    id: "google-indexing",
+    name: "Google Indexing Tool",
+    status: "Working MVP",
+    positioning: "Batch URL submission workflow for Google Indexing API.",
+    icon: "↗",
+    for: "SEO Specialist, Technical SEO, Developer",
+    solves: "Standardizes validation and submission of multiple URLs through hostname verification and server-side authentication, reducing repetitive manual indexing requests.",
+    input: "Batch URL List",
+    logic: "Validate + Normalize",
+    review: "Hostname Verification",
+    outputStep: "Indexing API Submission",
+    outputDesc: "Validated URL batches ready for submission to Google Indexing API.",
+    ctaText: "View workflow",
+    ctaLink: "#philosophy",
+    category: "SEO Automation",
+    capabilities: [
+      "Batch URL Submission",
+      "URL Validation",
+      "URL Normalization",
+      "Exact Hostname Verification",
+      "Google Indexing API Integration",
+      "Server-side Authentication"
+    ],
+    technology: [
+      "Next.js",
+      "TypeScript",
+      "Google Indexing API",
+      "Google Service Account",
+      "Tailwind CSS"
+    ],
+    tags: ["SEO Automation", "Google Indexing API", "Developer Tool", "Internal System"]
+  },
   {
     id: "content-audit",
     name: "Content Audit Tool",
@@ -70,22 +107,6 @@ const builtTools: ToolItem[] = [
     outputDesc: "Danh sách URL sạch đạt chuẩn chất lượng và file order textlink tự động cho dự án.",
     ctaText: "View demo snapshot",
     ctaLink: "#philosophy"
-  },
-  {
-    id: "portfolio-system",
-    name: "Personal SEO Portfolio System",
-    status: "Built",
-    positioning: "Hệ thống quản lý thông tin năng lực, dự án và case study chuẩn SEO.",
-    icon: "💼",
-    for: "SEO Specialist, freelancer, personal brand",
-    solves: "Thiếu cấu trúc chuyên nghiệp để trình bày các case study sâu sắc và chứng minh tư duy hệ thống.",
-    input: "Case Study Data",
-    logic: "Design Rules",
-    review: "Layout Check",
-    outputStep: "SEO Portfolio Site",
-    outputDesc: "Trang web portfolio chuẩn SEO, Case Study hub trực quan và project highlight tabs.",
-    ctaText: "View live page",
-    ctaLink: "/case-studies/"
   }
 ];
 
@@ -127,6 +148,54 @@ const devTools: ToolItem[] = [
 ];
 
 const allTools = [...builtTools, ...devTools];
+
+const contentAuditBuiltFor = ["SEO Specialist", "SEO Leader", "Content Manager"];
+const contentAuditSolves = [
+  "Audit thủ công mất nhiều thời gian.",
+  "Khó xác định URL cần ưu tiên tối ưu.",
+  "Recommendation thiếu nhất quán giữa các thành viên.",
+  "Dữ liệu Screaming Frog, GSC và GA4 khó tổng hợp thành hành động."
+];
+const contentAuditOutputs = [
+  "Priority & Confidence Score",
+  "Action Recommendations",
+  "Content Gap Detection",
+  "Google Sheets Report",
+  "Interactive Dashboard"
+];
+const contentAuditToolUrl = "https://script.google.com/macros/s/AKfycbw5VIYOtyC6xRQHH99GtmW6qjMyGEAQz7wykLsRE3IbvgqOP7ICwsnPmQWYglw51zD0/exec";
+const googleIndexingBuiltFor = ["SEO Specialist", "SEO Leader", "Website Manager"];
+const googleIndexingSolves = [
+  "Gửi từng URL thủ công mất nhiều thao tác.",
+  "Danh sách URL dễ chứa duplicate hoặc sai định dạng.",
+  "Khó kiểm soát URL khác hostname trong cùng một lượt.",
+  "Google Service Account cần được bảo vệ phía server."
+];
+const googleIndexingOutputs = [
+  "Batch URL Submission",
+  "URL Validation",
+  "Duplicate Filtering",
+  "Hostname Verification",
+  "Per-URL Status",
+  "Google API Response"
+];
+const googleIndexingToolUrl = "https://google-indexing-tool-rust.vercel.app/";
+const seoLogAuditBuiltFor = ["Technical SEO Specialist", "SEO Leader", "Website Developer"];
+const seoLogAuditSolves = [
+  "Logfile thô khó đọc và chưa được chuẩn hóa.",
+  "Khó phân tích hành vi crawl trên lượng request lớn.",
+  "Bot, status code và crawl waste phải tổng hợp thủ công.",
+  "Dữ liệu kỹ thuật khó chuyển thành Action Plan rõ ràng."
+];
+const seoLogAuditOutputs = [
+  "Googlebot Analysis",
+  "Crawl Behavior Audit",
+  "Status & Performance Report",
+  "Issue Summary",
+  "Google Sheet Action Plan",
+  "Interactive Dashboard"
+];
+const seoLogAuditToolUrl = "https://script.google.com/macros/s/AKfycbzDvd6gjENay8qquNBETNSENoZ5jgYdIBIySudBvINcUSEjkkl3FCmdT-DNPGr3mn93eg/exec";
 ---
 
 <BaseLayout 
@@ -216,7 +285,7 @@ const allTools = [...builtTools, ...devTools];
                 <span class="tool-tab__name">{tool.name}</span>
                 <span class="tool-tab__summary">{tool.positioning}</span>
               </div>
-              <span class={`tool-badge tool-badge--${tool.status === "Built" ? "built" : "dev"}`}>{tool.status}</span>
+              <span class={`tool-badge tool-badge--${tool.status === "In Development" ? "dev" : "built"}`}>{tool.status}</span>
             </button>
           ))}
 
@@ -252,71 +321,72 @@ const allTools = [...builtTools, ...devTools];
               aria-hidden={idx === 0 ? "false" : "true"}
             >
               <div class="tool-detail__header">
-                <h3 class="tool-detail__title">{tool.name}</h3>
-                <span class={`tool-badge tool-badge--${tool.status === "Built" ? "built" : "dev"}`}>{tool.status}</span>
-              </div>
-              <p class="tool-detail__positioning">{tool.positioning}</p>
-
-              <!-- Visual Preview Area -->
-              <div class="tool-detail__preview">
-                {tool.id === "content-audit" && (
-                  <div class="preview-mock preview-mock--content-audit">
-                    <div class="mock-header">
-                      <span class="mock-tag">URL Audit: /seo-strategy-v2</span>
-                      <span class="mock-badge">Intent: Information</span>
-                    </div>
-                    <div class="mock-score-row">
-                      <span class="mock-score-label">Priority SEO Score</span>
-                      <div class="mock-score-bar-wrapper">
-                        <div class="mock-score-bar" style="width: 85%;"></div>
-                      </div>
-                      <span class="mock-score-val">85/100</span>
-                    </div>
-                    <div class="mock-rows">
-                      <div class="mock-row">
-                        <span class="mock-row-title">Search Intent Coverage</span>
-                        <span class="mock-row-badge badge-warning">Needs Optimization</span>
-                      </div>
-                      <div class="mock-row">
-                        <span class="mock-row-title">Content Gap Analysis</span>
-                        <span class="mock-row-badge badge-error">Missing 3 LSI keywords</span>
-                      </div>
-                      <div class="mock-row">
-                        <span class="mock-row-title">Headings Structure (H2/H3)</span>
-                        <span class="mock-row-badge badge-success">Passed</span>
-                      </div>
+                {tool.id === "content-audit" ? (
+                  <div class="content-audit-title-block">
+                    <h3 class="tool-detail__title">Baseline Content Audit Tool</h3>
+                    <div class="content-audit-header-meta" aria-label="Tool metadata">
+                      <span>Internal MVP</span>
+                      <span>Google Apps Script</span>
+                      <span>Updated Aug 2026</span>
                     </div>
                   </div>
+                ) : tool.id === "google-indexing" ? (
+                  <div class="content-audit-title-block">
+                    <h3 class="tool-detail__title">Google Indexing Tool</h3>
+                    <div class="content-audit-header-meta" aria-label="Tool metadata">
+                      <span>Working MVP</span>
+                      <span>Next.js</span>
+                      <span>Updated Aug 2026</span>
+                    </div>
+                  </div>
+                ) : tool.id === "logfile-audit" ? (
+                  <div class="content-audit-title-block">
+                    <h3 class="tool-detail__title">SEO Log Audit</h3>
+                    <div class="content-audit-header-meta" aria-label="Tool metadata">
+                      <span>Working MVP</span>
+                      <span>Google Apps Script</span>
+                      <span>Updated Aug 2026</span>
+                    </div>
+                  </div>
+                ) : <h3 class="tool-detail__title">{tool.name}</h3>}
+                {tool.id === "content-audit" ? (
+                  <div class="content-audit-header-actions">
+                    <span class="tool-badge tool-badge--built">Built</span>
+                    <a href={contentAuditToolUrl} class="btn btn-primary content-audit-header-cta" target="_blank" rel="noopener noreferrer" aria-label="Mở Baseline Content Audit Tool trong tab mới">Open Tool ↗</a>
+                  </div>
+                ) : tool.id === "logfile-audit" ? (
+                  <div class="content-audit-header-actions">
+                    <span class="tool-badge tool-badge--built">Built</span>
+                    <a href={seoLogAuditToolUrl} class="btn btn-primary content-audit-header-cta" target="_blank" rel="noopener noreferrer" aria-label="Mở SEO Log Audit trong tab mới">Open Tool ↗</a>
+                  </div>
+                ) : (
+                  <span class={`tool-badge tool-badge--${tool.status === "In Development" ? "dev" : "built"}`}>{tool.status}</span>
+                )}
+              </div>
+              <p class={`tool-detail__positioning ${tool.id === "content-audit" || tool.id === "google-indexing" || tool.id === "logfile-audit" ? "content-audit-intro" : ""}`}>
+                {tool.id === "content-audit" ? "Baseline Content Audit Tool giúp chuyển dữ liệu từ Screaming Frog, Google Search Console và GA4 thành một workflow audit có thể hành động ngay. Hệ thống tự động xác định vấn đề, ưu tiên xử lý và tạo Action Plan nhằm chuẩn hóa quy trình audit content trên quy mô lớn." : tool.id === "google-indexing" ? "Google Indexing Tool giúp kiểm tra, chuẩn hóa và gửi tối đa 10 URL trong một lượt tới Google Indexing API. Hệ thống xử lý URL validation, duplicate, exact hostname và server-side authentication trong một workflow thống nhất." : tool.id === "logfile-audit" ? "SEO Log Audit tự động chuyển server logfile thành dữ liệu Technical SEO có thể hành động. Hệ thống phân tích Googlebot, crawl behavior, status code, crawl waste và hiệu năng, sau đó tạo Dashboard cùng Google Sheet Action Plan cho từng lần audit." : tool.positioning}
+              </p>
+
+              <!-- Visual Preview Area -->
+              <div class={`tool-detail__preview ${tool.id === "content-audit" || tool.id === "google-indexing" || tool.id === "logfile-audit" ? "content-audit-preview-shell" : ""}`}>
+                {tool.id === "google-indexing" && (
+                  <a class="content-audit-preview-link" href={googleIndexingToolUrl} target="_blank" rel="noopener noreferrer" aria-label="Mở Google Indexing Tool trong tab mới">
+                    <img class="content-audit-preview-image" src="/images/pages/tool-google-indexing-api.jpg" alt="Google Indexing Tool interface" loading="lazy" />
+                    <span class="content-audit-preview-action" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M8 4h8v8m0-8-9 9M5 7H4v9h9v-1" /></svg></span>
+                  </a>
+                )}
+                {tool.id === "content-audit" && (
+                  <a class="content-audit-preview-link" href={contentAuditToolUrl} target="_blank" rel="noopener noreferrer" aria-label="Open Baseline Content Audit Tool in a new tab">
+                    <img class="content-audit-preview-image" src="/images/pages/tool-audit-content.jpg" alt="Baseline Content Audit Tool interface" loading="lazy" />
+                    <span class="content-audit-preview-action" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M8 4h8v8m0-8-9 9M5 7H4v9h9v-1" /></svg></span>
+                  </a>
                 )}
 
                 {tool.id === "logfile-audit" && (
-                  <div class="preview-mock preview-mock--logfile-audit">
-                    <div class="mock-header">
-                      <span class="mock-tag">Googlebot Activity Log</span>
-                      <span class="mock-badge">24h Crawl Stats</span>
-                    </div>
-                    <div class="mock-chart-row">
-                      <div class="mock-chart-bar" style="height: 30%;"></div>
-                      <div class="mock-chart-bar" style="height: 55%;"></div>
-                      <div class="mock-chart-bar" style="height: 40%;"></div>
-                      <div class="mock-chart-bar" style="height: 75%;"></div>
-                      <div class="mock-chart-bar" style="height: 25%;"></div>
-                      <div class="mock-chart-bar" style="height: 60%;"></div>
-                      <div class="mock-chart-bar" style="height: 45%;"></div>
-                      <div class="mock-chart-bar" style="height: 80%;"></div>
-                    </div>
-                    <div class="mock-chips">
-                      <span class="mock-chip active">Googlebot (Mobile)</span>
-                      <span class="mock-chip active">Googlebot (Desktop)</span>
-                      <span class="mock-chip muted">AhrefsBot (Blocked)</span>
-                    </div>
-                    <div class="mock-rows">
-                      <div class="mock-row">
-                        <span class="mock-row-title">/tag/* crawl waste detected</span>
-                        <span class="mock-row-badge badge-error">42% waste</span>
-                      </div>
-                    </div>
-                  </div>
+                  <a class="content-audit-preview-link" href={seoLogAuditToolUrl} target="_blank" rel="noopener noreferrer" aria-label="Mở SEO Log Audit trong tab mới">
+                    <img class="content-audit-preview-image" src="/images/pages/tool-seo-log-audit.jpg" alt="SEO Log Audit interface" loading="lazy" />
+                    <span class="content-audit-preview-action" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M8 4h8v8m0-8-9 9M5 7H4v9h9v-1" /></svg></span>
+                  </a>
                 )}
 
                 {tool.id === "textlink-filter" && (
@@ -354,33 +424,6 @@ const allTools = [...builtTools, ...devTools];
                   </div>
                 )}
 
-                {tool.id === "portfolio-system" && (
-                  <div class="preview-mock preview-mock--portfolio">
-                    <div class="mock-header">
-                      <span class="mock-tag">SEO Portfolio Viewport</span>
-                      <span class="mock-badge">Static Mode</span>
-                    </div>
-                    <div class="mock-layout">
-                      <div class="mock-profile">
-                        <div class="mock-avatar"></div>
-                        <div class="mock-lines">
-                          <div class="mock-line short"></div>
-                          <div class="mock-line long"></div>
-                        </div>
-                      </div>
-                      <div class="mock-cards">
-                        <div class="mock-card">
-                          <div class="mock-card-title">Suối Tiên Case Study</div>
-                          <div class="mock-card-metric">+100% KPI</div>
-                        </div>
-                        <div class="mock-card">
-                          <div class="mock-card-title">DOL Grammar Case Study</div>
-                          <div class="mock-card-metric">66.8k traffic</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
 
                 {tool.id === "technical-audit" && (
                   <div class="preview-mock preview-mock--tech-audit">
@@ -430,54 +473,114 @@ const allTools = [...builtTools, ...devTools];
 
               <!-- Product metadata -->
               <div class="tool-detail__meta">
+                {tool.id !== "google-indexing" && tool.category && <div class="tool-detail__meta-row"><span class="tool-detail__meta-label">Category</span><span class="tool-detail__meta-val">{tool.category}</span></div>}
                 <div class="tool-detail__meta-row">
-                  <span class="tool-detail__meta-label">Built for</span>
-                  <span class="tool-detail__meta-val">{tool.for}</span>
+                  <span class="tool-detail__meta-label">
+                    {(tool.id === "content-audit" || tool.id === "google-indexing" || tool.id === "logfile-audit") && <svg class="meta-inline-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5 6c.5-2.5 2.2-4 5-4s4.5 1.5 5 4" /></svg>}
+                    Built for
+                  </span>
+                  <span class="tool-detail__meta-val">
+                    {tool.id === "content-audit" ? (
+                      <span class="content-audit-audience-chips">
+                        {contentAuditBuiltFor.map((item) => <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Zm-4 5c.4-2.1 1.7-3.3 4-3.3s3.6 1.2 4 3.3" /></svg>{item}</span>)}
+                      </span>
+                    ) : tool.id === "google-indexing" ? (
+                      <span class="content-audit-audience-chips">
+                        {googleIndexingBuiltFor.map((item) => <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Zm-4 5c.4-2.1 1.7-3.3 4-3.3s3.6 1.2 4 3.3" /></svg>{item}</span>)}
+                      </span>
+                    ) : tool.id === "logfile-audit" ? (
+                      <span class="content-audit-audience-chips">
+                        {seoLogAuditBuiltFor.map((item) => <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Zm-4 5c.4-2.1 1.7-3.3 4-3.3s3.6 1.2 4 3.3" /></svg>{item}</span>)}
+                      </span>
+                    ) : tool.for}
+                  </span>
                 </div>
                 <div class="tool-detail__meta-row">
-                  <span class="tool-detail__meta-label">Solves</span>
-                  <span class="tool-detail__meta-val">{tool.solves}</span>
+                  <span class="tool-detail__meta-label">
+                    {(tool.id === "content-audit" || tool.id === "google-indexing" || tool.id === "logfile-audit") && <svg class="meta-inline-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5 17 16H3L10 2.5Zm0 5v4m0 2.5v.1" /></svg>}
+                    Solves
+                  </span>
+                  <div class="tool-detail__meta-val">
+                    {tool.id === "content-audit" ? (
+                      <ul class="content-audit-bullets">
+                        {contentAuditSolves.map((item) => <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 8 2.5 2.5L12 5" /></svg><span>{item}</span></li>)}
+                      </ul>
+                    ) : tool.id === "google-indexing" ? (
+                      <ul class="content-audit-bullets">
+                        {googleIndexingSolves.map((item) => <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 8 2.5 2.5L12 5" /></svg><span>{item}</span></li>)}
+                      </ul>
+                    ) : tool.id === "logfile-audit" ? (
+                      <ul class="content-audit-bullets">
+                        {seoLogAuditSolves.map((item) => <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 8 2.5 2.5L12 5" /></svg><span>{item}</span></li>)}
+                      </ul>
+                    ) : tool.solves}
+                  </div>
                 </div>
                 <div class="tool-detail__meta-row">
-                  <span class="tool-detail__meta-label">Output</span>
-                  <span class="tool-detail__meta-val"><strong>{tool.outputDesc}</strong></span>
+                  <span class="tool-detail__meta-label">
+                    {(tool.id === "content-audit" || tool.id === "google-indexing" || tool.id === "logfile-audit") && <svg class="meta-inline-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14v10H3zM6 8h8m-8 3h5" /></svg>}
+                    Output
+                  </span>
+                  <div class="tool-detail__meta-val">
+                    {tool.id === "content-audit" ? (
+                      <span class="content-audit-output-chips">
+                        {contentAuditOutputs.map((item) => <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 8 2.5 2.5L12 5" /></svg>{item}</span>)}
+                      </span>
+                    ) : tool.id === "google-indexing" ? (
+                      <span class="content-audit-output-chips">
+                        {googleIndexingOutputs.map((item) => <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 8 2.5 2.5L12 5" /></svg>{item}</span>)}
+                      </span>
+                    ) : tool.id === "logfile-audit" ? (
+                      <span class="content-audit-output-chips">
+                        {seoLogAuditOutputs.map((item) => <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 8 2.5 2.5L12 5" /></svg>{item}</span>)}
+                      </span>
+                    ) : <strong>{tool.outputDesc}</strong>}
+                  </div>
                 </div>
+                {tool.id !== "google-indexing" && tool.capabilities && <div class="tool-detail__meta-row"><span class="tool-detail__meta-label">Capabilities</span><span class="tool-detail__meta-val">{tool.capabilities.join(" · ")}</span></div>}
+                {tool.id !== "google-indexing" && tool.technology && <div class="tool-detail__meta-row"><span class="tool-detail__meta-label">Technology</span><span class="tool-detail__meta-val">{tool.technology.join(" · ")}</span></div>}
+                {tool.id !== "google-indexing" && tool.tags && <div class="tool-detail__meta-row"><span class="tool-detail__meta-label">Tags</span><span class="tool-detail__meta-val">{tool.tags.join(" · ")}</span></div>}
               </div>
 
               <!-- Logic flow horizontal chain -->
               <div class="tool-detail__logic">
-                <span class="tool-detail__logic-title">Logic Flow Pipeline</span>
+                <span class="tool-detail__logic-title">
+                  {(tool.id === "content-audit" || tool.id === "google-indexing" || tool.id === "logfile-audit") && <svg class="meta-inline-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 5h4m4 0h4M8 5l2 5m2-5-2 5m0 0v5m0 0H6m4 0h4" /></svg>}
+                  Logic Flow Pipeline
+                </span>
                 <div class="tool-logic-flow__chips">
                   <div class="logic-chip">
                     <span class="logic-chip-label">Input</span>
-                    <span class="logic-chip-val">{tool.input}</span>
+                    <span class="logic-chip-val">{tool.id === "content-audit" ? <span class="content-audit-flow-values"><span>Screaming Frog</span><span>Google Search Console</span><span>GA4</span></span> : tool.id === "google-indexing" ? "Up to 10 URLs" : tool.id === "logfile-audit" ? "Raw Server Logfile" : tool.input}</span>
                   </div>
                   <div class="logic-arrow">→</div>
                   <div class="logic-chip">
-                    <span class="logic-chip-label">Processing</span>
-                    <span class="logic-chip-val">{tool.logic}</span>
+                    <span class="logic-chip-label">{tool.id === "content-audit" ? "Process" : tool.id === "google-indexing" ? "Validate" : tool.id === "logfile-audit" ? "Process" : "Processing"}</span>
+                    <span class="logic-chip-val">{tool.id === "content-audit" ? <span class="content-audit-flow-values"><span>Normalize Data</span><span>Audit Engine</span></span> : tool.id === "google-indexing" ? "Format & Hostname" : tool.id === "logfile-audit" ? "Parse & Normalize" : tool.logic}</span>
                   </div>
                   <div class="logic-arrow">→</div>
                   <div class="logic-chip">
-                    <span class="logic-chip-label">Review</span>
-                    <span class="logic-chip-val">{tool.review}</span>
+                    <span class="logic-chip-label">{tool.id === "content-audit" ? "Analyze" : tool.id === "google-indexing" ? "Submit" : tool.id === "logfile-audit" ? "Analyze" : "Review"}</span>
+                    <span class="logic-chip-val">{tool.id === "content-audit" ? <span class="content-audit-flow-values"><span>Rule-based Evaluation</span></span> : tool.id === "google-indexing" ? "Google Indexing API" : tool.id === "logfile-audit" ? "Technical SEO Audit" : tool.review}</span>
                   </div>
                   <div class="logic-arrow">→</div>
                   <div class="logic-chip">
-                    <span class="logic-chip-label">Output</span>
-                    <span class="logic-chip-val">{tool.outputStep}</span>
+                    <span class="logic-chip-label">{tool.id === "google-indexing" ? "Result" : "Output"}</span>
+                    <span class="logic-chip-val">{tool.id === "content-audit" ? <span class="content-audit-flow-values"><span>Action Plan</span><span>Dashboard</span><span>Google Sheets Report</span></span> : tool.id === "google-indexing" ? "Submitted / Failed" : tool.id === "logfile-audit" ? "Dashboard & Action Plan" : tool.outputStep}</span>
                   </div>
                 </div>
               </div>
 
               <!-- CTA -->
-              <div class="tool-detail__footer">
-                {tool.ctaDisabled ? (
-                  <span class="btn btn-secondary" style="opacity: 0.6; cursor: not-allowed;">{tool.ctaText}</span>
-                ) : (
-                  <a href={tool.ctaLink} class="btn btn-primary">{tool.ctaText} →</a>
-                )}
-              </div>
+              {tool.id !== "content-audit" && tool.id !== "google-indexing" && tool.id !== "logfile-audit" && (
+                <div class="tool-detail__footer">
+                  {tool.ctaDisabled ? (
+                    <span class="btn btn-secondary" style="opacity: 0.6; cursor: not-allowed;">{tool.ctaText}</span>
+                  ) : (
+                    <a href={tool.ctaLink} class="btn btn-primary">{tool.ctaText} →</a>
+                  )}
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -498,7 +601,7 @@ const allTools = [...builtTools, ...devTools];
               <div class="accordion-trigger__text">
                 <span class="accordion-trigger__name">{tool.name}</span>
               </div>
-              <span class={`tool-badge tool-badge--${tool.status === "Built" ? "built" : "dev"}`}>{tool.status}</span>
+              <span class={`tool-badge tool-badge--${tool.status === "In Development" ? "dev" : "built"}`}>{tool.status}</span>
               <span class="accordion-chevron" aria-hidden="true"></span>
             </button>
 
@@ -508,67 +611,62 @@ const allTools = [...builtTools, ...devTools];
               aria-labelledby={`mobile-trigger-${tool.id}`}
               role="region"
             >
-              <p class="accordion-panel__positioning">{tool.positioning}</p>
+              <p class={`accordion-panel__positioning ${tool.id === "content-audit" || tool.id === "google-indexing" || tool.id === "logfile-audit" ? "content-audit-intro" : ""}`}>
+                {tool.id === "content-audit" ? "Baseline Content Audit Tool giúp chuyển dữ liệu từ Screaming Frog, Google Search Console và GA4 thành một workflow audit có thể hành động ngay. Hệ thống tự động xác định vấn đề, ưu tiên xử lý và tạo Action Plan nhằm chuẩn hóa quy trình audit content trên quy mô lớn." : tool.id === "google-indexing" ? "Google Indexing Tool giúp kiểm tra, chuẩn hóa và gửi tối đa 10 URL trong một lượt tới Google Indexing API. Hệ thống xử lý URL validation, duplicate, exact hostname và server-side authentication trong một workflow thống nhất." : tool.id === "logfile-audit" ? "SEO Log Audit tự động chuyển server logfile thành dữ liệu Technical SEO có thể hành động. Hệ thống phân tích Googlebot, crawl behavior, status code, crawl waste và hiệu năng, sau đó tạo Dashboard cùng Google Sheet Action Plan cho từng lần audit." : tool.positioning}
+              </p>
+              {tool.id === "content-audit" && (
+                <div class="content-audit-mobile-header">
+                  <div class="content-audit-header-meta" aria-label="Tool metadata">
+                    <span>Internal MVP</span>
+                    <span>Google Apps Script</span>
+                    <span>Updated Aug 2026</span>
+                  </div>
+                  <div class="content-audit-header-actions">
+                    <span class="tool-badge tool-badge--built">Built</span>
+                    <a href={contentAuditToolUrl} class="btn btn-primary content-audit-header-cta" target="_blank" rel="noopener noreferrer" aria-label="Mở Baseline Content Audit Tool trong tab mới">Open Tool ↗</a>
+                  </div>
+                </div>
+              )}
+              {tool.id === "google-indexing" && (
+                <div class="content-audit-header-meta" aria-label="Tool metadata">
+                  <span>Working MVP</span>
+                  <span>Next.js</span>
+                  <span>Updated Aug 2026</span>
+                </div>
+              )}
+              {tool.id === "logfile-audit" && (
+                <div class="content-audit-mobile-header">
+                  <div class="content-audit-header-meta" aria-label="Tool metadata">
+                    <span>Working MVP</span>
+                    <span>Google Apps Script</span>
+                    <span>Updated Aug 2026</span>
+                  </div>
+                  <div class="content-audit-header-actions">
+                    <span class="tool-badge tool-badge--built">Built</span>
+                    <a href={seoLogAuditToolUrl} class="btn btn-primary content-audit-header-cta" target="_blank" rel="noopener noreferrer" aria-label="Mở SEO Log Audit trong tab mới">Open Tool ↗</a>
+                  </div>
+                </div>
+              )}
 
               <!-- Visual Preview Area (same markup as desktop) -->
-              <div class="tool-detail__preview">
+              <div class={`tool-detail__preview ${tool.id === "content-audit" || tool.id === "google-indexing" || tool.id === "logfile-audit" ? "content-audit-preview-shell" : ""}`}>
+                {tool.id === "google-indexing" && (
+                  <a class="content-audit-preview-link" href={googleIndexingToolUrl} target="_blank" rel="noopener noreferrer" aria-label="Mở Google Indexing Tool trong tab mới">
+                    <img class="content-audit-preview-image" src="/images/pages/tool-google-indexing-api.jpg" alt="Google Indexing Tool interface" loading="lazy" />
+                    <span class="content-audit-preview-action" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M8 4h8v8m0-8-9 9M5 7H4v9h9v-1" /></svg></span>
+                  </a>
+                )}
                 {tool.id === "content-audit" && (
-                  <div class="preview-mock preview-mock--content-audit">
-                    <div class="mock-header">
-                      <span class="mock-tag">URL Audit: /seo-strategy-v2</span>
-                      <span class="mock-badge">Intent: Information</span>
-                    </div>
-                    <div class="mock-score-row">
-                      <span class="mock-score-label">Priority SEO Score</span>
-                      <div class="mock-score-bar-wrapper">
-                        <div class="mock-score-bar" style="width: 85%;"></div>
-                      </div>
-                      <span class="mock-score-val">85/100</span>
-                    </div>
-                    <div class="mock-rows">
-                      <div class="mock-row">
-                        <span class="mock-row-title">Search Intent Coverage</span>
-                        <span class="mock-row-badge badge-warning">Needs Optimization</span>
-                      </div>
-                      <div class="mock-row">
-                        <span class="mock-row-title">Content Gap Analysis</span>
-                        <span class="mock-row-badge badge-error">Missing 3 LSI keywords</span>
-                      </div>
-                      <div class="mock-row">
-                        <span class="mock-row-title">Headings (H2/H3)</span>
-                        <span class="mock-row-badge badge-success">Passed</span>
-                      </div>
-                    </div>
-                  </div>
+                  <a class="content-audit-preview-link" href={contentAuditToolUrl} target="_blank" rel="noopener noreferrer" aria-label="Open Baseline Content Audit Tool in a new tab">
+                    <img class="content-audit-preview-image" src="/images/pages/tool-audit-content.jpg" alt="Baseline Content Audit Tool interface" loading="lazy" />
+                    <span class="content-audit-preview-action" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M8 4h8v8m0-8-9 9M5 7H4v9h9v-1" /></svg></span>
+                  </a>
                 )}
                 {tool.id === "logfile-audit" && (
-                  <div class="preview-mock preview-mock--logfile-audit">
-                    <div class="mock-header">
-                      <span class="mock-tag">Googlebot Activity Log</span>
-                      <span class="mock-badge">24h Crawl Stats</span>
-                    </div>
-                    <div class="mock-chart-row">
-                      <div class="mock-chart-bar" style="height: 30%;"></div>
-                      <div class="mock-chart-bar" style="height: 55%;"></div>
-                      <div class="mock-chart-bar" style="height: 40%;"></div>
-                      <div class="mock-chart-bar" style="height: 75%;"></div>
-                      <div class="mock-chart-bar" style="height: 25%;"></div>
-                      <div class="mock-chart-bar" style="height: 60%;"></div>
-                      <div class="mock-chart-bar" style="height: 45%;"></div>
-                      <div class="mock-chart-bar" style="height: 80%;"></div>
-                    </div>
-                    <div class="mock-chips">
-                      <span class="mock-chip active">Googlebot (Mobile)</span>
-                      <span class="mock-chip active">Googlebot (Desktop)</span>
-                      <span class="mock-chip muted">AhrefsBot (Blocked)</span>
-                    </div>
-                    <div class="mock-rows">
-                      <div class="mock-row">
-                        <span class="mock-row-title">/tag/* crawl waste</span>
-                        <span class="mock-row-badge badge-error">42% waste</span>
-                      </div>
-                    </div>
-                  </div>
+                  <a class="content-audit-preview-link" href={seoLogAuditToolUrl} target="_blank" rel="noopener noreferrer" aria-label="Mở SEO Log Audit trong tab mới">
+                    <img class="content-audit-preview-image" src="/images/pages/tool-seo-log-audit.jpg" alt="SEO Log Audit interface" loading="lazy" />
+                    <span class="content-audit-preview-action" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M8 4h8v8m0-8-9 9M5 7H4v9h9v-1" /></svg></span>
+                  </a>
                 )}
                 {tool.id === "textlink-filter" && (
                   <div class="preview-mock preview-mock--textlink-filter">
@@ -598,85 +696,118 @@ const allTools = [...builtTools, ...devTools];
                     </div>
                   </div>
                 )}
-                {tool.id === "portfolio-system" && (
-                  <div class="preview-mock preview-mock--portfolio">
-                    <div class="mock-header">
-                      <span class="mock-tag">SEO Portfolio Viewport</span>
-                      <span class="mock-badge">Static Mode</span>
-                    </div>
-                    <div class="mock-layout">
-                      <div class="mock-profile">
-                        <div class="mock-avatar"></div>
-                        <div class="mock-lines">
-                          <div class="mock-line short"></div>
-                          <div class="mock-line long"></div>
-                        </div>
-                      </div>
-                      <div class="mock-cards">
-                        <div class="mock-card">
-                          <div class="mock-card-title">Suối Tiên Case Study</div>
-                          <div class="mock-card-metric">+100% KPI</div>
-                        </div>
-                        <div class="mock-card">
-                          <div class="mock-card-title">DOL Grammar</div>
-                          <div class="mock-card-metric">66.8k traffic</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
               </div>
 
               <!-- Compact metadata -->
               <div class="tool-detail__meta">
+                {tool.id !== "google-indexing" && tool.category && <div class="tool-detail__meta-row"><span class="tool-detail__meta-label">Category</span><span class="tool-detail__meta-val">{tool.category}</span></div>}
                 <div class="tool-detail__meta-row">
-                  <span class="tool-detail__meta-label">Built for</span>
-                  <span class="tool-detail__meta-val">{tool.for}</span>
+                  <span class="tool-detail__meta-label">
+                    {(tool.id === "content-audit" || tool.id === "google-indexing" || tool.id === "logfile-audit") && <svg class="meta-inline-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5 6c.5-2.5 2.2-4 5-4s4.5 1.5 5 4" /></svg>}
+                    Built for
+                  </span>
+                  <span class="tool-detail__meta-val">
+                    {tool.id === "content-audit" ? (
+                      <span class="content-audit-audience-chips">
+                        {contentAuditBuiltFor.map((item) => <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Zm-4 5c.4-2.1 1.7-3.3 4-3.3s3.6 1.2 4 3.3" /></svg>{item}</span>)}
+                      </span>
+                    ) : tool.id === "google-indexing" ? (
+                      <span class="content-audit-audience-chips">
+                        {googleIndexingBuiltFor.map((item) => <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Zm-4 5c.4-2.1 1.7-3.3 4-3.3s3.6 1.2 4 3.3" /></svg>{item}</span>)}
+                      </span>
+                    ) : tool.id === "logfile-audit" ? (
+                      <span class="content-audit-audience-chips">
+                        {seoLogAuditBuiltFor.map((item) => <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Zm-4 5c.4-2.1 1.7-3.3 4-3.3s3.6 1.2 4 3.3" /></svg>{item}</span>)}
+                      </span>
+                    ) : tool.for}
+                  </span>
                 </div>
                 <div class="tool-detail__meta-row">
-                  <span class="tool-detail__meta-label">Solves</span>
-                  <span class="tool-detail__meta-val">{tool.solves}</span>
+                  <span class="tool-detail__meta-label">
+                    {(tool.id === "content-audit" || tool.id === "google-indexing" || tool.id === "logfile-audit") && <svg class="meta-inline-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5 17 16H3L10 2.5Zm0 5v4m0 2.5v.1" /></svg>}
+                    Solves
+                  </span>
+                  <div class="tool-detail__meta-val">
+                    {tool.id === "content-audit" ? (
+                      <ul class="content-audit-bullets">
+                        {contentAuditSolves.map((item) => <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 8 2.5 2.5L12 5" /></svg><span>{item}</span></li>)}
+                      </ul>
+                    ) : tool.id === "google-indexing" ? (
+                      <ul class="content-audit-bullets">
+                        {googleIndexingSolves.map((item) => <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 8 2.5 2.5L12 5" /></svg><span>{item}</span></li>)}
+                      </ul>
+                    ) : tool.id === "logfile-audit" ? (
+                      <ul class="content-audit-bullets">
+                        {seoLogAuditSolves.map((item) => <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 8 2.5 2.5L12 5" /></svg><span>{item}</span></li>)}
+                      </ul>
+                    ) : tool.solves}
+                  </div>
                 </div>
                 <div class="tool-detail__meta-row">
-                  <span class="tool-detail__meta-label">Output</span>
-                  <span class="tool-detail__meta-val"><strong>{tool.outputDesc}</strong></span>
+                  <span class="tool-detail__meta-label">
+                    {(tool.id === "content-audit" || tool.id === "google-indexing" || tool.id === "logfile-audit") && <svg class="meta-inline-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14v10H3zM6 8h8m-8 3h5" /></svg>}
+                    Output
+                  </span>
+                  <div class="tool-detail__meta-val">
+                    {tool.id === "content-audit" ? (
+                      <span class="content-audit-output-chips">
+                        {contentAuditOutputs.map((item) => <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 8 2.5 2.5L12 5" /></svg>{item}</span>)}
+                      </span>
+                    ) : tool.id === "google-indexing" ? (
+                      <span class="content-audit-output-chips">
+                        {googleIndexingOutputs.map((item) => <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 8 2.5 2.5L12 5" /></svg>{item}</span>)}
+                      </span>
+                    ) : tool.id === "logfile-audit" ? (
+                      <span class="content-audit-output-chips">
+                        {seoLogAuditOutputs.map((item) => <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 8 2.5 2.5L12 5" /></svg>{item}</span>)}
+                      </span>
+                    ) : <strong>{tool.outputDesc}</strong>}
+                  </div>
                 </div>
+                {tool.id !== "google-indexing" && tool.capabilities && <div class="tool-detail__meta-row"><span class="tool-detail__meta-label">Capabilities</span><span class="tool-detail__meta-val">{tool.capabilities.join(" · ")}</span></div>}
+                {tool.id !== "google-indexing" && tool.technology && <div class="tool-detail__meta-row"><span class="tool-detail__meta-label">Technology</span><span class="tool-detail__meta-val">{tool.technology.join(" · ")}</span></div>}
+                {tool.id !== "google-indexing" && tool.tags && <div class="tool-detail__meta-row"><span class="tool-detail__meta-label">Tags</span><span class="tool-detail__meta-val">{tool.tags.join(" · ")}</span></div>}
               </div>
 
               <!-- Logic flow -->
               <div class="tool-detail__logic">
-                <span class="tool-detail__logic-title">Logic Flow Pipeline</span>
+                <span class="tool-detail__logic-title">
+                  {(tool.id === "content-audit" || tool.id === "google-indexing" || tool.id === "logfile-audit") && <svg class="meta-inline-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 5h4m4 0h4M8 5l2 5m2-5-2 5m0 0v5m0 0H6m4 0h4" /></svg>}
+                  Logic Flow Pipeline
+                </span>
                 <div class="tool-logic-flow__chips">
                   <div class="logic-chip">
                     <span class="logic-chip-label">Input</span>
-                    <span class="logic-chip-val">{tool.input}</span>
+                    <span class="logic-chip-val">{tool.id === "content-audit" ? <span class="content-audit-flow-values"><span>Screaming Frog</span><span>Google Search Console</span><span>GA4</span></span> : tool.id === "google-indexing" ? "Up to 10 URLs" : tool.id === "logfile-audit" ? "Raw Server Logfile" : tool.input}</span>
                   </div>
                   <div class="logic-arrow">↓</div>
                   <div class="logic-chip">
-                    <span class="logic-chip-label">Processing</span>
-                    <span class="logic-chip-val">{tool.logic}</span>
+                    <span class="logic-chip-label">{tool.id === "content-audit" ? "Process" : tool.id === "google-indexing" ? "Validate" : tool.id === "logfile-audit" ? "Process" : "Processing"}</span>
+                    <span class="logic-chip-val">{tool.id === "content-audit" ? <span class="content-audit-flow-values"><span>Normalize Data</span><span>Audit Engine</span></span> : tool.id === "google-indexing" ? "Format & Hostname" : tool.id === "logfile-audit" ? "Parse & Normalize" : tool.logic}</span>
                   </div>
                   <div class="logic-arrow">↓</div>
                   <div class="logic-chip">
-                    <span class="logic-chip-label">Review</span>
-                    <span class="logic-chip-val">{tool.review}</span>
+                    <span class="logic-chip-label">{tool.id === "content-audit" ? "Analyze" : tool.id === "google-indexing" ? "Submit" : tool.id === "logfile-audit" ? "Analyze" : "Review"}</span>
+                    <span class="logic-chip-val">{tool.id === "content-audit" ? <span class="content-audit-flow-values"><span>Rule-based Evaluation</span></span> : tool.id === "google-indexing" ? "Google Indexing API" : tool.id === "logfile-audit" ? "Technical SEO Audit" : tool.review}</span>
                   </div>
                   <div class="logic-arrow">↓</div>
                   <div class="logic-chip">
-                    <span class="logic-chip-label">Output</span>
-                    <span class="logic-chip-val">{tool.outputStep}</span>
+                    <span class="logic-chip-label">{tool.id === "google-indexing" ? "Result" : "Output"}</span>
+                    <span class="logic-chip-val">{tool.id === "content-audit" ? <span class="content-audit-flow-values"><span>Action Plan</span><span>Dashboard</span><span>Google Sheets Report</span></span> : tool.id === "google-indexing" ? "Submitted / Failed" : tool.id === "logfile-audit" ? "Dashboard & Action Plan" : tool.outputStep}</span>
                   </div>
                 </div>
               </div>
 
               <!-- CTA -->
-              <div class="tool-detail__footer">
-                {tool.ctaDisabled ? (
-                  <span class="btn btn-secondary" style="opacity: 0.6; cursor: not-allowed;">{tool.ctaText}</span>
-                ) : (
-                  <a href={tool.ctaLink} class="btn btn-primary">{tool.ctaText} →</a>
-                )}
-              </div>
+              {tool.id !== "content-audit" && tool.id !== "google-indexing" && tool.id !== "logfile-audit" && (
+                <div class="tool-detail__footer">
+                  {tool.ctaDisabled ? (
+                    <span class="btn btn-secondary" style="opacity: 0.6; cursor: not-allowed;">{tool.ctaText}</span>
+                  ) : (
+                    <a href={tool.ctaLink} class="btn btn-primary">{tool.ctaText} →</a>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         ))}
@@ -1262,6 +1393,249 @@ const allTools = [...builtTools, ...devTools];
 
   .tool-detail__meta-val {
     color: var(--color-text);
+    min-width: 0;
+  }
+
+  .content-audit-preview-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    transition: transform 0.2s ease;
+  }
+
+  .content-audit-title-block {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    flex: 1;
+    min-width: 220px;
+  }
+
+  .content-audit-header-actions {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    flex: 0 0 auto;
+  }
+
+  .content-audit-header-cta {
+    padding: 7px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 0.78rem;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .content-audit-mobile-header {
+    display: grid;
+    gap: 10px;
+  }
+
+  .content-audit-mobile-header .content-audit-header-actions {
+    justify-content: flex-start;
+  }
+
+  .content-audit-header-meta,
+  .content-audit-audience-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .content-audit-header-meta > span {
+    padding: 3px 8px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    background: var(--color-bg);
+    color: var(--color-muted-text);
+    font-size: 0.65rem;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  .content-audit-intro {
+    max-width: 720px;
+    line-height: 1.65;
+  }
+
+  .content-audit-preview-link {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    color: inherit;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease;
+  }
+
+  .content-audit-preview-link:hover {
+    box-shadow: inset 0 0 0 1px rgba(193, 18, 31, 0.12);
+  }
+
+  .content-audit-preview-shell {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .content-audit-preview-shell:hover {
+    border-color: rgba(193, 18, 31, 0.28);
+    box-shadow: 0 10px 24px rgba(17, 24, 39, 0.12);
+  }
+
+  .content-audit-preview-link:hover .content-audit-preview-image {
+    transform: scale(1.012);
+  }
+
+  .content-audit-preview-link:focus-visible {
+    outline: 3px solid rgba(193, 18, 31, 0.28);
+    outline-offset: -3px;
+  }
+
+  .content-audit-preview-action {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background: var(--color-card);
+    color: var(--color-accent);
+    box-shadow: var(--shadow-card);
+  }
+
+  .content-audit-preview-action svg,
+  .content-audit-audience-chips svg {
+    width: 15px;
+    height: 15px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .content-audit-audience-chips > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 8px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .content-audit-audience-chips svg {
+    color: var(--color-accent);
+  }
+
+  .content-audit-flow-values {
+    display: grid;
+    gap: 2px;
+    white-space: normal;
+  }
+
+  #desktop-panel-content-audit,
+  #desktop-panel-google-indexing,
+  #desktop-panel-logfile-audit {
+    gap: 20px;
+  }
+
+  #desktop-panel-google-indexing .logic-chip-val,
+  #desktop-panel-logfile-audit .logic-chip-val,
+  .accordion-item[data-tool-id="google-indexing"] .logic-chip-val,
+  .accordion-item[data-tool-id="logfile-audit"] .logic-chip-val {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .content-audit-preview-link,
+    .content-audit-preview-shell,
+    .content-audit-preview-image {
+      transition: none;
+    }
+
+    .content-audit-preview-link:hover .content-audit-preview-image {
+      transform: none;
+    }
+  }
+
+  .meta-inline-icon {
+    width: 14px;
+    height: 14px;
+    margin-right: 5px;
+    vertical-align: -2px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .content-audit-bullets {
+    display: grid;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .content-audit-bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    font-size: 0.86rem;
+    line-height: 1.4;
+  }
+
+  .content-audit-bullets svg,
+  .content-audit-output-chips svg {
+    width: 14px;
+    height: 14px;
+    flex: 0 0 14px;
+    fill: none;
+    stroke: var(--color-accent);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .content-audit-bullets svg {
+    margin-top: 3px;
+  }
+
+  .content-audit-output-chips {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .content-audit-output-chips > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .tool-detail__logic-title:has(.meta-inline-icon) {
+    display: inline-flex;
+    align-items: center;
   }
 
   /* --- Logic flow pipeline --- */
@@ -1440,42 +1814,6 @@ const allTools = [...builtTools, ...devTools];
     border: 1px solid rgba(193, 18, 31, 0.15);
   }
 
-  /* Mock: Content Audit score */
-  .preview-mock--content-audit .mock-score-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background-color: var(--color-card);
-    border: 1px solid var(--color-border);
-    padding: 8px 12px;
-    border-radius: 4px;
-  }
-
-  .mock-score-label {
-    font-weight: 700;
-    color: var(--color-muted-text);
-    white-space: nowrap;
-  }
-
-  .mock-score-bar-wrapper {
-    flex: 1;
-    height: 6px;
-    background-color: var(--color-bg);
-    border-radius: 3px;
-    overflow: hidden;
-  }
-
-  .mock-score-bar {
-    height: 100%;
-    background-color: var(--color-accent);
-  }
-
-  .mock-score-val {
-    font-weight: 800;
-    color: var(--color-accent);
-    white-space: nowrap;
-  }
-
   /* Mock: Logfile Audit bar chart */
   .preview-mock--logfile-audit .mock-chart-row {
     display: flex;
@@ -1574,84 +1912,6 @@ const allTools = [...builtTools, ...devTools];
   .text-muted {
     color: var(--color-muted-text);
     opacity: 0.6;
-  }
-
-  /* Mock: Portfolio mockup */
-  .preview-mock--portfolio .mock-layout {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    flex: 1;
-  }
-
-  .mock-profile {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background-color: var(--color-card);
-    border: 1px solid var(--color-border);
-    padding: 6px 10px;
-    border-radius: 4px;
-  }
-
-  .mock-avatar {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: var(--color-accent);
-    flex-shrink: 0;
-  }
-
-  .mock-lines {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    flex: 1;
-  }
-
-  .mock-line {
-    height: 4px;
-    border-radius: 2px;
-    background-color: var(--color-border);
-  }
-
-  .mock-line.short {
-    width: 30%;
-    background-color: var(--color-text);
-  }
-
-  .mock-line.long {
-    width: 70%;
-  }
-
-  .mock-cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-  }
-
-  .mock-card {
-    background-color: var(--color-card);
-    border: 1px solid var(--color-border);
-    padding: 6px 8px;
-    border-radius: 4px;
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-  }
-
-  .mock-card-title {
-    font-weight: 800;
-    font-size: 0.62rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .mock-card-metric {
-    font-size: 0.58rem;
-    color: var(--color-accent);
-    font-weight: 700;
   }
 
   /* Mock: Technical Audit */
