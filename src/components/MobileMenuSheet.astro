@@ -1,10 +1,11 @@
 ---
+import NavIcon from './NavIcon.astro';
+
 const navItems = [
-  { label: 'Trang chủ', href: '/' },
-  { label: 'Case Study', href: '/case-studies/' },
-  { label: 'Hệ thống SEO', href: '/seo-systems/' },
-  { label: 'Liên hệ', href: '/#contact' },
-];
+  { label: 'Trang chủ', href: '/', icon: 'home' },
+  { label: 'Case Study', href: '/case-studies/', icon: 'briefcase' },
+  { label: 'SEO Tools', href: '/seo-systems/', icon: 'tools' },
+] as const;
 
 const caseStudies = [
   { title: 'Xem tất cả Case Studies', href: '/case-studies/', isHub: true },
@@ -49,7 +50,10 @@ const caseStudies = [
           return (
             <li class="mobile-sheet-item has-sub">
               <div class="mobile-sub-group">
-                <a href={item.href} class="mobile-sheet-link">{item.label}</a>
+                <a href={item.href} class="mobile-sheet-link">
+                  <NavIcon name={item.icon} />
+                  <span>{item.label}</span>
+                </a>
                 <button
                   class="mobile-sub-toggle"
                   aria-expanded="false"
@@ -76,7 +80,10 @@ const caseStudies = [
         }
         return (
           <li class="mobile-sheet-item">
-            <a href={item.href} class="mobile-sheet-link">{item.label}</a>
+            <a href={item.href} class="mobile-sheet-link">
+              <NavIcon name={item.icon} />
+              <span>{item.label}</span>
+            </a>
           </li>
         );
       })}
@@ -84,13 +91,8 @@ const caseStudies = [
 
     <div class="mobile-sheet-cta">
       <a href="/files/Bui_Truong_Thinh_Senior_SEO_Specialist.pdf" download class="btn btn-primary mobile-cv-btn" aria-label="Tải CV PDF của Bùi Trường Thịnh">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-          <polyline points="14 2 14 8 20 8"></polyline>
-          <line x1="16" y1="13" x2="8" y2="13"></line>
-          <line x1="16" y1="17" x2="8" y2="17"></line>
-        </svg>
-        Tải CV PDF
+        <NavIcon name="download" />
+        <span>Tải CV</span>
       </a>
     </div>
   </nav>
@@ -219,7 +221,9 @@ const caseStudies = [
     }
 
     .mobile-sheet-link {
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: 10px;
       font-size: 1.05rem;
       font-weight: 700;
       color: var(--color-text);
@@ -313,6 +317,7 @@ const caseStudies = [
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 8px;
       padding: 12px 20px;
       font-size: 0.95rem;
       font-weight: 700;

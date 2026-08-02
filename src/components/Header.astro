@@ -1,10 +1,11 @@
 ---
+import NavIcon from './NavIcon.astro';
+
 const navItems = [
-  { label: 'Trang chủ', href: '/' },
-  { label: 'Case Study', href: '/case-studies/' },
-  { label: 'Hệ thống SEO', href: '/seo-systems/' },
-  { label: 'Liên hệ', href: '/#contact' },
-];
+  { label: 'Trang chủ', href: '/', icon: 'home' },
+  { label: 'Case Study', href: '/case-studies/', icon: 'briefcase' },
+  { label: 'SEO Tools', href: '/seo-systems/', icon: 'tools' },
+] as const;
 ---
 <header class="header">
   <div class="container header-container">
@@ -28,7 +29,10 @@ const navItems = [
             return (
               <li class="nav-item-dropdown">
                 <div class="nav-link-group">
-                  <a href={item.href} class="nav-link">{item.label}</a>
+                  <a href={item.href} class="nav-link">
+                    <NavIcon name={item.icon} />
+                    <span>{item.label}</span>
+                  </a>
                   <button 
                     class="dropdown-toggle" 
                     aria-expanded="false" 
@@ -109,12 +113,18 @@ const navItems = [
           }
           return (
             <li>
-              <a href={item.href} class="nav-link">{item.label}</a>
+              <a href={item.href} class="nav-link">
+                <NavIcon name={item.icon} />
+                <span>{item.label}</span>
+              </a>
             </li>
           );
         })}
         <li>
-          <a href="/files/Bui_Truong_Thinh_Senior_SEO_Specialist.pdf" download class="btn btn-primary cta-btn" aria-label="Tải CV PDF của Bùi Trường Thịnh">Tải CV</a>
+          <a href="/files/Bui_Truong_Thinh_Senior_SEO_Specialist.pdf" download class="btn btn-primary cta-btn" aria-label="Tải CV PDF của Bùi Trường Thịnh">
+            <NavIcon name="download" />
+            <span>Tải CV</span>
+          </a>
         </li>
       </ul>
     </nav>
@@ -158,6 +168,9 @@ const navItems = [
     gap: 32px;
   }
   .nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
     font-weight: 500;
     color: var(--color-text);
     font-size: 16px;
@@ -167,6 +180,9 @@ const navItems = [
     color: var(--color-accent);
   }
   .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
     padding: 10px 20px;
     font-size: 15px;
   }
