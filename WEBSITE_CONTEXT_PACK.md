@@ -60,7 +60,7 @@
   - Surface/Card: Pure white (`#FFFFFF`)
   - Muted Sections: Slightly darker beige (`#F3E9DD`)
   - Footer: Dark mode aesthetic (`#111827` bg, `#FFF8F0` text).
-- **Typography:** Uses `Inter` (Google Fonts) with system fallbacks. Fluid typography using `clamp()` for responsive headings.
+- **Typography:** Uses self-hosted `Manrope` with Arial and sans-serif fallbacks. Fluid typography using `clamp()` for responsive headings.
 - **Spacing/Layout Patterns:** 
   - Standard section padding: `88px` desktop, `64px` mobile.
   - CSS Grid with a `24px` standard gap.
