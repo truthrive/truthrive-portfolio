@@ -1,5 +1,13 @@
 /* src/styles/global.css */
 
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter/inter-variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
 /* 1. Global Design Tokens */
 :root {
   /* Colors */
