@@ -2,23 +2,28 @@
   "redirects": [
     {
       "source": "/about",
-      "destination": "/#career-journey",
-      "permanent": true
+      "destination": "https://truthrive.net/#career-journey",
+      "statusCode": 301
     },
     {
       "source": "/about/",
-      "destination": "/#career-journey",
-      "permanent": true
+      "destination": "https://truthrive.net/#career-journey",
+      "statusCode": 301
     },
     {
       "source": "/contact",
-      "destination": "/#contact",
-      "permanent": true
+      "destination": "https://truthrive.net/#contact",
+      "statusCode": 301
     },
     {
       "source": "/contact/",
-      "destination": "/#contact",
-      "permanent": true
+      "destination": "https://truthrive.net/#contact",
+      "statusCode": 301
+    },
+    {
+      "source": "/:path*",
+      "destination": "https://truthrive.net/:path*",
+      "statusCode": 301
     }
   ]
 }
