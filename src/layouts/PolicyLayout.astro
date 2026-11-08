@@ -1,0 +1,24 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+interface Props { title: string; description: string; eyebrow?: string; }
+const { title, description, eyebrow = "TruThrive / SEO Report" } = Astro.props;
+---
+<BaseLayout title={`${title} | TruThrive SEO Report`} description={description}>
+  <div class="policy-wrap">
+    <div class="policy-hero"><p class="policy-eyebrow">{eyebrow}</p><h1>{title}</h1><p class="policy-intro">{description}</p></div>
+    <nav class="policy-nav" aria-label="SEO Report"><a href="/seo-report/">Giới thiệu ứng dụng</a><a href="/seo-report/privacy/">Chính sách quyền riêng tư</a><a href="/seo-report/terms/">Điều khoản sử dụng</a></nav>
+    <div class="policy-content"><slot /></div>
+  </div>
+</BaseLayout>
+<style>
+  .policy-wrap{width:min(1080px,calc(100% - 40px));margin:0 auto;padding:68px 0 100px;color:#263a30}
+  .policy-hero{max-width:800px;padding-bottom:28px}.policy-eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:700;color:#4e7059;margin:0 0 18px}
+  h1{font-size:clamp(2.4rem,5vw,4rem);line-height:1.1;letter-spacing:-.045em;margin:0 0 20px}.policy-intro{font-size:1.1rem;line-height:1.7;color:#5e6c62;max-width:750px}
+  .policy-nav{display:flex;flex-wrap:wrap;gap:12px 28px;padding:20px 0;border-top:1px solid #dce4da;border-bottom:1px solid #dce4da}
+  .policy-nav a{font-size:.9rem;font-weight:700;color:#315f43;text-decoration:none}.policy-nav a:hover{text-decoration:underline}.policy-nav a:focus-visible{outline:3px solid #7aa281;outline-offset:4px}
+  .policy-content{max-width:800px;padding-top:20px}.policy-content :global(section){padding:28px 0;border-bottom:1px solid #dce4da}
+  .policy-content :global(h2){font-size:1.55rem;line-height:1.3;letter-spacing:-.025em;margin:0 0 16px}
+  .policy-content :global(p),.policy-content :global(li){font-size:1rem;line-height:1.8;color:#46594b}.policy-content :global(p){margin:0 0 14px}.policy-content :global(li){margin:8px 0}.policy-content :global(ul){padding-left:24px;margin:12px 0}.policy-content :global(a){color:#287044;text-decoration:underline;text-underline-offset:3px}
+  .policy-content :global(.app-button){display:inline-block;background:#285c3b;color:#fff;padding:12px 22px;border-radius:6px;font-weight:700;text-decoration:none}.policy-content :global(.app-note){background:#edf3e9;padding:22px;border-radius:12px}
+  @media(max-width:700px){.policy-wrap{padding:46px 0 70px}.policy-nav{gap:12px 20px}}
+</style>
