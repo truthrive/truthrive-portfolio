@@ -1,9 +1,16 @@
 ---
 import PolicyLayout from "../../layouts/PolicyLayout.astro";
+
+const sections = [
+  { id: "service", label: "Dịch vụ" },
+  { id: "responsibility", label: "Trách nhiệm của người dùng" },
+  { id: "third-party", label: "Dịch vụ bên thứ ba" },
+  { id: "results", label: "Số liệu và kết quả" },
+  { id: "contact", label: "Liên hệ" }
+];
 ---
 
-<PolicyLayout title="Điều khoản sử dụng" description="Thông tin cơ bản khi sử dụng TruThrive SEO Report.">
-  <p>Cập nhật: 08/11/2026</p>
+<PolicyLayout sections={sections} updated="08/11/2026" title="Điều khoản sử dụng" description="Thông tin cơ bản khi sử dụng TruThrive SEO Report.">
 <section class="doc" id="service"><h2>Dịch vụ</h2><p>TruThrive SEO Report là công cụ hỗ trợ theo dõi, tổng hợp và báo cáo hiệu suất SEO. Quyền truy cập ứng dụng được người quản lý cấp theo tài khoản và dự án.</p></section>
 <section class="doc" id="responsibility"><h2>Trách nhiệm của người dùng</h2><p>Bạn chỉ kết nối hoặc cung cấp dữ liệu mà bạn có quyền sử dụng, giữ an toàn thông tin đăng nhập và không tìm cách truy cập dữ liệu hoặc tài khoản không được phép. Bạn chịu trách nhiệm về việc chia sẻ báo cáo, tệp Drive và mật khẩu bản xem tĩnh với người nhận phù hợp.</p></section>
 <section class="doc" id="third-party"><h2>Dịch vụ bên thứ ba</h2><p>Một số chức năng phụ thuộc vào Google, DataForSEO và dịch vụ lưu trữ do người vận hành lựa chọn. Việc sử dụng các dịch vụ đó còn chịu điều khoản của nhà cung cấp tương ứng; kết nối có thể bị giới hạn, gián đoạn hoặc thay đổi khi quyền truy cập hay dịch vụ thay đổi.</p></section>

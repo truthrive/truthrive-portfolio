@@ -1,9 +1,19 @@
 ---
 import PolicyLayout from "../../layouts/PolicyLayout.astro";
+
+const sections = [
+  { id: "about", label: "Giới thiệu" },
+  { id: "data", label: "Dữ liệu ứng dụng truy cập" },
+  { id: "use", label: "Mục đích sử dụng" },
+  { id: "share", label: "Chia sẻ và dịch vụ bên thứ ba" },
+  { id: "storage", label: "Lưu trữ, bảo mật và thời hạn" },
+  { id: "delete", label: "Quyền của bạn và xóa dữ liệu" },
+  { id: "google", label: "Chính sách dữ liệu Google" },
+  { id: "changes", label: "Thay đổi và liên hệ" }
+];
 ---
 
-<PolicyLayout title="Chính sách quyền riêng tư" description="Cách TruThrive SEO Report truy cập, sử dụng, lưu trữ và chia sẻ dữ liệu.">
-  <p>Cập nhật: 08/11/2026</p>
+<PolicyLayout sections={sections} updated="08/11/2026" title="Chính sách quyền riêng tư" description="Cách TruThrive SEO Report truy cập, sử dụng, lưu trữ và chia sẻ dữ liệu.">
 <section class="doc" id="about"><h2>Giới thiệu</h2><p>Chính sách này giải thích cách TruThrive SEO Report (“ứng dụng”, “chúng tôi”) xử lý thông tin khi cung cấp công cụ báo cáo SEO. Ứng dụng do TruThrive vận hành; liên hệ <a href="mailto:bt.thinh2010@gmail.com">bt.thinh2010@gmail.com</a> nếu bạn có câu hỏi hoặc yêu cầu về dữ liệu.</p><p>Ứng dụng được triển khai trên máy chủ do người vận hành quản lý. Các tích hợp và chức năng được sử dụng tùy thuộc vào cấu hình và quyền đã cấp.</p></section>
 <section class="doc" id="data"><h2>Dữ liệu ứng dụng truy cập</h2><p>Ứng dụng có thể xử lý thông tin tài khoản như email hoặc tên đăng nhập, mật khẩu đã băm, vai trò và lịch sử truy cập; thông tin dự án như tên website, URL, từ khóa, công việc, KPI và nội dung báo cáo.</p><p>Khi tài khoản Google được cấp quyền, ứng dụng có thể truy cập dữ liệu sau để cung cấp các tính năng được chọn:</p><ul><li><strong>Google Search Console:</strong> thuộc tính website, hiệu suất tìm kiếm theo URL và truy vấn, cùng kết quả kiểm tra URL và tình trạng lập chỉ mục.</li><li><strong>Google Analytics 4:</strong> danh sách thuộc tính và số liệu phân tích như phiên truy cập, nguồn lưu lượng, traffic từ trợ lý AI và số liệu nền KPI.</li><li><strong>Google Sheets và Drive:</strong> các bảng tính, thư mục và tệp được sử dụng để đọc OKR/KPI, sao chép bảng mẫu, tạo hoặc cập nhật báo cáo. Ứng dụng có thể ghi các tab “KPI cam kết” và “Từ khóa cam kết” vào bảng tính dự án; cũng có thể tạo hoặc xuất Sheets, Slides và PDF vào Drive.</li><li><strong>Google Ads:</strong> dữ liệu Keyword Planner phục vụ lấy lượng tìm kiếm từ khóa.</li><li><strong>Google Business Profile:</strong> thông tin hồ sơ doanh nghiệp để hiển thị trang Local SEO.</li><li><strong>Google Merchant Center:</strong> dữ liệu sản phẩm để hiển thị thông tin Merchant Center.</li></ul><p>Một số quyền Google được cấp có phạm vi rộng hơn thao tác mà chức năng đang thực hiện. Phạm vi thực tế được hiển thị trên màn hình cấp quyền của Google; các chức năng Search Console, Analytics, Keyword Planner và Business Profile được triển khai để đọc dữ liệu.</p></section>
 <section class="doc" id="use"><h2>Mục đích sử dụng</h2><p>Chúng tôi sử dụng dữ liệu để kết nối nguồn số liệu, phân tích và trình bày hiệu suất SEO, theo dõi KPI và công việc, tạo báo cáo, vận hành tài khoản và phân quyền truy cập. Dữ liệu Google chỉ được xử lý cho các chức năng được mô tả trong chính sách này.</p><p>Ứng dụng còn có thể sử dụng API key cho Chrome UX Report và PageSpeed Insights để lấy chỉ số hiệu năng; các dịch vụ này không dùng quyền OAuth nêu trên.</p></section>
