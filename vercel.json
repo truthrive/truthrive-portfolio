@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/",
+      "destination": "https://truthrive.net/",
+      "statusCode": 301
+    },
+    {
       "source": "/about",
       "destination": "https://truthrive.net/#career-journey",
       "statusCode": 301
